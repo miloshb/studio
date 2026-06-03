@@ -1,6 +1,6 @@
-# Studio Sun & Sea — Design System Index  
+﻿# Studio Sun & Sea — Design System  
 A warm–minimalist design system built for clarity, serenity, and collaboration.  
-This index provides a complete overview of the visual, structural, and experiential foundations of the Studio Sun & Sea website and brand.
+This README is the entry point for all visual, structural, and experiential guidelines for the Studio Sun & Sea brand and website.
 
 ---
 
@@ -149,6 +149,8 @@ A unified set of variables for:
 
 Will be implemented as:
 
+
+
 /src/styles/tokens.css
 
 
@@ -174,7 +176,7 @@ Custom styling for:
 
 /doc
 /design
-index.md
+index.md (README.md)
 color-palette.md
 typography.md
 hero-layout.md
