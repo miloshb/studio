@@ -23,14 +23,14 @@ This system is intentionally minimal, serene, and grounded — reflecting the es
 
 The design system is organized into the following core areas:
 
-1. **Color Palette**  
-2. **Typography**  
-3. **Homepage Hero Layout**  
-4. **Navigation & Information Architecture**  
-5. **Components**  
-6. **Brand Voice & Tone**  
-7. **Design Tokens (future)**  
-8. **Mindbody Integration Styles (future)**  
+1. **[Color Palette](#1-color-palette)**  
+2. **[Typography](#2-typography-system)**  
+3. **[Homepage Hero Layout](#3-homepage-hero-layout)**  
+4. **[Navigation & Information Architecture](#4-navigation--ia)**  
+5. **[Components](#5-component-library-future-expansion)**  
+6. **[Brand Voice & Tone](#6-voice--tone-guidelines-future)**  
+7. **[Design Tokens (future)](#-design-tokens-future)**  
+8. **[Mindbody Integration Styles (future)](#-mindbody-integration-styles-future)**  
 
 Each section is documented in its own Markdown file for clarity and modularity.
 
@@ -47,10 +47,8 @@ Warm minimalism inspired by the Dalmatian coast, natural studio light, and seash
 - Swatch grid  
 - Usage rules  
 
-📄 **File:** `/doc/design/color-palette.md`  
+📄 **File:** [/doc/design/color-palette.md](/doc/design/color-palette.md)
 🔗 **[Open color palette](ca://s?q=Define_warm_minimalism_palette)**
-
----
 
 ## **2. Typography System**  
 Elegant serif headings + clean sans‑serif body text.
@@ -61,7 +59,7 @@ Elegant serif headings + clean sans‑serif body text.
 - Multilingual rules  
 - Component examples  
 
-📄 **File:** `/doc/design/typography.md`  
+📄 **File:** [/doc/design/typography.md](/doc/design/typography.md)
 🔗 **[Open typography system](ca://s?q=Generate_typography_system)**
 
 ---
@@ -77,10 +75,8 @@ Poster‑style, serene, warm, and actionable.
 - Single CTA  
 - No animations  
 
-📄 **File:** `/doc/design/hero-layout.md`  
+📄 **File:** [/doc/design/hero-layout.md](/doc/design/hero-layout.md)
 🔗 **[Open hero layout](ca://s?q=Generate_homepage_hero_spec)**
-
----
 
 ## **4. Navigation & IA**  
 Calm, clear, minimal navigation.
@@ -91,7 +87,7 @@ Calm, clear, minimal navigation.
 - Footer structure  
 - Accessibility rules  
 
-📄 **File:** `/doc/design/navigation.md`  
+📄 **File:** [/doc/design/navigation.md](/doc/design/navigation.md)
 🔗 **[Open navigation structure](ca://s?q=Generate_navigation_structure)**
 
 ---
@@ -112,7 +108,7 @@ Planned components:
 - Mobile menu  
 - Mindbody widget overrides  
 
-📄 **Directory:** `/doc/design/components/`  
+📄 **Directory:** [/doc/design/components/](/doc/design/components/)
 🔗 **[Generate component library spec](ca://s?q=Generate_component_library_spec)**
 
 ---
@@ -131,7 +127,7 @@ Themes:
 - bilingual (EN + DE)  
 - Sanskrit integrated with respect  
 
-📄 **File:** `/doc/brand/voice-and-tone.md`  
+📄 **File:** [/doc/brand/voice-and-tone.md](/doc/brand/voice-and-tone.md)
 🔗 **[Generate voice & tone guidelines](ca://s?q=Generate_voice_and_tone_guidelines)**
 
 ---
@@ -149,10 +145,7 @@ A unified set of variables for:
 
 Will be implemented as:
 
-
-
-/src/styles/tokens.css
-
+[/src/styles/tokens.css](/src/styles/tokens.css)
 
 🔗 **[Generate design tokens](ca://s?q=Generate_design_tokens)**
 
@@ -167,26 +160,26 @@ Custom styling for:
 - booking buttons  
 - teacher profiles (if used)  
 
-📄 **File:** `/doc/design/mindbody-styles.md`  
+📄 **File:** [/doc/design/mindbody-styles.md](/doc/design/mindbody-styles.md)
 🔗 **[Generate Mindbody style guide](ca://s?q=Generate_mindbody_style_guide)**
 
 ---
 
 # 📁 Recommended Directory Structure
 
-/doc
-/design
-index.md (README.md)
-color-palette.md
-typography.md
-hero-layout.md
-navigation.md
-/components
-buttons.md
-cards.md
-forms.md
-/brand
-voice-and-tone.md
+- /doc
+  - /design
+    - index.md (README.md)
+    - color-palette.md
+    - typography.md
+    - hero-layout.md
+    - navigation.md
+    - /components
+      - buttons.md
+      - cards.md
+      - forms.md
+  - /brand
+    - voice-and-tone.md
 
 ---
 
