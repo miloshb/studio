@@ -1,8 +1,13 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import HreflangLegal from "../../components/HreflangLegal.astro";
 ---
 
 <BaseLayout lang="de" title="Datenschutzerklärung – Studio Sun & Sea">
+  <head slot="head">
+    <HreflangLegal page="imprint" />
+  </head>
+
   <section class="section container">
     <h1>Datenschutzerklärung</h1>
 

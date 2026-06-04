@@ -1,8 +1,13 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import HreflangLegal from "../../components/HreflangLegal.astro";
 ---
 
 <BaseLayout lang="en" title="Release and Waiver of Liability – Studio Sun & Sea">
+  <head slot="head">
+    <HreflangLegal page="imprint" />
+  </head>
+
   <h1>Agreement of Release and Waiver of Liability</h1>
 
   <p>This Agreement of Release and Waiver of Liability (“Agreement”) applies to all yoga classes, workshops, trainings, online sessions, and wellness programs offered by Studio Sun & Sea and its owner, Miloš Borojević.</p>

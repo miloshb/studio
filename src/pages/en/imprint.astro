@@ -1,8 +1,14 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import HreflangLegal from "../../components/HreflangLegal.astro";
+import ExaliSeal from "../../components/ExaliSeal.astro";
 ---
 
 <BaseLayout lang="en" title="Imprint (Legal Notice) – Studio Sun & Sea">
+  <head slot="head">
+    <HreflangLegal page="imprint" />
+  </head>
+
   <h1>Imprint (Legal Notice)</h1>
 
   <section>
@@ -17,11 +23,46 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
   </section>
 
   <section>
+    <h2>Professional Liability Insurance</h2>
+
+    <ExaliSeal />
+
+    <p>Studio Sun & Sea holds professional liability insurance with <strong>Markel Insurance SE</strong>, arranged through Exali AG.</p>
+
+    <p><strong>Policy Number:</strong> EX.MDL.93787</p>
+
+    <h3>Insured Risks</h3>
+    <ul>
+      <li>Financial Loss Insurance (FLI)</li>
+      <li>General Liability Insurance (GLI)</li>
+      <li>Product Liability Insurance</li>
+      <li>Special Exali clauses for yoga teachers (2021‑02)</li>
+    </ul>
+
+    <h3>Sum Insured</h3>
+    <ul>
+      <li>300,000 € for financial losses (triple annual aggregate)</li>
+      <li>3,000,000 € combined single limit for personal injury and property damage (triple annual aggregate)</li>
+    </ul>
+
+    <h3>Territorial Scope</h3>
+    <p>The professional liability insurance provides coverage for insured activities worldwide, subject to the terms and conditions of the policy. Only the German‑language insurance policy is legally binding.</p>
+
+    <h3>Legal Note</h3>
+    <p>Only the German‑language insurance policy is legally binding.</p>
+
+    <h3>Claims Contact</h3>
+    <p>
+      Exali AG<br />
+      Franz‑Kobinger‑Str. 9<br />
+      86157 Augsburg<br />
+      Phone: +49 (0) 821 80 99 46‑0
+    </p>
+  </section>
+
+  <section>
     <h2>Legal Notice (Germany / EU)</h2>
     <p>This website is operated by Studio Sun & Sea, a sole proprietorship established in Germany. The following information is provided in accordance with § 5 TMG and § 55 RStV.</p>
-
-    <h3>Professional Liability Insurance</h3>
-    <p>Studio Sun & Sea holds professional liability insurance through Exali AG. Details are available via the insurance seal in the footer.</p>
 
     <h3>VAT Status</h3>
     <p>Studio Sun & Sea operates under the Kleinunternehmerregelung (§ 19 UStG). No VAT is charged or shown on invoices.</p>
