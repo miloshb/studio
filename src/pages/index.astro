@@ -1,3 +1,26 @@
----
-Astro.redirect('/en/');
----
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Redirecting…</title>
+
+    <script>
+      // Only redirect if the user has never been redirected before
+      if (!localStorage.getItem('preferredLanguage')) {
+        const lang = navigator.language || navigator.userLanguage;
+        const isGerman = lang.toLowerCase().startsWith('de');
+
+        // Save the detected preference permanently
+        localStorage.setItem('preferredLanguage', isGerman ? 'de' : 'en');
+
+        // Redirect to the detected language
+        window.location.href = isGerman ? '/de/' : '/en/';
+      } else {
+        // If a preference exists, respect it
+        const preferred = localStorage.getItem('preferredLanguage');
+        window.location.href = preferred === 'de' ? '/de/' : '/en/';
+      }
+    </script>
+  </head>
+  <body></body>
+</html>
