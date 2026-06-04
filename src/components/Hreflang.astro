@@ -3,6 +3,7 @@ const { page } = Astro.props;
 
 // Mapping EN ↔ DE equivalents
 const map = {
+  about: { en: "/en/about", de: "/de/about" },
   imprint: { en: "/en/imprint", de: "/de/impressum" },
   privacy: { en: "/en/privacy", de: "/de/datenschutz" },
   terms: { en: "/en/terms", de: "/de/agb" },
@@ -10,7 +11,7 @@ const map = {
 };
 
 const urls = map[page];
-const base = "https://studio-sun-and-sea.com";
+const base = "https://studiosunandsea.com";
 ---
 
 <link rel="alternate" hreflang="en" href={base + urls.en} />
