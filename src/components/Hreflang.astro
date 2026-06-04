@@ -3,11 +3,15 @@ const { page } = Astro.props;
 
 // Mapping EN ↔ DE equivalents
 const map = {
+  classes: { en: "/en/classes", de: "/de/classes" },
+  private: { en: "/en/private", de: "/de/private" },
+  teach: { en: "/en/teach", de: "/de/teach" },
   about: { en: "/en/about", de: "/de/about" },
   imprint: { en: "/en/imprint", de: "/de/impressum" },
   privacy: { en: "/en/privacy", de: "/de/datenschutz" },
   terms: { en: "/en/terms", de: "/de/agb" },
-  waiver: { en: "/en/waiver", de: "/de/haftungsausschluss" }
+  waiver: { en: "/en/waiver", de: "/de/haftungsausschluss" },
+  contact: { en: "/en/contact", de: "/de/kontakt" }
 };
 
 const urls = map[page];
