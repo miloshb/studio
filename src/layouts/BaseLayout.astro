@@ -1,0 +1,109 @@
+---
+const { title = "Studio Sun & Sea", description = "" } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- Standard favicon -->
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+    <link rel="icon" href="/favicon.ico" />
+    <!-- Apple / iOS -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <!-- Android / PWA -->
+    <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
+    <link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png" />
+    <!-- Default PNG fallback -->
+    <link rel="icon" type="image/png" href="/icon.png" />
+    <title>{title}</title>
+
+    <!-- Global styles -->
+    <link rel="stylesheet" href="/styles/global.css" />
+  </head>
+
+  <body style="background:#F7EFEA; margin:0; padding:0;">
+    <header>
+      <nav class="nav">
+        <a class="logo" href="/">Studio Sun & Sea</a>
+
+        <div class="nav-links">
+          <a href="/">Home</a>
+          <a href="/classes">Classes & Schedule</a>
+          <a href="/private-sessions">Private Sessions</a>
+          <a href="/teach">Teach With Us</a>
+          <a href="/about">About</a>
+          <a href="/contact">Contact</a>
+        </div>
+      </nav>
+    </header>
+
+    <main class="page-container">
+      <slot />
+    </main>
+
+    <footer class="footer">
+      <div>© {new Date().getFullYear()} Studio Sun & Sea</div>
+      <div class="footer-links">
+        <a href="/impressum">Impressum</a>
+        <a href="/datenschutz">Datenschutz</a>
+      </div>
+    </footer>
+  </body>
+</html>
+
+<style>
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 32px;
+    background: #F7EFEA;
+    font-family: Inter, sans-serif;
+    border-bottom: 1px solid #E8DCCF;
+  }
+
+  .logo {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 24px;
+    color: #3A3A3C;
+    text-decoration: none;
+  }
+
+  .nav-links a {
+    margin-left: 24px;
+    text-decoration: none;
+    color: #3A3A3C;
+    font-size: 16px;
+  }
+
+  .nav-links a:hover {
+    color: #6E6E73;
+  }
+
+  .page-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 48px 24px;
+  }
+
+  .footer {
+    padding: 32px;
+    text-align: center;
+    font-family: Inter, sans-serif;
+    color: #6E6E73;
+    border-top: 1px solid #E8DCCF;
+  }
+
+  .footer-links a {
+    margin: 0 12px;
+    color: #6E6E73;
+    text-decoration: none;
+  }
+</style>
