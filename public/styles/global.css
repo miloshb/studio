@@ -34,6 +34,20 @@ a {
   color: inherit;
 }
 
+p a,
+li a {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-thickness: 1px;
+}
+
+p a:hover,
+li a:hover {
+  color: var(--color-accent-strong);
+  text-decoration-thickness: 2px;
+}
+
 /* ---------------------------------
    2. DESIGN TOKENS
 ---------------------------------- */
