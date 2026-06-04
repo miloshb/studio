@@ -1,0 +1,84 @@
+---
+const { lang = "en" } = Astro.props;
+
+const nav = {
+  en: [
+    { label: "Home", href: "/en/" },
+    { label: "Classes", href: "/en/classes" },
+    { label: "Private Sessions", href: "/en/private" },
+    { label: "Teach with Us", href: "/en/teach" },
+    { label: "About", href: "/en/about" }
+  ],
+  de: [
+    { label: "Startseite", href: "/de/" },
+    { label: "Kurse", href: "/de/classes" },
+    { label: "Private Sessions", href: "/de/private" },
+    { label: "Unterrichten", href: "/de/teach" },
+    { label: "Über uns", href: "/de/about" }
+  ]
+};
+---
+
+<nav class="nav container">
+  <a class="brand" href={lang === "de" ? "/de/" : "/en/"}>Studio Sun & Sea</a>
+
+  <div class="nav-links">
+    {nav[lang].map(item => (
+      <a href={item.href}>{item.label}</a>
+    ))}
+  </div>
+
+  <div class="nav-lang">
+    <a class={lang === "en" ? "active" : ""} href="/en/">EN</a>
+    <span>·</span>
+    <a class={lang === "de" ? "active" : ""} href="/de/">DE</a>
+  </div>
+</nav>
+
+<style>
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-md) 0;
+  }
+
+  .brand {
+    font-family: var(--font-heading);
+    font-size: var(--text-lg);
+    color: var(--color-text);
+  }
+
+  .nav-links a {
+    margin-left: var(--space-md);
+    font-size: var(--text-sm);
+    color: var(--color-text-soft);
+  }
+
+  .nav-links a:hover {
+    color: var(--color-text);
+  }
+
+  .nav-lang {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: var(--text-sm);
+  }
+
+  .nav-lang a {
+    color: var(--color-text-soft);
+  }
+
+  .nav-lang a.active {
+    color: var(--color-text);
+    font-weight: 600;
+  }
+
+  @media (max-width: 700px) {
+    .nav {
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+  }
+</style>

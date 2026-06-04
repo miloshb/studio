@@ -1,0 +1,160 @@
+/* -------------------------------------------------------
+   Studio Sun & Sea — Global Styles
+   Warm minimalism • Calm typography • Soft color palette
+------------------------------------------------------- */
+
+/* ---------------------------------
+   1. CSS RESET (modern + minimal)
+---------------------------------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  line-height: 1.6;
+}
+
+/* Remove default link underlines */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ---------------------------------
+   2. DESIGN TOKENS
+---------------------------------- */
+
+:root {
+  /* Colors — Warm Minimalism */
+  --color-bg: #F7EFEA;          /* Seashell Warm */
+  --color-text: #3A3A3C;        /* Deep Slate */
+  --color-text-soft: #6E6E73;   /* Soft Slate */
+  --color-border: #E8DCCF;      /* Sandstone Line */
+  --color-accent: #CFA79E;      /* Terracotta Soft */
+  --color-accent-hover: #C5978D;
+
+  /* Typography */
+  --font-heading: "Cormorant Garamond", serif;
+  --font-body: "Inter", sans-serif;
+
+  /* Type scale */
+  --text-xs: 0.85rem;
+  --text-sm: 1rem;
+  --text-md: 1.125rem;
+  --text-lg: 1.5rem;
+  --text-xl: 2.25rem;
+  --text-xxl: 3rem;
+
+  /* Spacing scale (soft, airy) */
+  --space-xs: 8px;
+  --space-sm: 16px;
+  --space-md: 24px;
+  --space-lg: 48px;
+  --space-xl: 96px;
+
+  /* Layout */
+  --max-width: 900px;
+}
+
+/* ---------------------------------
+   3. TYPOGRAPHY
+---------------------------------- */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  color: var(--color-text);
+  margin: 0 0 var(--space-sm) 0;
+  font-weight: 600;
+}
+
+h1 {
+  font-size: var(--text-xxl);
+}
+
+h2 {
+  font-size: var(--text-xl);
+}
+
+h3 {
+  font-size: var(--text-lg);
+}
+
+p {
+  margin: 0 0 var(--space-md) 0;
+  font-size: var(--text-md);
+  color: var(--color-text-soft);
+}
+
+/* ---------------------------------
+   4. LINKS
+---------------------------------- */
+
+a:hover {
+  color: var(--color-text);
+}
+
+/* ---------------------------------
+   5. BUTTONS (minimal)
+---------------------------------- */
+
+.button {
+  display: inline-block;
+  padding: 12px 28px;
+  background: var(--color-accent);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  border-radius: 4px;
+}
+
+.button:hover {
+  background: var(--color-accent-hover);
+}
+
+/* ---------------------------------
+   6. LAYOUT UTILITIES
+---------------------------------- */
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--space-md);
+}
+
+.section {
+  padding: var(--space-xl) var(--space-md);
+  border-bottom: 1px solid var(--color-border);
+}
+
+/* ---------------------------------
+   7. NAV + FOOTER BASELINE
+---------------------------------- */
+
+nav, footer {
+  font-family: var(--font-body);
+  color: var(--color-text-soft);
+}
+
+/* ---------------------------------
+   8. IMAGES
+---------------------------------- */
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
