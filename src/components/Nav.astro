@@ -3,14 +3,12 @@ const { lang = "en" } = Astro.props;
 
 const nav = {
   en: [
-    { label: "Home", href: "/en/" },
     { label: "Classes", href: "/en/classes" },
     { label: "Private Sessions", href: "/en/private" },
     { label: "Teach with Us", href: "/en/teach" },
     { label: "About", href: "/en/about" }
   ],
   de: [
-    { label: "Startseite", href: "/de/" },
     { label: "Kurse", href: "/de/classes" },
     { label: "Private Sessions", href: "/de/private" },
     { label: "Unterrichten", href: "/de/teach" },
@@ -29,11 +27,17 @@ const nav = {
   </div>
 
   <div class="nav-lang">
-    <a class={lang === "en" ? "active" : ""} href="/en/">EN</a>
+    <a class={lang === "en" ? "active" : ""} href="/en/" onclick="setLangPreference('en')">EN</a>
     <span>·</span>
-    <a class={lang === "de" ? "active" : ""} href="/de/">DE</a>
+    <a class={lang === "de" ? "active" : ""} href="/de/" onclick="setLangPreference('de')">DE</a>
   </div>
 </nav>
+
+<script>
+  function setLangPreference(lang) {
+    localStorage.setItem('preferredLanguage', lang);
+  }
+</script>
 
 <style>
   .nav {
