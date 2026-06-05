@@ -18,13 +18,13 @@ Studio Sun & Sea uses **warm minimalism**:
 - natural light
 - no harsh contrasts
 - no neon or saturated colors
-- a calm, poster‑like aesthetic
+- a calm, poster-like aesthetic
 
 The palette is built around:
 - **seashell pink warmth** (inspiration from "[Living Barre & Yoga](https://livingbarreandyoga.com.au/class/rooted-living/)")
 - **Dalmatian coastal neutrals**
 - **studio light tones** (from [Ellen Hoormann's space](https://ellenhoormann.de/yoga-lingen/))
-- **subtle sea‑inspired accents**
+- **subtle sea-inspired accents**
 
 ---
 
@@ -55,7 +55,7 @@ The palette is built around:
 ### **1. Seashell Warm — Primary Background**
 <div style="width:200px;height:50px;background:#F7EFEA;border:1px solid #ccc;"></div>
 
-A soft, warm, nearly‑neutral pink that creates the serene, calming base of the site.
+A soft, warm, nearly-neutral pink that creates the serene, calming base of the site.
 
 - **HEX:** `#F7EFEA`
 - **RGB:** `247, 239, 234`
@@ -96,7 +96,7 @@ Soft charcoal for high readability without harshness.
 ### **4. Seafoam Mist**
 <div style="width:200px;height:50px;background:#DDEEEA;border:1px solid #ccc;"></div>
 
-A whisper of green‑blue inspired by the Adriatic.
+A whisper of green-blue inspired by the Adriatic.
 
 - **HEX:** `#DDEEEA`
 - **RGB:** `221, 238, 234`
@@ -195,8 +195,8 @@ A cool neutral for balance.
 ## 🔗 Related Documentation
 
 - **[Define warm minimalism palette](ca://s?q=Define_warm_minimalism_palette)**
-- **[Design poster‑style homepage hero](ca://s?q=Design_poster_style_hero)**
-- **[Choose serif + sans‑serif typography pairing](ca://s?q=Choose_serif_sans_typography)**
+- **[Design poster-style homepage hero](ca://s?q=Design_poster_style_hero)**
+- **[Choose serif + sans-serif typography pairing](ca://s?q=Choose_serif_sans_typography)**
 - **[Integrate Dalmatian coastal photography](ca://s?q=Integrate_coastal_photography)**
 - **[Create warm, serene visual identity](ca://s?q=Create_warm_serene_identity)**
 

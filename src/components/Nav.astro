@@ -1,35 +1,39 @@
 ---
-const { lang = "en" } = Astro.props;
-
-const nav = {
-  en: [
-    { label: "Classes", href: "/en/classes" },
-    { label: "Private Sessions", href: "/en/private" },
-    { label: "Teach with Us", href: "/en/teach" },
-    { label: "About", href: "/en/about" }
-  ],
-  de: [
-    { label: "Kurse", href: "/de/classes" },
-    { label: "Private Sessions", href: "/de/private" },
-    { label: "Unterrichten", href: "/de/teach" },
-    { label: "Über uns", href: "/de/about" }
-  ]
-};
+import { TOP_NAV, getAlternateUrl } from "../data/routes.js";
+const { lang, page } = Astro.props;
 ---
 
 <nav class="nav container">
-  <a class="brand" href={lang === "de" ? "/de/" : "/en/"}>Studio Sun & Sea</a>
+  <!-- Brand always links to the correct language root -->
+  <a class="brand" href={lang === "de" ? "/de/" : "/en/"}>
+    <img src="/logo/studio-sun-and-sea-logo.png"/>
+    Studio Sun & Sea
+  </a>
 
+  <!-- Top Navigation (from unified routes.js) -->
   <div class="nav-links">
-    {nav[lang].map(item => (
+    {TOP_NAV[lang].map(item => (
       <a href={item.href}>{item.label}</a>
     ))}
   </div>
 
+  <!-- Language Switcher (now flips to corresponding page) -->
   <div class="nav-lang">
-    <a class={lang === "en" ? "active" : ""} href="/en/" onclick="setLangPreference('en')">EN</a>
+    <a
+      class={lang === "en" ? "active" : ""}
+      href={getAlternateUrl(page, "de")}
+      onclick="setLangPreference('en')"
+    >
+      EN
+    </a>
     <span>·</span>
-    <a class={lang === "de" ? "active" : ""} href="/de/" onclick="setLangPreference('de')">DE</a>
+    <a
+      class={lang === "de" ? "active" : ""}
+      href={getAlternateUrl(page, "en")}
+      onclick="setLangPreference('de')"
+    >
+      DE
+    </a>
   </div>
 </nav>
 
@@ -51,6 +55,9 @@ const nav = {
     font-family: var(--font-heading);
     font-size: var(--text-lg);
     color: var(--color-text);
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 10px;
   }
 
   .nav-links a {
