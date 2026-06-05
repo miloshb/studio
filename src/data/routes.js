@@ -6,6 +6,10 @@ export const ROUTES = {
     en: { label: "Classes", href: "/en/classes" },
     de: { label: "Kurse", href: "/de/classes" }
   },
+  schedule: {
+    en: { label: "Schedule", href: "/en/schedule" },
+    de: { label: "Stundenplan", href: "/de/schedule" }
+  },
   private: {
     en: { label: "Private Sessions", href: "/en/private" },
     de: { label: "Private Sessions", href: "/de/private" }
@@ -17,6 +21,15 @@ export const ROUTES = {
   about: {
     en: { label: "About", href: "/en/about" },
     de: { label: "Über uns", href: "/de/about" }
+  },
+
+  pricing: {
+    en: { label: "Pricing", href: "/en/pricing" },
+    de: { label: "Preise", href: "/de/preise" }
+  },
+  payment: {
+    en: { label: "Payment", href: "/en/payment" },
+    de: { label: "Zahlung", href: "/de/zahlung" }
   },
   imprint: {
     en: { label: "Imprint", href: "/en/imprint" },
@@ -43,12 +56,14 @@ export const ROUTES = {
 export const TOP_NAV = {
   en: [
     ROUTES.classes.en,
+    ROUTES.schedule.en,
     ROUTES.private.en,
     ROUTES.teach.en,
     ROUTES.about.en
   ],
   de: [
     ROUTES.classes.de,
+    ROUTES.schedule.de,
     ROUTES.private.de,
     ROUTES.teach.de,
     ROUTES.about.de
@@ -57,6 +72,8 @@ export const TOP_NAV = {
 
 export const FOOTER_NAV = {
   en: [
+    ROUTES.pricing.en,
+    ROUTES.payment.en,
     ROUTES.imprint.en,
     ROUTES.privacy.en,
     ROUTES.terms.en,
@@ -64,6 +81,8 @@ export const FOOTER_NAV = {
     ROUTES.contact.en
   ],
   de: [
+    ROUTES.pricing.de,
+    ROUTES.payment.de,
     ROUTES.imprint.de,
     ROUTES.privacy.de,
     ROUTES.terms.de,
