@@ -80,7 +80,10 @@ export const HREFLANG = Object.fromEntries(
 );
 
 export function getAlternateUrl(pageKey, currentLang) {
-  return currentLang === "en"
-    ? ROUTES[pageKey].de.href
-    : ROUTES[pageKey].en.href;
+  const route = ROUTES[pageKey];
+  if (!route) {
+    // fallback: go to language root instead of crashing
+    return currentLang === "en" ? "/de/" : "/en/";
+  }
+  return currentLang === "en" ? route.de.href : route.en.href;
 }
