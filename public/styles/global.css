@@ -81,7 +81,7 @@ li a:hover {
   --space-xl: 96px;
 
   /* Layout */
-  --max-width: 900px;
+  --max-width: clamp(320px, 90vw, 1040px);
 }
 
 /* ---------------------------------
@@ -97,7 +97,6 @@ h1, h2, h3, h4, h5, h6 {
 
 h1 {
   font-size: var(--text-xxl);
-  padding: 0 var(--space-md);
 }
 
 h2 {
@@ -151,7 +150,6 @@ a:hover {
 }
 
 section {
-  padding: 0 var(--space-md);
   border-bottom: 1px solid var(--color-border);
 }
 
