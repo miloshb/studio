@@ -1,23 +1,7 @@
 ---
+import { FOOTER_NAV } from "../data/routes.js";
 import ExaliSeal from "./ExaliSeal.astro";
-const { lang = "en" } = Astro.props;
-
-const links = {
-  en: [
-    { label: "Imprint", href: "/en/imprint" },
-    { label: "Privacy", href: "/en/privacy" },
-    { label: "Terms of Service", href: "/en/terms" },
-    { label: "Waiver", href: "/en/waiver" },
-    { label: "Contact", href: "/en/contact" }
-  ],
-  de: [
-    { label: "Impressum", href: "/de/impressum" },
-    { label: "Datenschutz", href: "/de/datenschutz" },
-    { label: "AGB", href: "/de/agb" },
-    { label: "Haftungsausschluss", href: "/de/haftungsausschluss" },
-    { label: "Kontakt", href: "/de/kontakt" }
-  ]
-};
+const { lang } = Astro.props;
 ---
 
 <footer class="footer">
@@ -28,7 +12,7 @@ const links = {
 
     <div class="footer-right">
       <div class="footer-links">
-        {links[lang].map(item => (
+        {FOOTER_NAV[lang].map(item => (
           <a href={item.href}>{item.label}</a>
         ))}
       </div>
@@ -58,12 +42,6 @@ const links = {
     display: flex;
     flex-direction: column;
     gap: var(--space-xs);
-  }
-
-  .footer-brand {
-    font-family: var(--font-heading);
-    font-size: var(--text-lg);
-    color: var(--color-text);
   }
 
   .footer-copy {

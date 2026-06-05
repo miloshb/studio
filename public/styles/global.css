@@ -97,6 +97,7 @@ h1, h2, h3, h4, h5, h6 {
 
 h1 {
   font-size: var(--text-xxl);
+  padding: 0 var(--space-md);
 }
 
 h2 {
@@ -150,7 +151,7 @@ a:hover {
 }
 
 section {
-  padding: var(--space-xl) var(--space-md);
+  padding: 0 var(--space-md);
   border-bottom: 1px solid var(--color-border);
 }
 
