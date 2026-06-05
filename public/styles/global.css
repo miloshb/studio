@@ -26,6 +26,7 @@ body {
   color: var(--color-text);
   font-family: var(--font-body);
   line-height: 1.6;
+  min-height: 100vh;
 }
 
 /* Remove default link underlines */
@@ -147,6 +148,7 @@ a:hover {
 .container {
   max-width: var(--max-width);
   margin: 0 auto;
+  flex-grow: 1;
 }
 
 section {

@@ -33,24 +33,21 @@ const copy = TEXT[lang] ?? TEXT.en;
 
 <style>
   .hero {
-    background: #F7EFEA;
-    padding: var(--space-xxl) var(--space-md);
     text-align: center;
     border-bottom: 1px solid #E8DCCF;
     min-height: 100vh; /* Pushes the layout footer all the way to the screen bottom */
   }
 
   .hero-bg-bleed {
-    background: url("/images/hero/sunset-beach.webp") center/cover no-repeat;
+    background: #F7EFEA url("/images/hero/sunset-beach.webp") center/cover no-repeat;
     position: absolute;
-    top: 0;
     /* Using Viewport Width (vw) units to burst out of the bounded parent limits */
     left: 50%;
     right: 50%;
     margin-left: -50vw;
     margin-right: -50vw;
     width: 100vw;
-    height: 100%; /* Spans the full height of 100vh parent container */
+    height: 100%;
     z-index: -1; /* Pushes it safely behind the text content */
   }
 
