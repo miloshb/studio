@@ -2,6 +2,10 @@
 
 // Mapping EN ↔ DE equivalents
 export const ROUTES = {
+  index: {
+    en: { label: "index", href: "/en/" },
+    de: { label: "index", href: "/de/" }
+  },
   classes: {
     en: { label: "Classes", href: "/en/classes" },
     de: { label: "Kurse", href: "/de/classes" }

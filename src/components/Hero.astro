@@ -16,15 +16,15 @@ const TEXT = {
   }
 };
 
-const { title, subtitle, cta, ctaHref } = TEXT[lang];
+const copy = TEXT[lang] ?? TEXT.en;
 ---
 
 <section class="hero">
-  <h1 class="hero-title">{title}</h1>
-  <p class="hero-subtitle">{subtitle}</p>
+  <h1 class="hero-title">{copy.title}</h1>
+  <p class="hero-subtitle">{copy.subtitle}</p>
 
-  <a href={ctaHref} class="hero-cta">
-    {cta}
+  <a href={copy.ctaHref} class="hero-cta">
+    {copy.cta}
   </a>
 </section>
 
