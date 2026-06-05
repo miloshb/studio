@@ -1,10 +1,22 @@
 ---
-const {
-  title = "Breathe. Flow. Relax.",
-  subtitle = "Mindful movement for a calm, connected life.",
-  cta = "View Schedule",
-  ctaHref = "/classes"
-} = Astro.props;
+const { lang } = Astro.props;
+
+const TEXT = {
+  en: {
+    title: "Breathe. Flow. Relax.",
+    subtitle: "Mindful movement for a calm, connected life.",
+    cta: "View Schedule",
+    ctaHref: "/en/schedule"
+  },
+  de: {
+    title: "Atme. Fließe. Entspanne.",
+    subtitle: "Achtsame Bewegung für ein ruhiges, verbundenes Leben.",
+    cta: "Stundenplan ansehen",
+    ctaHref: "/de/schedule"
+  }
+};
+
+const { title, subtitle, cta, ctaHref } = TEXT[lang];
 ---
 
 <section class="hero">
