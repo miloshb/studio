@@ -27,6 +27,11 @@ body {
   font-family: var(--font-body);
   line-height: 1.6;
   min-height: 100vh;
+  /* new addition for flex layout */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 /* Remove default link underlines */
@@ -148,6 +153,9 @@ a:hover {
 .container {
   max-width: var(--max-width);
   margin: 0 auto;
+}
+
+main.container {
   flex-grow: 1;
 }
 
