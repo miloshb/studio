@@ -1,0 +1,46 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Hreflang from "../../components/Hreflang.astro";
+---
+
+<BaseLayout lang="en" page="pricing" title="Pricing – Studio Sun & Sea">
+  <head slot="head">
+    <Hreflang page="pricing" />
+  </head>
+
+  <h1>Pricing</h1>
+
+  <section>
+    <h2>Scheduled Classes</h2>
+    <ul>
+      <li>60-90 minute classes: <strong>€20</strong> / <strong>$25</strong> / <strong>£18</strong></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Private Sessions</h2>
+    <ul>
+      <li>60 minutes: <strong>€70</strong> / <strong>$80</strong> / <strong>£65</strong></li>
+      <li>75 minutes: <strong>€85</strong> / <strong>$95</strong> / <strong>£75</strong></li>
+      <li>90 minutes: <strong>€100</strong> / <strong>$115</strong> / <strong>£90</strong></li>
+      <li>120 minutes: <strong>€130</strong> / <strong>$150</strong> / <strong>£115</strong></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Workshops</h2>
+    <ul>
+      <li>3 hours: <strong>€75</strong> / <strong>$85</strong> / <strong>£65</strong></li>
+      <li>4 hours: <strong>€95</strong> / <strong>$110</strong> / <strong>£85</strong></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Payment Options</h2>
+    <p>
+      Payments may be made via SEPA, Zelle, Venmo, Wise, or credit card through Mindbody.
+      See full details on the <a href="/en/payment">Payment Options</a> page.
+    </p>
+  </section>
+
+</BaseLayout>

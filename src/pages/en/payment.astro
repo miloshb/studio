@@ -1,0 +1,40 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Hreflang from "../../components/Hreflang.astro";
+---
+
+<BaseLayout lang="en" page="payment" title="Payment Options – Studio Sun & Sea">
+  <head slot="head">
+    <Hreflang page="payment" />
+  </head>
+
+  <h1>Payment Options</h1>
+
+  <section>
+    <h2>EUR (EU Clients)</h2>
+    <p><strong>SEPA Bank Transfer</strong></p>
+    <p>Recipient: Milos Borojevic<br />
+    Bank: Deutsche Postbank AG<br />
+    IBAN: DE04 1001 0010 0197 7531 19<br />
+    BIC: PBNKDEFF</p>
+  </section>
+
+  <section>
+    <h2>USD (US Clients)</h2>
+    <p><strong>Zelle:</strong> Milos@StudioSunAndSea.com</p>
+    <p><strong>Venmo:</strong> <a href="https://account.venmo.com/u/MiloshB">https://account.venmo.com/u/MiloshB</a></p>
+  </section>
+
+  <section>
+    <h2>GBP (UK Clients)</h2>
+    <p><strong>Wise:</strong> <a href="https://wise.com/pay/me/milosb9">https://wise.com/pay/me/milosb9</a></p>
+  </section>
+
+  <section>
+    <h2>Credit Card (All Clients)</h2>
+    <p>
+      You may also book and pay securely via Mindbody.
+    </p>
+  </section>
+
+</BaseLayout>
