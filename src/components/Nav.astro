@@ -5,7 +5,10 @@ const { lang, page } = Astro.props;
 
 <nav class="nav container">
   <!-- Brand always links to the correct language root -->
-  <a class="brand" href={lang === "de" ? "/de/" : "/en/"}>Studio Sun & Sea</a>
+  <a class="brand" href={lang === "de" ? "/de/" : "/en/"}>
+    <img src="/logo/studio-sun-and-sea-logo.png"/>
+    Studio Sun & Sea
+  </a>
 
   <!-- Top Navigation (from unified routes.js) -->
   <div class="nav-links">

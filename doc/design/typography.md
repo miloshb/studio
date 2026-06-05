@@ -1,5 +1,5 @@
-# Studio Sun & Sea — Typography System  
-A warm, serene, minimal typographic identity designed for clarity, calm, and elegance.  
+# Studio Sun & Sea — Typography System
+A warm, serene, minimal typographic identity designed for clarity, calm, and elegance.
 Supports English, German, and Sanskrit with consistent visual rhythm.
 
 ---
@@ -20,7 +20,7 @@ Supports English, German, and Sanskrit with consistent visual rhythm.
       <div style="padding:12px;border:1px solid #ccc;font-family:'Inter', sans-serif;font-size:16px;">
         Gentle, warm, and clear body text.
       </div>
-      Inter (Sans‑Serif)
+      Inter (Sans-Serif)
     </td>
   </tr>
 </table>
@@ -31,20 +31,20 @@ Supports English, German, and Sanskrit with consistent visual rhythm.
 
 Studio Sun & Sea typography expresses:
 
-- calm  
-- warmth  
-- clarity  
-- breath  
-- elegance  
-- grounded presence  
+- calm
+- warmth
+- clarity
+- breath
+- elegance
+- grounded presence
 
 The system avoids:
 
-- heavy weights  
-- harsh contrasts  
-- loud display fonts  
-- excessive animations  
-- overly “yoga‑spiritual” clichés  
+- heavy weights
+- harsh contrasts
+- loud display fonts
+- excessive animations
+- overly “yoga-spiritual” clichés
 
 Typography should feel like a **soft inhale** — spacious, warm, and intentional.
 
@@ -53,66 +53,66 @@ Typography should feel like a **soft inhale** — spacious, warm, and intentiona
 # 🪷 Primary Typefaces
 
 ## 1. **Heading Typeface — Cormorant Garamond (Serif)**
-A warm, elegant serif that feels organic and human.  
-Perfect for your serene, poster‑like homepage.
+A warm, elegant serif that feels organic and human.
+Perfect for your serene, poster-like homepage.
 
 <div style="padding:12px;border:1px solid #ccc;font-family:'Cormorant Garamond', serif;font-size:32px;">
 Studio Sun & Sea
 </div>
 
-- **Use for:**  
-  - H1, H2, H3  
-  - Hero headlines  
-  - Section titles  
-  - Sanskrit terms (optional)  
+- **Use for:**
+  - H1, H2, H3
+  - Hero headlines
+  - Section titles
+  - Sanskrit terms (optional)
 
-- **Weights:**  
-  - Regular  
-  - Medium  
-  - SemiBold  
+- **Weights:**
+  - Regular
+  - Medium
+  - SemiBold
 
-- **Why it fits:**  
-  - soft curves  
-  - natural rhythm  
-  - warm elegance  
-  - pairs beautifully with seashell‑pink palette  
+- **Why it fits:**
+  - soft curves
+  - natural rhythm
+  - warm elegance
+  - pairs beautifully with seashell-pink palette
 
-## 2. **Body Typeface — Inter (Sans‑Serif)**
+## 2. **Body Typeface — Inter (Sans-Serif)**
 Clean, modern, highly readable, and neutral.
 
 <div style="padding:12px;border:1px solid #ccc;font-family:'Inter', sans-serif;font-size:16px;">
 Clear, warm, modern body text for all languages.
 </div>
 
-- **Use for:**  
-  - paragraphs  
-  - navigation  
-  - buttons  
-  - forms  
-  - labels  
-  - schedules  
+- **Use for:**
+  - paragraphs
+  - navigation
+  - buttons
+  - forms
+  - labels
+  - schedules
 
-- **Weights:**  
-  - Regular  
-  - Medium  
+- **Weights:**
+  - Regular
+  - Medium
 
-- **Why it fits:**  
-  - crisp but not cold  
-  - excellent multilingual support  
-  - perfect for long‑form reading  
-  - balances the warmth of the serif  
+- **Why it fits:**
+  - crisp but not cold
+  - excellent multilingual support
+  - perfect for long-form reading
+  - balances the warmth of the serif
 
 # 🧘‍♂️ Multilingual Considerations
 
-### English  
-- Default language  
-- Works beautifully in both typefaces  
+### English
+- Default language
+- Works beautifully in both typefaces
 
-### German  
-- Inter handles umlauts and ß cleanly  
-- Avoid overly tight letter spacing  
+### German
+- Inter handles umlauts and ß cleanly
+- Avoid overly tight letter spacing
 
-### Sanskrit  
+### Sanskrit
 Use **Cormorant Garamond** for transliteration:
 
 <div style="padding:12px;border:1px solid #ccc;font-family:'Cormorant Garamond', serif;font-size:20px;">
@@ -142,25 +142,25 @@ A calm, spacious scale that avoids harsh jumps.
 # 🧱 Usage Guidelines
 
 ## Headings
-- Use serif for all headings  
-- Keep line height generous (1.2–1.3)  
-- Avoid all caps  
-- Avoid bold black weights  
+- Use serif for all headings
+- Keep line height generous (1.2–1.3)
+- Avoid all caps
+- Avoid bold black weights
 
 ## Body Text
-- Line height: 1.5–1.7  
-- Max width: 65–75 characters  
-- Use Deep Slate (#3A3A3C) for readability  
+- Line height: 1.5–1.7
+- Max width: 65–75 characters
+- Use Deep Slate (#3A3A3C) for readability
 
 ## Buttons
-- Use Inter Medium  
-- Uppercase optional, but avoid shouting  
-- Keep padding generous  
+- Use Inter Medium
+- Uppercase optional, but avoid shouting
+- Keep padding generous
 
 ## Navigation
-- Inter Medium, 15–16px  
-- Ample spacing  
-- No hover animations except subtle color shift  
+- Inter Medium, 15–16px
+- Ample spacing
+- No hover animations except subtle color shift
 
 ---
 
@@ -190,7 +190,7 @@ A calm, spacious scale that avoids harsh jumps.
 
 # 🔗 Related Documentation
 
-- **[Color palette](ca://s?q=Define_warm_minimalism_palette)**  
-- **[Homepage hero layout](ca://s?q=Design_homepage_hero_section)**  
-- **[Navigation structure](ca://s?q=Generate_navigation_structure)**  
-- **[Visual identity system](ca://s?q=Create_visual_identity_system)**  
+- **[Color palette](ca://s?q=Define_warm_minimalism_palette)**
+- **[Homepage hero layout](ca://s?q=Design_homepage_hero_section)**
+- **[Navigation structure](ca://s?q=Generate_navigation_structure)**
+- **[Visual identity system](ca://s?q=Create_visual_identity_system)**
