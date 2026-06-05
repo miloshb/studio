@@ -20,6 +20,9 @@ const copy = TEXT[lang] ?? TEXT.en;
 ---
 
 <section class="hero">
+  <!-- Bleeding Hero Background -->
+  <div class="hero-bg-bleed"></div>
+
   <h1 class="hero-title">{copy.title}</h1>
   <p class="hero-subtitle">{copy.subtitle}</p>
 
@@ -30,18 +33,30 @@ const copy = TEXT[lang] ?? TEXT.en;
 
 <style>
   .hero {
-    background: #F7EFEA url("/images/hero/sunset-beach.webp") center/cover no-repeat;
-    padding: 140px 24px;
+    background: #F7EFEA;
+    padding: var(--space-xxl) var(--space-md);
     text-align: center;
     border-bottom: 1px solid #E8DCCF;
-    width: 100%;
+    min-height: 100vh; /* Pushes the layout footer all the way to the screen bottom */
+  }
+
+  .hero-bg-bleed {
+    background: url("/images/hero/sunset-beach.webp") center/cover no-repeat;
     position: absolute;
-    left: 0;
+    top: 0;
+    /* Using Viewport Width (vw) units to burst out of the bounded parent limits */
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    width: 100vw;
+    height: 100%; /* Spans the full height of 100vh parent container */
+    z-index: -1; /* Pushes it safely behind the text content */
   }
 
   .hero-title {
     font-family: "Cormorant Garamond", serif;
-    font-size: 48px;
+    font-size: var(--text-xxl);
     color: #3A3A3C;
     margin: 0 0 16px 0;
     font-weight: 600;
@@ -49,7 +64,7 @@ const copy = TEXT[lang] ?? TEXT.en;
 
   .hero-subtitle {
     font-family: Inter, sans-serif;
-    font-size: 20px;
+    font-size: var(--text-lg);
     color: #6E6E73;
     margin: 0 0 32px 0;
     max-width: 600px;
@@ -60,11 +75,11 @@ const copy = TEXT[lang] ?? TEXT.en;
 
   .hero-cta {
     display: inline-block;
-    padding: 12px 28px;
+    padding: var(--space-sm) var(--space-md);
     background: #CFA79E;
     color: #3A3A3C;
     font-family: Inter, sans-serif;
-    font-size: 16px;
+    font-size: var(--text-md);
     text-decoration: none;
     border-radius: 4px;
   }
