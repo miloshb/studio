@@ -37,7 +37,7 @@ const copy = TEXT[lang] ?? TEXT.en;
     display: flex;
     flex-direction: column;
     justify-content: center; /* centers title/subtitle vertically */
-    padding: 140px 24px;
+    padding: var(--space-md);
     text-align: center;
     border-bottom: 1px solid var(--color-border);
   }
@@ -56,15 +56,15 @@ const copy = TEXT[lang] ?? TEXT.en;
     font-family: "Cormorant Garamond", serif;
     font-size: var(--text-xxl);
     color: var(--color-text);
-    margin: 0 0 16px 0;
-    font-weight: 600;
+    margin: 0 0 var(--space-sm) 0;
+    font-weight: var(--font-weight);
   }
 
   .hero-subtitle {
     font-family: Inter, sans-serif;
     font-size: var(--text-lg);
     color: var(--color-text-soft);
-    margin: 0 0 32px 0;
+    margin: 0 0 var(--space-lg) 0;
     max-width: 600px;
     margin-left: auto;
     margin-right: auto;
