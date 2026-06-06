@@ -29,16 +29,16 @@ const { lang } = Astro.props;
   .footer {
     padding: var(--space-xs) 0;
     border-top: 1px solid var(--color-border);
-    background: var(--color-bg);
     color: var(--color-text-soft);
     flex-shrink: 0;
+    position: relative;
   }
 
   .footer-inner {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    align-items: center;
+    align-items: self-end;
     row-gap: var(--space-xs);
   }
 
