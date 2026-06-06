@@ -163,12 +163,6 @@ a:hover {
   flex-direction: column;
 }
 
-.page-content {
-  max-width: 800px;
-  margin: 0 auto;
-  text-align: left;
-}
-
 section {
   border-bottom: 1px solid var(--color-border);
 }
