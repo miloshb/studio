@@ -68,12 +68,12 @@ li a:hover {
   --font-body: "Inter", sans-serif;
 
   /* Type scale */
-  --text-xs: 0.85rem;
-  --text-sm: 1rem;
-  --text-md: 1.125rem;
-  --text-lg: 1.5rem;
-  --text-xl: 2.25rem;
-  --text-xxl: 3rem;
+  --text-xs: 0.75rem;
+  --text-sm: 0.85rem;
+  --text-md: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.5rem;
+  --text-xxl: 2.25rem;
 
   /* Spacing scale (soft, airy) */
   --space-xs: 8px;
