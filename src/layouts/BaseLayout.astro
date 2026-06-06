@@ -13,6 +13,9 @@ const {
 
 const systemPages = ["register", "login", "account", "checkout"];
 const noindex = systemPages.includes(page);
+
+const mindbodyPages = ["schedule", "login", "account", "checkout"];
+const footerOffset = mindbodyPages.includes(page);
 ---
 
 <html lang={lang}>
@@ -59,6 +62,6 @@ const noindex = systemPages.includes(page);
       }
     </main>
 
-    <Footer lang={lang} offset={noindex} />
+    <Footer lang={lang} offset={footerOffset} />
   </body>
 </html>
