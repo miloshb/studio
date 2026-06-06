@@ -6,14 +6,14 @@ const TEXT = {
     title: "Breathe. Flow. Relax.",
     subtitle: "Mindful movement for a calm, connected life.",
     cta: "View Schedule",
-    ctaHref: "/en/schedule"
+    ctaHref: "/en/schedule",
   },
   de: {
     title: "Atme. Fließe. Entspanne.",
     subtitle: "Achtsame Bewegung für ein ruhiges, verbundenes Leben.",
     cta: "Stundenplan ansehen",
-    ctaHref: "/de/schedule"
-  }
+    ctaHref: "/de/schedule",
+  },
 };
 
 const copy = TEXT[lang] ?? TEXT.en;
@@ -33,13 +33,17 @@ const copy = TEXT[lang] ?? TEXT.en;
 
 <style>
   .hero {
+    flex: 1; /* expands to fill leftover vertical space */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* centers title/subtitle vertically */
+    padding: 140px 24px;
     text-align: center;
-    border-bottom: 1px solid #E8DCCF;
-    min-height: 100vh; /* Pushes the layout footer all the way to the screen bottom */
+    border-bottom: 1px solid var(--color-border);
   }
 
   .hero-bg-bleed {
-    background: #F7EFEA url("/images/hero/sunset-beach.webp") center/cover no-repeat;
+    background: var(--color-bg) url("/images/hero/sunset-beach.webp") center/cover no-repeat;
     position: absolute;
     /* Using Viewport Width (vw) units to burst out of the bounded parent limits */
     left: 0;
@@ -51,7 +55,7 @@ const copy = TEXT[lang] ?? TEXT.en;
   .hero-title {
     font-family: "Cormorant Garamond", serif;
     font-size: var(--text-xxl);
-    color: #3A3A3C;
+    color: var(--color-text);
     margin: 0 0 16px 0;
     font-weight: 600;
   }
@@ -59,7 +63,7 @@ const copy = TEXT[lang] ?? TEXT.en;
   .hero-subtitle {
     font-family: Inter, sans-serif;
     font-size: var(--text-lg);
-    color: #6E6E73;
+    color: var(--color-text-soft);
     margin: 0 0 32px 0;
     max-width: 600px;
     margin-left: auto;
@@ -70,8 +74,8 @@ const copy = TEXT[lang] ?? TEXT.en;
   .hero-cta {
     display: inline-block;
     padding: var(--space-sm) var(--space-md);
-    background: #CFA79E;
-    color: #3A3A3C;
+    background: var(--color-accent);
+    color: var(--color-text);
     font-family: Inter, sans-serif;
     font-size: var(--text-md);
     text-decoration: none;
@@ -79,6 +83,6 @@ const copy = TEXT[lang] ?? TEXT.en;
   }
 
   .hero-cta:hover {
-    background: #c5978d;
+    background: var(--color-accent-hover);
   }
 </style>
