@@ -155,17 +155,12 @@ a:hover {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  /* new addition for flex layout */
-/*
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  */
 }
 
 .layout-main {
-  flex: 1; /* This pushes the footer down */
+  flex: 1; /* Push the footer down */
+  display: flex;
+  flex-direction: column;
 }
 
 section {

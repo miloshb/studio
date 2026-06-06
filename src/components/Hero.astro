@@ -33,22 +33,20 @@ const copy = TEXT[lang] ?? TEXT.en;
 
 <style>
   .hero {
+    position: relative;
     flex: 1; /* expands to fill leftover vertical space */
     display: flex;
     flex-direction: column;
     justify-content: center; /* centers title/subtitle vertically */
     padding: var(--space-md);
     text-align: center;
-    border-bottom: 1px solid var(--color-border);
+    border-bottom: none;
   }
 
   .hero-bg-bleed {
     background: var(--color-bg) url("/images/hero/sunset-beach.webp") center/cover no-repeat;
     position: absolute;
-    /* Using Viewport Width (vw) units to burst out of the bounded parent limits */
-    left: 0;
-    width: 100%;
-    height: 100%;
+    inset: 0;
     z-index: -1; /* Pushes it safely behind the text content */
   }
 
@@ -73,6 +71,7 @@ const copy = TEXT[lang] ?? TEXT.en;
 
   .hero-cta {
     display: inline-block;
+    align-self: center;
     padding: var(--space-sm) var(--space-md);
     background: var(--color-accent);
     color: var(--color-text);
