@@ -6,17 +6,20 @@ const { lang } = Astro.props;
 
 <footer class="footer">
   <div class="footer-inner container">
-    <div class="footer-left">
-      <div class="footer-copy">© {new Date().getFullYear()} Studio Sun & Sea</div>
+    <!-- Row 1: Navigation -->
+    <div class="footer-nav">
+      {FOOTER_NAV[lang].map(item => (
+        <a href={item.href}>{item.label}</a>
+      ))}
     </div>
 
-    <div class="footer-right">
-      <div class="footer-links">
-        {FOOTER_NAV[lang].map(item => (
-          <a href={item.href}>{item.label}</a>
-        ))}
-      </div>
+    <!-- Row 2: Left side -->
+    <div class="footer-copy">
+      © {new Date().getFullYear()} Studio Sun & Sea
+    </div>
 
+    <!-- Row 2: Right side -->
+    <div class="footer-badge">
       <ExaliSeal />
     </div>
   </div>
@@ -33,48 +36,54 @@ const { lang } = Astro.props;
 
   .footer-inner {
     display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
     flex-wrap: wrap;
-    gap: var(--space-lg);
+    justify-content: space-between;
+    align-items: center;
+    row-gap: var(--space-xs);
   }
 
-  .footer-left {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-xs);
+  /* ---------------------------
+     ROW 1 — NAVIGATION
+  ---------------------------- */
+  .footer-nav {
+    order: 1;
+    flex: 1 1 100%;
+    text-align: center;
   }
 
-  .footer-copy {
-    font-size: var(--text-sm);
-  }
-
-  .footer-right {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: var(--space-xs);
-  }
-
-  .footer-links a {
-    margin-left: var(--space-md);
+  .footer-nav a {
+    margin: 0 var(--space-md);
     font-size: var(--text-sm);
     color: var(--color-text-soft);
   }
 
-  .footer-links a:hover {
+  .footer-nav a:hover {
     color: var(--color-text);
   }
 
+  /* ---------------------------
+     ROW 2 — COPYRIGHT + BADGE
+  ---------------------------- */
+  .footer-copy {
+    order: 2;
+    font-size: var(--text-sm);
+  }
+
+  .footer-badge {
+    order: 3;
+    margin-left: auto;
+  }
+
+  /* ---------------------------
+     MOBILE
+  ---------------------------- */
   @media (max-width: 600px) {
     .footer-inner {
-      flex-direction: column;
-      align-items: center;
       text-align: center;
     }
 
-    .footer-right {
-      align-items: center;
+    .footer-badge {
+      margin-left: 0;
     }
   }
 </style>
