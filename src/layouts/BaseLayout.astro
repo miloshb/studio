@@ -7,7 +7,8 @@ const {
   title = "Studio Sun & Sea",
   description = "Yoga classes, private sessions, and workshops with Studio Sun & Sea.",
   lang = "en",
-  page = null
+  page = null,
+  fullBleed = false
 } = Astro.props;
 ---
 
@@ -45,7 +46,10 @@ const {
     <Nav lang={lang} page={page} />
 
     <main class="layout-main">
-      <slot />
+      { fullBleed
+        ? <slot /> // hero pages, landing pages
+        : <div class="container"><slot /></div>
+      }
     </main>
 
     <Footer lang={lang} />
