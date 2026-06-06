@@ -1,7 +1,7 @@
 ---
 import { FOOTER_NAV } from "../data/routes.js";
 import ExaliSeal from "./ExaliSeal.astro";
-const { lang } = Astro.props;
+const { lang, offset } = Astro.props;
 ---
 
 <footer class="footer">
@@ -32,6 +32,7 @@ const { lang } = Astro.props;
     color: var(--color-text-soft);
     flex-shrink: 0;
     position: relative;
+    {offset ? `top: var(--offset-xl);` : ``}
   }
 
   .footer-inner {
