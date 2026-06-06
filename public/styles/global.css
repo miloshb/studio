@@ -179,6 +179,7 @@ section {
 nav, footer {
   font-family: var(--font-body);
   color: var(--color-text-soft);
+  flex-shrink: 0;
 }
 
 /* ---------------------------------
