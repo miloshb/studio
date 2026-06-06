@@ -1,0 +1,26 @@
+/* Typography */
+.healcode-widget,
+.healcode-widget * {
+  font-family: var(--font-body) !important;
+}
+
+/* Buttons */
+.healcode-widget .hc-button {
+  border-radius: 0;
+  font-weight: 500;
+}
+
+/* Links */
+.healcode-widget a {
+  color: var(--color-accent);
+}
+
+.healcode-widget a:hover {
+  color: var(--color-accent-hover);
+}
+
+/* Layout */
+.mindbody-widget-wrapper {
+  position: relative;
+  top: var(--offset-md);
+}

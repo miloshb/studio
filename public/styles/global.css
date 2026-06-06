@@ -83,11 +83,11 @@ li a:hover {
   --space-xl: 96px;
   --space-xxl: 144px;
 
-  /* Offset scale (mindbody) */
+  /* Offset scale */
   --offset-sm: -16px;
-  --offset-md: -24px;
-  --offset-lg: -48px;
-  --offset-xl: -96px;
+  --offset-md: -32px;
+  --offset-lg: -64px;
+  --offset-xl: -128px;
 
   /* Layout */
   --max-width: clamp(320px, 90vw, 1040px);
@@ -120,14 +120,6 @@ p {
   margin: 0 0 var(--space-md) 0;
   font-size: var(--text-md);
   color: var(--color-text-soft);
-}
-
-/* Forces font styles onto Mindbody elements */
-div.healcode,
-.healcode-widget,
-.healcode-widget * {
-    font-family: var(--font-body) !important;
-/*    font-size: 14px !important; /* Optional: Adjust size to match */
 }
 
 /* ---------------------------------
@@ -179,11 +171,6 @@ a:hover {
 
 section {
   border-bottom: 1px solid var(--color-border);
-}
-
-.mindbody-widget-wrapper {
-  position: relative;
-  top: var(--offset-lg);
 }
 
 /* ---------------------------------
