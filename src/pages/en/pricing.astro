@@ -5,31 +5,101 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 <BaseLayout lang="en" page="pricing" title="Pricing – Studio Sun & Sea">
   <h1>Pricing</h1>
 
+  <!-- Scheduled Classes -->
   <section>
     <h2>Scheduled Classes</h2>
-    <ul>
-      <li>60-90 minute classes: <strong>€20</strong> / <strong>$25</strong> / <strong>£18</strong></li>
-    </ul>
+    <table>
+      <thead>
+        <tr>
+          <th>Class Type</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>60–90 minute classes</td>
+          <td><strong>€20</strong> / <strong>$25</strong> / <strong>£18</strong></td>
+        </tr>
+      </tbody>
+    </table>
   </section>
 
+  <!-- Private Sessions -->
   <section>
-    <h2>Private Sessions</h2>
-    <ul>
-      <li>60 minutes: <strong>€70</strong> / <strong>$80</strong> / <strong>£65</strong></li>
-      <li>75 minutes: <strong>€85</strong> / <strong>$95</strong> / <strong>£75</strong></li>
-      <li>90 minutes: <strong>€100</strong> / <strong>$115</strong> / <strong>£90</strong></li>
-      <li>120 minutes: <strong>€130</strong> / <strong>$150</strong> / <strong>£115</strong></li>
-    </ul>
+    <h2>Private Sessions — One-to-One</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Duration</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>60 minutes</td><td><strong>€70</strong> / <strong>$80</strong> / <strong>£65</strong></td></tr>
+        <tr><td>75 minutes</td><td><strong>€85</strong> / <strong>$95</strong> / <strong>£75</strong></td></tr>
+        <tr><td>90 minutes</td><td><strong>€100</strong> / <strong>$115</strong> / <strong>£90</strong></td></tr>
+        <tr><td>120 minutes</td><td><strong>€130</strong> / <strong>$150</strong> / <strong>£115</strong></td></tr>
+      </tbody>
+    </table>
   </section>
 
+  <!-- Duet Sessions -->
+  <section>
+    <h2>Duet Private Sessions — Paired Practice</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Duration</th>
+          <th>Price (for 2 students)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>60 minutes</td><td><strong>€100</strong> / <strong>$115</strong> / <strong>£90</strong></td></tr>
+        <tr><td>75 minutes</td><td><strong>€120</strong> / <strong>$135</strong> / <strong>£105</strong></td></tr>
+        <tr><td>90 minutes</td><td><strong>€140</strong> / <strong>$160</strong> / <strong>£125</strong></td></tr>
+        <tr><td>120 minutes</td><td><strong>€180</strong> / <strong>$205</strong> / <strong>£160</strong></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Small-Group Sessions -->
+  <section>
+    <h2>Small-Group Private Sessions — Up to 4 Students</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Duration</th>
+          <th>Price (up to 4 students)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>60 minutes</td><td><strong>€140</strong> / <strong>$160</strong> / <strong>£125</strong></td></tr>
+        <tr><td>75 minutes</td><td><strong>€165</strong> / <strong>$190</strong> / <strong>£150</strong></td></tr>
+        <tr><td>90 minutes</td><td><strong>€190</strong> / <strong>$220</strong> / <strong>£175</strong></td></tr>
+        <tr><td>120 minutes</td><td><strong>€240</strong> / <strong>$275</strong> / <strong>£220</strong></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Workshops -->
   <section>
     <h2>Workshops</h2>
-    <ul>
-      <li>3 hours: <strong>€75</strong> / <strong>$85</strong> / <strong>£65</strong></li>
-      <li>4 hours: <strong>€95</strong> / <strong>$110</strong> / <strong>£85</strong></li>
-    </ul>
+    <table>
+      <thead>
+        <tr>
+          <th>Duration</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>2 hours</td><td><strong>€55</strong> / <strong>$65</strong> / <strong>£50</strong></td></tr>
+        <tr><td>3 hours</td><td><strong>€75</strong> / <strong>$85</strong> / <strong>£65</strong></td></tr>
+        <tr><td>4 hours</td><td><strong>€95</strong> / <strong>$110</strong> / <strong>£85</strong></td></tr>
+      </tbody>
+    </table>
   </section>
 
+  <!-- Payment Options -->
   <section>
     <h2>Payment Options</h2>
     <p>
