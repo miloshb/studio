@@ -10,6 +10,9 @@ const {
   page = null,
   fullBleed = false
 } = Astro.props;
+
+const systemPages = ["register", "login", "account", "checkout"];
+const noindex = systemPages.includes(page);
 ---
 
 <html lang={lang}>
@@ -17,6 +20,9 @@ const {
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+
+    {noindex && <link rel="canonical" href="https://studiosunandsea.com/" />}
 
     <!-- Hreflang automatically injected -->
     {page && <Hreflang page={page} />}
