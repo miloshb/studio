@@ -1,0 +1,26 @@
+---
+/**
+ * Mindbody Schedule Widget Component
+ *
+ * Props:
+ * - widgetId: string (Mindbody widget ID)
+ * - className: optional string for custom styling
+ *
+ *   <div class="mindbody-widget" data-widget-type="Schedules" data-widget-id="985347314de"></div>
+ *   <script async src="https://brandedweb.mindbodyonline.com/embed/widget.js"></script>
+ */
+const { widgetId, className = "" } = Astro.props;
+---
+
+<div class={`mindbody-widget-wrapper ${className}`}>
+  <!-- Mindbody Schedules widget begin -->
+  <div class="mindbody-widget" data-widget-type="Schedules" data-widget-id={widgetId}></div>
+  <script async src="https://brandedweb.mindbodyonline.com/embed/widget.js"></script>
+  <!-- Mindbody Schedules widget end -->
+</div>
+
+<style>
+  .mindbody-widget-wrapper {
+    margin-top: var(--space-lg);
+  }
+</style>
