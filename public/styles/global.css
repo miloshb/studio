@@ -17,6 +17,7 @@ html {
   margin: 0;
   padding: 0;
   scroll-behavior: smooth;
+  height: 100%;
 }
 
 body {
@@ -26,14 +27,7 @@ body {
   color: var(--color-text);
   font-family: var(--font-body);
   line-height: 1.6;
-  min-height: 100vh;
-  /* new addition for flex layout */
-/*
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  */
+  height: 100%;
 }
 
 /* Remove default link underlines */
@@ -157,8 +151,21 @@ a:hover {
   margin: 0 auto;
 }
 
-main.container {
-  flex-grow: 1;
+.layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  /* new addition for flex layout */
+/*
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  */
+}
+
+.layout-main {
+  flex: 1; /* This pushes the footer down */
 }
 
 section {
