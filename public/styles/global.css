@@ -17,6 +17,7 @@ html {
   margin: 0;
   padding: 0;
   scroll-behavior: smooth;
+  height: 100%;
 }
 
 body {
@@ -26,6 +27,7 @@ body {
   color: var(--color-text);
   font-family: var(--font-body);
   line-height: 1.6;
+  height: 100%;
 }
 
 /* Remove default link underlines */
@@ -79,6 +81,7 @@ li a:hover {
   --space-md: 24px;
   --space-lg: 48px;
   --space-xl: 96px;
+  --space-xxl: 144px;
 
   /* Layout */
   --max-width: clamp(320px, 90vw, 1040px);
@@ -144,8 +147,20 @@ a:hover {
 ---------------------------------- */
 
 .container {
-  max-width: var(--max-width);
+  width: var(--max-width);
   margin: 0 auto;
+}
+
+.layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.layout-main {
+  flex: 1; /* Push the footer down */
+  display: flex;
+  flex-direction: column;
 }
 
 section {
@@ -159,6 +174,7 @@ section {
 nav, footer {
   font-family: var(--font-body);
   color: var(--color-text-soft);
+  flex-shrink: 0;
 }
 
 /* ---------------------------------

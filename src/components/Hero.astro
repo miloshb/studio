@@ -6,20 +6,23 @@ const TEXT = {
     title: "Breathe. Flow. Relax.",
     subtitle: "Mindful movement for a calm, connected life.",
     cta: "View Schedule",
-    ctaHref: "/en/schedule"
+    ctaHref: "/en/schedule",
   },
   de: {
     title: "Atme. Fließe. Entspanne.",
     subtitle: "Achtsame Bewegung für ein ruhiges, verbundenes Leben.",
     cta: "Stundenplan ansehen",
-    ctaHref: "/de/schedule"
-  }
+    ctaHref: "/de/schedule",
+  },
 };
 
 const copy = TEXT[lang] ?? TEXT.en;
 ---
 
 <section class="hero">
+  <!-- Bleeding Hero Background -->
+  <div class="hero-bg-bleed"></div>
+
   <h1 class="hero-title">{copy.title}</h1>
   <p class="hero-subtitle">{copy.subtitle}</p>
 
@@ -30,28 +33,36 @@ const copy = TEXT[lang] ?? TEXT.en;
 
 <style>
   .hero {
-    background: #F7EFEA url("/images/hero/sunset-beach.webp") center/cover no-repeat;
-    padding: 140px 24px;
+    position: relative;
+    flex: 1; /* expands to fill leftover vertical space */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* centers title/subtitle vertically */
+    padding: var(--space-md);
     text-align: center;
-    border-bottom: 1px solid #E8DCCF;
-    width: 100%;
+    border-bottom: none;
+  }
+
+  .hero-bg-bleed {
+    background: var(--color-bg) url("/images/hero/sunset-beach.webp") center/cover no-repeat;
     position: absolute;
-    left: 0;
+    inset: 0;
+    z-index: -1; /* Pushes it safely behind the text content */
   }
 
   .hero-title {
     font-family: "Cormorant Garamond", serif;
-    font-size: 48px;
-    color: #3A3A3C;
-    margin: 0 0 16px 0;
-    font-weight: 600;
+    font-size: var(--text-xxl);
+    color: var(--color-text);
+    margin: 0 0 var(--space-sm) 0;
+    font-weight: var(--font-weight);
   }
 
   .hero-subtitle {
     font-family: Inter, sans-serif;
-    font-size: 20px;
-    color: #6E6E73;
-    margin: 0 0 32px 0;
+    font-size: var(--text-lg);
+    color: var(--color-text-soft);
+    margin: 0 0 var(--space-lg) 0;
     max-width: 600px;
     margin-left: auto;
     margin-right: auto;
@@ -60,16 +71,17 @@ const copy = TEXT[lang] ?? TEXT.en;
 
   .hero-cta {
     display: inline-block;
-    padding: 12px 28px;
-    background: #CFA79E;
-    color: #3A3A3C;
+    align-self: center;
+    padding: var(--space-sm) var(--space-md);
+    background: var(--color-accent);
+    color: var(--color-text);
     font-family: Inter, sans-serif;
-    font-size: 16px;
+    font-size: var(--text-md);
     text-decoration: none;
     border-radius: 4px;
   }
 
   .hero-cta:hover {
-    background: #c5978d;
+    background: var(--color-accent-hover);
   }
 </style>
