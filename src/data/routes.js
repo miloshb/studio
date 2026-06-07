@@ -2,6 +2,7 @@
 
 // Mapping EN ↔ DE equivalents
 export const ROUTES = {
+  // TOP NAV PAGES
   index: {
     en: { label: "index", href: "/en/" },
     de: { label: "index", href: "/de/" }
@@ -26,7 +27,26 @@ export const ROUTES = {
     en: { label: "About", href: "/en/about" },
     de: { label: "Über uns", href: "/de/about" }
   },
+  account: {
+    en: { label: "Account", href: "/en/account" },
+    de: { label: "Konto", href: "/de/account" }
+  },
 
+  // SYSTEM PAGES (not in top nav)
+  register: {
+    en: { label: "Register", href: "/en/register" },
+    de: { label: "Registrieren", href: "/de/registrieren" }
+  },
+  login: {
+    en: { label: "Login", href: "/en/login" },
+    de: { label: "Anmelden", href: "/de/anmelden" }
+  },
+  checkout: {
+    en: { label: "Checkout", href: "/en/checkout" },
+    de: { label: "Kasse", href: "/de/kasse" }
+  },
+
+  // FOOTER PAGES
   pricing: {
     en: { label: "Pricing", href: "/en/pricing" },
     de: { label: "Preise", href: "/de/preise" }
