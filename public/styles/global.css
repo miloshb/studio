@@ -153,11 +153,14 @@ a:hover {
    6. TABLES (consistent columns)
 ---------------------------------- */
 
-table th {
-  text-align: left;
+table {
   width: 100%;
   border-collapse: collapse;
-  table-layout: fixed; /* forces consistent column widths */
+  table-layout: fixed; /* ensures consistent column widths */
+}
+
+table th {
+  text-align: left; /* fix default browser centering */
 }
 
 table th,
@@ -165,6 +168,7 @@ table td {
   padding: 0.5rem 0;
 }
 
+/* Default 2-column layout */
 table th:first-child,
 table td:first-child {
   width: 40%;
@@ -173,6 +177,25 @@ table td:first-child {
 table th:last-child,
 table td:last-child {
   width: 60%;
+}
+
+/* opt-out for global layout when needed */
+table.no-global {
+  table-layout: auto;
+}
+
+table.no-global th:first-child,
+table.no-global td:first-child,
+table.no-global th:last-child,
+table.no-global td:last-child {
+  width: auto;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: var(--mobile-max-width)) {
+  table {
+    table-layout: auto;
+  }
 }
 
 /* ---------------------------------
