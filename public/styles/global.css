@@ -91,6 +91,7 @@ li a:hover {
 
   /* Layout */
   --max-width: clamp(320px, 90vw, 1040px);
+  --mobile-max-width: 480px;
 }
 
 /* ---------------------------------
@@ -149,7 +150,56 @@ a:hover {
 }
 
 /* ---------------------------------
-   6. LAYOUT UTILITIES
+   6. TABLES (consistent columns)
+---------------------------------- */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed; /* ensures consistent column widths */
+}
+
+table th {
+  text-align: left; /* fix default browser centering */
+}
+
+table th,
+table td {
+  padding: 0.5rem 0;
+}
+
+/* Default 2-column layout */
+table th:first-child,
+table td:first-child {
+  width: 40%;
+}
+
+table th:last-child,
+table td:last-child {
+  width: 60%;
+}
+
+/* opt-out for global layout when needed */
+table.no-global {
+  table-layout: auto;
+}
+
+table.no-global th:first-child,
+table.no-global td:first-child,
+table.no-global th:last-child,
+table.no-global td:last-child {
+  width: auto;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: var(--mobile-max-width)) {
+  table {
+    table-layout: auto;
+  }
+}
+
+/* ---------------------------------
+   7. LAYOUT UTILITIES
 ---------------------------------- */
 
 .container {
@@ -174,7 +224,7 @@ section {
 }
 
 /* ---------------------------------
-   7. NAV + FOOTER BASELINE
+   8. NAV + FOOTER BASELINE
 ---------------------------------- */
 
 nav, footer {
@@ -184,7 +234,7 @@ nav, footer {
 }
 
 /* ---------------------------------
-   8. IMAGES
+   9. IMAGES
 ---------------------------------- */
 
 img {
