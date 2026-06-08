@@ -18,8 +18,18 @@ const ROW_HEIGHTS = START_TIMES.map((slot, i) => {
   return slot.minutes - START_TIMES[i - 1].minutes;
 });
 
+const lastSlotStart = START_TIMES[START_TIMES.length - 1];
+const firstSlotStart = START_TIMES[0];
+
+const longestLastClass = CLASSES
+  .filter(c => c.start === lastSlotStart.id)
+  .reduce((max, c) => Math.max(max, c.duration), 0);
+
 // Total grid height
-const GRID_END = START_TIMES[START_TIMES.length - 1].minutes - START_TIMES[0].minutes + 45;
+const GRID_END =
+  (lastSlotStart.minutes - firstSlotStart.minutes) +
+  longestLastClass +
+  45; // header offset
 
 // Helper: convert slot ID → absolute minute position
 const getMinute = (id) => START_TIMES.find((t) => t.id === id).minutes;
@@ -87,7 +97,7 @@ const gridRows = ROW_HEIGHTS.map((h) => `calc(${h} * var(--minute))`).join(" ");
   }
 
   .day {
-    justify-content: center;
+    text-align: center;
   }
 
   .grid-element {
