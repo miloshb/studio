@@ -53,7 +53,7 @@ const classes = [
 
 <div class="schedule-grid">
   <div class="time-col">
-    <div class="day">Time (CET)</div>
+    <div class="day">Time</div>
     <div class="time">08:30</div>
     <div class="time">10:00</div>
     <div class="time">12:30</div>
@@ -82,7 +82,7 @@ const classes = [
   ))}
 
   <div class="time-col">
-    <div class="day">Time (CET)</div>
+    <div class="day">Time</div>
     <div class="time">08:30</div>
     <div class="time">10:00</div>
     <div class="time">12:30</div>
@@ -99,20 +99,20 @@ const classes = [
     grid-template-columns: 40px repeat(7, 1fr) 40px;
     gap: 4px;
     --minute: 1px; /* 1 minute = 1px height */
-    --grid-end-time: 750
+    --grid-end-time: 700
   }
 
   .schedule-grid .time-col {
     display: grid;
     grid-template-rows:
       calc( 45 * var(--minute))  /* Days of the week */
-      calc( 75 * var(--minute))  /* Slot 1: 08:30 Yoga 75 */
-      calc( 90 * var(--minute))  /* Slot 2: 10:00 Yoga 75 */
-      calc(150 * var(--minute))  /* Slot 3: 12:30 Yoga 60 */
-      calc(105 * var(--minute))  /* Slot 4a: 14:15 Yoga 60 */
-      calc( 30 * var(--minute))  /* Slot 4b: 14:45 Yoga 60 */
-      calc( 75 * var(--minute))  /* Slot 5: 16:00 Yoga 60/90 */
-      calc(120 * var(--minute)); /* Slot 6: 18:00 Yoga 75 */
+      calc( 90 * var(--minute))  /* Slot 1: 08:30 Yoga 75 */
+      calc(150 * var(--minute))  /* Slot 2: 10:00 Yoga 75 */
+      calc(105 * var(--minute))  /* Slot 3: 12:30 Yoga 60 */
+      calc( 30 * var(--minute))  /* Slot 4a: 14:15 Yoga 60 */
+      calc( 75 * var(--minute))  /* Slot 4b: 14:45 Yoga 60 */
+      calc(120 * var(--minute))  /* Slot 5: 16:00 Yoga 60/90 */
+      calc( 75 * var(--minute)); /* Slot 6: 18:00 Yoga 75 */
   }
 
   .schedule-grid .day-col {
