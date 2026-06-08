@@ -92,9 +92,6 @@ li a:hover {
   /* Layout */
   --max-width: clamp(320px, 90vw, 1040px);
   --mobile-max-width: 480px;
-
-  /* Schedule Grid */
-  --schedule-start: 510;    /* 08:30 in minutes */
 }
 
 /* ---------------------------------
@@ -245,46 +242,3 @@ img {
   height: auto;
   display: block;
 }
-
-/* ---------------------------------
-   9. SCHEDULE STYLES
----------------------------------- */
-
-.schedule-grid {
-  display: grid;
-  grid-template-columns: 80px repeat(7, 1fr);
-  gap: 4px;
-  --minute: 1px; /* 1 minute = 1px height */
-}
-
-.schedule-grid .time-col {
-  display: grid;
-  grid-template-rows:
-    calc(var(--schedule-start) * var(--minute))
-    calc(90 * var(--minute))
-    calc(150 * var(--minute))
-    calc(105 * var(--minute))
-    calc(30 * var(--minute))
-    calc(75 * var(--minute))
-    calc(120 * var(--minute));
-}
-
-.schedule-grid .day-col {
-  display: grid;
-  grid-template-rows: repeat(1080, var(--minute));
-  position: relative;
-}
-
-.class {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 4px;
-  text-decoration: none;
-  color: var(--color-text);
-  padding: 4px;
-}
-
-.yoga60 { background: #e8f4ff; }
-.yoga75 { background: #eafce8; }
-.yoga90 { background: #fff4e6; }

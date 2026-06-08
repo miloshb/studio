@@ -100,6 +100,7 @@ export const TOP_NAV = {
 
 export const FOOTER_NAV = {
   en: [
+    ROUTES.schedule_overview.en,
     ROUTES.pricing.en,
     ROUTES.payment.en,
     ROUTES.imprint.en,
@@ -109,6 +110,7 @@ export const FOOTER_NAV = {
     ROUTES.contact.en
   ],
   de: [
+    ROUTES.schedule_overview.de,
     ROUTES.pricing.de,
     ROUTES.payment.de,
     ROUTES.imprint.de,

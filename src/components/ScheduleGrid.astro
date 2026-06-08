@@ -11,38 +11,37 @@ const days = dayLabels[lang];
 
 // Times in minutes since midnight (Central European Time)
 const classes = [
-  // 08:30 Yoga 75 (Mon, Thu, Fri)
+  // 08:30 Yoga 75
   { day: "Mon", start: 510, duration: 75, label: "Yoga 75" },
   { day: "Thu", start: 510, duration: 75, label: "Yoga 75" },
   { day: "Fri", start: 510, duration: 75, label: "Yoga 75" },
 
-  // 10:00 Yoga 75 (Thu)
+  // 10:00 Yoga 75
+  { day: "Mon", start: 600, duration: 75, label: "Yoga 75" },
   { day: "Thu", start: 600, duration: 75, label: "Yoga 75" },
+  { day: "Fri", start: 600, duration: 75, label: "Yoga 75" },
 
-  // 12:30 Yoga 60 (Mon–Thu)
+  // 12:30 Yoga 60
   { day: "Mon", start: 750, duration: 60, label: "Yoga 60" },
-  { day: "Tue", start: 750, duration: 60, label: "Yoga 60" },
-  { day: "Wed", start: 750, duration: 60, label: "Yoga 60" },
+  { day: "Wed", start: 750, duration: 60, label: "26+2 Express" },
   { day: "Thu", start: 750, duration: 60, label: "Yoga 60" },
+  { day: "Fri", start: 750, duration: 60, label: "Yoga 60" },
 
-  // 14:15 Yoga 60 (Mon–Fri)
+  // 14:15 Yoga 60
   { day: "Mon", start: 855, duration: 60, label: "Yoga 60" },
-  { day: "Tue", start: 855, duration: 60, label: "Yoga 60" },
   { day: "Wed", start: 855, duration: 60, label: "Yoga 60" },
-  { day: "Thu", start: 855, duration: 60, label: "Yoga 60" },
-  { day: "Fri", start: 855, duration: 60, label: "Yoga 60" },
+  { day: "Fri", start: 855, duration: 60, label: "26+2 Express" },
 
-  // 14:45 Yoga 60 (Sat, Sun)
+  // 14:45 Yoga 60
   { day: "Sat", start: 885, duration: 60, label: "Yoga 60" },
   { day: "Sun", start: 885, duration: 60, label: "Yoga 60" },
 
-  // 16:00 Yoga 90 (Fri–Sun)
+  // 16:00 Yoga 90
   { day: "Fri", start: 960, duration: 90, label: "Yoga 90" },
-  { day: "Sat", start: 960, duration: 90, label: "Yoga 90" },
+  { day: "Sat", start: 960, duration: 90, label: "26+2" },
   { day: "Sun", start: 960, duration: 90, label: "Yoga 90" },
 
-  // 18:00 Yoga 75 (Fri–Sun)
-  { day: "Fri", start: 1080, duration: 75, label: "Yoga 75" },
+  // 18:00 Yoga 75
   { day: "Sat", start: 1080, duration: 75, label: "Yoga 75" },
   { day: "Sun", start: 1080, duration: 75, label: "Yoga 75" },
 ];
@@ -50,13 +49,14 @@ const classes = [
 
 <div class="schedule-grid">
   <div class="time-col">
-    <div class="time">08:30</div>
-    <div class="time">10:00</div>
-    <div class="time">12:30</div>
-    <div class="time">14:15</div>
-    <div class="time">14:45</div>
-    <div class="time">16:00</div>
-    <div class="time">18:00</div>
+    <div class="day"></div>        // Slot 0 (empty for day labels)
+    <div class="time">08:30</div>  // Slot 1
+    <div class="time">10:00</div>  // Slot 2
+    <div class="time">12:30</div>  // Slot 3
+    <div class="time">14:15</div>  // Slot 4a
+    <div class="time">14:45</div>  // Slot 4b
+    <div class="time">16:00</div>  // Slot 5
+    <div class="time">18:00</div>  // Slot 6
   </div>
 
   {days.map((day) => (
@@ -77,3 +77,46 @@ const classes = [
     </div>
   ))}
 </div>
+
+<style>
+  .schedule-grid {
+    display: grid;
+    grid-template-columns: 80px repeat(7, 1fr);
+    gap: 4px;
+    --minute: 1px; /* 1 minute = 1px height */
+  }
+
+  .schedule-grid .time-col {
+    display: grid;
+    grid-template-rows:
+      calc( 75 * var(--minute))  // Empty space before first class
+      calc( 75 * var(--minute))  // Slot 1: 08:30 Yoga 75
+      calc( 90 * var(--minute))  // Slot 2: 10:00 Yoga 75
+      calc(150 * var(--minute))  // Slot 3: 12:30 Yoga 60
+      calc(105 * var(--minute))  // Slot 4a: 14:15 Yoga 60
+      calc( 30 * var(--minute))  // Slot 4b: 14:45 Yoga 60
+      calc( 75 * var(--minute))  // Slot 5: 16:00 Yoga 90
+      calc(120 * var(--minute)); // Slot 6: 18:00 Yoga 75
+  }
+
+  .schedule-grid .day-col {
+    display: grid;
+    grid-template-rows: repeat(1080, var(--minute));
+    position: relative;
+  }
+
+  .class {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    text-decoration: none;
+    color: var(--color-text);
+    padding: 4px;
+  }
+
+  .yoga60 { background: #48AEB2; }
+  .yoga75 { background: #F2B138; }
+  .yoga90 { background: #B5DFE1; }
+  .26+2   { background: #CD98BE; }
+</style>
