@@ -49,7 +49,7 @@ export const ROUTES = {
   // FOOTER PAGES
   schedule_overview: {
     en: { label: "Weekly Rhythm", href: "/en/schedule-overview" },
-    de: { label: "Wöchentliche Rhythm", href: "/de/schedule-overview" }
+    de: { label: "Wochenrhythmus", href: "/de/schedule-overview" }
   },
   pricing: {
     en: { label: "Pricing", href: "/en/pricing" },
