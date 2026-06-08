@@ -1,95 +1,67 @@
 ---
+import scheduleData from "../data/schedule.json";
+
 const { lang = "en" } = Astro.props;
 
-// Localized day headings
 const dayLabels = {
   en: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
   de: ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"]
 };
 
 const days = dayLabels[lang];
+const START_TIMES = scheduleData.startTimes;
+const CLASSES = scheduleData.classes;
 
-// Times in minutes since midnight (Central European Time)
-const classes = [
-  // 08:30 Yoga 75
-  { day: "Mon", start: 45, duration: 75, label: "Yoga 75" },
-  { day: "Thu", start: 45, duration: 75, label: "Yoga 75" },
-  { day: "Fri", start: 45, duration: 60, label: "Yoga 60" },
+// Compute row heights from time differences
+const ROW_HEIGHTS = START_TIMES.map((slot, i) => {
+  if (i === 0) return 45; // offset
+  return slot.minutes - START_TIMES[i - 1].minutes;
+});
 
-  // 10:00 Yoga 75
-  { day: "Mon", start: 135, duration: 75, label: "Yoga 75" },
-  { day: "Thu", start: 135, duration: 75, label: "Yoga 75" },
-  { day: "Fri", start: 135, duration: 75, label: "Yoga 75" },
+// Total grid height
+const GRID_END = START_TIMES[START_TIMES.length - 1].minutes - START_TIMES[0].minutes + 45;
 
-  // 12:30 Yoga 60
-  { day: "Mon", start: 285, duration: 60, label: "Yoga 60" },
-  { day: "Wed", start: 285, duration: 60, label: "Yoga 60" },
-  { day: "Thu", start: 285, duration: 60, label: "Yoga 60" },
-  { day: "Fri", start: 285, duration: 60, label: "26+2 Express" },
+// Helper: convert slot ID → absolute minute position
+const getMinute = (id) => START_TIMES.find((t) => t.id === id).minutes;
 
-  // 14:15 Yoga 60
-  { day: "Mon", start: 390, duration: 60, label: "Yoga 60" },
-  { day: "Wed", start: 390, duration: 60, label: "26+2 Express" },
-  { day: "Fri", start: 390, duration: 60, label: "Yoga 60" },
-
-  // 14:45 Yoga 60
-  { day: "Thu", start: 420, duration: 60, label: "Yoga 60" },
-  { day: "Sat", start: 420, duration: 60, label: "Yoga 60" },
-  { day: "Sun", start: 420, duration: 60, label: "Yoga 60" },
-
-  // 16:00 Yoga 60/90
-  { day: "Wed", start: 495, duration: 60, label: "Yoga 60" },
-  { day: "Thu", start: 495, duration: 60, label: "26+2 Express" },
-  { day: "Fri", start: 495, duration: 90, label: "Yoga 90" },
-  { day: "Sat", start: 495, duration: 90, label: "26+2" },
-  { day: "Sun", start: 495, duration: 90, label: "Yoga 90" },
-
-  // 18:00 Yoga 75
-  { day: "Fri", start: 615, duration: 75, label: "Yoga 75" },
-  { day: "Sat", start: 615, duration: 75, label: "Yoga 75" },
-  { day: "Sun", start: 615, duration: 75, label: "Yoga 75" },
-];
+// Build CSS grid rows
+const gridRows = ROW_HEIGHTS.map((h) => `calc(${h} * var(--minute))`).join(" ");
 ---
 
 <div class="schedule-grid">
+  <!-- Left time column -->
   <div class="time-col">
     <div class="day">Time</div>
-    <div class="time">08:30</div>
-    <div class="time">10:00</div>
-    <div class="time">12:30</div>
-    <div class="time">14:15</div>
-    <div class="time">14:45</div>
-    <div class="time">16:00</div>
-    <div class="time">18:00</div>
+    {START_TIMES.map((t) => <div class="time">{t.label}</div>)}
   </div>
 
+  <!-- Day columns -->
   {days.map((day) => (
     <div class="day-col">
       <div class="day">{day}</div>
 
-      {classes
-        .filter((c) => c.day === day)
-        .map((c) => (
+      {CLASSES.filter((c) => c.day === day)
+        .map((c) => {
+        const start = getMinute(c.start) - START_TIMES[0].minutes + 45;
+        const end = start + c.duration;
+        const className = "_" + c.label.toLowerCase().replace(/[^\p{L}\p{N}]/gu, "");
+        return (
           <a
-            href="/en/schedule/"
-            class={`grid-element _${c.label.toLowerCase().replace(/[^\p{L}\p{N}]/gu, "")}`}
-            style={`grid-row: ${c.start} / ${c.start + c.duration}`}
+            href={`/${lang}/schedule/`}
+            class={`grid-element ${className}`}
+            style={`grid-row: ${start} / ${end}`}
           >
             {c.label}
           </a>
-        ))}
+        );
+      })}
     </div>
   ))}
 
+  <!-- Right time column -->
   <div class="time-col">
     <div class="day">Time</div>
-    <div class="time">08:30</div>
-    <div class="time">10:00</div>
-    <div class="time">12:30</div>
-    <div class="time">14:15</div>
-    <div class="time">14:45</div>
-    <div class="time">16:00</div>
-    <div class="time">18:00</div>
+    {START_TIMES.map((t) => <div class="time">{t.label}</div>)}
   </div>
 </div>
 
@@ -99,23 +71,15 @@ const classes = [
     grid-template-columns: 40px repeat(7, 1fr) 40px;
     gap: 4px;
     --minute: 1px; /* 1 minute = 1px height */
-    --grid-end-time: 700
+    --grid-end-time: {{ GRID_END }};
   }
 
-  .schedule-grid .time-col {
+  .time-col {
     display: grid;
-    grid-template-rows:
-      calc( 45 * var(--minute))  /* Days of the week */
-      calc( 90 * var(--minute))  /* Slot 1: 08:30 Yoga 75 */
-      calc(150 * var(--minute))  /* Slot 2: 10:00 Yoga 75 */
-      calc(105 * var(--minute))  /* Slot 3: 12:30 Yoga 60 */
-      calc( 30 * var(--minute))  /* Slot 4a: 14:15 Yoga 60 */
-      calc( 75 * var(--minute))  /* Slot 4b: 14:45 Yoga 60 */
-      calc(120 * var(--minute))  /* Slot 5: 16:00 Yoga 60/90 */
-      calc( 75 * var(--minute)); /* Slot 6: 18:00 Yoga 75 */
+    grid-template-rows: {{ gridRows }};
   }
 
-  .schedule-grid .day-col {
+  .day-col {
     display: grid;
     grid-template-rows: repeat(var(--grid-end-time), var(--minute));
     position: relative;

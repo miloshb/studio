@@ -1,0 +1,44 @@
+{
+  "startTimes": [
+    { "id": "t0830", "label": "08:30", "minutes": 510 },
+    { "id": "t1000", "label": "10:00", "minutes": 600 },
+    { "id": "t1230", "label": "12:30", "minutes": 750 },
+    { "id": "t1415", "label": "14:15", "minutes": 855 },
+    { "id": "t1445", "label": "14:45", "minutes": 885 },
+    { "id": "t1600", "label": "16:00", "minutes": 960 },
+    { "id": "t1800", "label": "18:00", "minutes": 1080 }
+  ],
+
+  "classes": [
+    { "day": "Mon", "start": "t0830", "duration": 75, "label": "Yoga 75" },
+    { "day": "Thu", "start": "t0830", "duration": 75, "label": "Yoga 75" },
+    { "day": "Fri", "start": "t0830", "duration": 60, "label": "Yoga 60" },
+
+    { "day": "Mon", "start": "t1000", "duration": 75, "label": "Yoga 75" },
+    { "day": "Thu", "start": "t1000", "duration": 75, "label": "Yoga 75" },
+    { "day": "Fri", "start": "t1000", "duration": 75, "label": "Yoga 75" },
+
+    { "day": "Mon", "start": "t1230", "duration": 60, "label": "Yoga 60" },
+    { "day": "Wed", "start": "t1230", "duration": 60, "label": "Yoga 60" },
+    { "day": "Thu", "start": "t1230", "duration": 60, "label": "Yoga 60" },
+    { "day": "Fri", "start": "t1230", "duration": 60, "label": "26+2 Express" },
+
+    { "day": "Mon", "start": "t1415", "duration": 60, "label": "Yoga 60" },
+    { "day": "Wed", "start": "t1415", "duration": 60, "label": "26+2 Express" },
+    { "day": "Fri", "start": "t1415", "duration": 60, "label": "Yoga 60" },
+
+    { "day": "Thu", "start": "t1445", "duration": 60, "label": "Yoga 60" },
+    { "day": "Sat", "start": "t1445", "duration": 60, "label": "Yoga 60" },
+    { "day": "Sun", "start": "t1445", "duration": 60, "label": "Yoga 60" },
+
+    { "day": "Wed", "start": "t1600", "duration": 60, "label": "Yoga 60" },
+    { "day": "Thu", "start": "t1600", "duration": 60, "label": "26+2 Express" },
+    { "day": "Fri", "start": "t1600", "duration": 90, "label": "Yoga 90" },
+    { "day": "Sat", "start": "t1600", "duration": 90, "label": "26+2" },
+    { "day": "Sun", "start": "t1600", "duration": 90, "label": "Yoga 90" },
+
+    { "day": "Fri", "start": "t1800", "duration": 75, "label": "Yoga 75" },
+    { "day": "Sat", "start": "t1800", "duration": 75, "label": "Yoga 75" },
+    { "day": "Sun", "start": "t1800", "duration": 75, "label": "Yoga 75" }
+  ]
+}
