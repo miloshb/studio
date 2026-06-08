@@ -72,7 +72,7 @@ const classes = [
         .map((c) => (
           <a
             href="/en/schedule/"
-            class={`class ${c.label.replace(" +", "").toLowerCase()}`}
+            class={`class _${c.label.toLowerCase().replace(/[^\p{L}\p{N}]/gu, "")}`}
             style={`grid-row: ${c.start} / ${c.start + c.duration}`}
           >
             {c.label}
@@ -80,12 +80,23 @@ const classes = [
         ))}
     </div>
   ))}
+
+  <div class="time-col">
+    <div class="day"></div>
+    <div class="time">08:30</div>
+    <div class="time">10:00</div>
+    <div class="time">12:30</div>
+    <div class="time">14:15</div>
+    <div class="time">14:45</div>
+    <div class="time">16:00</div>
+    <div class="time">18:00</div>
+  </div>
 </div>
 
 <style>
   .schedule-grid {
     display: grid;
-    grid-template-columns: 40px repeat(14, 1fr);
+    grid-template-columns: 40px repeat(7, 1fr) 40px;
     gap: 4px;
     --minute: 1px; /* 1 minute = 1px height */
   }
@@ -119,9 +130,9 @@ const classes = [
     padding: 4px;
   }
 
-  .yoga60     { background: #48AEB2; }
-  .yoga75     { background: #F2B138; }
-  .yoga90     { background: #B5DFE1; }
-  .262        { background: #CD98BE; }
-  .262express { background: #CD98BE; }
+  ._yoga60     { background: #48AEB2; }
+  ._yoga75     { background: #F2B138; }
+  ._yoga90     { background: #B5DFE1; }
+  ._262        { background: #CD98BE; }
+  ._262express { background: #CD98BE; }
 </style>
