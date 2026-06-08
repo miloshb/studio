@@ -1,0 +1,79 @@
+---
+const { lang = "en" } = Astro.props;
+
+// Localized day headings
+const dayLabels = {
+  en: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+  de: ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"]
+};
+
+const days = dayLabels[lang];
+
+// Times in minutes since midnight (Central European Time)
+const classes = [
+  // 08:30 Yoga 75 (Mon, Thu, Fri)
+  { day: "Mon", start: 510, duration: 75, label: "Yoga 75" },
+  { day: "Thu", start: 510, duration: 75, label: "Yoga 75" },
+  { day: "Fri", start: 510, duration: 75, label: "Yoga 75" },
+
+  // 10:00 Yoga 75 (Thu)
+  { day: "Thu", start: 600, duration: 75, label: "Yoga 75" },
+
+  // 12:30 Yoga 60 (Mon–Thu)
+  { day: "Mon", start: 750, duration: 60, label: "Yoga 60" },
+  { day: "Tue", start: 750, duration: 60, label: "Yoga 60" },
+  { day: "Wed", start: 750, duration: 60, label: "Yoga 60" },
+  { day: "Thu", start: 750, duration: 60, label: "Yoga 60" },
+
+  // 14:15 Yoga 60 (Mon–Fri)
+  { day: "Mon", start: 855, duration: 60, label: "Yoga 60" },
+  { day: "Tue", start: 855, duration: 60, label: "Yoga 60" },
+  { day: "Wed", start: 855, duration: 60, label: "Yoga 60" },
+  { day: "Thu", start: 855, duration: 60, label: "Yoga 60" },
+  { day: "Fri", start: 855, duration: 60, label: "Yoga 60" },
+
+  // 14:45 Yoga 60 (Sat, Sun)
+  { day: "Sat", start: 885, duration: 60, label: "Yoga 60" },
+  { day: "Sun", start: 885, duration: 60, label: "Yoga 60" },
+
+  // 16:00 Yoga 90 (Fri–Sun)
+  { day: "Fri", start: 960, duration: 90, label: "Yoga 90" },
+  { day: "Sat", start: 960, duration: 90, label: "Yoga 90" },
+  { day: "Sun", start: 960, duration: 90, label: "Yoga 90" },
+
+  // 18:00 Yoga 75 (Fri–Sun)
+  { day: "Fri", start: 1080, duration: 75, label: "Yoga 75" },
+  { day: "Sat", start: 1080, duration: 75, label: "Yoga 75" },
+  { day: "Sun", start: 1080, duration: 75, label: "Yoga 75" },
+];
+---
+
+<div class="schedule-grid">
+  <div class="time-col">
+    <div class="time">08:30</div>
+    <div class="time">10:00</div>
+    <div class="time">12:30</div>
+    <div class="time">14:15</div>
+    <div class="time">14:45</div>
+    <div class="time">16:00</div>
+    <div class="time">18:00</div>
+  </div>
+
+  {days.map((day) => (
+    <div class="day-col">
+      <div class="day">{day}</div>
+
+      {classes
+        .filter((c) => c.day === day)
+        .map((c) => (
+          <a
+            href="/en/schedule/"
+            class={`class ${c.label.replace(" ", "").toLowerCase()}`}
+            style={`grid-row: ${c.start} / ${c.start + c.duration}`}
+          >
+            {c.label}
+          </a>
+        ))}
+    </div>
+  ))}
+</div>
