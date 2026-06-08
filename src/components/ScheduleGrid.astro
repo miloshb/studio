@@ -105,14 +105,14 @@ const classes = [
   .schedule-grid .time-col {
     display: grid;
     grid-template-rows:
-      calc( 45 * var(--minute))  // Empty space before first class
-      calc( 75 * var(--minute))  // Slot 1: 08:30 Yoga 75
-      calc( 90 * var(--minute))  // Slot 2: 10:00 Yoga 75
-      calc(150 * var(--minute))  // Slot 3: 12:30 Yoga 60
-      calc(105 * var(--minute))  // Slot 4a: 14:15 Yoga 60
-      calc( 30 * var(--minute))  // Slot 4b: 14:45 Yoga 60
-      calc( 75 * var(--minute))  // Slot 5: 16:00 Yoga 90
-      calc(120 * var(--minute)); // Slot 6: 18:00 Yoga 75
+      calc( 45 * var(--minute))  /* Days of the week */
+      calc( 75 * var(--minute))  /* Slot 1: 08:30 Yoga 75 */
+      calc( 90 * var(--minute))  /* Slot 2: 10:00 Yoga 75 */
+      calc(150 * var(--minute))  /* Slot 3: 12:30 Yoga 60 */
+      calc(105 * var(--minute))  /* Slot 4a: 14:15 Yoga 60 */
+      calc( 30 * var(--minute))  /* Slot 4b: 14:45 Yoga 60 */
+      calc( 75 * var(--minute))  /* Slot 5: 16:00 Yoga 60/90 */
+      calc(120 * var(--minute)); /* Slot 6: 18:00 Yoga 75 */
   }
 
   .schedule-grid .day-col {
