@@ -53,7 +53,7 @@ const classes = [
 
 <div class="schedule-grid">
   <div class="time-col">
-    <div class="day"></div>
+    <div class="day">Time (CET)</div>
     <div class="time">08:30</div>
     <div class="time">10:00</div>
     <div class="time">12:30</div>
@@ -72,7 +72,7 @@ const classes = [
         .map((c) => (
           <a
             href="/en/schedule/"
-            class={`class _${c.label.toLowerCase().replace(/[^\p{L}\p{N}]/gu, "")}`}
+            class={`grid-element _${c.label.toLowerCase().replace(/[^\p{L}\p{N}]/gu, "")}`}
             style={`grid-row: ${c.start} / ${c.start + c.duration}`}
           >
             {c.label}
@@ -82,7 +82,7 @@ const classes = [
   ))}
 
   <div class="time-col">
-    <div class="day"></div>
+    <div class="day">Time (CET)</div>
     <div class="time">08:30</div>
     <div class="time">10:00</div>
     <div class="time">12:30</div>
@@ -99,6 +99,7 @@ const classes = [
     grid-template-columns: 40px repeat(7, 1fr) 40px;
     gap: 4px;
     --minute: 1px; /* 1 minute = 1px height */
+    --grid-end-time: 750
   }
 
   .schedule-grid .time-col {
@@ -116,11 +117,11 @@ const classes = [
 
   .schedule-grid .day-col {
     display: grid;
-    grid-template-rows: repeat(1080, var(--minute));
+    grid-template-rows: repeat(var(--grid-end-time), var(--minute));
     position: relative;
   }
 
-  .class {
+  .grid-element {
     display: flex;
     align-items: center;
     justify-content: center;
