@@ -28,6 +28,44 @@ const getMinute = (id) => START_TIMES.find((t) => t.id === id).minutes;
 const gridRows = ROW_HEIGHTS.map((h) => `calc(${h} * var(--minute))`).join(" ");
 ---
 
+<style>
+  .schedule-grid {
+    display: grid;
+    grid-template-columns: 40px repeat(7, 1fr) 40px;
+    gap: 4px;
+    --minute: 1px; /* 1 minute = 1px height */
+    --grid-end-time: {{ GRID_END }};
+  }
+
+  .time-col {
+    display: grid;
+    grid-template-rows: {{ gridRows }};
+  }
+
+  .day-col {
+    display: grid;
+    grid-template-rows: repeat(var(--grid-end-time), var(--minute));
+    position: relative;
+    justify-content: center;
+  }
+
+  .grid-element {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    text-decoration: none;
+    color: var(--color-text);
+    padding: 4px;
+  }
+
+  ._yoga60     { background: #48AEB2; }
+  ._yoga75     { background: #F2B138; }
+  ._yoga90     { background: #B5DFE1; }
+  ._262        { background: #CD98BE; }
+  ._262express { background: #CD98BE; }
+</style>
+
 <div class="schedule-grid">
   <!-- Left time column -->
   <div class="time-col">
@@ -64,40 +102,3 @@ const gridRows = ROW_HEIGHTS.map((h) => `calc(${h} * var(--minute))`).join(" ");
     {START_TIMES.map((t) => <div class="time">{t.label}</div>)}
   </div>
 </div>
-
-<style>
-  .schedule-grid {
-    display: grid;
-    grid-template-columns: 40px repeat(7, 1fr) 40px;
-    gap: 4px;
-    --minute: 1px; /* 1 minute = 1px height */
-    --grid-end-time: {{ GRID_END }};
-  }
-
-  .time-col {
-    display: grid;
-    grid-template-rows: {{ gridRows }};
-  }
-
-  .day-col {
-    display: grid;
-    grid-template-rows: repeat(var(--grid-end-time), var(--minute));
-    position: relative;
-  }
-
-  .grid-element {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 4px;
-    text-decoration: none;
-    color: var(--color-text);
-    padding: 4px;
-  }
-
-  ._yoga60     { background: #48AEB2; }
-  ._yoga75     { background: #F2B138; }
-  ._yoga90     { background: #B5DFE1; }
-  ._262        { background: #CD98BE; }
-  ._262express { background: #CD98BE; }
-</style>
