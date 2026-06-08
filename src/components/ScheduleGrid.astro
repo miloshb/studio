@@ -14,7 +14,7 @@ const classes = [
   // 08:30 Yoga 75
   { day: "Mon", start: 45, duration: 75, label: "Yoga 75" },
   { day: "Thu", start: 45, duration: 75, label: "Yoga 75" },
-  { day: "Fri", start: 45, duration: 75, label: "Yoga 75" },
+  { day: "Fri", start: 45, duration: 60, label: "Yoga 60" },
 
   // 10:00 Yoga 75
   { day: "Mon", start: 135, duration: 75, label: "Yoga 75" },
@@ -23,25 +23,29 @@ const classes = [
 
   // 12:30 Yoga 60
   { day: "Mon", start: 285, duration: 60, label: "Yoga 60" },
-  { day: "Wed", start: 285, duration: 60, label: "26+2 Express" },
+  { day: "Wed", start: 285, duration: 60, label: "Yoga 60" },
   { day: "Thu", start: 285, duration: 60, label: "Yoga 60" },
-  { day: "Fri", start: 285, duration: 60, label: "Yoga 60" },
+  { day: "Fri", start: 285, duration: 60, label: "26+2 Express" },
 
   // 14:15 Yoga 60
   { day: "Mon", start: 390, duration: 60, label: "Yoga 60" },
-  { day: "Wed", start: 390, duration: 60, label: "Yoga 60" },
-  { day: "Fri", start: 390, duration: 60, label: "26+2 Express" },
+  { day: "Wed", start: 390, duration: 60, label: "26+2 Express" },
+  { day: "Fri", start: 390, duration: 60, label: "Yoga 60" },
 
   // 14:45 Yoga 60
+  { day: "Thu", start: 420, duration: 60, label: "Yoga 60" },
   { day: "Sat", start: 420, duration: 60, label: "Yoga 60" },
   { day: "Sun", start: 420, duration: 60, label: "Yoga 60" },
 
-  // 16:00 Yoga 90
+  // 16:00 Yoga 60/90
+  { day: "Wed", start: 495, duration: 60, label: "Yoga 60" },
+  { day: "Thu", start: 495, duration: 60, label: "26+2 Express" },
   { day: "Fri", start: 495, duration: 90, label: "Yoga 90" },
   { day: "Sat", start: 495, duration: 90, label: "26+2" },
   { day: "Sun", start: 495, duration: 90, label: "Yoga 90" },
 
   // 18:00 Yoga 75
+  { day: "Fri", start: 615, duration: 75, label: "Yoga 75" },
   { day: "Sat", start: 615, duration: 75, label: "Yoga 75" },
   { day: "Sun", start: 615, duration: 75, label: "Yoga 75" },
 ];
@@ -68,7 +72,7 @@ const classes = [
         .map((c) => (
           <a
             href="/en/schedule/"
-            class={`class ${c.label.replace(" ", "").toLowerCase()}`}
+            class={`class ${c.label.replace(" +", "").toLowerCase()}`}
             style={`grid-row: ${c.start} / ${c.start + c.duration}`}
           >
             {c.label}
@@ -81,7 +85,7 @@ const classes = [
 <style>
   .schedule-grid {
     display: grid;
-    grid-template-columns: 80px repeat(7, 1fr);
+    grid-template-columns: 40px repeat(14, 1fr);
     gap: 4px;
     --minute: 1px; /* 1 minute = 1px height */
   }
@@ -115,8 +119,9 @@ const classes = [
     padding: 4px;
   }
 
-  .yoga60 { background: #48AEB2; }
-  .yoga75 { background: #F2B138; }
-  .yoga90 { background: #B5DFE1; }
-  .26+2   { background: #CD98BE; }
+  .yoga60     { background: #48AEB2; }
+  .yoga75     { background: #F2B138; }
+  .yoga90     { background: #B5DFE1; }
+  .262        { background: #CD98BE; }
+  .262express { background: #CD98BE; }
 </style>
