@@ -75,7 +75,7 @@ const guideOffsets = GUIDE_TIMES
 
       {CLASSES.filter((c) => c.day === day)
         .map((c) => {
-        const start = getMinute(c.start) - START_TIMES[0].minutes;
+        const start = getMinute(c.start) - START_TIMES[0].minutes + 1;
         const end = start + c.duration;
         const className = "_" + c.label.toLowerCase().replace(/[^\p{L}\p{N}]/gu, "");
         return (
@@ -109,12 +109,12 @@ const guideOffsets = GUIDE_TIMES
 
   .time-col {
     display: grid;
-    grid-template-rows: var(--grid-rows);
+    grid-template-rows: var(--space-lg) var(--grid-rows);
   }
 
   .day-col {
     display: grid;
-    grid-template-rows: var(--space-lg) repeat(var(--grid-end-time) - 1, var(--minute));
+    grid-template-rows: var(--space-lg) repeat(var(--grid-end-time), var(--minute));
     position: relative;
   }
 
