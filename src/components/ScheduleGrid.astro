@@ -18,10 +18,11 @@ const dayLabels = dayHeader[lang];
 const timeLabel = TimeHeader[lang];
 const START_TIMES = scheduleData.startTimes;
 const CLASSES = scheduleData.classes;
+const DAY_HEADER_OFFSET = 45;
 
 // Compute row heights from time differences
 const ROW_HEIGHTS = START_TIMES.map((start, i) => {
-  if (i === 0) return 0;
+  if (i === 0) return DAY_HEADER_OFFSET;
   return start.minutes - START_TIMES[i - 1].minutes;
 });
 
@@ -33,7 +34,7 @@ const longestLastClass = CLASSES
   .reduce((max, c) => Math.max(max, c.duration), 0);
 
 // Total grid height
-const GRID_END = (lastClassStart.minutes - firstClassStart.minutes) + longestLastClass;
+const GRID_END = (lastClassStart.minutes - firstClassStart.minutes) + longestLastClass + DAY_HEADER_OFFSET;
 
 // Helper: convert start ID → absolute minute position
 const getMinute = (id) => START_TIMES.find((t) => t.id === id).minutes;
@@ -75,7 +76,7 @@ const guideOffsets = GUIDE_TIMES
 
       {CLASSES.filter((c) => c.day === day)
         .map((c) => {
-        const start = getMinute(c.start) - START_TIMES[0].minutes + 1;
+        const start = getMinute(c.start) - START_TIMES[0].minutes + DAY_HEADER_OFFSET;
         const end = start + c.duration;
         const className = "_" + c.label.toLowerCase().replace(/[^\p{L}\p{N}]/gu, "");
         return (
@@ -109,22 +110,18 @@ const guideOffsets = GUIDE_TIMES
 
   .time-col {
     display: grid;
-    grid-template-rows: var(--space-lg) var(--grid-rows);
+    grid-template-rows: var(--grid-rows);
   }
 
   .day-col {
     display: grid;
-    grid-template-rows: var(--space-lg) repeat(var(--grid-end-time), var(--minute));
+    grid-template-rows: repeat(var(--grid-end-time), var(--minute));
     position: relative;
   }
 
   .day {
     text-align: center;
     font-weight: bold;
-  }
-
-  .day-col .day,
-  .time-col .day {
     position: sticky;
     top: 0;
     z-index: 10;
