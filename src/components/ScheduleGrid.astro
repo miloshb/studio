@@ -7,61 +7,52 @@ const dayHeader = {
   en: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
   de: ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"]
 };
-
 const TimeHeader = {
   en: "Time",
   de: "Zeit"
 };
-
-const dayKeys = dayHeader["en"];
-const dayLabels = dayHeader[lang];
-const timeLabel = TimeHeader[lang];
+const dayKeys = dayHeader["en"]; // Use English keys for data mapping, but display labels based on lang
+const dayLabels = dayHeader[lang as keyof typeof dayHeader];
+const timeLabel = TimeHeader[lang as keyof typeof TimeHeader];
 const START_TIMES = scheduleData.startTimes;
 const CLASSES = scheduleData.classes;
-const DAY_HEADER_OFFSET = 45;
 
-// Compute row heights from time differences
-const ROW_HEIGHTS = START_TIMES.map((start, i) => {
-  if (i === 0) return DAY_HEADER_OFFSET;
-  return start.minutes - START_TIMES[i - 1].minutes;
-});
-
+// Determine schedule start (firstMinute) and end (lastMinute) times
+const firstMinute = START_TIMES[0].minutes;
 const lastClassStart = START_TIMES[START_TIMES.length - 1];
-const firstClassStart = START_TIMES[0];
-
 const longestLastClass = CLASSES
-  .filter(c => c.start === lastClassStart.id)
+  .filter(c => c.startId === lastClassStart.id)
   .reduce((max, c) => Math.max(max, c.duration), 0);
+const lastMinute = lastClassStart.minutes + longestLastClass;
 
-// Total grid height
-const GRID_END = (lastClassStart.minutes - firstClassStart.minutes) + longestLastClass + DAY_HEADER_OFFSET;
-
-// Helper: convert start ID → absolute minute position
-const getMinute = (id) => START_TIMES.find((t) => t.id === id).minutes;
-
-// Build CSS grid rows
+// Compute row heights from time differences to build CSS grid rows
+const ROW_HEIGHTS = START_TIMES.map((start, i) => {
+  if (i === START_TIMES.length - 1) return longestLastClass; // Last row height = longest class duration starting at last time slot
+  return START_TIMES[i + 1].minutes - start.minutes; // difference between NEXT and CURRENT start times
+});
 const gridRows = ROW_HEIGHTS.map((h) => `calc(${h} * var(--minute))`).join(" ");
+
 
 // Time guide lines
 const now = new Date();
 const nowMinutes = now.getHours() * 60 + now.getMinutes();
-
-const firstMinute = START_TIMES[0].minutes;
-const lastMinute = lastClassStart.minutes + longestLastClass;
-
 const nowOffset =
   nowMinutes >= firstMinute && nowMinutes <= lastMinute
     ? (nowMinutes - firstMinute) + 1
     : null;
 
-const GUIDE_TIMES = [480, 600, 720, 840, 960, 1080]; // 08:00 → 18:00
+const GUIDE_TIMES = [480, 600, 720, 840, 960, 1080]; // 08:00 → 18:00 every two hours
 const guideOffsets = GUIDE_TIMES
   .filter(t => t >= firstMinute && t <= lastMinute)
   .map(t => (t - firstMinute) + 1);
+
+
+// Helper function: convert start ID → absolute minute position
+const getStartMinutes = (id) => START_TIMES.find((t) => t.id === id).minutes;
 ---
 
 <div class="schedule-grid"
-  style={`--grid-end-time: ${GRID_END}; --grid-rows: ${gridRows};`}
+  style={`--grid-rows: ${gridRows};`}
 >
   <!-- Left time column -->
   <div class="time-col">
@@ -74,11 +65,11 @@ const guideOffsets = GUIDE_TIMES
     <div class="day-col">
       <div class="day">{dayLabels[i]}</div>
 
-      {CLASSES.filter((c) => c.day === day)
-        .map((c) => {
-        const start = getMinute(c.start) - START_TIMES[0].minutes + DAY_HEADER_OFFSET;
-        const end = start + c.duration;
-        const className = "_" + c.label.toLowerCase().replace(/[^\p{L}\p{N}]/gu, "");
+      {CLASSES.filter((class) => class.day === day)
+        .map((class) => {
+        const start = getStartMinutes(class.startId) - START_TIMES[0].minutes) + 1;
+        const end = start + class.duration;
+        const className = "_" + class.label.toLowerCase().replace(/[^\p{L}\p{N}]/gu, "");
         return (
           <a
             href={`/${lang}/schedule/`}
@@ -105,18 +96,15 @@ const guideOffsets = GUIDE_TIMES
     grid-template-columns: 40px repeat(7, 1fr) 40px;
     gap: 4px;
     margin: 0 0 var(--space-sm) 0;
-    --minute: 0.6px; /* 1 minute height in px */
+    --minute: 1px; /* 1 minute height in px (can be fractional) */
   }
 
-  .time-col {
-    display: grid;
-    grid-template-rows: var(--grid-rows);
-  }
-
+  .time-col
   .day-col {
     display: grid;
-    grid-template-rows: repeat(var(--grid-end-time), var(--minute));
-    position: relative;
+    grid-template-rows:
+      var(--space-md)    /* header row (fixed px height) */
+      var(--grid-rows);  /* minute-based rows */
   }
 
   .day {
@@ -127,6 +115,7 @@ const guideOffsets = GUIDE_TIMES
     z-index: 10;
     background: var(--color-bg); /* ensures it covers classes behind it */
     box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+    height: var(--space-md);
   }
 
   .grid-element {
