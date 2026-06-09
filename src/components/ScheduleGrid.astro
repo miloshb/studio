@@ -3,18 +3,19 @@ import { scheduleData } from "../data/schedule.ts";
 
 const { lang = "en" } = Astro.props;
 
-const dayLabels = {
+const dayHeader = {
   en: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
   de: ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"]
 };
 
-const TimeLabels = {
+const TimeHeader = {
   en: "Time",
   de: "Zeit"
 };
 
-const days = dayLabels[lang];
-const timeLabel = TimeLabels[lang];
+const dayKeys = dayHeader["en"];
+const dayLabels = dayHeader[lang];
+const timeLabel = TimeHeader[lang];
 const START_TIMES = scheduleData.startTimes;
 const CLASSES = scheduleData.classes;
 const DAY_HEADER_OFFSET = scheduleData.dayHeaderOffset;
@@ -55,9 +56,9 @@ const gridRows = ROW_HEIGHTS.map((h) => `calc(${h} * var(--minute))`).join(" ");
   </div>
 
   <!-- Day columns -->
-  {days.map((day) => (
+  {dayKeys.map((day, index) => (
     <div class="day-col">
-      <div class="day">{day}</div>
+      <div class="day">{dayLabels[index]}</div>
 
       {CLASSES.filter((c) => c.day === day)
         .map((c) => {
@@ -79,7 +80,7 @@ const gridRows = ROW_HEIGHTS.map((h) => `calc(${h} * var(--minute))`).join(" ");
 
   <!-- Right time column -->
   <div class="time-col">
-    <div class="day">Time</div>
+    <div class="day">{timeLabel}</div>
     {START_TIMES.map((t) => <div class="time">{t.label}</div>)}
   </div>
 </div>
