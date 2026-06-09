@@ -1,5 +1,5 @@
 ---
-import scheduleData from "../data/schedule.json";
+import { scheduleData } from "../data/schedule.ts";
 
 const { lang = "en" } = Astro.props;
 
@@ -8,13 +8,20 @@ const dayLabels = {
   de: ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"]
 };
 
+const TimeLabels = {
+  en: "Time",
+  de: "Zeit"
+};
+
 const days = dayLabels[lang];
+const timeLabel = TimeLabels[lang];
 const START_TIMES = scheduleData.startTimes;
 const CLASSES = scheduleData.classes;
+const DAY_HEADER_OFFSET = scheduleData.dayHeaderOffset;
 
 // Compute row heights from time differences
 const ROW_HEIGHTS = START_TIMES.map((slot, i) => {
-  if (i === 0) return 45; // offset
+  if (i === 0) return DAY_HEADER_OFFSET;
   return slot.minutes - START_TIMES[i - 1].minutes;
 });
 
@@ -29,7 +36,7 @@ const longestLastClass = CLASSES
 const GRID_END =
   (lastSlotStart.minutes - firstSlotStart.minutes) +
   longestLastClass +
-  45; // header offset
+  DAY_HEADER_OFFSET;
 
 // Helper: convert slot ID → absolute minute position
 const getMinute = (id) => START_TIMES.find((t) => t.id === id).minutes;
@@ -43,7 +50,7 @@ const gridRows = ROW_HEIGHTS.map((h) => `calc(${h} * var(--minute))`).join(" ");
 >
   <!-- Left time column -->
   <div class="time-col">
-    <div class="day">Time</div>
+    <div class="day">{timeLabel}</div>
     {START_TIMES.map((t) => <div class="time">{t.label}</div>)}
   </div>
 
@@ -54,7 +61,7 @@ const gridRows = ROW_HEIGHTS.map((h) => `calc(${h} * var(--minute))`).join(" ");
 
       {CLASSES.filter((c) => c.day === day)
         .map((c) => {
-        const start = getMinute(c.start) - START_TIMES[0].minutes + 45;
+        const start = getMinute(c.start) - START_TIMES[0].minutes + DAY_HEADER_OFFSET;
         const end = start + c.duration;
         const className = "_" + c.label.toLowerCase().replace(/[^\p{L}\p{N}]/gu, "");
         return (
@@ -83,6 +90,7 @@ const gridRows = ROW_HEIGHTS.map((h) => `calc(${h} * var(--minute))`).join(" ");
     grid-template-columns: 40px repeat(7, 1fr) 40px;
     gap: 4px;
     --minute: 1px; /* 1 minute = 1px height */
+    margin: 0 0 var(--space-sm) 0;
   }
 
   .time-col {
@@ -98,6 +106,7 @@ const gridRows = ROW_HEIGHTS.map((h) => `calc(${h} * var(--minute))`).join(" ");
 
   .day {
     text-align: center;
+    font-weight: bold;
   }
 
   .grid-element {
