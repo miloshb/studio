@@ -2,7 +2,7 @@
 export interface StartTime {
   id: string;          // e.g. "t0830"
   label: string;       // e.g. "08:30"
-  minutes: number;     // minutes from start of day
+  minutes: number;     // minutes from midnight
 }
 
 export interface ClassEntry {
@@ -13,23 +13,20 @@ export interface ClassEntry {
 }
 
 export interface ScheduleData {
-  dayHeaderOffset: number;
   startTimes: StartTime[];
   classes: ClassEntry[];
 }
 
-// Data for the schedule grid, including time slots and class entries. This is imported by ScheduleGrid.astro
+// Data for the schedule grid, including start times and class entries. This is imported by ScheduleGrid.astro
 export const scheduleData: ScheduleData = {
-  "dayHeaderOffset": 45,
-
   "startTimes": [
-    { "id": "t0830", "label": "08:30", "minutes":   0 },
-    { "id": "t1000", "label": "10:00", "minutes":  90 },
-    { "id": "t1230", "label": "12:30", "minutes": 240 },
-    { "id": "t1415", "label": "14:15", "minutes": 345 },
-    { "id": "t1445", "label": "14:45", "minutes": 375 },
-    { "id": "t1600", "label": "16:00", "minutes": 450 },
-    { "id": "t1800", "label": "18:00", "minutes": 570 }
+    { "id": "t0830", "label": "08:30", "minutes": 510 },
+    { "id": "t1000", "label": "10:00", "minutes": 600 },
+    { "id": "t1230", "label": "12:30", "minutes": 750 },
+    { "id": "t1415", "label": "14:15", "minutes": 855 },
+    { "id": "t1445", "label": "14:45", "minutes": 885 },
+    { "id": "t1600", "label": "16:00", "minutes": 960 },
+    { "id": "t1800", "label": "18:00", "minutes": 1080 }
   ],
 
   "classes": [

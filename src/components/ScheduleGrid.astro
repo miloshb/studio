@@ -18,32 +18,45 @@ const dayLabels = dayHeader[lang];
 const timeLabel = TimeHeader[lang];
 const START_TIMES = scheduleData.startTimes;
 const CLASSES = scheduleData.classes;
-const DAY_HEADER_OFFSET = scheduleData.dayHeaderOffset;
 
 // Compute row heights from time differences
-const ROW_HEIGHTS = START_TIMES.map((slot, i) => {
-  if (i === 0) return DAY_HEADER_OFFSET;
-  return slot.minutes - START_TIMES[i - 1].minutes;
+const ROW_HEIGHTS = START_TIMES.map((start, i) => {
+  if (i === 0) return 0;
+  return start.minutes - START_TIMES[i - 1].minutes;
 });
 
-const lastSlotStart = START_TIMES[START_TIMES.length - 1];
-const firstSlotStart = START_TIMES[0];
+const lastClassStart = START_TIMES[START_TIMES.length - 1];
+const firstClassStart = START_TIMES[0];
 
 const longestLastClass = CLASSES
-  .filter(c => c.start === lastSlotStart.id)
+  .filter(c => c.start === lastClassStart.id)
   .reduce((max, c) => Math.max(max, c.duration), 0);
 
 // Total grid height
-const GRID_END =
-  (lastSlotStart.minutes - firstSlotStart.minutes) +
-  longestLastClass +
-  DAY_HEADER_OFFSET;
+const GRID_END = (lastClassStart.minutes - firstClassStart.minutes) + longestLastClass;
 
-// Helper: convert slot ID → absolute minute position
+// Helper: convert start ID → absolute minute position
 const getMinute = (id) => START_TIMES.find((t) => t.id === id).minutes;
 
 // Build CSS grid rows
 const gridRows = ROW_HEIGHTS.map((h) => `calc(${h} * var(--minute))`).join(" ");
+
+// Time guide lines
+const now = new Date();
+const nowMinutes = now.getHours() * 60 + now.getMinutes();
+
+const firstMinute = START_TIMES[0].minutes;
+const lastMinute = lastClassStart.minutes + longestLastClass;
+
+const nowOffset =
+  nowMinutes >= firstMinute && nowMinutes <= lastMinute
+    ? (nowMinutes - firstMinute) + 1
+    : null;
+
+const GUIDE_TIMES = [480, 600, 720, 840, 960, 1080]; // 08:00 → 18:00
+const guideOffsets = GUIDE_TIMES
+  .filter(t => t >= firstMinute && t <= lastMinute)
+  .map(t => (t - firstMinute) + 1);
 ---
 
 <div class="schedule-grid"
@@ -55,14 +68,27 @@ const gridRows = ROW_HEIGHTS.map((h) => `calc(${h} * var(--minute))`).join(" ");
     {START_TIMES.map((t) => <div class="time">{t.label}</div>)}
   </div>
 
+  <!-- Guide lines -->
+  {guideOffsets.map((offset) => (
+    <div class="guide-line" style={`grid-row: ${offset} / ${offset + 1}`}></div>
+  ))}
+
+  <!-- Now line -->
+  {nowOffset && (
+    <div
+      class="now-line"
+      style={`grid-row: ${nowOffset} / ${nowOffset + 1}`}
+    ></div>
+  )}
+
   <!-- Day columns -->
-  {dayKeys.map((day, index) => (
+  {dayKeys.map((day, i) => (
     <div class="day-col">
-      <div class="day">{dayLabels[index]}</div>
+      <div class="day">{dayLabels[i]}</div>
 
       {CLASSES.filter((c) => c.day === day)
         .map((c) => {
-        const start = getMinute(c.start) - START_TIMES[0].minutes + DAY_HEADER_OFFSET;
+        const start = getMinute(c.start) - START_TIMES[0].minutes;
         const end = start + c.duration;
         const className = "_" + c.label.toLowerCase().replace(/[^\p{L}\p{N}]/gu, "");
         return (
@@ -90,8 +116,9 @@ const gridRows = ROW_HEIGHTS.map((h) => `calc(${h} * var(--minute))`).join(" ");
     display: grid;
     grid-template-columns: 40px repeat(7, 1fr) 40px;
     gap: 4px;
-    --minute: 1px; /* 1 minute = 1px height */
     margin: 0 0 var(--space-sm) 0;
+    --header-height: 45px; /* height of the header row */
+    --minute: 0.6px; /* 1 minute height in px */
   }
 
   .time-col {
@@ -101,13 +128,22 @@ const gridRows = ROW_HEIGHTS.map((h) => `calc(${h} * var(--minute))`).join(" ");
 
   .day-col {
     display: grid;
-    grid-template-rows: repeat(var(--grid-end-time), var(--minute));
+    grid-template-rows: var(--header-height) repeat(var(--grid-end-time) - 1, var(--minute));
     position: relative;
   }
 
   .day {
     text-align: center;
     font-weight: bold;
+  }
+
+  .day-col .day,
+  .time-col .day {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: var(--color-bg); /* ensures it covers classes behind it */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.08);
   }
 
   .grid-element {
@@ -118,6 +154,20 @@ const gridRows = ROW_HEIGHTS.map((h) => `calc(${h} * var(--minute))`).join(" ");
     text-decoration: none;
     color: var(--color-text);
     padding: 4px;
+  }
+
+  .guide-line {
+    grid-column: 1 / -1;
+    border-top: 1px dashed rgba(0,0,0,0.15);
+    z-index: 5;
+    pointer-events: none;
+  }
+
+  .now-line {
+    grid-column: 1 / -1;
+    border-top: 2px solid #ff4d4d;
+    z-index: 20;
+    pointer-events: none;
   }
 
   ._yoga60     { background: #48AEB2; }
