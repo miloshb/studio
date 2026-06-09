@@ -25,6 +25,9 @@ const longestLastClass = CLASSES
   .reduce((max, c) => Math.max(max, c.duration), 0);
 const lastMinute = lastClassStart.minutes + longestLastClass;
 
+// Total day height in minutes
+const totalMinutes = lastMinute - firstMinute + 1;
+
 // Compute row heights from time differences to build CSS grid rows
 const ROW_HEIGHTS = START_TIMES.map((start, i) => {
   if (i === START_TIMES.length - 1) return longestLastClass; // Last row height = longest class duration starting at last time slot
@@ -52,7 +55,7 @@ const getStartMinutes = (id) => START_TIMES.find((t) => t.id === id).minutes;
 ---
 
 <div class="schedule-grid"
-  style={`--grid-rows: ${gridRows};`}
+  style={`--total-minutes: ${totalMinutes}; --grid-rows: ${gridRows};`}
 >
   <!-- Left time column -->
   <div class="time-col">
@@ -99,12 +102,18 @@ const getStartMinutes = (id) => START_TIMES.find((t) => t.id === id).minutes;
     --minute: 1px; /* 1 minute height in px (can be fractional) */
   }
 
-  .time-col,
-  .day-col {
+  .time-col {
     display: grid;
     grid-template-rows:
       var(--space-md)    /* header row (fixed px height) */
-      var(--grid-rows);  /* minute-based rows */
+      var(--grid-rows);  /* start-based rows */
+  }
+
+  .day-col {
+    display: grid;
+    grid-template-rows:
+      var(--space-md)                               /* header row (fixed px height) */
+      repeat(var(--total-minutes), var(--minute));  /* minute-based rows */
   }
 
   .day {
