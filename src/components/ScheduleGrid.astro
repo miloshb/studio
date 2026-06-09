@@ -68,19 +68,6 @@ const guideOffsets = GUIDE_TIMES
     {START_TIMES.map((t) => <div class="time">{t.label}</div>)}
   </div>
 
-  <!-- Guide lines -->
-  {guideOffsets.map((offset) => (
-    <div class="guide-line" style={`grid-row: ${offset} / ${offset + 1}`}></div>
-  ))}
-
-  <!-- Now line -->
-  {nowOffset && (
-    <div
-      class="now-line"
-      style={`grid-row: ${nowOffset} / ${nowOffset + 1}`}
-    ></div>
-  )}
-
   <!-- Day columns -->
   {dayKeys.map((day, i) => (
     <div class="day-col">
@@ -117,7 +104,6 @@ const guideOffsets = GUIDE_TIMES
     grid-template-columns: 40px repeat(7, 1fr) 40px;
     gap: 4px;
     margin: 0 0 var(--space-sm) 0;
-    --header-height: 45px; /* height of the header row */
     --minute: 0.6px; /* 1 minute height in px */
   }
 
@@ -128,7 +114,7 @@ const guideOffsets = GUIDE_TIMES
 
   .day-col {
     display: grid;
-    grid-template-rows: var(--header-height) repeat(var(--grid-end-time) - 1, var(--minute));
+    grid-template-rows: var(--space-lg) repeat(var(--grid-end-time) - 1, var(--minute));
     position: relative;
   }
 
