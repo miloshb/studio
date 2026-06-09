@@ -70,7 +70,7 @@ const getStartMinutes = (id) => START_TIMES.find((t) => t.id === id).minutes;
 
       {CLASSES.filter((c) => c.day === day)
         .map((c) => {
-        const start = getStartMinutes(c.startId) - START_TIMES[0].minutes + 1;
+        const start = getStartMinutes(c.startId) - START_TIMES[0].minutes + 2;
         const end = start + c.duration;
         const className = "_" + c.label.toLowerCase().replace(/[^\p{L}\p{N}]/gu, "");
         return (
@@ -99,7 +99,7 @@ const getStartMinutes = (id) => START_TIMES.find((t) => t.id === id).minutes;
     grid-template-columns: 40px repeat(7, 1fr) 40px;
     gap: 4px;
     margin: 0 0 var(--space-sm) 0;
-    --minute: 1px; /* 1 minute height in px (can be fractional) */
+    --minute: 0.6px; /* 1 minute height in px (can be fractional) */
   }
 
   .time-col {
