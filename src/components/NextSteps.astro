@@ -1,7 +1,10 @@
 ---
 import { NEXT_STEPS_ROUTE_KEYS, ROUTES } from "../data/routes.js";
 
-const { lang = "en" } = Astro.props;
+const { lang = "en", page = null } = Astro.props;
+
+// Filter out the current page
+const stepKeys = NEXT_STEPS_ROUTE_KEYS.filter(key => key !== page);
 ---
 
 <section class="next-steps">
@@ -13,7 +16,7 @@ const { lang = "en" } = Astro.props;
   </p>
 
   <ul>
-    {NEXT_STEPS_ROUTE_KEYS.map((key) => (
+    {stepKeys.map((key) => (
       <li>
         <a href={ROUTES[key].href[lang]}>
           {ROUTES[key].label[lang]}
