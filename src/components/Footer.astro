@@ -11,7 +11,7 @@ const footerTopOffset = offset ? "var(--offset-xl)" : "0px";
     <div class="footer-nav">
       {FOOTER_ROUTE_KEYS.map((key) => (
         <a href={ROUTES[key].href[lang]}>
-          {ROUTES[key].label[lang]}
+          {ROUTES[key].nav[lang]}
         </a>
       ))}
     </div>
