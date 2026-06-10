@@ -93,6 +93,7 @@ const getStartMinutes = (id) => START_TIMES.find((t) => t.id === id).minutes;
     {START_TIMES.map((t) => <div class="time">{t.label}</div>)}
   </div>
 
+  <div class="overlay">
   <!-- Time guide lines column -->
   <div class="guide-col">
     {guideOffsets.map((offset) => (
@@ -102,10 +103,12 @@ const getStartMinutes = (id) => START_TIMES.find((t) => t.id === id).minutes;
       ></div>
     ))}
   </div>
+  </div>
 </div>
 
 <style>
   .schedule-grid {
+    position: relative;
     display: grid;
     grid-template-columns: 40px repeat(7, 1fr) 40px 1px;
     gap: 4px;
@@ -151,8 +154,19 @@ const getStartMinutes = (id) => START_TIMES.find((t) => t.id === id).minutes;
     padding: 4px;
   }
 
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none; /* allows clicks to pass through to schedule elements */
+    z-index: 5;
+  }
+
   .guide-col {
     position: relative;
+    grid-column: 1 / -1;
   }
 
   .guide-line {
@@ -161,7 +175,6 @@ const getStartMinutes = (id) => START_TIMES.find((t) => t.id === id).minutes;
     right: 0;
     border-top: 2px dashed rgba(0,0,0,0.15);
     pointer-events: none;
-    z-index: 5;
   }
 
   .now-line {
