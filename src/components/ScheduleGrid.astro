@@ -26,7 +26,8 @@ const longestLastClass = CLASSES
 const lastMinute = lastClassStart.minutes + longestLastClass;
 
 // Total day height in minutes
-const totalMinutes = lastMinute - firstMinute + 1;
+const headerMinutes = 2; // header row doesn't represent time, but uses first 2 grid-row elements
+const totalMinutes = lastMinute - firstMinute + headerMinutes;
 
 // Compute row heights from time differences to build CSS grid rows
 const ROW_HEIGHTS = START_TIMES.map((start, i) => {
@@ -63,13 +64,6 @@ const getStartMinutes = (id) => START_TIMES.find((t) => t.id === id).minutes;
     {START_TIMES.map((t) => <div class="time">{t.label}</div>)}
   </div>
 
-  {guideOffsets.map((offset) => (
-    <div
-      class="guide-line"
-      style={`grid-row: ${offset} / ${offset + 1}`}
-    ></div>
-  ))}
-
   <!-- Day columns -->
   {dayKeys.map((day, i) => (
     <div class="day-col">
@@ -77,7 +71,7 @@ const getStartMinutes = (id) => START_TIMES.find((t) => t.id === id).minutes;
 
       {CLASSES.filter((c) => c.day === day)
         .map((c) => {
-        const start = getStartMinutes(c.startId) - START_TIMES[0].minutes + 2;
+        const start = getStartMinutes(c.startId) - START_TIMES[0].minutes + headerMinutes;
         const end = start + c.duration;
         const className = "_" + c.label.toLowerCase().replace(/[^\p{L}\p{N}]/gu, "");
         return (
@@ -98,12 +92,22 @@ const getStartMinutes = (id) => START_TIMES.find((t) => t.id === id).minutes;
     <div class="day">{timeLabel}</div>
     {START_TIMES.map((t) => <div class="time">{t.label}</div>)}
   </div>
+
+  <!-- Time guide lines column -->
+  <div class="guide-col">
+    {guideOffsets.map((offset) => (
+      <div
+        class="guide-line"
+        style={`grid-row: ${offset} / ${offset + 1}`}
+      ></div>
+    ))}
+  </div>
 </div>
 
 <style>
   .schedule-grid {
     display: grid;
-    grid-template-columns: 40px repeat(7, 1fr) 40px;
+    grid-template-columns: 40px repeat(7, 1fr) 40px 1px;
     gap: 4px;
     margin: 0 0 var(--space-sm) 0;
     --minute: 0.5px; /* 1 minute height in px (can be fractional) */
@@ -116,7 +120,8 @@ const getStartMinutes = (id) => START_TIMES.find((t) => t.id === id).minutes;
       var(--grid-rows);  /* start-based rows */
   }
 
-  .day-col {
+  .day-col,
+  .guide-col {
     display: grid;
     grid-template-rows:
       var(--space-md)                               /* header row (fixed px height) */
@@ -145,7 +150,7 @@ const getStartMinutes = (id) => START_TIMES.find((t) => t.id === id).minutes;
   }
 
   .guide-line {
-    grid-column: 1 / -1;
+    width: 100%;
     border-top: 1px dashed rgba(0,0,0,0.15);
     z-index: 5;
     pointer-events: none;
