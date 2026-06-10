@@ -1,5 +1,5 @@
 ---
-import { HEADER_NAV, getAlternateUrl } from "../data/routes.js";
+import { HEADER_ROUTE_KEYS, ROUTES, getAlternateUrl } from "../data/routes.js";
 const { lang, page } = Astro.props;
 ---
 
@@ -11,9 +11,13 @@ const { lang, page } = Astro.props;
       Studio Sun & Sea
     </a>
 
-    <!-- Header Navigation (from unified routes.js) -->
+    <!-- Header Navigation -->
     <div class="header-nav">
-      {HEADER_NAV[lang].map((item) => <a href={item.href}>{item.label}</a>)}
+      {HEADER_ROUTE_KEYS.map((key) => (
+        <a href={ROUTES[key].href[lang]}>
+          {ROUTES[key].nav[lang]}
+        </a>
+      ))}
     </div>
 
     <!-- Language Switcher (now flips to corresponding page) -->
