@@ -224,10 +224,10 @@ section {
 }
 
 /* ---------------------------------
-   8. NAV + FOOTER BASELINE
+   8. HEADER + FOOTER BASELINE
 ---------------------------------- */
 
-nav, footer {
+header, footer {
   font-family: var(--font-body);
   color: var(--color-text-soft);
   flex-shrink: 0;

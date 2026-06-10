@@ -1,23 +1,27 @@
 ---
-import { TOP_NAV, getAlternateUrl } from "../data/routes.js";
+import { HEADER_ROUTE_KEYS, ROUTES, getAlternateUrl } from "../data/routes.js";
 const { lang, page } = Astro.props;
 ---
 
-<nav>
-  <div class="nav container">
+<header>
+  <div class="header container">
     <!-- Brand always links to the correct language root -->
     <a class="brand" href={lang === "de" ? "/de/" : "/en/"}>
       <img src="/logo/studio-sun-and-sea-logo.png" />
       Studio Sun & Sea
     </a>
 
-    <!-- Top Navigation (from unified routes.js) -->
-    <div class="nav-links">
-      {TOP_NAV[lang].map((item) => <a href={item.href}>{item.label}</a>)}
+    <!-- Header Navigation -->
+    <div class="header-nav">
+      {HEADER_ROUTE_KEYS.map((key) => (
+        <a href={ROUTES[key].href[lang]}>
+          {ROUTES[key].nav[lang]}
+        </a>
+      ))}
     </div>
 
     <!-- Language Switcher (now flips to corresponding page) -->
-    <div class="nav-lang">
+    <div class="header-lang">
       <a
         class={lang === "en" ? "active" : ""}
         href={getAlternateUrl(page, "de")}
@@ -35,7 +39,7 @@ const { lang, page } = Astro.props;
       </a>
     </div>
   </div>
-</nav>
+</header>
 
 <script>
   function setLangPreference(lang) {
@@ -44,7 +48,7 @@ const { lang, page } = Astro.props;
 </script>
 
 <style>
-  .nav {
+  .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -62,34 +66,34 @@ const { lang, page } = Astro.props;
     z-index: 1;
   }
 
-  .nav-links a {
+  .header-nav a {
     margin-left: var(--space-md);
     font-size: var(--text-md);
     color: var(--color-text-soft);
   }
 
-  .nav-links a:hover {
+  .header-nav a:hover {
     color: var(--color-text);
   }
 
-  .nav-lang {
+  .header-lang {
     display: flex;
     align-items: center;
     gap: 6px;
     font-size: var(--text-sm);
   }
 
-  .nav-lang a {
+  .header-lang a {
     color: var(--color-text-soft);
   }
 
-  .nav-lang a.active {
+  .header-lang a.active {
     color: var(--color-text);
     font-weight: 600;
   }
 
   @media (max-width: 700px) {
-    .nav {
+    .header {
       flex-direction: column;
       gap: var(--space-sm);
     }

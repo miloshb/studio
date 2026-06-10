@@ -1,5 +1,5 @@
 ---
-import { FOOTER_NAV } from "../data/routes.js";
+import { FOOTER_ROUTE_KEYS, ROUTES } from "../data/routes.js";
 import ExaliSeal from "./ExaliSeal.astro";
 const { lang, offset } = Astro.props;
 const footerTopOffset = offset ? "var(--offset-xl)" : "0px";
@@ -9,8 +9,10 @@ const footerTopOffset = offset ? "var(--offset-xl)" : "0px";
   <div class="footer-inner container">
     <!-- Row 1: Navigation -->
     <div class="footer-nav">
-      {FOOTER_NAV[lang].map(item => (
-        <a href={item.href}>{item.label}</a>
+      {FOOTER_ROUTE_KEYS.map((key) => (
+        <a href={ROUTES[key].href[lang]}>
+          {ROUTES[key].label[lang]}
+        </a>
       ))}
     </div>
 
