@@ -2,7 +2,7 @@
 
 // Mapping EN ↔ DE equivalents
 export const ROUTES = {
-  // TOP NAV PAGES
+  // HEADER NAV PAGES
   index: {
     en: { label: "index", href: "/en/" },
     de: { label: "index", href: "/de/" }
@@ -81,7 +81,7 @@ export const ROUTES = {
   }
 };
 
-export const TOP_NAV = {
+export const HEADER_NAV = {
   en: [
     ROUTES.classes.en,
     ROUTES.schedule.en,
