@@ -118,7 +118,7 @@ h3 {
 }
 
 p {
-  margin: 0 0 var(--space-md) 0;
+  margin: 0 0 var(--space-sm) 0;
   font-size: var(--text-md);
   color: var(--color-text-soft);
 }
@@ -154,6 +154,7 @@ a:hover {
 ---------------------------------- */
 
 table {
+  margin: 0 0 var(--space-sm) 0;
   width: 100%;
   border-collapse: collapse;
   table-layout: fixed; /* ensures consistent column widths */
