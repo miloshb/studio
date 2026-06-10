@@ -62,11 +62,12 @@ const showNextSteps = nextStepsPages.includes(page);
     <main class="layout-main">
       { fullBleed
         ? <slot /> // hero pages, landing pages
-        : <div class="container"><slot /></div>
+        : <div class="container">
+            <slot />
+            {showNextSteps && <NextSteps lang={lang} page={page} />}
+          </div>
       }
     </main>
-
-    {showNextSteps && <NextSteps lang={lang} page={page} />}
 
     <Footer lang={lang} offset={footerOffset} />
   </body>
