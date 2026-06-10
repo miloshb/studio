@@ -37,8 +37,11 @@ const ROW_HEIGHTS = START_TIMES.map((start, i) => {
 const gridRows = ROW_HEIGHTS.map((h) => `calc(${h} * var(--minute))`).join(" ");
 
 
-// Time guide lines
+// Time and day guide lines
 const now = new Date();
+const todayIndex = now.getDay(); // 0=Sun, 1=Mon...
+const normalizedToday = todayIndex === 0 ? 6 : todayIndex - 1;
+
 const nowMinutes = now.getHours() * 60 + now.getMinutes();
 const nowOffset =
   nowMinutes >= firstMinute && nowMinutes <= lastMinute
@@ -48,7 +51,7 @@ const nowOffset =
 const GUIDE_TIMES = [480, 600, 720, 840, 960, 1080]; // 08:00 → 18:00 every two hours
 const guideOffsets = GUIDE_TIMES
   .filter(t => t >= firstMinute && t <= lastMinute)
-  .map(t => (t - firstMinute) + 1);
+  .map(t => (t - firstMinute) - 1);
 
 
 // Helper function: convert start ID → absolute minute position
@@ -94,15 +97,29 @@ const getStartMinutes = (id) => START_TIMES.find((t) => t.id === id).minutes;
   </div>
 
   <div class="overlay">
-  <!-- Time guide lines column -->
-  <div class="guide-col">
-    {guideOffsets.map((offset) => (
+    <!-- Today highlight -->
+    <div
+      class="today-highlight"
+      style={`grid-column: ${normalizedToday + 2} / ${normalizedToday + 3}`}
+    ></div>
+
+    <!-- Time guide lines -->
+    <div class="guide-col">
+      {guideOffsets.map((offset) => (
+        <div
+          class="guide-line"
+          style={`grid-row: ${offset} / ${offset + 1}`}
+        ></div>
+      ))}
+    </div>
+
+    <!-- "Now" line -->
+    {nowOffset && (
       <div
-        class="guide-line"
-        style={`grid-row: ${offset} / ${offset + 1}`}
+        class="now-line"
+        style={`grid-row: ${nowOffset} / ${nowOffset + 1}`}
       ></div>
-    ))}
-  </div>
+    )}
   </div>
 </div>
 
@@ -110,7 +127,7 @@ const getStartMinutes = (id) => START_TIMES.find((t) => t.id === id).minutes;
   .schedule-grid {
     position: relative;
     display: grid;
-    grid-template-columns: 40px repeat(7, 1fr) 40px 1px;
+    grid-template-columns: 40px repeat(7, 1fr) 40px;
     gap: 4px;
     margin: 0 0 var(--space-sm) 0;
     --minute: 0.5px; /* 1 minute height in px (can be fractional) */
@@ -178,10 +195,21 @@ const getStartMinutes = (id) => START_TIMES.find((t) => t.id === id).minutes;
   }
 
   .now-line {
-    grid-column: 1 / -1;
+    position: absolute;
+    left: 0;
+    right: 0;
     border-top: 3px solid #ff4d4d;
     pointer-events: none;
     z-index: 20;
+  }
+
+  .today-highlight {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    background: rgba(255, 230, 150, 0.25); /* soft warm highlight */
+    z-index: 1;
+    pointer-events: none;
   }
 
   ._yoga60     { background: #48AEB2; }
