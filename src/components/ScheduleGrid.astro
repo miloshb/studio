@@ -113,6 +113,7 @@ const getStartMinutes = (id) => START_TIMES.find((t) => t.id === id).minutes;
     --minute: 0.5px; /* 1 minute height in px (can be fractional) */
   }
 
+  /* Start-slot based grid rows */
   .time-col {
     display: grid;
     grid-template-rows:
@@ -120,8 +121,9 @@ const getStartMinutes = (id) => START_TIMES.find((t) => t.id === id).minutes;
       var(--grid-rows);  /* start-based rows */
   }
 
-  .day-col,
-  .guide-col {
+  /* Time-based (minute) grid rows */
+  .guide-col,
+  .day-col {
     display: grid;
     grid-template-rows:
       var(--space-md)                               /* header row (fixed px height) */
@@ -149,18 +151,24 @@ const getStartMinutes = (id) => START_TIMES.find((t) => t.id === id).minutes;
     padding: 4px;
   }
 
+  .guide-col {
+    position: relative;
+  }
+
   .guide-line {
-    width: 100%;
-    border-top: 1px dashed rgba(0,0,0,0.15);
-    z-index: 5;
+    position: absolute;
+    left: 0;
+    right: 0;
+    border-top: 2px dashed rgba(0,0,0,0.15);
     pointer-events: none;
+    z-index: 5;
   }
 
   .now-line {
     grid-column: 1 / -1;
-    border-top: 2px solid #ff4d4d;
-    z-index: 20;
+    border-top: 3px solid #ff4d4d;
     pointer-events: none;
+    z-index: 20;
   }
 
   ._yoga60     { background: #48AEB2; }
