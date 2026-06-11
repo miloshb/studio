@@ -42,12 +42,12 @@ import teachingOnlineImage from '/public/images/about/teaching-online-1600.webp'
     </p>
     <p>
       Unsere Online-Stunden sind ideal für alle, die lieber von zu Hause aus üben oder eine flexible, ortsunabhängige Praxis suchen. Die Qualität der Anleitung bleibt dabei dieselbe wie im Studio: klar, achtsam und gut strukturiert.
+      <Image
+        src={teachingOnlineImage}
+        widths={[400, 1080, 1600]}
+        sizes="(max-width: 600px) 100vw, 50vw"
+        alt="Online-Unterrichtsraum"
+      />
     </p>
-    <Image
-      src={teachingOnlineImage}
-      widths={[400, 1080, 1600]}
-      sizes="(max-width: 600px) 100vw, 50vw"
-      alt="Online-Unterrichtsraum"
-    />
   </section>
 </BaseLayout>

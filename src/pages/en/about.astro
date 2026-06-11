@@ -52,12 +52,12 @@ import teachingOnlineImage from '/public/images/about/teaching-online-1600.webp'
     </p>
     <p>
       We offer online classes for those who prefer to practice from the comfort of their own space. These sessions are designed to be accessible and engaging, providing the same quality of instruction as our in-person classes.
+      <Image
+        src={teachingOnlineImage}
+        widths={[400, 1080, 1600]}
+        sizes="(max-width: 600px) 100vw, 50vw"
+        alt="Online Teaching Space"
+      />
     </p>
-    <Image
-      src={teachingOnlineImage}
-      widths={[400, 1080, 1600]}
-      sizes="(max-width: 600px) 100vw, 50vw"
-      alt="Online Teaching Space"
-    />
   </section>
 </BaseLayout>
