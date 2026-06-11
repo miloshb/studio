@@ -196,7 +196,7 @@ export const FOOTER_ROUTE_KEYS = [
   "waiver",
   "contact"
 ];
-export const NEXT_STEPS_ROUTE_KEYS = ["classes", "private", "teach", "contact"];
+export const NEXT_STEPS_ROUTE_KEYS = ["classes", "private", "workshops", "teach", "contact"];
 
 // HREFLANG MAP
 export const HREFLANG = Object.fromEntries(
