@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { Image } from 'astro:assets';
 ---
 
 <BaseLayout lang="de" page="about" title="Über uns – Studio Sun & Sea">
@@ -31,5 +32,21 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
       <li>Funktionale Ausrichtung und achtsame Kraft</li>
       <li>Raum für Ruhe, Reflexion und Erdung</li>
     </ul>
+  </section>
+
+  <section>
+    <h2>Wo wir unsere Online-Klassen unterrichten</h2>
+    <p>
+      Die Online-Klassen von Studio Sun & Sea werden aus einem ruhigen, lichtdurchfluteten Raum unterrichtet, der für Klarheit, Fokus und eine entspannte Praxis gestaltet ist. Der Raum ist eingerichtet um Präsenz statt Performance zu unterstützen. Hier entsteht jede Stunde: ein ein klarer, geerdeter Ort, der die gleichen Werte widerspiegelt, die wir in die Praxis einbringen. Auch durch den Bildschirm bleibt die Intention dieselbe – einen Raum zu schaffen, der ruhig, menschlich und wirklich unterstützend wirkt.
+    </p>
+    <p>
+      Unsere Online-Stunden sind ideal für alle, die lieber von zu Hause aus üben oder eine flexible, ortsunabhängige Praxis suchen. Die Qualität der Anleitung bleibt dabei dieselbe wie im Studio: klar, achtsam und gut strukturiert.
+    </p>
+    <Image
+      src="/images/about/teaching-online-1600.webp"
+      widths={[400, 1080, 1600]}
+      sizes="(max-width: 600px) 100vw, 50vw"
+      alt="Milosh’ Online-Unterrichtsraum"
+    />
   </section>
 </BaseLayout>
