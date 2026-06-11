@@ -38,10 +38,14 @@ const gridRows = ROW_HEIGHTS.map((h) => `calc(${h} * var(--minute))`).join(" ");
 
 
 // Time and day guide lines
-const now = new Date();
-const todayIndex = now.getDay(); // 0=Sun, 1=Mon...
-const normalizedToday = todayIndex === 0 ? 6 : todayIndex - 1;
-
+const now = new Date(
+  new Intl.DateTimeFormat("en-GB", {
+    timeZone: "Europe/Berlin",
+    hour: "numeric",
+    minute: "numeric",
+    hour12: false,
+  }).format(new Date())
+);
 const nowMinutes = now.getHours() * 60 + now.getMinutes();
 const nowOffset =
   nowMinutes >= firstMinute && nowMinutes <= lastMinute
@@ -112,11 +116,6 @@ const getStartMinutes = (id) => START_TIMES.find((t) => t.id === id).minutes;
           style={`grid-row: ${nowOffset} / ${nowOffset + 1}`}
         ></div>
       )}
-      <!-- Today highlight -->
-      <div
-        class="today-highlight"
-        style={`grid-column: ${normalizedToday + 2} / ${normalizedToday + 3}`}
-      ></div>
     </div>
   </div>
 </div>
