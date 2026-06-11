@@ -43,16 +43,16 @@ export const scheduleData: ScheduleData = {
     { "day": "Thu", "startId": 1230, "duration": 60, "label": "Yoga 60" },
     { "day": "Fri", "startId": 1230, "duration": 60, "label": "26+2 Express" },
 
-    { "day": "Mon", "startId": 1415, "duration": 60, "label": "Yoga 60" },
-    { "day": "Wed", "startId": 1415, "duration": 60, "label": "26+2 Express" },
+    { "day": "Mon", "startId": 1415, "duration": 60, "label": "26+2 Express" },
+    { "day": "Wed", "startId": 1415, "duration": 60, "label": "Yoga 60" },
     { "day": "Fri", "startId": 1415, "duration": 60, "label": "Yoga 60" },
 
     { "day": "Thu", "startId": 1445, "duration": 60, "label": "Yoga 60" },
     { "day": "Sat", "startId": 1445, "duration": 60, "label": "Yoga 60" },
     { "day": "Sun", "startId": 1445, "duration": 60, "label": "Yoga 60" },
 
-    { "day": "Wed", "startId": 1600, "duration": 60, "label": "Yoga 60" },
-    { "day": "Thu", "startId": 1600, "duration": 60, "label": "26+2 Express" },
+    { "day": "Wed", "startId": 1600, "duration": 60, "label": "26+2 Express" },
+    { "day": "Thu", "startId": 1600, "duration": 60, "label": "Yoga 60" },
     { "day": "Fri", "startId": 1600, "duration": 90, "label": "Yoga 90" },
     { "day": "Sat", "startId": 1600, "duration": 90, "label": "26+2" },
     { "day": "Sun", "startId": 1600, "duration": 90, "label": "Yoga 90" },
