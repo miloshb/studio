@@ -42,6 +42,15 @@ export const ROUTES = {
       de: "Einzelunterricht und Kleingruppen-Sessions."
     }
   },
+  workshops: {
+    href: { en: "/en/workshops", de: "/de/workshops" },
+    nav: { en: "Workshops", de: "Workshops" },
+    label: { en: "Yoga Workshops", de: "Yoga Workshops" },
+    desc: {
+      en: "Deepen your practice with our specialized workshops.",
+      de: "Vertiefen Sie Ihre Praxis mit unseren spezialisierten Workshops."
+    }
+  },
   teach: {
     href: { en: "/en/teach", de: "/de/teach" },
     nav: { en: "Teach", de: "Unterrichten" },
@@ -176,7 +185,7 @@ export const ROUTES = {
 
 
 // NAV GROUPS (keys only)
-export const HEADER_ROUTE_KEYS = ["classes", "schedule", "private", "teach", "about"];
+export const HEADER_ROUTE_KEYS = ["classes", "schedule", "private", "workshops", "teach", "about"];
 export const FOOTER_ROUTE_KEYS = [
   "schedule_overview",
   "pricing",

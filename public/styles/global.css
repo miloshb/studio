@@ -175,11 +175,6 @@ table td:first-child {
   width: 40%;
 }
 
-table th:last-child,
-table td:last-child {
-  width: 60%;
-}
-
 /* opt-out for global layout when needed */
 table.no-global {
   table-layout: auto;
