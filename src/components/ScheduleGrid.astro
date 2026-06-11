@@ -123,6 +123,7 @@ const getStartMinutes = (id) => START_TIMES.find((t) => t.id === id).minutes;
 
 {debug && (
   <p>
+    now: {now.toISOString()}<br />
     nowOffset: {nowOffset}<br />
     nowMinutes: {nowMinutes}<br />
     firstMinute: {firstMinute}<br />
