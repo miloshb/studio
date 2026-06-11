@@ -2,6 +2,7 @@
 import { scheduleData } from "../data/schedule.ts";
 
 const { lang = "en" } = Astro.props;
+const debug = true; // Set to true to show debug info
 
 const dayHeader = {
   en: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
@@ -119,6 +120,15 @@ const getStartMinutes = (id) => START_TIMES.find((t) => t.id === id).minutes;
     </div>
   </div>
 </div>
+
+{debug && (
+  <p>
+    nowOffset: {nowOffset}<br />
+    nowMinutes: {nowMinutes}<br />
+    firstMinute: {firstMinute}<br />
+    lastMinute: {lastMinute}
+  </p>
+)}
 
 <style>
   .schedule-grid {
