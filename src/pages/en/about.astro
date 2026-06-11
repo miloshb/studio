@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { Image } from 'astro:assets';
+import teachingOnlineImage from '/public/images/about/teaching-online-1600.webp';
 ---
 
 <BaseLayout lang="en" page="about" title="About – Studio Sun & Sea">
@@ -53,10 +54,10 @@ import { Image } from 'astro:assets';
       We offer online classes for those who prefer to practice from the comfort of their own space. These sessions are designed to be accessible and engaging, providing the same quality of instruction as our in-person classes.
     </p>
     <Image
-      src="/images/about/teaching-online-1600.webp"
+      src={teachingOnlineImage}
       widths={[400, 1080, 1600]}
       sizes="(max-width: 600px) 100vw, 50vw"
-      alt="Milosh’s online teaching space"
+      alt="Online Teaching Space"
     />
   </section>
 </BaseLayout>
