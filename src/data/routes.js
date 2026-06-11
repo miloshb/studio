@@ -1,5 +1,8 @@
 // src/data/routes.js
 
+// Supported lanugages (first listed is primary/default)
+export const LANGS = ["en", "de"];
+
 // Mapping EN ↔ DE equivalents
 export const ROUTES = {
   // HEADER NAV PAGES
@@ -190,13 +193,26 @@ export const NEXT_STEPS_ROUTE_KEYS = ["classes", "private", "teach", "contact"];
 export const HREFLANG = Object.fromEntries(
   Object.entries(ROUTES).map(([key, value]) => [
     key,
-    { en: value.href.en, de: value.href.de }
+    Object.fromEntries(
+      LANGS.map(lang => [lang, value.href[lang] || `/${lang}/`])
+    )
   ])
 );
 
-// Alternate URL helper
-export function getAlternateUrl(pageKey, currentLang) {
+export function getLangRoot(lang) {
+  const safeLang = LANGS.includes(lang) ? lang : LANGS[0];
+  return `/${safeLang}/`;
+}
+
+// Language switcher URL helper
+export function getLangUrl(pageKey, targetLang) {
   const route = ROUTES[pageKey];
-  if (!route) return currentLang === "en" ? "/de/" : "/en/";
-  return currentLang === "en" ? route.href.de : route.href.en;
+
+  // If the page doesn't exist in ROUTES, fall back to language root
+  if (!route) return `/${targetLang}/`;
+
+  // If the target language doesn't exist for this page, fall back to root
+  if (!route.href[targetLang]) return `/${targetLang}/`;
+
+  return route.href[targetLang];
 }
