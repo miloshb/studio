@@ -39,21 +39,19 @@ const gridRows = ROW_HEIGHTS.map((h) => `calc(${h} * var(--minute))`).join(" ");
 
 
 // Time and day guide lines
-const now = new Intl.DateTimeFormat("en-GB", {
+const now = new Date();
+const nowTime = new Intl.DateTimeFormat("en-GB", {
     timeZone: "Europe/Berlin",
     hour: "numeric",
     minute: "numeric",
     hour12: false,
-  }).format(new Date());
-const nowOffset = null;
-const nowMinutes = parseInt(now.split(":")[0]) * 60 + parseInt(now.split(":")[1]);
-/*
-const nowMinutes = now.getHours() * 60 + now.getMinutes();
+  }).format(now);
+const nowMinutes = parseInt(nowTime.split(":")[0]) * 60 + parseInt(nowTime.split(":")[1]);
 const nowOffset =
   nowMinutes >= firstMinute && nowMinutes <= lastMinute
     ? (nowMinutes - firstMinute) + 1
     : null;
-*/
+
 const GUIDE_TIMES = [480, 600, 720, 840, 960, 1080]; // 08:00 → 18:00 every two hours
 const guideOffsets = GUIDE_TIMES
   .filter(t => t >= firstMinute && t <= lastMinute)
@@ -124,7 +122,8 @@ const getStartMinutes = (id) => START_TIMES.find((t) => t.id === id).minutes;
 
 {debug && (
   <p>
-    now: {now.toString()}<br />
+    now: {now}<br />
+    nowTime: {nowTime}<br />
     nowOffset: {nowOffset}<br />
     nowMinutes: {nowMinutes}<br />
     firstMinute: {firstMinute}<br />
