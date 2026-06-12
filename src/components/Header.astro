@@ -94,7 +94,7 @@ const { lang, page } = Astro.props;
     font-weight: 600;
   }
 
-  @media (max-width: var(--header-width)) {
+  @media (--mobile) {
     .header-nav {
       order: 2; /* drop nav links to second row on narrower screens */
     }

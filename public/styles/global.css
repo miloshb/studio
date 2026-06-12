@@ -95,6 +95,8 @@ li a:hover {
   --header-width: 900px;
 }
 
+@custom-media --mobile (max-width: 600px);
+
 /* ---------------------------------
    3. TYPOGRAPHY
 ---------------------------------- */
@@ -189,7 +191,7 @@ table.no-global td:last-child {
 }
 
 /* Responsive adjustments for smaller screens */
-@media (max-width: var(--mobile-max-width)) {
+@media (--mobile) {
   table {
     table-layout: auto;
   }
