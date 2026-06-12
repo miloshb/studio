@@ -254,6 +254,21 @@ img {
   display: block;
 }
 
+.thumbnail-sm img {
+  width: var(--thumbnail-width-sm);
+  max-width: 40%;
+}
+
+.thumbnail-md img {
+  width: var(--thumbnail-width-md);
+  max-width: 40%;
+}
+
+.thumbnail-lg img {
+  width: var(--thumbnail-width-lg);
+  max-width: 40%;
+}
+
 .aspect-square {
   aspect-ratio: 1 / 1;
   overflow: hidden;

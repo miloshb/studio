@@ -17,8 +17,7 @@ const {
 let finalSizes = sizes;
 let finalWidths = widths;
 let wrapperStyle = "";
-let width = rest.width;
-delete rest.width;
+let thumbnailClass = "";
 
 // Thumbnail overrides
 const sizeMap = {
@@ -29,9 +28,8 @@ const sizeMap = {
 
 if (thumbnail) {
   const sizeKey = typeof thumbnail === "string" ? thumbnail : "md";
-  const thumbWidth = sizeMap[sizeKey] ?? sizeMap.md;
-  width = width || thumbWidth;
-  finalSizes = width;
+  thumbnailClass = `thumbnail-${sizeKey}`
+  finalSizes = sizeMap[sizeKey] ?? sizeMap.md;
   finalWidths = [400, 1080];
   wrapperStyle = `border-radius: var(--radius-md)`;
 }
@@ -47,13 +45,12 @@ const aspectClass = aspect
   : "";
 ---
 
-<div class={aspectClass} style={wrapperStyle}>
+<div class={`${aspectClass} ${thumbnailClass}`} style={wrapperStyle}>
   <Image
     src={src}
     alt={alt}
     widths={finalWidths}
     sizes={finalSizes}
-    width={width}
     {...rest}
   />
 </div>
