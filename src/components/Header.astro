@@ -49,8 +49,11 @@ const { lang, page } = Astro.props;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    text-align: center;
     padding: var(--space-md) 0;
     flex-shrink: 0;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
   }
 
   .brand {
@@ -59,13 +62,16 @@ const { lang, page } = Astro.props;
     color: var(--color-text);
     display: flex;
     flex-wrap: nowrap;
-    gap: 10px;
+    gap: var(--space-xs);
     z-index: 1;
+  }
+
+  .header-nav {
+    font-size: var(--text-md);
   }
 
   .header-nav a {
     margin-left: var(--space-md);
-    font-size: var(--text-md);
     color: var(--color-text-soft);
   }
 
@@ -76,8 +82,8 @@ const { lang, page } = Astro.props;
   .header-lang {
     display: flex;
     align-items: center;
-    gap: 6px;
-    font-size: var(--text-sm);
+    gap: var(--space-xs);
+    font-size: var(--text-xs);
   }
 
   .header-lang a {
@@ -90,9 +96,8 @@ const { lang, page } = Astro.props;
   }
 
   @media (max-width: 700px) {
-    .header {
-      flex-direction: column;
-      gap: var(--space-sm);
+    .header-nav {
+      order: 2; /* drop to second row on narrow screens */
     }
   }
 </style>

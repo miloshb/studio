@@ -37,26 +37,11 @@ const ROW_HEIGHTS = START_TIMES.map((start, i) => {
 });
 const gridRows = ROW_HEIGHTS.map((h) => `calc(${h} * var(--minute))`).join(" ");
 
-
-// Time and day guide lines
-const now = new Date(); // UTC date
-const nowTime = new Intl.DateTimeFormat("en-GB", {
-    timeZone: "Europe/Berlin",
-    hour: "numeric",
-    minute: "numeric",
-    hour12: false,
-  }).format(now);
-const nowMinutes = parseInt(nowTime.split(":")[0]) * 60 + parseInt(nowTime.split(":")[1]);
-const nowOffset =
-  nowMinutes >= firstMinute && nowMinutes <= lastMinute
-    ? (nowMinutes - firstMinute) + 1
-    : null;
-
+// Guide times
 const GUIDE_TIMES = [480, 600, 720, 840, 960, 1080]; // 08:00 → 18:00 every two hours
 const guideOffsets = GUIDE_TIMES
   .filter(t => t >= firstMinute && t <= lastMinute)
   .map(t => (t - firstMinute) - 1);
-
 
 // Helper function: convert start ID → absolute minute position
 const getStartMinutes = (id) => START_TIMES.find((t) => t.id === id).minutes;
@@ -110,22 +95,13 @@ const getStartMinutes = (id) => START_TIMES.find((t) => t.id === id).minutes;
         ></div>
       ))}
       <!-- "Now" line -->
-      {nowOffset && (
-        <div
-          class="now-line"
-          style={`grid-row: ${nowOffset} / ${nowOffset + 1}`}
-        ></div>
-      )}
+      <div id="now-line"></div>
     </div>
   </div>
 </div>
 
 {debug && (
   <p>
-    now: {now}<br />
-    nowTime: {nowTime}<br />
-    nowOffset: {nowOffset}<br />
-    nowMinutes: {nowMinutes}<br />
     firstMinute: {firstMinute}<br />
     lastMinute: {lastMinute}<br />
   </p>
@@ -173,6 +149,8 @@ const getStartMinutes = (id) => START_TIMES.find((t) => t.id === id).minutes;
     display: flex;
     align-items: center;
     justify-content: center;
+    text-align: center;
+    white-space: nowrap;
     border-radius: 4px;
     text-decoration: none;
     color: var(--color-text);
@@ -202,16 +180,17 @@ const getStartMinutes = (id) => START_TIMES.find((t) => t.id === id).minutes;
     pointer-events: none;
   }
 
-  .now-line {
+  #now-line {
     position: absolute;
     left: 0;
     right: 0;
-    border-top: 1px solid orangered;
+    height: 1px;
+    background: orangered;
     pointer-events: none;
-    z-index: 20;
+    z-index: 10;
   }
 
-  .today-highlight {
+  #today-highlight {
     position: absolute;
     top: 0;
     bottom: 0;
