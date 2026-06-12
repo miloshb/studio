@@ -254,6 +254,11 @@ img {
   display: block;
 }
 
+#teachers img {
+  float: right;
+  margin: 0 0 var(--space-sm) var(--space-sm);
+}
+
 .thumbnail-sm img {
   width: var(--thumbnail-width-sm);
   max-width: 40%;
