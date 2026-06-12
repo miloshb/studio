@@ -1,19 +1,22 @@
 ---
 import { Image } from 'astro:assets';
 
-// Props you allow the page to override
 const {
   src,
   alt,
+  // Defaults for full-width images
   widths = [400, 1080, 1600],
   sizes = "(max-width: var(--mobile-max-width)) 100vw, var(--maxwidth)",
   // thumbnail can be: true | "sm" | "md" | "lg"
   thumbnail = false,
+  // aspect can be: "square" | "portrait" | "headshot" | "landscape" | undefined
+  aspect = null,
   ...rest
 } = Astro.props;
 
 let finalSizes = sizes;
 let finalWidths = widths;
+let wrapperStyle = "";
 
 // Thumbnail overrides
 const sizeMap = {
@@ -21,19 +24,31 @@ const sizeMap = {
   md: "var(--thumbnail-width-md)",
   lg: "var(--thumbnail-width-lg)",
 };
-if (thumbnail) {
-  // If thumbnail is boolean → default to "md"
-  const sizeKey = typeof thumbnail === "string" ? thumbnail : "md";
 
+if (thumbnail) {
+  const sizeKey = typeof thumbnail === "string" ? thumbnail : "md";
   finalSizes = sizeMap[sizeKey] ?? sizeMap.md;
   finalWidths = [400, 1080];
+  wrapperStyle = `width: ${finalSizes}; border-radius: var(--radius-md)`;
 }
+
+// Aspect ratio class mapping
+const aspectClass = aspect
+  ? {
+      square:    "aspect-square",
+      portrait:  "aspect-portrait",
+      headshot:  "aspect-headshot",
+      landscape: "aspect-landscape",
+    }[aspect]
+  : "";
 ---
 
-<Image
-  src={src}
-  alt={alt}
-  widths={finalWidths}
-  sizes={finalSizes}
-  {...rest}
-/>
+<div class={aspectClass} style={wrapperStyle}>
+  <Image
+    src={src}
+    alt={alt}
+    widths={finalWidths}
+    sizes={finalSizes}
+    {...rest}
+  />
+</div>
