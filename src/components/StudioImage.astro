@@ -7,10 +7,12 @@ const {
   alt,
   widths = [400, 1080, 1600],
   sizes = "(max-width: var(--mobile-max-width)) 100vw, var(--maxwidth)",
+  style = "",
 } = Astro.props;
 ---
 
 <Image
+  style={style}
   src={src}
   alt={alt}
   widths={widths}
