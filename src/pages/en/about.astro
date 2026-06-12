@@ -2,7 +2,7 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import StudioImage from "../../components/StudioImage.astro";
 import teachingOnlineImage from '/public/images/about/teaching-online-1600.webp';
-import milosImage from '/public/images/teachers/milos-vajrasana-1600.webp';
+import milosImage from '/public/images/teachers/milos-vajrasana-400.webp';
 ---
 
 <BaseLayout lang="en" page="about" title="About – Studio Sun & Sea">
@@ -16,12 +16,12 @@ import milosImage from '/public/images/teachers/milos-vajrasana-1600.webp';
 
   <section>
     <StudioImage
-      style="float: right;"
+      class="teacher-photo"
       src={milosImage}
       alt="Miloš Borojević, RYT-200"
     />
     <h2>About the Teacher</h2>
-    <p>My name is Miloš Borojević. I am a certified yoga teacher (RYT-200, Kunga Yoga School) and long-time practitioner with a background in competitive swimming, cycling, and mindful movement. I teach in Germany, the United States, and online.</p>
+    <p>My name is Miloš Borojević. I am a certified yoga teacher (RYT-200, Yoga Alliance), trained through the Kunga Yoga School, and a long-time practitioner with a background in competitive swimming, cycling, and mindful movement. I teach in Germany, the United States, and online.</p>
     <p>My teaching style blends alignment-based Hatha and Vinyasa with breath-centered sequencing, functional mobility, and a calm, steady presence. I aim to create a practice that is both grounding and spacious - a place to reconnect with yourself and the universe.</p>
   </section>
 
@@ -65,3 +65,13 @@ import milosImage from '/public/images/teachers/milos-vajrasana-1600.webp';
     </p>
   </section>
 </BaseLayout>
+
+<style>
+  .teacher-photo {
+    float: right;
+    width: var(--thumbnail-width);
+    max-width: 40%;
+    margin: 0 0 var(--space-md) var(--space-md);
+    border-radius: var(--radius-md);
+  }
+</style>

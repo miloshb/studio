@@ -7,14 +7,17 @@ const {
   alt,
   widths = [400, 1080, 1600],
   sizes = "(max-width: var(--mobile-max-width)) 100vw, var(--maxwidth)",
-  style = "",
+  thumbnail = false,
 } = Astro.props;
+
+// Thumbnail overrides
+const finalWidths = thumbnail ? [400, 1080] : widths;
+const finalSizes = thumbnail ? "var(--thumbnail-width)" : sizes;
 ---
 
 <Image
-  style={style}
   src={src}
   alt={alt}
-  widths={widths}
-  sizes={sizes}
+  widths={finalWidths}
+  sizes={finalSizes}
 />

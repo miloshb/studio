@@ -75,8 +75,15 @@ li a:hover {
   --text-xl: 1.5rem;
   --text-xxl: 2.25rem;
 
+  /* Radius scale */
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 8px;
+  --radius-xl: 16px;
+
   /* Spacing scale (soft, airy) */
-  --space-xs: 8px;
+  --space-xxs: 4px;
+  --space-xs:  8px;
   --space-sm: 16px;
   --space-md: 24px;
   --space-lg: 48px;
@@ -93,6 +100,7 @@ li a:hover {
   --max-width: clamp(320px, 90vw, 1040px);
   --mobile-max-width: 600px;
   --header-width: 900px;
+  --thumbnail-width: 260px;
 }
 
 @custom-media --mobile (max-width: 600px);
@@ -145,7 +153,7 @@ a:hover {
   color: var(--color-text);
   font-family: var(--font-body);
   font-size: var(--text-sm);
-  border-radius: 4px;
+  border-radius: var(--radius-md);
 }
 
 .button:hover {
