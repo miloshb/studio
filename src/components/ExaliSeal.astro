@@ -1,8 +1,3 @@
----
-const { squareWithText = "false" } = Astro.props;
-const exaliPixels = "65px"
----
-
 <div class="exali-seal">
   <a rel="nofollow" href="https://www.exali.de/siegel/Studio_Sun_and_Sea" target="_blank"
     title="Weiter zur Berufshaftpflicht von Miloš Borojević"
@@ -16,14 +11,7 @@ const exaliPixels = "65px"
 </div>
 
 <style>
-  --exali-seal-width: ${exaliPixels};
-
-  .exali-seal {
-    justify-self: end;
-    {squareWithText && (position: absolute;)}
-  }
-
   .exali-seal img {
-    float: left;
+    float: right;
   }
 </style>
