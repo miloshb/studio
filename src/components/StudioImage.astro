@@ -17,6 +17,8 @@ const {
 let finalSizes = sizes;
 let finalWidths = widths;
 let wrapperStyle = "";
+let width = rest.width;
+delete rest.width;
 
 // Thumbnail overrides
 const sizeMap = {
@@ -27,9 +29,11 @@ const sizeMap = {
 
 if (thumbnail) {
   const sizeKey = typeof thumbnail === "string" ? thumbnail : "md";
-  finalSizes = sizeMap[sizeKey] ?? sizeMap.md;
+  const thumbWidth = sizeMap[sizeKey] ?? sizeMap.md;
+  width = width || thumbWidth;
+  finalSizes = width;
   finalWidths = [400, 1080];
-  wrapperStyle = `width: ${finalSizes}; border-radius: var(--radius-md)`;
+  wrapperStyle = `border-radius: var(--radius-md)`;
 }
 
 // Aspect ratio class mapping
@@ -49,6 +53,7 @@ const aspectClass = aspect
     alt={alt}
     widths={finalWidths}
     sizes={finalSizes}
+    width={width}
     {...rest}
   />
 </div>
