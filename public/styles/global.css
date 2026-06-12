@@ -91,7 +91,8 @@ li a:hover {
 
   /* Layout */
   --max-width: clamp(320px, 90vw, 1040px);
-  --mobile-max-width: 480px;
+  --mobile-max-width: 600px;
+  --header-width: 900px;
 }
 
 /* ---------------------------------
@@ -101,7 +102,7 @@ li a:hover {
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
   color: var(--color-text);
-  margin: 0 0 var(--space-sm) 0;
+  margin: var(--space-xs) 0 var(--space-sm) 0;
   font-weight: 600;
 }
 
