@@ -1,0 +1,102 @@
+---
+import { ROUTES, LANGS, HEADER_ROUTE_KEYS, getLangRoot, getLangUrl } from "../data/routes.js";
+const { lang, page } = Astro.props;
+---
+
+<header>
+  <div class="header container">
+    <!-- Brand always links to the correct language root -->
+    <a class="brand" href={getLangRoot(lang)}>
+      <img src="/logo/studio-sun-and-sea-logo.png" />
+      Studio Sun & Sea
+    </a>
+
+    <!-- Header Navigation -->
+    <div class="header-nav">
+      {HEADER_ROUTE_KEYS.map((key) => (
+        <a href={ROUTES[key].href[lang]}>
+          {ROUTES[key].nav[lang]}
+        </a>
+      ))}
+    </div>
+
+    <!-- Language Switcher -->
+    <div class="header-lang">
+      {LANGS.map(code => (
+        <>
+          <a
+            class={lang === code ? "active" : ""}
+            href={getLangUrl(page, code)}
+            onclick={`setLangPref('${code}')`}
+          >
+            {code.toUpperCase()}
+          </a>
+          {code !== LANGS.at(-1) && <span>·</span>}
+        </>
+      ))}
+    </div>
+  </div>
+</header>
+
+<script>
+  function setLangPref(lang) {
+    localStorage.setItem("preferredLanguage", lang);
+  }
+</script>
+
+<style>
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    padding: var(--space-md) 0;
+    flex-shrink: 0;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+  }
+
+  .brand {
+    font-family: var(--font-heading);
+    font-size: var(--text-xl);
+    color: var(--color-text);
+    display: flex;
+    flex-wrap: nowrap;
+    gap: var(--space-xs);
+    z-index: 1;
+  }
+
+  .header-nav {
+    font-size: var(--text-md);
+  }
+
+  .header-nav a {
+    margin-left: var(--space-sm);
+    color: var(--color-text-soft);
+  }
+
+  .header-nav a:hover {
+    color: var(--color-text);
+  }
+
+  .header-lang {
+    display: flex;
+    align-items: center;
+    font-size: var(--text-xs);
+  }
+
+  .header-lang a {
+    color: var(--color-text-soft);
+  }
+
+  .header-lang a.active {
+    color: var(--color-text);
+    font-weight: 600;
+  }
+
+  @media (max-width: var(--header-width)) {
+    .header-nav {
+      order: 2; /* drop nav links to second row on narrower screens */
+    }
+  }
+</style>

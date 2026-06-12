@@ -1,7 +1,8 @@
 ---
-import Nav from "../components/Nav.astro";
+import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import Hreflang from "../components/Hreflang.astro";
+import NextSteps from "../components/NextSteps.astro";
 
 const {
   title = "Studio Sun & Sea",
@@ -16,6 +17,9 @@ const noindex = systemPages.includes(page);
 
 const mindbodyPages = ["schedule", "login", "account", "checkout"];
 const footerOffset = mindbodyPages.includes(page);
+
+const nextStepsPages = ["about", "private", "teach", "classes", "pricing"];
+const showNextSteps = nextStepsPages.includes(page);
 ---
 
 <html lang={lang}>
@@ -53,12 +57,15 @@ const footerOffset = mindbodyPages.includes(page);
   </head>
 
   <body class="layout">
-    <Nav lang={lang} page={page} />
+    <Header lang={lang} page={page} />
 
     <main class="layout-main">
       { fullBleed
         ? <slot /> // hero pages, landing pages
-        : <div class="container"><slot /></div>
+        : <div class="container">
+            <slot />
+            {showNextSteps && <NextSteps lang={lang} page={page} />}
+          </div>
       }
     </main>
 

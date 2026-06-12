@@ -1,0 +1,33 @@
+---
+import { NEXT_STEPS_ROUTE_KEYS, ROUTES } from "../data/routes.js";
+
+const { lang = "en", page = null } = Astro.props;
+
+// Filter out the current page
+const stepKeys = NEXT_STEPS_ROUTE_KEYS.filter(key => key !== page);
+---
+
+<section class="next-steps">
+  <h2>{lang === "de" ? "Wie es weitergeht" : "Where to Go Next"}</h2>
+  <p>
+    {lang === "de"
+      ? "Hier können Sie mehr über unsere Angebote erfahren:"
+      : "Explore our offerings and learn more about how we can practice together:"}
+  </p>
+
+  <ul>
+    {stepKeys.map((key) => (
+      <li>
+        <a href={ROUTES[key].href[lang]}>
+          {ROUTES[key].label[lang]}
+        </a>
+      </li>
+    ))}
+  </ul>
+</section>
+
+<style>
+  .next-steps ul {
+    list-style-type: none;
+  }
+</style>

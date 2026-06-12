@@ -6,13 +6,13 @@ const TEXT = {
     title: "Breathe. Flow. Relax.",
     subtitle: "Mindful movement for a calm, connected life.",
     cta: "View Schedule",
-    ctaHref: "/en/schedule",
+    ctaHref: "/en/schedule-overview",
   },
   de: {
     title: "Atme. Fließe. Entspanne.",
     subtitle: "Achtsame Bewegung für ein ruhiges, verbundenes Leben.",
     cta: "Stundenplan ansehen",
-    ctaHref: "/de/schedule",
+    ctaHref: "/de/schedule-overview",
   },
 };
 
@@ -63,7 +63,7 @@ const copy = TEXT[lang] ?? TEXT.en;
     font-size: var(--text-lg);
     color: var(--color-text-soft);
     margin: 0 0 var(--space-lg) 0;
-    max-width: 600px;
+    max-width: var(--mobile-max-width);
     margin-left: auto;
     margin-right: auto;
     line-height: 1.5;

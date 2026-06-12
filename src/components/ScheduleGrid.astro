@@ -1,0 +1,206 @@
+---
+import { scheduleData } from "../data/schedule.ts";
+
+const { lang = "en" } = Astro.props;
+const debug = false; // Set to true to show debug info
+
+const dayHeader = {
+  en: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+  de: ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"]
+};
+const TimeHeader = {
+  en: "Time",
+  de: "Zeit"
+};
+const dayKeys = dayHeader["en"]; // Use English keys for data mapping, but display labels based on lang
+const dayLabels = dayHeader[lang as keyof typeof dayHeader];
+const timeLabel = TimeHeader[lang as keyof typeof TimeHeader];
+const START_TIMES = scheduleData.startTimes;
+const CLASSES = scheduleData.classes;
+
+// Determine schedule start (firstMinute) and end (lastMinute) times
+const firstMinute = START_TIMES[0].minutes;
+const lastClassStart = START_TIMES[START_TIMES.length - 1];
+const longestLastClass = CLASSES
+  .filter(c => c.startId === lastClassStart.id)
+  .reduce((max, c) => Math.max(max, c.duration), 0);
+const lastMinute = lastClassStart.minutes + longestLastClass;
+
+// Total day height in minutes
+const headerMinutes = 2; // header row doesn't represent time, but uses first 2 grid-row elements
+const totalMinutes = lastMinute - firstMinute + headerMinutes;
+
+// Compute row heights from time differences to build CSS grid rows
+const ROW_HEIGHTS = START_TIMES.map((start, i) => {
+  if (i === START_TIMES.length - 1) return longestLastClass; // Last row height = longest class duration starting at last time slot
+  return START_TIMES[i + 1].minutes - start.minutes; // difference between NEXT and CURRENT start times
+});
+const gridRows = ROW_HEIGHTS.map((h) => `calc(${h} * var(--minute))`).join(" ");
+
+// Guide times
+const GUIDE_TIMES = [480, 600, 720, 840, 960, 1080]; // 08:00 → 18:00 every two hours
+const guideOffsets = GUIDE_TIMES
+  .filter(t => t >= firstMinute && t <= lastMinute)
+  .map(t => (t - firstMinute) - 1);
+
+// Helper function: convert start ID → absolute minute position
+const getStartMinutes = (id) => START_TIMES.find((t) => t.id === id).minutes;
+---
+
+<div class="schedule-grid"
+  style={`--total-minutes: ${totalMinutes}; --grid-rows: ${gridRows};`}
+>
+  <!-- Left time column -->
+  <div class="time-col">
+    <div class="day">{timeLabel}</div>
+    {START_TIMES.map((t) => <div class="time">{t.label}</div>)}
+  </div>
+
+  <!-- Day columns -->
+  {dayKeys.map((day, i) => (
+    <div class="day-col">
+      <div class="day">{dayLabels[i]}</div>
+
+      {CLASSES.filter((c) => c.day === day)
+        .map((c) => {
+        const start = getStartMinutes(c.startId) - START_TIMES[0].minutes + headerMinutes;
+        const end = start + c.duration;
+        const className = "_" + c.label.toLowerCase().replace(/[^\p{L}\p{N}]/gu, "");
+        return (
+          <a
+            href={`/${lang}/schedule/`}
+            class={`grid-element ${className}`}
+            style={`grid-row: ${start} / ${end}`}
+          >
+            {c.label}
+          </a>
+        );
+      })}
+    </div>
+  ))}
+
+  <!-- Right time column -->
+  <div class="time-col">
+    <div class="day">{timeLabel}</div>
+    {START_TIMES.map((t) => <div class="time">{t.label}</div>)}
+  </div>
+
+  <div class="overlay">
+    <!-- Time guide lines -->
+    <div class="guide-col">
+      {guideOffsets.map((offset) => (
+        <div
+          class="guide-line"
+          style={`grid-row: ${offset} / ${offset + 1}`}
+        ></div>
+      ))}
+      <!-- "Now" line -->
+      <div id="now-line"></div>
+    </div>
+  </div>
+</div>
+
+{debug && (
+  <p>
+    firstMinute: {firstMinute}<br />
+    lastMinute: {lastMinute}<br />
+  </p>
+)}
+
+<style>
+  .schedule-grid {
+    position: relative;
+    display: grid;
+    grid-template-columns: 40px repeat(7, 1fr) 40px;
+    gap: 4px;
+    margin: 0 0 var(--space-sm) 0;
+    --minute: 0.5px; /* 1 minute height in px (can be fractional) */
+  }
+
+  /* Start-slot based grid rows */
+  .time-col {
+    display: grid;
+    grid-template-rows:
+      var(--space-md)    /* header row (fixed px height) */
+      var(--grid-rows);  /* start-based rows */
+  }
+
+  /* Time-based (minute) grid rows */
+  .guide-col,
+  .day-col {
+    display: grid;
+    grid-template-rows:
+      var(--space-md)                               /* header row (fixed px height) */
+      repeat(var(--total-minutes), var(--minute));  /* minute-based rows */
+  }
+
+  .day {
+    text-align: center;
+    font-weight: bold;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: var(--color-bg); /* ensures it covers classes behind it */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+    height: var(--space-md);
+  }
+
+  .grid-element {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    white-space: nowrap;
+    border-radius: 4px;
+    text-decoration: none;
+    color: var(--color-text);
+    padding: 4px;
+  }
+
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none; /* allows clicks to pass through to schedule elements */
+    z-index: 5;
+  }
+
+  .guide-col {
+    position: relative;
+    grid-column: 1 / -1;
+  }
+
+  .guide-line {
+    position: absolute;
+    left: 0;
+    right: 0;
+    border-top: 2px dashed rgba(0,0,0,0.15);
+    pointer-events: none;
+  }
+
+  #now-line {
+    position: absolute;
+    left: 0;
+    right: 0;
+    background: orangered;
+    pointer-events: none;
+    z-index: 10;
+  }
+
+  #today-highlight {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    background: rgba(255, 230, 150, 0.25); /* soft warm highlight */
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  ._yoga60     { background: #48AEB2; }
+  ._yoga75     { background: #F2B138; }
+  ._yoga90     { background: #B5DFE1; }
+  ._262        { background: #CD98BE; }
+  ._262express { background: #CD98BE; }
+</style>

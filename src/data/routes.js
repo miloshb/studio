@@ -1,132 +1,227 @@
 // src/data/routes.js
 
+// Supported lanugages (first listed is primary/default)
+export const LANGS = ["en", "de"];
+
 // Mapping EN ↔ DE equivalents
 export const ROUTES = {
-  // TOP NAV PAGES
+  // HEADER NAV PAGES
   index: {
-    en: { label: "index", href: "/en/" },
-    de: { label: "index", href: "/de/" }
+    href: { en: "/en/", de: "/de/" },
+    nav: { en: "Home", de: "Start" },
+    label: { en: "Home", de: "Startseite" },
+    desc: {
+      en: "Welcome to Studio Sun & Sea.",
+      de: "Willkommen bei Studio Sun & Sea."
+    }
   },
   classes: {
-    en: { label: "Classes", href: "/en/classes" },
-    de: { label: "Kurse", href: "/de/classes" }
+    href: { en: "/en/classes", de: "/de/classes" },
+    nav: { en: "Classes", de: "Kurse" },
+    label: { en: "Group Classes", de: "Gruppenstunden" },
+    desc: {
+      en: "Explore our group classes and weekly schedule.",
+      de: "Entdecken Sie unsere Gruppenstunden und den Wochenplan."
+    }
   },
   schedule: {
-    en: { label: "Schedule", href: "/en/schedule" },
-    de: { label: "Stundenplan", href: "/de/schedule" }
+    href: { en: "/en/schedule", de: "/de/schedule" },
+    nav: { en: "Schedule", de: "Stundenplan" },
+    label: { en: "Schedule", de: "Stundenplan" },
+    desc: {
+      en: "Weekly class schedule.",
+      de: "Wöchentlicher Stundenplan."
+    }
   },
   private: {
-    en: { label: "Private Sessions", href: "/en/private" },
-    de: { label: "Private Sessions", href: "/de/private" }
+    href: { en: "/en/private", de: "/de/private" },
+    nav: { en: "Private", de: "Privat" },
+    label: { en: "Private Sessions", de: "Private Sessions" },
+    desc: {
+      en: "One-to-one and small-group private sessions.",
+      de: "Einzelunterricht und Kleingruppen-Sessions."
+    }
+  },
+  workshops: {
+    href: { en: "/en/workshops", de: "/de/workshops" },
+    nav: { en: "Workshops", de: "Workshops" },
+    label: { en: "Yoga Workshops", de: "Yoga Workshops" },
+    desc: {
+      en: "Deepen your practice with our specialized workshops.",
+      de: "Vertiefen Sie Ihre Praxis mit unseren spezialisierten Workshops."
+    }
   },
   teach: {
-    en: { label: "Teach with Us", href: "/en/teach" },
-    de: { label: "Unterrichten", href: "/de/teach" }
+    href: { en: "/en/teach", de: "/de/teach" },
+    nav: { en: "Teach", de: "Unterrichten" },
+    label: { en: "Teach With Us", de: "Mit uns unterrichten" },
+    desc: {
+      en: "Opportunities to teach at Studio Sun & Sea.",
+      de: "Möglichkeiten, bei Studio Sun & Sea zu unterrichten."
+    }
   },
   about: {
-    en: { label: "About", href: "/en/about" },
-    de: { label: "Über uns", href: "/de/about" }
+    href: { en: "/en/about", de: "/de/about" },
+    nav: { en: "About", de: "Über uns" },
+    label: { en: "About Us", de: "Über uns" },
+    desc: {
+      en: "Learn more about Studio Sun & Sea.",
+      de: "Erfahren Sie mehr über Studio Sun & Sea."
+    }
   },
   account: {
-    en: { label: "Account", href: "/en/account" },
-    de: { label: "Konto", href: "/de/account" }
+    href: { en: "/en/account", de: "/de/account" },
+    nav: { en: "Account", de: "Konto" },
+    label: { en: "Account", de: "Konto" },
+    desc: {
+      en: "Manage your account.",
+      de: "Verwalten Sie Ihr Konto."
+    }
   },
 
-  // SYSTEM PAGES (not in top nav)
+  // SYSTEM PAGES
   register: {
-    en: { label: "Register", href: "/en/register" },
-    de: { label: "Registrieren", href: "/de/registrieren" }
+    href: { en: "/en/register", de: "/de/registrieren" },
+    nav: { en: "Register", de: "Registrieren" },
+    label: { en: "Register", de: "Registrieren" },
+    desc: {
+      en: "Create your account.",
+      de: "Erstellen Sie Ihr Konto."
+    }
   },
   login: {
-    en: { label: "Login", href: "/en/login" },
-    de: { label: "Anmelden", href: "/de/anmelden" }
+    href: { en: "/en/login", de: "/de/anmelden" },
+    nav: { en: "Login", de: "Anmelden" },
+    label: { en: "Login", de: "Anmelden" },
+    desc: {
+      en: "Access your account.",
+      de: "Melden Sie sich in Ihrem Konto an."
+    }
   },
   checkout: {
-    en: { label: "Checkout", href: "/en/checkout" },
-    de: { label: "Kasse", href: "/de/kasse" }
+    href: { en: "/en/checkout", de: "/de/kasse" },
+    nav: { en: "Checkout", de: "Kasse" },
+    label: { en: "Checkout", de: "Kasse" },
+    desc: {
+      en: "Complete your purchase.",
+      de: "Schließen Sie Ihren Kauf ab."
+    }
   },
 
   // FOOTER PAGES
+  schedule_overview: {
+    href: { en: "/en/schedule-overview", de: "/de/schedule-overview" },
+    nav: { en: "Weekly Rhythm", de: "Wochenrhythmus" },
+    label: { en: "Weekly Rhythm", de: "Wochenrhythmus" },
+    desc: {
+      en: "Overview of the weekly practice rhythm.",
+      de: "Überblick über den Wochenrhythmus."
+    }
+  },
   pricing: {
-    en: { label: "Pricing", href: "/en/pricing" },
-    de: { label: "Preise", href: "/de/preise" }
+    href: { en: "/en/pricing", de: "/de/preise" },
+    nav: { en: "Pricing", de: "Preise" },
+    label: { en: "Pricing", de: "Preise" },
+    desc: {
+      en: "Class and session pricing.",
+      de: "Preise für Kurse und Sessions."
+    }
   },
   payment: {
-    en: { label: "Payment", href: "/en/payment" },
-    de: { label: "Zahlung", href: "/de/zahlung" }
+    href: { en: "/en/payment", de: "/de/zahlung" },
+    nav: { en: "Payment", de: "Zahlung" },
+    label: { en: "Payment Options", de: "Zahlungsoptionen" },
+    desc: {
+      en: "How to pay for classes and sessions.",
+      de: "Zahlungsmöglichkeiten für Kurse und Sessions."
+    }
   },
   imprint: {
-    en: { label: "Imprint", href: "/en/imprint" },
-    de: { label: "Impressum", href: "/de/impressum" }
+    href: { en: "/en/imprint", de: "/de/impressum" },
+    nav: { en: "Imprint", de: "Impressum" },
+    label: { en: "Imprint", de: "Impressum" },
+    desc: {
+      en: "Legal information.",
+      de: "Gesetzliche Informationen."
+    }
   },
   privacy: {
-    en: { label: "Privacy", href: "/en/privacy" },
-    de: { label: "Datenschutz", href: "/de/datenschutz" }
+    href: { en: "/en/privacy", de: "/de/datenschutz" },
+    nav: { en: "Privacy", de: "Datenschutz" },
+    label: { en: "Privacy Policy", de: "Datenschutz" },
+    desc: {
+      en: "How we handle your data.",
+      de: "Wie wir Ihre Daten verarbeiten."
+    }
   },
   terms: {
-    en: { label: "Terms of Service", href: "/en/terms" },
-    de: { label: "AGB", href: "/de/agb" }
+    href: { en: "/en/terms", de: "/de/agb" },
+    nav: { en: "Terms", de: "AGB" },
+    label: { en: "Terms of Service", de: "AGB" },
+    desc: {
+      en: "Terms and conditions.",
+      de: "Allgemeine Geschäftsbedingungen."
+    }
   },
   waiver: {
-    en: { label: "Waiver", href: "/en/waiver" },
-    de: { label: "Haftungsausschluss", href: "/de/haftungsausschluss" }
+    href: { en: "/en/waiver", de: "/de/haftungsausschluss" },
+    nav: { en: "Waiver", de: "Haftungsausschluss" },
+    label: { en: "Waiver", de: "Haftungsausschluss" },
+    desc: {
+      en: "Liability waiver.",
+      de: "Haftungsausschluss."
+    }
   },
   contact: {
-    en: { label: "Contact", href: "/en/contact" },
-    de: { label: "Kontakt", href: "/de/kontakt" }
+    href: { en: "/en/contact", de: "/de/kontakt" },
+    nav: { en: "Contact", de: "Kontakt" },
+    label: { en: "Contact", de: "Kontakt" },
+    desc: {
+      en: "Get in touch with us.",
+      de: "Kontaktieren Sie uns."
+    }
   }
 };
 
-export const TOP_NAV = {
-  en: [
-    ROUTES.classes.en,
-    ROUTES.schedule.en,
-    ROUTES.private.en,
-    ROUTES.teach.en,
-    ROUTES.about.en
-  ],
-  de: [
-    ROUTES.classes.de,
-    ROUTES.schedule.de,
-    ROUTES.private.de,
-    ROUTES.teach.de,
-    ROUTES.about.de
-  ]
-};
 
-export const FOOTER_NAV = {
-  en: [
-    ROUTES.pricing.en,
-    ROUTES.payment.en,
-    ROUTES.imprint.en,
-    ROUTES.privacy.en,
-    ROUTES.terms.en,
-    ROUTES.waiver.en,
-    ROUTES.contact.en
-  ],
-  de: [
-    ROUTES.pricing.de,
-    ROUTES.payment.de,
-    ROUTES.imprint.de,
-    ROUTES.privacy.de,
-    ROUTES.terms.de,
-    ROUTES.waiver.de,
-    ROUTES.contact.de
-  ]
-};
+// NAV GROUPS (keys only)
+export const HEADER_ROUTE_KEYS = ["classes", "schedule", "private", "workshops", "teach", "about"];
+export const FOOTER_ROUTE_KEYS = [
+  "schedule_overview",
+  "pricing",
+  "payment",
+  "imprint",
+  "privacy",
+  "terms",
+  "waiver",
+  "contact"
+];
+export const NEXT_STEPS_ROUTE_KEYS = ["classes", "private", "workshops", "teach", "contact"];
 
+// HREFLANG MAP
 export const HREFLANG = Object.fromEntries(
   Object.entries(ROUTES).map(([key, value]) => [
     key,
-    { en: value.en.href, de: value.de.href }
+    Object.fromEntries(
+      LANGS.map(lang => [lang, value.href[lang] || `/${lang}/`])
+    )
   ])
 );
 
-export function getAlternateUrl(pageKey, currentLang) {
+export function getLangRoot(lang) {
+  const safeLang = LANGS.includes(lang) ? lang : LANGS[0];
+  return `/${safeLang}/`;
+}
+
+// Language switcher URL helper
+export function getLangUrl(pageKey, targetLang) {
   const route = ROUTES[pageKey];
-  if (!route) {
-    // fallback: go to language root instead of crashing
-    return currentLang === "en" ? "/de/" : "/en/";
-  }
-  return currentLang === "en" ? route.de.href : route.en.href;
+
+  // If the page doesn't exist in ROUTES, fall back to language root
+  if (!route) return `/${targetLang}/`;
+
+  // If the target language doesn't exist for this page, fall back to root
+  if (!route.href[targetLang]) return `/${targetLang}/`;
+
+  return route.href[targetLang];
 }
