@@ -1,0 +1,48 @@
+---
+import StudioImage from "StudioImage.astro";
+import milosImage from '/public/images/teachers/milos-vajrasana-400.webp';
+
+const { lang = "en" } = Astro.props;
+
+// Teacher data (eventually from CMS)
+const teachers = [
+  {
+    id: "milos",
+    name: "Miloš Borojević",
+    image: milosImage,
+    alt: "Miloš Borojević, RYT-200",
+    bio: {
+      en: [
+        "Miloš Borojević is a certified yoga teacher (RYT-200, Yoga Alliance) and graduate of the Kunga Yoga School at In Balance Yoga in Blacksburg, Virginia. He began practicing yoga and meditation in 1995 while studying at Cornell University and deepened his practice beginning in 2017 through the 26+2 hot yoga sequence.",
+        "Miloš teaches yoga in the United States (DFW Texas and Blacksburg Virgina), Northwest Germany (Münster/Lingen region), and online. His teaching integrates alignment-based Hatha, breath-centered Vinyasa sequencing, functional mobility, and mindfulness. With a background in competitive swimming, cycling, computer science education, and agile leadership, he brings a unique blend of movement expertise, clarity, and presence to his classes. He aims to create a practice that is both grounding and spacious - a place to reconnect with yourself and the universe."
+      ],
+      de: [
+        "Miloš Borojević ist ein zertifizierter Yoga-Lehrer (RYT-200, Yoga Alliance) und Absolvent der Kunga Yoga School am In Balance Yoga in Blacksburg, Virginia. Er begann 1995 während seines Studiums an der Cornell University mit Yoga und Meditation und vertiefte seine Praxis ab 2017 durch die 26+2-Hot-Yoga-Sequenz.",
+        "Miloš unterrichtet Yoga in den Vereinigten Staaten (DFW Texas und Blacksburg, Virginia), in Nordwestdeutschland (Region Münster/Lingen) sowie online. Sein Unterricht verbindet ausrichtungsbasiertes Hatha, atemgeführte Vinyasa-Sequenzen, funktionale Mobilität und Achtsamkeit. Mit einem Hintergrund im Wettkampfschwimmen, Radfahren, Informatik und agiler Führung bringt er eine einzigartige Mischung aus Bewegungskompetenz, Klarheit und Präsenz in seine Stunden ein. Sein Ziel ist eine Praxis, die zugleich erdend und weit ist – ein Raum, in dem man zu sich selbst und zum Universum zurückfindet."
+      ]
+    },
+  }
+];
+
+const heading = {
+  en: "About the Teacher",
+  de: "Über den Lehrer"
+};
+---
+
+<section id="teachers">
+  <h2>{heading[lang]}</h2>
+  {teachers.map((t) => (
+    <article id={t.id}>
+      <StudioImage
+        src={t.image}
+        alt={t.alt}
+        thumbnail="sm"
+      />
+
+      {t.bio[lang].map((paragraph) => (
+        <p>{paragraph}</p>
+      ))}
+    </article>
+  ))}
+</section>
