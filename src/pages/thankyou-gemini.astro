@@ -2,14 +2,13 @@
 // src/pages/thanks.astro
 import { LANGS, ROUTES } from "../data/routes.js";
 
-// 1. Identify the fallback default language from your array architecture
+// 1. Identify the default language from your array architecture
 const defaultLocale = LANGS[0];
 
 // 2. Pre-calculate the fallback default URI on the server side
 const defaultFallbackUri = ROUTES.thankYou.href[defaultLocale];
 
 // 3. Serialize your localized URIs map into a clean JSON string for client injection
-// This creates an object like: { en: "/en/thanks/", de: "/de/vielen-dank/" }
 const localizedUrisMap = JSON.stringify(ROUTES.thankYou.href);
 const supportedLanguages = JSON.stringify(LANGS);
 ---
@@ -37,7 +36,6 @@ const supportedLanguages = JSON.stringify(LANGS);
 
         // Loop through browser languages to find a matching locale config
         for (const lang of userLanguages) {
-            // Safely split regional tags (e.g., 'de-CH' -> 'de')
             const shortLang = lang.split('-')[0].toLowerCase();
             if (supportedLocales.includes(shortLang)) {
                 targetLocale = shortLang;
@@ -46,10 +44,16 @@ const supportedLanguages = JSON.stringify(LANGS);
         }
 
         // Dynamically extract the correct path based on the user's matched language key
-        // Fallback to the hardcoded default server path if an unexpected matching anomaly occurs
-        const finalRedirectUri = uris[targetLocale] || defaultFallbackUri;
+        const baseRedirectUri = uris[targetLocale] || defaultFallbackUri;
 
-        // Perform the clean edge-like browser history replacement redirect
+        // Extract any incoming GET query parameters (e.g., "?source=booking")
+        // window.location.search automatically returns an empty string "" if no parameters exist
+        const queryString = window.location.search;
+
+        // Append parameters safely to the localized base URL
+        const finalRedirectUri = baseRedirectUri + queryString;
+
+        // Perform the clean browser history replacement redirect
         window.location.assign(finalRedirectUri);
     </script>
 </head>
@@ -60,7 +64,7 @@ const supportedLanguages = JSON.stringify(LANGS);
     </div>
 
     <script is:inline define:vars={{ localizedUrisMap, supportedLanguages, defaultLocale, defaultFallbackUri }}>
-        // Immediate visual update to the HTML anchor tag text if the script takes a split second to loop
+        // Ensure visual fallback links also retain the parameters for consistency
         const uris = JSON.parse(localizedUrisMap);
         const supportedLocales = JSON.parse(supportedLanguages);
         const userLanguages = navigator.languages || [navigator.language || defaultLocale];
@@ -74,7 +78,10 @@ const supportedLanguages = JSON.stringify(LANGS);
             }
         }
 
-        document.getElementById('fallback-link').href = uris[targetLocale] || defaultFallbackUri;
+        const baseRedirectUri = uris[targetLocale] || defaultFallbackUri;
+        const queryString = window.location.search;
+
+        document.getElementById('fallback-link').href = baseRedirectUri + queryString;
     </script>
 
     <style>
