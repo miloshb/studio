@@ -1,5 +1,6 @@
 ---
-import { ROUTES } from "../data/routes.js";
+import { LANGS, ROUTES } from "../data/routes.js";
+import { LANG_STORE_KEY } from "../data/constants.js";
 
 const debug = true; // Set to true to show debug info
 
@@ -7,6 +8,7 @@ const debug = true; // Set to true to show debug info
 const { searchParams } = Astro.url;
 const query = searchParams.toString();
 const qs = query ? `?${query}` : "";
+const currentQuery = window.location.search;
 
 // Automatically checks the browser header against your config's supported languages
 const browserLang = Astro.preferredLocale;
@@ -29,6 +31,7 @@ const thankYouPath = ROUTES.thankYou.href[lang];
   <p>
     query: {query}<br />
     qs: {qs}<br />
+    currentQuery: {currentQuery}<br />
     langCookie: {langCookie}<br />
     browserLang: {browserLang}<br />
     fallbackOptions: {fallbackOptions}<br />
