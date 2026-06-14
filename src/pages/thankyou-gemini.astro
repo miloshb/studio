@@ -1,0 +1,73 @@
+---
+// src/pages/thanks.astro
+// This frontmatter is empty because the redirect happens on the client-side
+// based on the user's specific browser language settings.
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecting...</title>
+
+    <!-- Fallback redirect if JavaScript is disabled (defaults to English) -->
+    <noscript>
+        <meta http-equiv="refresh" content="2;url=/en/thanks/" />
+    </noscript>
+
+    <script is:inline>
+        // 1. Define your supported locales (must match your folder structure)
+        const supportedLocales = ['en', 'de'];
+        const defaultLocale = 'en';
+
+        // 2. Detect user language from the browser
+        // navigator.languages gets an array of preferred languages (e.g., ['de-DE', 'en-US'])
+        // navigator.language is the primary language string fallback
+        const userLanguages = navigator.languages || [navigator.language || defaultLocale];
+
+        let targetLocale = defaultLocale;
+
+        // 3. Find the first match between user preferences and supported locales
+        for (const lang of userLanguages) {
+            const shortLang = lang.split('-')[0].toLowerCase(); // Converts 'de-DE' to 'de'
+            if (supportedLocales.includes(shortLang)) {
+                targetLocale = shortLang;
+                break;
+            }
+        }
+
+        // 4. Perform the immediate browser redirect
+        // Be sure to use trailing slashes or file extension based on your Astro build config
+        window.location.replace(`/${targetLocale}/thanks/`);
+    </script>
+</head>
+<body>
+    <!-- Simple UI fallback for slow networks or if the redirect takes a moment -->
+    <div class="redirect-container">
+        <p>Redirecting to your language version...</p>
+        <p>Falls Sie nicht automatisch weitergeleitet werden, <a id="fallback-link" href="/en/thanks/">klicken Sie bitte hier</a>.</p>
+    </div>
+
+    <script is:inline>
+        // Update the fallback link dynamically just in case they are stuck
+        document.getElementById('fallback-link').href = `/${targetLocale}/thanks/`;
+    </script>
+
+    <style>
+        .redirect-container {
+            font-family: system-ui, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            color: #333;
+            text-align: center;
+        }
+        a {
+            color: #0066cc;
+            text-decoration: underline;
+        }
+    </style>
+</body>
+</html>
