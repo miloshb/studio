@@ -111,8 +111,8 @@ const getStartMinutes = (id) => START_TIMES.find((t) => t.id === id).minutes;
   .schedule-grid {
     position: relative;
     display: grid;
-    grid-template-columns: 40px repeat(7, 1fr) 40px;
-    gap: 4px;
+    grid-template-columns: var(--space-lg) repeat(7, 1fr) var(--space-lg);
+    gap: var(--space-xxs);
     margin: 0 0 var(--space-sm) 0;
     --minute: 0.5px; /* 1 minute height in px (can be fractional) */
   }
@@ -151,10 +151,10 @@ const getStartMinutes = (id) => START_TIMES.find((t) => t.id === id).minutes;
     justify-content: center;
     text-align: center;
     white-space: nowrap;
-    border-radius: 4px;
+    border-radius: var(--radius-md);
     text-decoration: none;
     color: var(--color-text);
-    padding: 4px;
+    padding: var(--space-xxs);
   }
 
   .overlay {

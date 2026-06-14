@@ -75,8 +75,15 @@ li a:hover {
   --text-xl: 1.5rem;
   --text-xxl: 2.25rem;
 
+  /* Radius scale */
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 8px;
+  --radius-xl: 16px;
+
   /* Spacing scale (soft, airy) */
-  --space-xs: 8px;
+  --space-xxs: 4px;
+  --space-xs:  8px;
   --space-sm: 16px;
   --space-md: 24px;
   --space-lg: 48px;
@@ -89,11 +96,18 @@ li a:hover {
   --offset-lg: -64px;
   --offset-xl: -128px;
 
+  /* Thumbnail scale */
+  --thumbnail-width-sm: 120px;
+  --thumbnail-width-md: 180px;
+  --thumbnail-width-lg: 260px;
+
   /* Layout */
   --max-width: clamp(320px, 90vw, 1040px);
   --mobile-max-width: 600px;
   --header-width: 900px;
 }
+
+@custom-media --mobile (max-width: 600px);
 
 /* ---------------------------------
    3. TYPOGRAPHY
@@ -143,7 +157,7 @@ a:hover {
   color: var(--color-text);
   font-family: var(--font-body);
   font-size: var(--text-sm);
-  border-radius: 4px;
+  border-radius: var(--radius-md);
 }
 
 .button:hover {
@@ -189,7 +203,7 @@ table.no-global td:last-child {
 }
 
 /* Responsive adjustments for smaller screens */
-@media (max-width: var(--mobile-max-width)) {
+@media (--mobile) {
   table {
     table-layout: auto;
   }
@@ -238,4 +252,50 @@ img {
   max-width: 100%;
   height: auto;
   display: block;
+}
+
+#teachers img {
+  float: right;
+  margin: 0 0 var(--space-sm) var(--space-sm);
+}
+
+.thumbnail-sm img {
+  width: var(--thumbnail-width-sm);
+}
+
+.thumbnail-md img {
+  width: var(--thumbnail-width-md);
+}
+
+.thumbnail-lg img {
+  width: var(--thumbnail-width-lg);
+}
+
+.aspect-square {
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+}
+
+.aspect-portrait {
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+}
+
+.aspect-headshot {
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+}
+
+.aspect-landscape {
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+}
+
+.aspect-square img,
+.aspect-portrait img,
+.aspect-landscape img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: var(--radius-md);
 }
