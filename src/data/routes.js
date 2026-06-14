@@ -5,7 +5,9 @@ export const LANGS = ["en", "de"];
 
 // Mapping EN ↔ DE equivalents
 export const ROUTES = {
-  // HEADER NAV PAGES
+  //////////////////////
+  // HEADER NAV PAGES //
+  //////////////////////
   index: {
     href: { en: "/en/", de: "/de/" },
     nav: { en: "Home", de: "Start" },
@@ -79,7 +81,18 @@ export const ROUTES = {
     }
   },
 
-  // SYSTEM PAGES
+  //////////////////////
+  // SYSTEM PAGES     //
+  //////////////////////
+  thankYou: {
+    href: { en: "/en/thankyou", de: "/de/danke" },
+    nav: { en: "Thank You", de: "Danke" },
+    label: { en: "Thank You", de: "Danke" },
+    desc: {
+      en: "Confirmation page for bookings, messages, and submissions.",
+      de: "Bestätigungsseite für Buchungen, Nachrichten und Anfragen."
+    }
+  },
   register: {
     href: { en: "/en/register", de: "/de/registrieren" },
     nav: { en: "Register", de: "Registrieren" },
@@ -108,7 +121,9 @@ export const ROUTES = {
     }
   },
 
-  // FOOTER PAGES
+  //////////////////////
+  // FOOTER PAGES     //
+  //////////////////////
   scheduleOverview: {
     href: { en: "/en/schedule-overview", de: "/de/schedule-overview" },
     nav: { en: "Weekly Rhythm", de: "Wochenrhythmus" },

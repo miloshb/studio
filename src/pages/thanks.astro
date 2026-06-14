@@ -1,0 +1,32 @@
+---
+import { LANGS, ROUTES } from "../data/routes.js";
+import { LANG_STORE_KEY } from "../data/constants.js";
+
+const defaultLocale = LANGS[0];
+const defaultHref = ROUTES.thankYou.href[defaultLocale];
+const hrefs = JSON.stringify(ROUTES.thankYou.href);
+const supported = JSON.stringify(LANGS);
+---
+
+<!DOCTYPE html>
+<html lang={defaultLocale}>
+<head>
+  <meta charset="UTF-8">
+  <title>Redirecting…Thanks – Studio Sun & Sea</title>
+  <noscript><meta http-equiv="refresh" content={`0;url=${defaultHref}`} /></noscript>
+  <script is:inline define:vars={{ hrefs, supported, defaultLocale, defaultHref, LANG_STORE_KEY }}>
+    const map = JSON.parse(hrefs), langs = JSON.parse(supported);
+    let lang = localStorage.getItem(LANG_STORE_KEY);
+
+    if (!lang || !langs.includes(lang.toLowerCase())) {
+      const nav = navigator.languages || [navigator.language || defaultLocale];
+      lang = nav.map(l => String(l).split('-')[0].toLowerCase()).find(l => langs.includes(l)) || defaultLocale;
+    }
+
+    window.location.replace((map[lang.toLowerCase()] || defaultHref) + window.location.search);
+  </script>
+</head>
+<body>
+    <p>Redirecting... <a href={defaultHref}>Follow this link if not redirected to the Thank You page</a>.</p>
+</body>
+</html>
