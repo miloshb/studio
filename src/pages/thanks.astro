@@ -8,9 +8,16 @@ const { searchParams } = Astro.url;
 const query = searchParams.toString();
 const qs = query ? `?${query}` : "";
 
+// Automatically checks the browser header against your config's supported languages
+const browserLang = Astro.preferredLocale;
+
+// Or get a ranked list of all languages the browser requested that your site supports
+const fallbackOptions = Astro.preferredLocaleList;
+
 // Language preference
 const langCookie = Astro.cookies.get("lang")?.value;
-const browserLang = Astro.request.headers.get("accept-language")?.slice(0,2);
+// doesn't work anyway.
+//const browserLang = Astro.request.headers.get("accept-language")?.slice(0,2);
 const lang = langCookie || (browserLang === "de" ? "de" : "en");
 
 // Redirect to localized page
@@ -24,6 +31,7 @@ const thankYouPath = ROUTES.thankYou.href[lang];
     qs: {qs}<br />
     langCookie: {langCookie}<br />
     browserLang: {browserLang}<br />
+    fallbackOptions: {fallbackOptions}<br />
     lang: {lang}<br />
     thankYouPath: {thankYouPath}<br />
   </p>
