@@ -30,7 +30,7 @@ if (thumbnail) {
   const sizeKey = typeof thumbnail === "string" ? thumbnail : "md";
   thumbnailClass = `thumbnail-${sizeKey}`
   finalSizes = sizeMap[sizeKey] ?? sizeMap.md;
-  finalWidths = [400, 1080];
+  finalWidths = [400];
   wrapperStyle = `border-radius: var(--radius-md)`;
 }
 
@@ -45,7 +45,10 @@ const aspectClass = aspect
   : "";
 ---
 
-<div class={`${aspectClass} ${thumbnailClass}`} style={wrapperStyle}>
+<div
+  class={[aspectClass, thumbnailClass].filter(Boolean).join(" ")}
+  style={wrapperStyle}
+>
   <Image
     src={src}
     alt={alt}
