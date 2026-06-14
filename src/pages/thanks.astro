@@ -1,6 +1,8 @@
 ---
 import { ROUTES } from "../data/routes.js";
 
+const debug = true; // Set to true to show debug info
+
 // Query params
 const { searchParams } = Astro.url;
 const query = searchParams.toString();
@@ -15,3 +17,14 @@ const lang = langCookie || (browserLang === "de" ? "de" : "en");
 const thankYouPath = ROUTES.thankYou.href[lang];
 return Astro.redirect(`${thankYouPath}${qs}`);
 ---
+
+{debug && (
+  <p>
+    query: {query}<br />
+    qs: {qs}<br />
+    langCookie: {langCookie}<br />
+    browserLang: {browserLang}<br />
+    lang: {lang}<br />
+    thankYouPath: {thankYouPath}<br />
+  </p>
+)}
