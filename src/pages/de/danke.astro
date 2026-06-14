@@ -1,0 +1,40 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const { searchParams } = Astro.url;
+const source = searchParams.get("source");
+
+// Dynamic messages
+const messages = {
+  booking: {
+    title: "Buchung bestätigt",
+    body: "Deine Buchung ist abgeschlossen. Du erhältst in Kürze eine Bestätigungs-E-Mail."
+  },
+  purchase: {
+    title: "Kauf abgeschlossen",
+    body: "Vielen Dank für deinen Kauf. Eine Quittung wurde an deine E-Mail-Adresse gesendet."
+  },
+  contact: {
+    title: "Nachricht gesendet",
+    body: "Vielen Dank für deine Nachricht. Wir melden uns so schnell wie möglich."
+  },
+  workshop: {
+    title: "Workshop-Anmeldung erhalten",
+    body: "Deine Workshop-Anmeldung ist bestätigt. Weitere Informationen folgen per E-Mail."
+  },
+  default: {
+    title: "Danke",
+    body: "Deine Eingabe wurde erfolgreich übermittelt. Wir freuen uns über deine Kontaktaufnahme mit Studio Sun & Sea."
+  }
+};
+
+const key = source && source in messages ? source : "default";
+const { title, body } = messages[key];
+---
+
+<BaseLayout lang="de" page="thankYou" title={`${title} – Studio Sun & Sea`}>
+  <h1>{title}</h1>
+  <section>
+    <p>{body}</p>
+  </section>
+</BaseLayout>

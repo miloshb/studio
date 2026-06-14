@@ -5,7 +5,9 @@ export const LANGS = ["en", "de"];
 
 // Mapping EN ↔ DE equivalents
 export const ROUTES = {
-  // HEADER NAV PAGES
+  //////////////////////
+  // HEADER NAV PAGES //
+  //////////////////////
   index: {
     href: { en: "/en/", de: "/de/" },
     nav: { en: "Home", de: "Start" },
@@ -79,7 +81,18 @@ export const ROUTES = {
     }
   },
 
-  // SYSTEM PAGES
+  //////////////////////
+  // SYSTEM PAGES     //
+  //////////////////////
+  thankYou: {
+    href: { en: "/en/thankyou", de: "/de/danke" },
+    nav: { en: "Thank You", de: "Danke" },
+    label: { en: "Thank You", de: "Danke" },
+    desc: {
+      en: "Confirmation page for bookings, messages, and submissions.",
+      de: "Bestätigungsseite für Buchungen, Nachrichten und Anfragen."
+    }
+  },
   register: {
     href: { en: "/en/register", de: "/de/registrieren" },
     nav: { en: "Register", de: "Registrieren" },
@@ -108,8 +121,10 @@ export const ROUTES = {
     }
   },
 
-  // FOOTER PAGES
-  schedule_overview: {
+  //////////////////////
+  // FOOTER PAGES     //
+  //////////////////////
+  scheduleOverview: {
     href: { en: "/en/schedule-overview", de: "/de/schedule-overview" },
     nav: { en: "Weekly Rhythm", de: "Wochenrhythmus" },
     label: { en: "Weekly Rhythm", de: "Wochenrhythmus" },
@@ -196,7 +211,7 @@ export const ROUTES = {
 // NAV GROUPS (keys only)
 export const HEADER_ROUTE_KEYS = ["classes", "schedule", "private", "workshops", "teach", "about"];
 export const FOOTER_ROUTE_KEYS = [
-  "schedule_overview",
+  "scheduleOverview",
   "pricing",
   "payment",
   "kunga",
@@ -206,7 +221,7 @@ export const FOOTER_ROUTE_KEYS = [
   "waiver",
   "contact"
 ];
-export const NEXT_STEPS_ROUTE_KEYS = ["classes", "private", "workshops", "teach", "contact"];
+export const NEXT_STEPS_ROUTE_KEYS = ["classes", "private", "workshops", "schedule", "teach", "contact"];
 
 // HREFLANG MAP
 export const HREFLANG = Object.fromEntries(
