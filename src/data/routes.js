@@ -136,6 +136,15 @@ export const ROUTES = {
       de: "Zahlungsmöglichkeiten für Kurse und Sessions."
     }
   },
+  kunga: {
+    href: { en: "/en/kunga", de: "/de/kunga" },
+    nav: { en: "Kunga Yoga", de: "Kunga Yoga" },
+    label: { en: "Kunga Yoga – Service & Community", de: "Kunga Yoga – Dienst & Gemeinschaft" },
+    desc: {
+      en: "Learn about the service-based Kunga Yoga tradition and our support for charitable initiatives.",
+      de: "Erfahre mehr über die dienstorientierte Kunga-Yoga-Tradition und wie wir gemeinnützige Projekte unterstützen."
+    }
+  },
   imprint: {
     href: { en: "/en/imprint", de: "/de/impressum" },
     nav: { en: "Imprint", de: "Impressum" },
@@ -190,6 +199,7 @@ export const FOOTER_ROUTE_KEYS = [
   "scheduleOverview",
   "pricing",
   "payment",
+  "kunga",
   "imprint",
   "privacy",
   "terms",
