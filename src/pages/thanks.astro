@@ -8,7 +8,6 @@ const debug = true; // Set to true to show debug info
 const { searchParams } = Astro.url;
 const query = searchParams.toString();
 const qs = query ? `?${query}` : "";
-const currentQuery = window.location.search;
 
 // Automatically checks the browser header against your config's supported languages
 const browserLang = Astro.preferredLocale;
@@ -27,11 +26,17 @@ const thankYouPath = ROUTES.thankYou.href[lang];
 //return Astro.redirect(`${thankYouPath}${qs}`);
 ---
 
+<script define:vars={{ LANGS, LANG_STORE_KEY}}>
+  function getCurrentQuery() {
+    return window.location.search;
+  }
+</script>
+
 {debug && (
   <p>
     query: {query}<br />
     qs: {qs}<br />
-    currentQuery: {currentQuery}<br />
+    currentQuery: {`getCurrentQuery()`}<br />
     langCookie: {langCookie}<br />
     browserLang: {browserLang}<br />
     fallbackOptions: {fallbackOptions}<br />
