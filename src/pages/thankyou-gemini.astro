@@ -50,7 +50,7 @@ const supportedLanguages = JSON.stringify(LANGS);
         const finalRedirectUri = uris[targetLocale] || defaultFallbackUri;
 
         // Perform the clean edge-like browser history replacement redirect
-        window.location.replace(finalRedirectUri);
+        window.location.assign(finalRedirectUri);
     </script>
 </head>
 <body>
