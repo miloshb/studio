@@ -44,6 +44,18 @@ export const ROUTES = {
       de: "Einzelunterricht und Kleingruppen-Sessions."
     }
   },
+  bookPrivate: {
+    href: { en: "/en/private-booking", de: "/de/private-booking" },
+    nav: { en: "Book Private", de: "Privat Buchung" },
+    label: {
+      en: "Book a Private Yoga Session",
+      de: "Private Yoga Buchung"
+    },
+    desc: {
+      en: "Schedule a private yoga appointment through Mindbody.",
+      de: "Buche eine private Yoga-Session über Mindbody."
+    }
+  },
   workshops: {
     href: { en: "/en/workshops", de: "/de/workshops" },
     nav: { en: "Workshops", de: "Workshops" },

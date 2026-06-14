@@ -1,0 +1,18 @@
+---
+/**
+ * Mindbody Appointments Widget Component
+ *
+ * Props:
+ * - widgetId: string (Mindbody widget ID)
+ * - className: optional string for custom styling
+ *
+ */
+const { widgetId, className = "" } = Astro.props;
+---
+
+<div class={`mindbody-widget-wrapper ${className}`}>
+  <!-- Mindbody Appointments widget begin -->
+  <div class="mindbody-widget" data-widget-type="Appointments" data-widget-id={widgetId}></div>
+  <script async src="https://brandedweb.mindbodyonline.com/embed/widget.js"></script>
+  <!-- Mindbody Appointments widget end -->
+</div>
