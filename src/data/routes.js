@@ -109,7 +109,7 @@ export const ROUTES = {
   },
 
   // FOOTER PAGES
-  schedule_overview: {
+  scheduleOverview: {
     href: { en: "/en/schedule-overview", de: "/de/schedule-overview" },
     nav: { en: "Weekly Rhythm", de: "Wochenrhythmus" },
     label: { en: "Weekly Rhythm", de: "Wochenrhythmus" },
@@ -187,7 +187,7 @@ export const ROUTES = {
 // NAV GROUPS (keys only)
 export const HEADER_ROUTE_KEYS = ["classes", "schedule", "private", "workshops", "teach", "about"];
 export const FOOTER_ROUTE_KEYS = [
-  "schedule_overview",
+  "scheduleOverview",
   "pricing",
   "payment",
   "imprint",
@@ -196,7 +196,7 @@ export const FOOTER_ROUTE_KEYS = [
   "waiver",
   "contact"
 ];
-export const NEXT_STEPS_ROUTE_KEYS = ["classes", "private", "workshops", "teach", "contact"];
+export const NEXT_STEPS_ROUTE_KEYS = ["classes", "private", "workshops", "scheduleOverview", "teach", "contact"];
 
 // HREFLANG MAP
 export const HREFLANG = Object.fromEntries(
