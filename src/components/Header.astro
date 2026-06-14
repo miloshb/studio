@@ -1,5 +1,7 @@
 ---
+// src/components/Header.astro
 import { ROUTES, LANGS, HEADER_ROUTE_KEYS, getLangRoot, getLangUrl } from "../data/routes.js";
+import { LANG_STORE_KEY } from "../data/constants.js";
 const { lang, page } = Astro.props;
 ---
 
@@ -7,7 +9,7 @@ const { lang, page } = Astro.props;
   <div class="header container">
     <!-- Brand always links to the correct language root -->
     <a class="brand" href={getLangRoot(lang)}>
-      <img src="/logo/studio-sun-and-sea-logo.png" />
+      <img src="/logo/studio-sun-and-sea-logo.png" alt="Studio Sun & Sea Logo" />
       Studio Sun & Sea
     </a>
 
@@ -27,7 +29,7 @@ const { lang, page } = Astro.props;
           <a
             class={lang === code ? "active" : ""}
             href={getLangUrl(page, code)}
-            onclick={`setLangPref('${code}')`}
+            data-lang={code}
           >
             {code.toUpperCase()}
           </a>
@@ -38,9 +40,25 @@ const { lang, page } = Astro.props;
   </div>
 </header>
 
-<script>
-  function setLangPref(lang) {
-    localStorage.setItem("preferredLanguage", lang);
+<script define:vars={{ LANG_STORE_KEY }}>
+  // Use Event Delegation: Attach one clean listener to the language selector parent block
+  const langSwitcher = document.querySelector('.header-lang');
+
+  if (langSwitcher) {
+    langSwitcher.addEventListener('click', (event) => {
+      // Find the closest anchor tag if they happen to click an inner border pixel
+      const targetLink = event.target.closest('a[data-lang]');
+      if (!targetLink) return;
+
+      const chosenLang = targetLink.getAttribute('data-lang');
+      if (chosenLang) {
+        try {
+          localStorage.setItem(LANG_STORE_KEY, chosenLang);
+        } catch (e) {
+          console.warn("Storage write blocked by browser configuration:", e);
+        }
+      }
+    });
   }
 </script>
 
@@ -66,6 +84,11 @@ const { lang, page } = Astro.props;
     z-index: 1;
   }
 
+  .brand img {
+    height: 2rem;
+    width: auto;
+  }
+
   .header-nav {
     font-size: var(--text-md);
   }
@@ -87,6 +110,7 @@ const { lang, page } = Astro.props;
 
   .header-lang a {
     color: var(--color-text-soft);
+    padding: var(--space-xxs) var(--space-xs);
   }
 
   .header-lang a.active {

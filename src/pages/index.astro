@@ -1,26 +1,41 @@
+---
+import { LANGS } from "../data/routes.js";
+import { LANG_STORE_KEY } from "../data/constants.js";
+
+const defaultLocale = LANGS[0];
+---
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang={defaultLocale}>
   <head>
     <meta charset="UTF-8" />
     <title>Redirecting…</title>
+    <noscript><meta http-equiv="refresh" content={`0;url=/${defaultLocale}/`} /></noscript>
 
-    <script>
-      // Only redirect if the user has never been redirected before
-      if (!localStorage.getItem('preferredLanguage')) {
-        const lang = navigator.language || navigator.userLanguage;
-        const isGerman = lang.toLowerCase().startsWith('de');
+    <script is:inline define:vars={{ LANGS, LANG_STORE_KEY }}>
+      let targetLang = localStorage.getItem(LANG_STORE_KEY);
 
-        // Save the detected preference permanently
-        localStorage.setItem('preferredLanguage', isGerman ? 'de' : 'en');
+      if (!targetLang) {
+        const browserLanguages = navigator.languages || [navigator.language || LANGS[0]];
 
-        // Redirect to the detected language
-        window.location.href = isGerman ? '/de/' : '/en/';
-      } else {
-        // If a preference exists, respect it
-        const preferred = localStorage.getItem('preferredLanguage');
-        window.location.href = preferred === 'de' ? '/de/' : '/en/';
+        for (const lang of browserLanguages) {
+          const shortCode = String(lang).split('-')[0].toLowerCase();
+          if (LANGS.includes(shortCode)) {
+            targetLang = shortCode;
+            break;
+          }
+        }
       }
+
+      targetLang = targetLang || LANGS[0];
+      try {
+        localStorage.setItem(LANG_STORE_KEY, targetLang);
+      } catch (e) {
+        // Guard against private browsing tracking blockers
+      }
+      window.location.replace(`/${targetLang}/`);
     </script>
   </head>
-  <body></body>
+  <body>
+  </body>
 </html>
