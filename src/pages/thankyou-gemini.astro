@@ -1,56 +1,80 @@
 ---
 // src/pages/thanks.astro
-// This frontmatter is empty because the redirect happens on the client-side
-// based on the user's specific browser language settings.
+import { LANGS, ROUTES } from "../data/routes.js";
+
+// 1. Identify the fallback default language from your array architecture
+const defaultLocale = LANGS[0];
+
+// 2. Pre-calculate the fallback default URI on the server side
+const defaultFallbackUri = ROUTES.thankYou.href[defaultLocale];
+
+// 3. Serialize your localized URIs map into a clean JSON string for client injection
+// This creates an object like: { en: "/en/thanks/", de: "/de/vielen-dank/" }
+const localizedUrisMap = JSON.stringify(ROUTES.thankYou.href);
+const supportedLanguages = JSON.stringify(LANGS);
 ---
 <!DOCTYPE html>
-<html lang="en">
+<html lang={defaultLocale}>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Redirecting...</title>
 
-    <!-- Fallback redirect if JavaScript is disabled (defaults to English) -->
+    <!-- Static Fallback redirect if JavaScript is disabled -->
     <noscript>
-        <meta http-equiv="refresh" content="2;url=/en/thanks/" />
+        <meta http-equiv="refresh" content={`2;url=${defaultFallbackUri}`} />
     </noscript>
 
-    <script is:inline>
-        // 1. Define your supported locales (must match your folder structure)
-        const supportedLocales = ['en', 'de'];
-        const defaultLocale = 'en';
+    <!-- Define server variables securely using Astro's define:vars directive -->
+    <script is:inline define:vars={{ localizedUrisMap, supportedLanguages, defaultLocale, defaultFallbackUri }}>
+        // Parse the server data injected into the client context
+        const uris = JSON.parse(localizedUrisMap);
+        const supportedLocales = JSON.parse(supportedLanguages);
 
-        // 2. Detect user language from the browser
-        // navigator.languages gets an array of preferred languages (e.g., ['de-DE', 'en-US'])
-        // navigator.language is the primary language string fallback
+        // Detect user browser language preferences
         const userLanguages = navigator.languages || [navigator.language || defaultLocale];
-
         let targetLocale = defaultLocale;
 
-        // 3. Find the first match between user preferences and supported locales
+        // Loop through browser languages to find a matching locale config
         for (const lang of userLanguages) {
-            const shortLang = lang.split('-')[0].toLowerCase(); // Converts 'de-DE' to 'de'
+            // Safely split regional tags (e.g., 'de-CH' -> 'de')
+            const shortLang = lang.split('-')[0].toLowerCase();
             if (supportedLocales.includes(shortLang)) {
                 targetLocale = shortLang;
                 break;
             }
         }
 
-        // 4. Perform the immediate browser redirect
-        // Be sure to use trailing slashes or file extension based on your Astro build config
-        window.location.replace(`/${targetLocale}/thanks/`);
+        // Dynamically extract the correct path based on the user's matched language key
+        // Fallback to the hardcoded default server path if an unexpected matching anomaly occurs
+        const finalRedirectUri = uris[targetLocale] || defaultFallbackUri;
+
+        // Perform the clean edge-like browser history replacement redirect
+        window.location.replace(finalRedirectUri);
     </script>
 </head>
 <body>
-    <!-- Simple UI fallback for slow networks or if the redirect takes a moment -->
     <div class="redirect-container">
         <p>Redirecting to your language version...</p>
-        <p>Falls Sie nicht automatisch weitergeleitet werden, <a id="fallback-link" href="/en/thanks/">klicken Sie bitte hier</a>.</p>
+        <p>Falls Sie nicht automatisch weitergeleitet werden, <a id="fallback-link" href={defaultFallbackUri}>klicken Sie bitte hier</a>.</p>
     </div>
 
-    <script is:inline>
-        // Update the fallback link dynamically just in case they are stuck
-        document.getElementById('fallback-link').href = `/${targetLocale}/thanks/`;
+    <script is:inline define:vars={{ localizedUrisMap, supportedLanguages, defaultLocale, defaultFallbackUri }}>
+        // Immediate visual update to the HTML anchor tag text if the script takes a split second to loop
+        const uris = JSON.parse(localizedUrisMap);
+        const supportedLocales = JSON.parse(supportedLanguages);
+        const userLanguages = navigator.languages || [navigator.language || defaultLocale];
+
+        let targetLocale = defaultLocale;
+        for (const lang of userLanguages) {
+            const shortLang = lang.split('-')[0].toLowerCase();
+            if (supportedLocales.includes(shortLang)) {
+                targetLocale = shortLang;
+                break;
+            }
+        }
+
+        document.getElementById('fallback-link').href = uris[targetLocale] || defaultFallbackUri;
     </script>
 
     <style>
