@@ -44,7 +44,7 @@ export const ROUTES = {
       de: "Einzelunterricht und Kleingruppen-Sessions."
     }
   },
-  bookPrivate: {
+  privateBooking: {
     href: { en: "/en/private-booking", de: "/de/private-booking" },
     nav: { en: "Book Private", de: "Privat Buchung" },
     label: {
