@@ -83,10 +83,19 @@ export const ROUTES = {
       de: "Erfahren Sie mehr über Studio Sun & Sea."
     }
   },
+  teachers: {
+    href: { en: "/en/teachers", de: "/de/teachers" },
+    nav: { en: "Teachers", de: "Lehrer:innen" },
+    label: { en: "About the Teachers", de: "Über den Lehrer:innen" },
+    desc: {
+      en: "Learn about our teachers.",
+      de: "Lernen Sie unsere Lehrer:innen kennen."
+    }
+  },
   account: {
     href: { en: "/en/account", de: "/de/account" },
     nav: { en: "Account", de: "Konto" },
-    label: { en: "Account", de: "Konto" },
+    label: { en: "My Account", de: "Mein Konto" },
     desc: {
       en: "Manage your account.",
       de: "Verwalten Sie Ihr Konto."
@@ -112,15 +121,6 @@ export const ROUTES = {
     desc: {
       en: "Create your account.",
       de: "Erstellen Sie Ihr Konto."
-    }
-  },
-  account: {
-    href: { en: "/en/account", de: "/de/konto" },
-    nav: { en: "Account", de: "Konto" },
-    label: { en: "My Account", de: "Mein Konto" },
-    desc: {
-      en: "View your account.",
-      de: "Melden Sie sich in Ihrem Konto an."
     }
   },
   checkout: {
