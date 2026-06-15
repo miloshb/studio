@@ -12,7 +12,7 @@
 const { widgetId, className = "" } = Astro.props;
 ---
 
-<div class={`mindbody-widget-wrapper ${className}`}>
+<div class={className}>
   <script src="https://widgets.mindbodyonline.com/javascripts/healcode.js" type="text/javascript"></script>
   <healcode-widget data-type="prospects" data-widget-partner="object" data-widget-id={widgetId} data-widget-version="0" ></healcode-widget>
 </div>
