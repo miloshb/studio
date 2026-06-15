@@ -15,8 +15,9 @@ const {
 const systemPages = ["register", "login", "account", "checkout"];
 const noindex = systemPages.includes(page);
 
-const mindbodyPages = ["schedule", "login", "account", "checkout", "contact", "private-booking", "register"];
-const footerOffset = mindbodyPages.includes(page);
+// Pages where the Studio footer should be pushed up to collapse the total combined footer
+const mindbodyOffestPages = ["schedule", "login", "account", "checkout", "private-booking", "register"];
+const footerOffset = mindbodyOffestPages.includes(page);
 
 // Pages where next steps should be displayed
 const nextStepsPages = ["about", "private", "teach", "classes", "pricing", "thankYou"];
