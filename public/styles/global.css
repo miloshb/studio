@@ -68,12 +68,13 @@ li a:hover {
   --font-body: "Inter", sans-serif;
 
   /* Type scale */
-  --text-xs: 0.75rem;
-  --text-sm: 0.85rem;
-  --text-md: 1rem;
-  --text-lg: 1.125rem;
-  --text-xl: 1.5rem;
-  --text-xxl: 2.25rem;
+  --text-xxs: 0.5rem;  /*  8px */
+  --text-xs: 0.75rem;  /* 12px */
+  --text-sm: 0.875rem; /* 14px */
+  --text-md: 1rem;     /* 16px */
+  --text-lg: 1.125rem; /* 18px */
+  --text-xl: 1.5rem;   /* 24px */
+  --text-xxl: 2.25rem; /* 36px */
 
   /* Radius scale */
   --radius-sm: 2px;
@@ -89,6 +90,7 @@ li a:hover {
   --space-lg: 48px;
   --space-xl: 96px;
   --space-xxl: 144px;
+  --padding-button: 12px 24px
 
   /* Offset scale */
   --offset-sm: -16px;
@@ -152,12 +154,14 @@ a:hover {
 
 .button {
   display: inline-block;
-  padding: 12px 28px;
+  align-self: center;
+  padding: var(--padding-button);
   background: var(--color-accent);
   color: var(--color-text);
   font-family: var(--font-body);
   font-size: var(--text-sm);
-  border-radius: var(--radius-md);
+  text-decoration: none;
+  border-radius: var(--radius-lg);
 }
 
 .button:hover {
