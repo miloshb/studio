@@ -27,21 +27,21 @@ const { lang, page } = Astro.props;
     <div class="header-tools">
       <MindbodyLogin />
 
-    <!-- Language Switcher -->
-    <div class="header-lang">
-      {LANGS.map(code => (
-        <>
-          <a
-            class={lang === code ? "active" : ""}
-            href={getLangUrl(page, code)}
-            data-lang={code}
-          >
-            {code.toUpperCase()}
-          </a>
-          {code !== LANGS.at(-1) && <span>·</span>}
-        </>
-      ))}
-    </div>
+      <!-- Language Switcher -->
+      <div class="header-lang">
+        {LANGS.map(code => (
+          <>
+            <a
+              class={lang === code ? "active" : ""}
+              href={getLangUrl(page, code)}
+              data-lang={code}
+            >
+              {code.toUpperCase()}
+            </a>
+            {code !== LANGS.at(-1) && <span>·</span>}
+          </>
+        ))}
+      </div>
     </div>
   </div>
 </header>
@@ -84,7 +84,7 @@ const { lang, page } = Astro.props;
     font-family: var(--font-heading);
     font-size: var(--text-xl);
     color: var(--color-text);
-    display: flex;
+    display: inline-flex;
     flex-wrap: nowrap;
     gap: var(--space-xs);
     z-index: 1;
@@ -112,7 +112,7 @@ const { lang, page } = Astro.props;
   }
 
   .header-lang {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     font-size: var(--text-xs);
   }
