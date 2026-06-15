@@ -65,6 +65,18 @@ export const ROUTES = {
       de: "Vertiefen Sie Ihre Praxis mit unseren spezialisierten Workshops."
     }
   },
+  workshopBooking: {
+    href: { en: "/en/workshop-booking", de: "/de/workshop-booking" },
+    nav: { en: "Book a Workshop", de: "Workshop Buchung" },
+    label: {
+      en: "Book a Yoga Workshop",
+      de: "Yoga Workshop buchen"
+    },
+    desc: {
+      en: "Book a yoga workshop through Mindbody.",
+      de: "Buche eine Yoga-Workshop über Mindbody."
+    }
+  },
   teach: {
     href: { en: "/en/teach", de: "/de/teach" },
     nav: { en: "Teach", de: "Unterrichten" },
