@@ -114,12 +114,12 @@ export const ROUTES = {
       de: "Erstellen Sie Ihr Konto."
     }
   },
-  login: {
-    href: { en: "/en/login", de: "/de/anmelden" },
-    nav: { en: "Login", de: "Anmelden" },
-    label: { en: "Login", de: "Anmelden" },
+  account: {
+    href: { en: "/en/account", de: "/de/konto" },
+    nav: { en: "Account", de: "Konto" },
+    label: { en: "My Account", de: "Mein Konto" },
     desc: {
-      en: "Access your account.",
+      en: "View your account.",
       de: "Melden Sie sich in Ihrem Konto an."
     }
   },
