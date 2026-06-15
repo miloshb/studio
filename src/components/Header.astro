@@ -22,9 +22,10 @@ const { lang, page } = Astro.props;
           {ROUTES[key].nav[lang]}
         </a>
       ))}
-
-      <MindbodyLogin />
     </div>
+
+    <div class="header-tools">
+      <MindbodyLogin />
 
     <!-- Language Switcher -->
     <div class="header-lang">
@@ -40,6 +41,7 @@ const { lang, page } = Astro.props;
           {code !== LANGS.at(-1) && <span>·</span>}
         </>
       ))}
+    </div>
     </div>
   </div>
 </header>
@@ -88,6 +90,10 @@ const { lang, page } = Astro.props;
     z-index: 1;
   }
 
+  .brand :global(img:hover) {
+    opacity: 0.8;
+  }
+
   .header-nav {
     font-size: var(--text-md);
   }
@@ -99,6 +105,10 @@ const { lang, page } = Astro.props;
 
   .header-nav a:hover {
     color: var(--color-text);
+  }
+
+  .header-tools {
+    flex-wrap: nowrap;
   }
 
   .header-lang {
