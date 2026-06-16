@@ -1,8 +1,8 @@
 ---
 import { FOOTER_ROUTE_KEYS, ROUTES } from "../data/routes.js";
 import ExaliSeal from "./ExaliSeal.astro";
-const { lang, offset } = Astro.props;
-const footerTopOffset = offset ? "var(--offset-xl)" : "0px";
+const { lang, footerOffset } = Astro.props;
+const footerTopOffset = footerOffset ? "var(--offset-lg)" : "0px";
 ---
 
 <footer class="footer">

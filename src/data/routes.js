@@ -44,6 +44,18 @@ export const ROUTES = {
       de: "Einzelunterricht und Kleingruppen-Sessions."
     }
   },
+  privateBooking: {
+    href: { en: "/en/private-booking", de: "/de/private-booking" },
+    nav: { en: "Book Private", de: "Privat Buchung" },
+    label: {
+      en: "Book a Private Yoga Session",
+      de: "Private Yoga Buchung"
+    },
+    desc: {
+      en: "Schedule a private yoga appointment through Mindbody.",
+      de: "Buche eine private Yoga-Session über Mindbody."
+    }
+  },
   workshops: {
     href: { en: "/en/workshops", de: "/de/workshops" },
     nav: { en: "Workshops", de: "Workshops" },
@@ -51,6 +63,18 @@ export const ROUTES = {
     desc: {
       en: "Deepen your practice with our specialized workshops.",
       de: "Vertiefen Sie Ihre Praxis mit unseren spezialisierten Workshops."
+    }
+  },
+  workshopBooking: {
+    href: { en: "/en/workshop-booking", de: "/de/workshop-booking" },
+    nav: { en: "Book a Workshop", de: "Workshop Buchung" },
+    label: {
+      en: "Book a Yoga Workshop",
+      de: "Yoga Workshop buchen"
+    },
+    desc: {
+      en: "Book a yoga workshop through Mindbody.",
+      de: "Buche eine Yoga-Workshop über Mindbody."
     }
   },
   teach: {
@@ -71,10 +95,19 @@ export const ROUTES = {
       de: "Erfahren Sie mehr über Studio Sun & Sea."
     }
   },
+  teachers: {
+    href: { en: "/en/teachers", de: "/de/teachers" },
+    nav: { en: "Teachers", de: "Lehrer:innen" },
+    label: { en: "About the Teachers", de: "Über den Lehrer:innen" },
+    desc: {
+      en: "Learn about our teachers.",
+      de: "Lernen Sie unsere Lehrer:innen kennen."
+    }
+  },
   account: {
     href: { en: "/en/account", de: "/de/account" },
     nav: { en: "Account", de: "Konto" },
-    label: { en: "Account", de: "Konto" },
+    label: { en: "My Account", de: "Mein Konto" },
     desc: {
       en: "Manage your account.",
       de: "Verwalten Sie Ihr Konto."
@@ -100,15 +133,6 @@ export const ROUTES = {
     desc: {
       en: "Create your account.",
       de: "Erstellen Sie Ihr Konto."
-    }
-  },
-  login: {
-    href: { en: "/en/login", de: "/de/anmelden" },
-    nav: { en: "Login", de: "Anmelden" },
-    label: { en: "Login", de: "Anmelden" },
-    desc: {
-      en: "Access your account.",
-      de: "Melden Sie sich in Ihrem Konto an."
     }
   },
   checkout: {

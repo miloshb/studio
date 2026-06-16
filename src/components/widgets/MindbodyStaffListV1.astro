@@ -1,0 +1,18 @@
+---
+/**
+ * Mindbody Staff List (Teachers) Widget Component
+ *
+ * Props:
+ * - widgetId: string (Mindbody widget ID)
+ * - className: optional string for custom styling
+ *
+ *   <script src="https://widgets.mindbodyonline.com/javascripts/healcode.js" type="text/javascript"></script>
+ *   <healcode-widget data-type="staff_lists" data-widget-partner="object" data-widget-id="984092814de" data-widget-version="0" ></healcode-widget>data-widget-version="0" ></healcode-widget>
+ */
+const { widgetId, className = "" } = Astro.props;
+---
+
+<div class={className}>
+  <script src="https://widgets.mindbodyonline.com/javascripts/healcode.js" type="text/javascript"></script>
+  <healcode-widget data-type="staff_lists" data-widget-partner="object" data-widget-id={widgetId} data-widget-version="0" ></healcode-widget>
+</div>

@@ -1,21 +1,14 @@
 ---
+// src/pages/de/impressum.astro
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import Operator from "../../components/Operator.astro";
 import ExaliSeal from "../../components/ExaliSeal.astro";
 ---
 
 <BaseLayout lang="de" page="imprint" title="Impressum – Studio Sun & Sea">
   <h1>Impressum</h1>
 
-  <section>
-    <h2>Angaben gemäß § 5 TMG</h2>
-    <p><strong>Studio Sun & Sea</strong><br />
-    Inhaber: Miloš Borojević<br />
-    Pfarrtannen 7<br />
-    49808 Lingen<br />
-    Deutschland</p>
-
-    <p>Email: privacy@studiosunandsea.com</p>
-  </section>
+  <Operator lang="de" heading="Angaben gemäß § 5 TMG" />
 
   <section>
     <h2>Berufshaftpflichtversicherung</h2>
@@ -30,7 +23,7 @@ import ExaliSeal from "../../components/ExaliSeal.astro";
       <li>Vermögensschaden-Haftpflichtversicherung (Financial Loss Insurance)</li>
       <li>Büro- und Betriebshaftpflichtversicherung (General Liability Insurance)</li>
       <li>Produkthaftpflichtversicherung</li>
-      <li>Besondere Zusatzklauseln für Yoga-Lehrer (exali 2021-02)</li>
+      <li>Besondere Zusatzklauseln für Yoga-Lehrer (Exali 2021-02)</li>
     </ul>
 
     <h3>Versicherungssummen</h3>
@@ -41,9 +34,6 @@ import ExaliSeal from "../../components/ExaliSeal.astro";
 
     <h3>Geltungsbereich der Versicherung</h3>
     <p>Die Berufshaftpflichtversicherung bietet Versicherungsschutz für die versicherten Tätigkeiten weltweit, vorbehaltlich der Bedingungen und Ausschlüsse der Police. Rechtsverbindlich ist ausschließlich der Versicherungsschein in deutscher Sprache.</p>
-
-    <h3>Hinweis</h3>
-    <p>Rechtsverbindlich ist ausschließlich der Versicherungsschein in deutscher Sprache.</p>
 
     <h3>Schadenmeldung</h3>
     <p>
@@ -61,49 +51,49 @@ import ExaliSeal from "../../components/ExaliSeal.astro";
 
   <section>
     <h2>Rechtliche Hinweise (Deutschland / EU)</h2>
-    <p>Als Diensteanbieter ist Studio Sun & Sea gemäß § 7 Abs. 1 TMG für eigene Inhalte verantwortlich. Nach §§ 8-10 TMG besteht keine Verpflichtung, übermittelte oder gespeicherte fremde Informationen zu überwachen.</p>
+    <p>Als Diensteanbieter ist Studio Sun & Sea gemäß § 7 Abs. 1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen.</p>
   </section>
 
   <section>
     <h2>Haftung für externe Links</h2>
-    <p>Für Inhalte externer Websites, auf die diese Seite verlinkt, wird keine Haftung übernommen. Verantwortlich ist der jeweilige Betreiber.</p>
+    <p>Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich.</p>
   </section>
 
   <section>
     <h2>Urheberrecht</h2>
-    <p>Alle Inhalte dieser Website unterliegen dem deutschen Urheberrecht. Eine Nutzung außerhalb der gesetzlichen Grenzen erfordert die schriftliche Zustimmung.</p>
+    <p>Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers.</p>
   </section>
 
   <section>
     <h2>Online-Streitbeilegung (EU)</h2>
-    <p>Plattform der Europäischen Kommission zur Online-Streitbeilegung: https://ec.europa.eu/consumers/odr/</p>
-    <p>Studio Sun & Sea ist nicht verpflichtet und nicht bereit, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
+    <p>Die Europäische Kommission stellt eine Plattform zur Verbraucherstreitbeilegung (Consumer Redress Hub) bereit, erreichbar unter: <a href="https://europa.eu" target="_blank" rel="noopener noreferrer">https://europa.eu</a>. Studio Sun & Sea ist nicht verpflichtet und nicht bereit, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
   </section>
 
   <section>
     <h2>Hinweise für internationale Teilnehmer (USA)</h2>
 
     <h3>Kein medizinischer Rat</h3>
-    <p>Alle Leistungen dienen der allgemeinen Gesundheitsförderung. Es werden keine medizinischen oder therapeutischen Leistungen erbracht.</p>
+    <p>Alle Leistungen dienen der allgemeinen Gesundheitsförderung. Es werden keine medizinischen oder therapeutischen Leistungen erbracht. Die Inhalte stellen keinen Ersatz für professionelle medizinische Beratung dar.</p>
 
     <h3>Eigenverantwortung und Risikoübernahme</h3>
-    <p>Yoga beinhaltet körperliche Risiken. Mit der Teilnahme erkennen Sie diese an und übernehmen die volle Verantwortung.</p>
+    <p>Yoga beinhaltet inhärente körperliche Risiken wie Zerrungen oder Stürze. Mit der Teilnahme erkennen Sie diese Risiken an und übernehmen die volle Verantwortung für Ihre eigene Sicherheit.</p>
 
     <h3>Haftungsbeschränkung</h3>
-    <p>Studio Sun & Sea haftet nicht für Verletzungen oder Schäden, die aus der Teilnahme an Kursen oder Online-Sitzungen entstehen, soweit gesetzlich zulässig.</p>
+    <p>Studio Sun & Sea haftet nicht für Verletzungen oder Schäden, die aus der Teilnahme an Kursen oder Online-Sitzungen entstehen, soweit gesetzlich maximal zulässig.</p>
 
     <h3>Verantwortung der Teilnehmer</h3>
-    <p>Teilnehmer sind selbst dafür verantwortlich, ihre körperliche Verfassung zu beobachten und eine sichere Übungsumgebung zu gewährleisten.</p>
+    <p>Teilnehmer sind selbst dafür verantwortlich, ihre körperliche Verfassung während des Übens aufmerksam zu beobachten und Überlastungen zu vermeiden.</p>
 
     <h3>Keine Erfolgsgarantie</h3>
-    <p>Es wird kein bestimmter Erfolg oder Fortschritt garantiert.</p>
+    <p>Es wird kein bestimmter Trainingserfolg oder medizinischer Fortschritt garantiert.</p>
 
     <h3>Sicherheit bei Online-Kursen</h3>
-    <p>Für Online-Kurse sind die Teilnehmer selbst verantwortlich, ausreichend Platz zu schaffen und Hindernisse zu entfernen.</p>
-
-    <p>
-      Weitere rechtliche Hinweise finden Sie in der
-      <a href="/en/waiver">englischsprachigen Release and Waiver of Liability</a>.
-    </p>
+    <p>Für Online-Kurse sind die Teilnehmer selbst dafür verantwortlich, ausreichend Platz zu schaffen, störende Hindernisse zu entfernen und für einen sicheren Stand der Matte zu sorgen.</p>
   </section>
+
+  <p>
+    Bitte beachten Sie auch unsere vollständige
+    <a href="/de/haftungsausschluss">deutschsprachige Einverständniserklärung</a> sowie die
+    <a href="/en/waiver">englischsprachige Release and Waiver of Liability</a>.
+  </p>
 </BaseLayout>

@@ -1,7 +1,7 @@
 /* -------------------------------------------------------
    Studio Sun & Sea — Global Styles
    Warm minimalism • Calm typography • Soft color palette
-------------------------------------------------------- */
+-------------------------------------------------------- */
 
 /* ---------------------------------
    1. CSS RESET (modern + minimal)
@@ -17,6 +17,7 @@ html {
   margin: 0;
   padding: 0;
   scroll-behavior: smooth;
+  scrollbar-gutter: stable; /* Keeps layout tracking solid during thrashed resizing */
   height: 100%;
 }
 
@@ -27,7 +28,7 @@ body {
   color: var(--color-text);
   font-family: var(--font-body);
   line-height: 1.6;
-  height: 100%;
+  min-height: 100%;
 }
 
 /* Remove default link underlines */
@@ -68,12 +69,13 @@ li a:hover {
   --font-body: "Inter", sans-serif;
 
   /* Type scale */
-  --text-xs: 0.75rem;
-  --text-sm: 0.85rem;
-  --text-md: 1rem;
-  --text-lg: 1.125rem;
-  --text-xl: 1.5rem;
-  --text-xxl: 2.25rem;
+  --text-xxs: 0.5rem;  /*  8px */
+  --text-xs: 0.75rem;  /* 12px */
+  --text-sm: 0.875rem; /* 14px */
+  --text-md: 1rem;     /* 16px */
+  --text-lg: 1.125rem; /* 18px */
+  --text-xl: 1.5rem;   /* 24px */
+  --text-xxl: 2.25rem; /* 36px */
 
   /* Radius scale */
   --radius-sm: 2px;
@@ -89,6 +91,7 @@ li a:hover {
   --space-lg: 48px;
   --space-xl: 96px;
   --space-xxl: 144px;
+  --padding-button: 12px 24px;
 
   /* Offset scale */
   --offset-sm: -16px;
@@ -147,17 +150,37 @@ a:hover {
 }
 
 /* ---------------------------------
-   5. BUTTONS (minimal)
+   5. BRAND
+---------------------------------- */
+
+.brand {
+  font-family: var(--font-heading);
+  font-size: var(--text-xl);
+  color: var(--color-text);
+  display: inline-flex;
+  flex-wrap: nowrap;
+  gap: var(--space-xs);
+  z-index: 1;
+}
+
+.brand :global(img:hover) {
+  opacity: 0.8;
+}
+
+/* ---------------------------------
+   6. BUTTONS (minimal)
 ---------------------------------- */
 
 .button {
   display: inline-block;
-  padding: 12px 28px;
+  align-self: center;
+  padding: var(--padding-button);
   background: var(--color-accent);
   color: var(--color-text);
   font-family: var(--font-body);
   font-size: var(--text-sm);
-  border-radius: var(--radius-md);
+  text-decoration: none;
+  border-radius: var(--radius-lg);
 }
 
 .button:hover {
@@ -165,7 +188,7 @@ a:hover {
 }
 
 /* ---------------------------------
-   6. TABLES (consistent columns)
+   7. TABLES (consistent columns)
 ---------------------------------- */
 
 table {
@@ -210,7 +233,7 @@ table.no-global td:last-child {
 }
 
 /* ---------------------------------
-   7. LAYOUT UTILITIES
+   8. LAYOUT UTILITIES
 ---------------------------------- */
 
 .container {
@@ -222,6 +245,7 @@ table.no-global td:last-child {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  contain: paint;
 }
 
 .layout-main {
@@ -235,7 +259,7 @@ section {
 }
 
 /* ---------------------------------
-   8. HEADER + FOOTER BASELINE
+   9. HEADER + FOOTER BASELINE
 ---------------------------------- */
 
 header, footer {
@@ -245,7 +269,7 @@ header, footer {
 }
 
 /* ---------------------------------
-   9. IMAGES
+   10. IMAGES
 ---------------------------------- */
 
 img {

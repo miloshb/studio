@@ -1,27 +1,20 @@
 ---
+// src/pages/en/imprint.astro
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import Operator from "../../components/Operator.astro";
 import ExaliSeal from "../../components/ExaliSeal.astro";
 ---
 
-<BaseLayout lang="en" page="imprint" title="Imprint (Legal) – Studio Sun & Sea">
-  <h1>Imprint (Legal Notice)</h1>
+<BaseLayout lang="en" page="imprint" title="Legal Notice – Studio Sun & Sea">
+  <h1>Legal Notice (Imprint)</h1>
 
-  <section>
-    <h2>Operator</h2>
-    <p><strong>Studio Sun & Sea</strong><br />
-    Owner: Miloš Borojević<br />
-    Pfarrtannen 7<br />
-    49808 Lingen<br />
-    Germany</p>
-
-    <p>Email: privacy@studiosunandsea.com</p>
-  </section>
+  <Operator lang="en" heading="Information pursuant to § 5 TMG" />
 
   <section>
     <h2>Professional Liability Insurance</h2>
     <ExaliSeal />
     <p>
-      Studio Sun & Sea holds professional liability insurance with Markel Insurance SE, arranged through Exali AG.
+      Studio Sun & Sea maintains professional liability insurance with Markel Insurance SE, concluded via Exali AG.
       <strong>Policy Number:</strong> EX.MDL.93787
     </p>
 
@@ -30,90 +23,77 @@ import ExaliSeal from "../../components/ExaliSeal.astro";
       <li>Financial Loss Insurance (FLI)</li>
       <li>General Liability Insurance (GLI)</li>
       <li>Product Liability Insurance</li>
-      <li>Special Exali clauses for yoga teachers (2021-02)</li>
+      <li>Special clauses for yoga teachers (Exali 2021-02)</li>
     </ul>
 
-    <h3>Sum Insured</h3>
+    <h3>Insurance Sums</h3>
     <ul>
-      <li>300,000 € for financial losses (triple annual aggregate)</li>
-      <li>3,000,000 € combined single limit for personal injury and property damage (triple annual aggregate)</li>
+      <li>300,000 € for financial losses (triple aggregation)</li>
+      <li>3,000,000 € lump sum for personal injuries and property damage (triple aggregation)</li>
     </ul>
 
     <h3>Territorial Scope</h3>
-    <p>The professional liability insurance provides coverage for insured activities worldwide, subject to the terms and conditions of the policy. Only the German-language insurance policy is legally binding.</p>
+    <p>The professional liability insurance offers coverage for insured activities worldwide, subject to the conditions and exclusions of the policy. Only the German-language policy document is legally binding.</p>
 
-    <h3>Legal Note</h3>
-    <p>Only the German-language insurance policy is legally binding.</p>
-
-    <h3>Claims Contact</h3>
+    <h3>Claims Reporting Address</h3>
     <p>
       Exali AG<br />
       Franz-Kobinger-Str. 9<br />
-      86157 Augsburg<br />
+      86157 Augsburg, Germany<br />
       Phone: +49 (0) 821 80 99 46-0
     </p>
   </section>
 
   <section>
-    <h2>Legal Notice (Germany / EU)</h2>
-    <p>This website is operated by Studio Sun & Sea, a sole proprietorship established in Germany. The following information is provided in accordance with § 5 TMG and § 55 RStV.</p>
-
-    <h3>VAT Status</h3>
-    <p>Studio Sun & Sea operates under the Kleinunternehmerregelung (§ 19 UStG). No VAT is charged or shown on invoices.</p>
+    <h2>Value Added Tax (VAT)</h2>
+    <p>Studio Sun & Sea is subject to the small business regulation pursuant to § 19 UStG (German VAT Act). No value added tax is charged or displayed.</p>
   </section>
 
   <section>
-    <h2>Legal Notice (United States)</h2>
-    <p>Studio Sun & Sea provides yoga instruction and wellness services to clients in the United States. The business is operated from Germany and is not incorporated in the U.S.</p>
-
-    <h3>No Medical or Therapeutic Claims</h3>
-    <p>All services are educational and wellness-oriented. Studio Sun & Sea does not provide medical, diagnostic, therapeutic, or clinical services.</p>
-
-    <h3>Limitation of Liability</h3>
-    <p>To the fullest extent permitted by law, Studio Sun & Sea is not liable for injuries, damages, or losses arising from participation in yoga classes or use of information on this website.</p>
+    <h2>Legal Disclaimers (Germany / EU)</h2>
+    <p>As a service provider, Studio Sun & Sea is responsible for its own content on these pages pursuant to § 7 Abs. 1 TMG under general statutory laws. According to §§ 8-10 TMG, service providers are not obligated to monitor transmitted or stored third-party information or to investigate circumstances indicating illegal activity.</p>
   </section>
 
   <section>
-    <h2>U.S. Yoga Disclaimers</h2>
-
-    <h3>No Medical Advice</h3>
-    <p>The information provided in classes and on this website is for general educational and wellness purposes only and is not medical advice. Participants should consult a physician before beginning any new exercise program.</p>
-
-    <h3>Assumption of Risk</h3>
-    <p>Yoga involves inherent risks including strain, imbalance, and aggravation of existing conditions. By participating, clients acknowledge and accept these risks.</p>
-
-    <h3>Limitation of Liability</h3>
-    <p>Studio Sun & Sea and its owner are not liable for injuries or damages arising from participation in classes, workshops, or online sessions.</p>
-
-    <h3>Personal Responsibility</h3>
-    <p>Participants are responsible for monitoring their own condition, modifying movements as needed, and ensuring a safe practice environment.</p>
-
-    <h3>No Guarantee of Results</h3>
-    <p>Yoga affects individuals differently. No specific outcomes or improvements are guaranteed.</p>
-
-    <h3>Online Class Safety</h3>
-    <p>Participants in online sessions are responsible for ensuring adequate space, removing hazards, and maintaining a safe environment.</p>
-  </section>
-
-  <section>
-    <h2>Content Responsibility</h2>
-    <p>Under § 7(1) TMG, Studio Sun & Sea is responsible for its own content. Under §§ 8-10 TMG, there is no obligation to monitor third-party information.</p>
-  </section>
-
-  <section>
-    <h2>External Links</h2>
-    <p>Linked external sites are the responsibility of their operators. Studio Sun & Sea has no influence over their content.</p>
+    <h2>Liability for External Links</h2>
+    <p>Our website contains links to external third-party websites over whose content we have no control. Therefore, we cannot accept any liability for this external content. The respective provider or operator of the pages is always responsible for the content of the linked pages.</p>
   </section>
 
   <section>
     <h2>Copyright</h2>
-    <p>All content on this website is protected by copyright. Reproduction or distribution requires prior written permission.</p>
+    <p>The content and works created by the site operator on these pages are subject to German copyright law. Duplication, processing, distribution, or any form of utilization outside the limits of copyright law require the prior written consent of the respective author or creator.</p>
   </section>
 
   <section>
-    <h2>Dispute Resolution (EU)</h2>
-    <p>The European Commission provides an Online Dispute Resolution platform: https://ec.europa.eu/consumers/odr/</p>
-    <p>Studio Sun & Sea is not obligated or willing to participate in consumer arbitration.</p>
-    <p><a href="/en/waiver">View the full Release and Waiver of Liability</a></p>
+    <h2>Online Dispute Resolution (EU)</h2>
+    <p>The European Commission provides a platform for consumer dispute resolutions (Consumer Redress Hub) accessible at: <a href="https://europa.eu" target="_blank" rel="noopener noreferrer">https://europa.eu</a>. Studio Sun & Sea is neither obligated nor willing to participate in dispute resolution proceedings before a consumer arbitration board.</p>
   </section>
+
+  <section>
+    <h2>Information for International Participants (USA)</h2>
+
+    <h3>No Medical Advice</h3>
+    <p>All services and contents are intended solely for general wellness promotion and educational purposes. No medical, therapeutic, or clinical services are provided. The information provided is not a substitute for professional medical advice, diagnosis, or treatment.</p>
+
+    <h3>Personal Responsibility and Assumption of Risk</h3>
+    <p>Yoga and physical movement involve inherent physical risks, including muscle strains, physical exertion, slips, and falls. By participating in our services, you explicitly acknowledge these risks and assume full personal responsibility for your safety.</p>
+
+    <h3>Limitation of Liability</h3>
+    <p>Studio Sun & Sea is not liable for injuries, damages, or losses arising from participation in courses, workshops, or online sessions, to the maximum extent permitted by applicable local laws.</p>
+
+    <h3>Participant Responsibility</h3>
+    <p>Participants are solely responsible for monitoring their physical condition during practice and ensuring a safe training environment.</p>
+
+    <h3>No Guarantee of Results</h3>
+    <p>No specific outcome, health milestone, or physical progress is guaranteed or warranted through participation in these programs.</p>
+
+    <h3>Safety in Online Classes</h3>
+    <p>For online courses, participants are solely responsible for setting up a safe practice environment, including clearing adequate physical space, removing hazardous obstacles, and verifying stable camera and screen setups.</p>
+  </section>
+
+  <p>
+    For comprehensive international tracking and liability details, please view our full
+    <a href="/de/haftungsausschluss">German Declaration of Consent</a> and the
+    <a href="/en/waiver">English Release and Waiver of Liability</a>.
+  </p>
 </BaseLayout>

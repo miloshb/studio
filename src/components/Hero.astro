@@ -26,7 +26,7 @@ const copy = TEXT[lang] ?? TEXT.en;
   <h1 class="hero-title">{copy.title}</h1>
   <p class="hero-subtitle">{copy.subtitle}</p>
 
-  <a href={copy.ctaHref} class="hero-cta">
+  <a class="button" href={copy.ctaHref}>
     {copy.cta}
   </a>
 </section>
@@ -51,37 +51,19 @@ const copy = TEXT[lang] ?? TEXT.en;
   }
 
   .hero-title {
-    font-family: "Cormorant Garamond", serif;
+    font-family: var(--font-heading);
     font-size: var(--text-xxl);
     color: var(--color-text);
-    margin: 0 0 var(--space-sm) 0;
+    margin: 0 0 var(--space-md) 0;
     font-weight: var(--font-weight);
   }
 
   .hero-subtitle {
-    font-family: Inter, sans-serif;
+    font-family: var(--font-body);
     font-size: var(--text-lg);
     color: var(--color-text-soft);
-    margin: 0 0 var(--space-lg) 0;
+    margin: 0 auto var(--space-lg);
     max-width: var(--mobile-max-width);
-    margin-left: auto;
-    margin-right: auto;
     line-height: 1.5;
-  }
-
-  .hero-cta {
-    display: inline-block;
-    align-self: center;
-    padding: var(--space-sm) var(--space-md);
-    background: var(--color-accent);
-    color: var(--color-text);
-    font-family: Inter, sans-serif;
-    font-size: var(--text-md);
-    text-decoration: none;
-    border-radius: var(--radius-md);
-  }
-
-  .hero-cta:hover {
-    background: var(--color-accent-hover);
   }
 </style>

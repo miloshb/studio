@@ -1,0 +1,47 @@
+---
+// src/components/Operator.astro
+interface Props {
+  lang: "en" | "de";
+  heading: string;
+}
+
+const { lang, heading } = Astro.props;
+
+const commonContent = {
+  labelCompany: "Studio Sun & Sea",
+  ownerName: "Miloš Borojević",
+  officeAddress1: "Pfarrtannen 7",
+  officeAddress2: "49808 Lingen, Deutschland",
+  secondaryAddress1: "9215 Jasmine Lane",
+  secondaryAddress2: "Irving, TX 75063, USA",
+  emailLabel: "E-Mail: privacy@studiosunandsea.com"
+}
+
+const localeContent = {
+  de: {
+    ownerLabel: "Inhaber:",
+    officeTitle: "Sitz des Unternehmens (Deutschland):",
+    secondaryTitle: "Weitere Betriebsstätte (USA):",
+  },
+  en: {
+    ownerLabel: "Owner:",
+    officeTitle: "Registered Office (Germany):",
+    secondaryTitle: "Secondary Location (USA):",
+  }
+}[lang];
+---
+
+<section>
+  <h2>{heading}</h2>
+  <p>
+    <strong>{commonContent.labelCompany}</strong><br />
+    {localeContent.ownerLabel} {commonContent.ownerName}<br />
+    <strong>{localeContent.officeTitle}</strong><br />
+    {commonContent.officeAddress1}<br />
+    {commonContent.officeAddress2}<br />
+    <strong>{localeContent.secondaryTitle}</strong><br />
+    {commonContent.secondaryAddress1}<br />
+    {commonContent.secondaryAddress2}<br />
+    {commonContent.emailLabel}
+  </p>
+</section>
