@@ -1,5 +1,9 @@
 ---
+// src/components/Header.astro
 import { ROUTES, LANGS, HEADER_ROUTE_KEYS, getLangRoot, getLangUrl } from "../data/routes.js";
+import { LANG_STORE_KEY } from "../data/constants.js";
+import MindbodyLogin from "./widgets/MindbodyLoginLinkV1.astro";
+
 const { lang, page } = Astro.props;
 ---
 
@@ -7,7 +11,7 @@ const { lang, page } = Astro.props;
   <div class="header container">
     <!-- Brand always links to the correct language root -->
     <a class="brand" href={getLangRoot(lang)}>
-      <img src="/logo/studio-sun-and-sea-logo.png" />
+      <img class="aspect-square" src="/favicon/favicon-48.png" alt="Studio Sun & Sea Logo" />
       Studio Sun & Sea
     </a>
 
@@ -20,27 +24,47 @@ const { lang, page } = Astro.props;
       ))}
     </div>
 
-    <!-- Language Switcher -->
-    <div class="header-lang">
-      {LANGS.map(code => (
-        <>
-          <a
-            class={lang === code ? "active" : ""}
-            href={getLangUrl(page, code)}
-            onclick={`setLangPref('${code}')`}
-          >
-            {code.toUpperCase()}
-          </a>
-          {code !== LANGS.at(-1) && <span>·</span>}
-        </>
-      ))}
+    <div class="header-tools">
+      <MindbodyLogin />
+
+      <!-- Language Switcher -->
+      <div class="header-lang">
+        {LANGS.map(code => (
+          <>
+            <a
+              class={lang === code ? "active" : ""}
+              href={getLangUrl(page, code)}
+              data-lang={code}
+            >
+              {code.toUpperCase()}
+            </a>
+            {code !== LANGS.at(-1) && <span>·</span>}
+          </>
+        ))}
+      </div>
     </div>
   </div>
 </header>
 
-<script>
-  function setLangPref(lang) {
-    localStorage.setItem("preferredLanguage", lang);
+<script define:vars={{ LANG_STORE_KEY }}>
+  // Use Event Delegation: Attach one clean listener to the language selector parent block
+  const langSwitcher = document.querySelector('.header-lang');
+
+  if (langSwitcher) {
+    langSwitcher.addEventListener('click', (event) => {
+      // Find the closest anchor tag if they happen to click an inner border pixel
+      const targetLink = event.target.closest('a[data-lang]');
+      if (!targetLink) return;
+
+      const chosenLang = targetLink.getAttribute('data-lang');
+      if (chosenLang) {
+        try {
+          localStorage.setItem(LANG_STORE_KEY, chosenLang);
+        } catch (e) {
+          console.warn("Storage write blocked by browser configuration:", e);
+        }
+      }
+    });
   }
 </script>
 
@@ -50,20 +74,10 @@ const { lang, page } = Astro.props;
     justify-content: space-between;
     align-items: center;
     text-align: center;
-    padding: var(--space-md) 0;
+    padding: var(--space-sm) 0;
     flex-shrink: 0;
     flex-wrap: wrap;
     gap: var(--space-xs);
-  }
-
-  .brand {
-    font-family: var(--font-heading);
-    font-size: var(--text-xl);
-    color: var(--color-text);
-    display: flex;
-    flex-wrap: nowrap;
-    gap: var(--space-xs);
-    z-index: 1;
   }
 
   .header-nav {
@@ -79,8 +93,13 @@ const { lang, page } = Astro.props;
     color: var(--color-text);
   }
 
+  .header-tools {
+    display: inline-flex;
+    flex-wrap: nowrap;
+  }
+
   .header-lang {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     font-size: var(--text-xs);
   }

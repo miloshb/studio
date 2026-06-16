@@ -1,0 +1,41 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const messages = {
+  booking: {
+    title: "Buchung bestätigt",
+    body: "Ihre Buchung ist abgeschlossen. In Kürze erhalten Sie eine Bestätigungs-E-Mail."
+  },
+  purchase: {
+    title: "Kauf abgeschlossen",
+    body: "Vielen Dank für Ihre Kauf. Eine Quittung wurde an Ihre E-Mail-Adresse gesendet."
+  },
+  contact: {
+    title: "Nachricht gesendet",
+    body: "Vielen Dank für Ihre Nachricht. Wir werden uns so schnell wie möglich bei Ihnen melden."
+  },
+  register: {
+    title: "Registrierung erfolgreich",
+    body: "Willkommen und vielen Dank für das Erstellen eines neuen Kontos! Die Registrierungsdetails wurden an Ihre E-Mail-Adresse gesendet."
+  },
+  workshop: {
+    title: "Workshop-Anmeldung erhalten",
+    body: "Ihre Workshop-Anmeldung ist bestätigt. Weitere Informationen folgen per E-Mail."
+  },
+  default: {
+    title: "Danke",
+    body: "Ihre Eingabe wurde erfolgreich übermittelt. Wir freuen uns über Ihre Kontaktaufnahme mit Studio Sun & Sea."
+  }
+};
+---
+
+<BaseLayout lang="de" page="thankYou" title={`Danke – Studio Sun & Sea`}>
+  <div id="thankyou-content-container" data-messages={JSON.stringify(messages)}>
+    <h1 id="thankyou-title">{messages.default.title}</h1>
+    <section>
+      <p id="thankyou-body">{messages.default.body}</p>
+    </section>
+  </div>
+
+  <script src="../../scripts/thankyou.js"></script>
+</BaseLayout>

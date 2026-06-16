@@ -1,5 +1,7 @@
 ---
+// src/pages/de/agb.astro
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import Operator from "../../components/Operator.astro";
 ---
 
 <BaseLayout lang="de" page="terms" title="AGB – Studio Sun & Sea">
@@ -7,25 +9,17 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 
   <p>Diese Allgemeinen Geschäftsbedingungen („AGB“) regeln die Nutzung aller von Studio Sun & Sea angebotenen Leistungen, einschließlich Yoga-Unterricht, Workshops, Online-Sitzungen, Wellness-Programme sowie aller zugehörigen Inhalte. Durch die Teilnahme an einer Leistung erklären Sie sich mit diesen AGB einverstanden.</p>
 
-  <section>
-    <h2>1. Anbieter</h2>
-    <p><strong>Studio Sun & Sea</strong><br />
-    Inhaber: Miloš Borojević<br />
-    Pfarrtannen 7<br />
-    49808 Lingen, Deutschland<br />
-    E-Mail: privacy@studiosunandsea.com</p>
-  </section>
+  <Operator lang="de" heading="1. Anbieter" />
 
   <section>
     <h2>2. Leistungsumfang</h2>
-    <p>Studio Sun & Sea bietet Yoga-Unterricht, Wellness-Bildung und verwandte Leistungen sowohl vor Ort als auch online an. Alle Leistungen dienen ausschließlich der allgemeinen Gesundheitsförderung und Bildung.</p>
+    <p>Studio Sun & Sea bietet Yoga-Unterricht, Wellness-Bildung und verwandte Leistungen online sowie vor Ort an. Online-Dienste werden wechselnd aus den privaten Geschäftsräumen in Deutschland und den USA gestreamt. Physischer Präsenzunterricht vor Ort in Deutschland findet ausschließlich in angemieteten Räumlichkeiten statt.</p>
     <p>Studio Sun & Sea erbringt keine medizinischen, therapeutischen oder klinischen Leistungen.</p>
   </section>
 
   <section>
     <h2>2a. Kunga Yoga - Service-Verpflichtung</h2>
     <p>Einige von Studio Sun & Sea angebotene Kurse werden in der Tradition des Kunga Yoga unterrichtet, die auf den Werten von Mitgefühl, Gemeinschaft und sozialem Engagement basiert sind. Im Rahmen dieser Tradition spendet Studio Sun & Sea einen Teil der Einnahmen aus Kunga-Yoga-Kursen an gemeinnützige Projekte, die von der Kunga-Gemeinschaft unterstützt werden. Diese Spende erfolgt durch das Studio und führt für Teilnehmer keine zusätzlichen Kosten über die reguläre Kursgebühr hinaus.</p>
-    <p>Kunga-Yoga-Kurse können monatliche Inspirationsthemen sowie Informationen über die unterstützten Serviceprojekte enthalten. Durch die Teilnahme an diesen Kursen unterstützen Sie indirekt die gemeinnützigen Initiativen der Kunga-Tradition.</p>
   </section>
 
   <section>
@@ -35,8 +29,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 
   <section>
     <h2>4. Gesundheitliche Verantwortung</h2>
-    <p>Sie sind selbst dafür verantwortlich sicherzustellen, dass Sie körperlich und gesundheitlich in der Lage sind, an Yoga- oder Wellness-Aktivitäten teilzunehmen. Es wird empfohlen, vor Beginn eines neuen Trainingsprogramms einen Arzt zu konsultieren.</p>
-    <p>Mit der Teilnahme versichern Sie, dass keine gesundheitlichen Einschränkungen bestehen, die eine sichere Teilnahme verhindern.</p>
+    <p>Sie sind selbst dafür verantwortlich sicherzustellen, dass Sie körperlich und gesundheitlich in der Lage sind, an Yoga- oder Wellness-Aktivitäten teilzunehmen. Es wird empfohlen, vor Beginn eines neuen Trainingsprogramms einen Arzt zu konsultieren. Mit der Teilnahme versichern Sie, dass keine gesundheitlichen Einschränkungen bestehen, die eine sichere Teilnahme verhindern.</p>
   </section>
 
   <section>
@@ -46,8 +39,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 
   <section>
     <h2>6. Haftungsbeschränkung</h2>
-    <p>Im gesetzlich zulässigen Umfang haftet Studio Sun & Sea sowie der Inhaber nicht für Verletzungen, Schäden oder Verluste, die aus der Teilnahme an Kursen, Workshops, Online-Sitzungen oder der Nutzung bereitgestellter Informationen entstehen.</p>
-    <p>Diese Haftungsbeschränkung gilt für Teilnehmer in der EU, den USA und international.</p>
+    <p>Die Haftung von Studio Sun & Sea und dem Inhaber für leichte Fahrlässigkeit wird ausgeschlossen, sofern diese keine wesentlichen Vertragspflichten (Kardinalpflichten), Schäden aus der Verletzung des Lebens, des Körpers oder der Gesundheit oder Garantien betrifft. Die Haftung für grobe Fahrlässigkeit, Vorsatz und gesetzliche Produkthaftung bleibt gänzlich unberührt. Diese Haftungsregelung gilt global im gesetzlich maximal zulässigen Rahmen.</p>
   </section>
 
   <section>
@@ -67,51 +59,36 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 
   <section>
     <h2>10. Datenschutz</h2>
-    <p>Personenbezogene Daten werden gemäß der Datenschutzerklärung verarbeitet. Durch die Nutzung der Leistungen stimmen Sie der Verarbeitung Ihrer Daten zu.</p>
-    <p>EU-Betroffene behalten alle Rechte gemäß DSGVO.</p>
+    <p>Personenbezogene Daten werden gemäß der Datenschutzerklärung verarbeitet. EU-Betroffene behalten alle Rechte gemäß DSGVO.</p>
   </section>
 
   <section>
     <h2>11. Berufshaftpflichtversicherung</h2>
     <p>Studio Sun & Sea ist über die Markel Insurance SE (über exali AG) berufshaftpflichtversichert.</p>
-
-    <h3>Versicherungsnummer</h3>
-    <p>EX.MDL.93787</p>
-
-    <h3>Versicherte Risiken</h3>
+    <p><strong>Versicherungsnummer:</strong> EX.MDL.93787</p>
     <ul>
       <li>Vermögensschaden-Haftpflichtversicherung</li>
       <li>Büro- und Betriebshaftpflichtversicherung</li>
       <li>Produkthaftpflichtversicherung</li>
       <li>Besondere Zusatzklauseln für Yoga-Lehrer (exali 2021-02)</li>
     </ul>
-
-    <h3>Versicherungssummen</h3>
-    <ul>
-      <li>300.000 € für Vermögensschäden (3-fache Maximierung)</li>
-      <li>3.000.000 € pauschal für Personen- und Sachschäden (3-fache Maximierung)</li>
-    </ul>
-
-    <h3>Geltungsbereich</h3>
     <p>Die Berufshaftpflichtversicherung bietet Versicherungsschutz für die versicherten Tätigkeiten weltweit, vorbehaltlich der Bedingungen und Ausschlüsse der Police. Rechtsverbindlich ist ausschließlich der Versicherungsschein in deutscher Sprache.</p>
   </section>
 
   <section>
-    <h2>12. Anwendbares Recht</h2>
-    <p>Für Teilnehmer aus der EU gilt deutsches Recht.</p>
-    <p>Für Teilnehmer aus den USA gilt das Recht des Bundesstaates, in dem der Teilnehmer seinen Wohnsitz hat, soweit gesetzlich zulässig.</p>
+    <h2>12. Anwendbares Recht und Gerichtsstand</h2>
+    <p>Für alle Dienstleistungen, die physisch von unserem Standort in Texas übertragen, gestreamt oder erbracht werden, oder die persönlich in den USA stattfinden, gilt ausschließlich das Recht des Bundesstaates Texas. Für Dienstleistungen, die gestreamt oder erbracht werden, während sich der Kursleiter in Europa befindet, gilt ausschließlich das Recht der Bundesrepublik Deutschland.</p>
   </section>
 
   <section>
     <h2>13. Streitbeilegung</h2>
-    <p>EU-Verbraucher können die Online-Streitbeilegungsplattform nutzen: https://ec.europa.eu/consumers/odr/</p>
-    <p>Studio Sun & Sea ist nicht verpflichtet und nicht bereit, an einem Verbraucherschlichtungsverfahren teilzunehmen.</p>
+    <p>Die Europäische Kommission stellt eine Plattform zur Verbraucherstreitbeilegung (Consumer Redress Hub) bereit, erreichbar unter: <a href="https://consumer-redress.ec.europa.eu/" target="_blank" rel="noopener noreferrer">https://consumer-redress.ec.europa.eu/</a>. Studio Sun & Sea ist nicht verpflichtet und nicht bereit, an einem Verbraucherschlichtungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
   </section>
 
   <section>
     <h2>14. Haftungsausschluss / Release and Waiver of Liability</h2>
-    <p>Für bestimmte Leistungen kann die Zustimmung zum „Release and Waiver of Liability“ erforderlich sein. Die Verzichtserklärung ergänzt diese AGB und gilt für alle angebotenen Leistungen.</p>
-    <p><a href="/en/waiver">Zur englischsprachigen Release and Waiver of Liability</a></p>
+    <p>Für bestimmte Leistungen ist die explizite Zustimmung zu unserer gesonderten Einverständniserklärung erforderlich sein. Diese Erklärung ergänzt diese AGB.</p>
+    <p><a href="/de/haftungsausschluss">Deutschsprachige Einverständniserklärung</a> | <a href="/en/waiver">English Release and Waiver of Liability</a></p>
   </section>
 
   <section>

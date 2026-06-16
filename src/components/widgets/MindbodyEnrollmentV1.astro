@@ -1,0 +1,19 @@
+---
+/**
+ * Mindbody Enrollment (Courses / Workshops) Widget Component
+ * TODO: Determine how Mindbody "Custom CSS" works on the Enrollments Widget
+ *
+ * Props:
+ * - widgetId: string (Mindbody widget ID)
+ * - className: optional string for custom styling
+ *
+ *   <script src="https://widgets.mindbodyonline.com/javascripts/healcode.js" type="text/javascript"></script>
+ *   <healcode-widget data-type="enrollments" data-widget-partner="object" data-widget-id="9811456814de" data-widget-version="0" ></healcode-widget>
+ */
+const { widgetId, className = "" } = Astro.props;
+---
+
+<div class={`mindbody-widget-wrapper ${className}`}>
+  <script src="https://widgets.mindbodyonline.com/javascripts/healcode.js" type="text/javascript"></script>
+  <healcode-widget data-type="enrollments" data-widget-partner="object" data-widget-id={widgetId} data-widget-version="0" ></healcode-widget>
+</div>

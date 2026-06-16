@@ -1,6 +1,5 @@
 ---
-import { Image } from 'astro:assets';
-
+// src/components/StudioImage.astro
 const {
   src,
   alt,
@@ -30,7 +29,7 @@ if (thumbnail) {
   const sizeKey = typeof thumbnail === "string" ? thumbnail : "md";
   thumbnailClass = `thumbnail-${sizeKey}`
   finalSizes = sizeMap[sizeKey] ?? sizeMap.md;
-  finalWidths = [400];
+  finalWidths = [400, 1080];
   wrapperStyle = `border-radius: var(--radius-md)`;
 }
 
@@ -49,11 +48,12 @@ const aspectClass = aspect
   class={[aspectClass, thumbnailClass].filter(Boolean).join(" ")}
   style={wrapperStyle}
 >
-  <Image
+  <img
     src={src}
     alt={alt}
-    widths={finalWidths}
     sizes={finalSizes}
+    loading="lazy"
+    decoding="async"
     {...rest}
   />
 </div>

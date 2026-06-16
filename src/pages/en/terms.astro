@@ -1,4 +1,6 @@
 ---
+// src/pages/en/terms.astro
+import Operator from "../../components/Operator.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 ---
 
@@ -7,25 +9,17 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 
   <p>These Terms of Service (“Terms”) govern the use of all services provided by Studio Sun & Sea, including yoga classes, workshops, online sessions, wellness programs, and all related content. By accessing or participating in any service, you agree to be bound by these Terms.</p>
 
-  <section>
-    <h2>1. Operator</h2>
-    <p><strong>Studio Sun & Sea</strong><br />
-    Owner: Miloš Borojević<br />
-    Pfarrtannen 7<br />
-    49808 Lingen, Germany<br />
-    Email: privacy@studiosunandsea.com</p>
-  </section>
+  <Operator lang="en" heading="1. Operator" />
 
   <section>
     <h2>2. Scope of Services</h2>
-    <p>Studio Sun & Sea provides yoga instruction, wellness education, and related services both in person and online. All services are intended for general wellness and educational purposes.</p>
+    <p>Studio Sun & Sea provides yoga instruction, wellness education, and related services both online and in person. Online courses are broadcast from private dedicated spaces in Germany and the USA. Physical, in-person classes in Germany are conducted at rented studio premises.</p>
     <p>Studio Sun & Sea does not provide medical, therapeutic, or clinical services.</p>
   </section>
 
   <section>
     <h2>2a. Kunga Yoga Service Commitment</h2>
     <p>Certain classes offered by Studio Sun & Sea are taught in the Kunga Yoga tradition, which emphasizes service, compassion, and community engagement. As part of this tradition, a portion of the proceeds from Kunga Yoga classes is donated to charitable organizations supported by the Kunga community. This donation is made by the studio and does not create any financial obligation for participants beyond the standard class fee.</p>
-    <p>Kunga Yoga classes may also include monthly themes of inspiration and education about the service projects supported by the Kunga community. Participation in these classes helps support the charitable initiatives connected to the Kunga tradition.</p>
   </section>
 
   <section>
@@ -35,8 +29,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 
   <section>
     <h2>4. Health and Medical Responsibility</h2>
-    <p>You are responsible for ensuring that you are physically and medically fit to participate in yoga or wellness activities. You should consult a physician before beginning any new exercise program.</p>
-    <p>By participating, you represent that you have no medical condition that would prevent safe participation.</p>
+    <p>You are responsible for ensuring that you are physically and medically fit to participate in yoga or wellness activities. You should consult a physician before beginning any new exercise program. By participating, you represent that you have no medical condition that would prevent safe participation.</p>
   </section>
 
   <section>
@@ -46,8 +39,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 
   <section>
     <h2>6. Limitation of Liability</h2>
-    <p>To the fullest extent permitted by applicable law, Studio Sun & Sea and its owner are not liable for injuries, damages, or losses arising from participation in classes, workshops, online sessions, or use of information provided.</p>
-    <p>This limitation applies to both in-person and online services and to participants located in the EU, the United States, and internationally.</p>
+    <p>The liability of Studio Sun & Sea and its owner for slight negligence is excluded, provided that it does not concern essential contractual duties (cardinal obligations), injuries to life, body, or health, or guarantees. Liability for gross negligence, intentional misconduct, and statutory product liability remains completely unaffected. This modified limitation applies globally within the maximum boundaries permitted by local laws.</p>
   </section>
 
   <section>
@@ -67,45 +59,36 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 
   <section>
     <h2>10. Privacy and Data Protection</h2>
-    <p>Personal data is processed in accordance with the Privacy Policy. By using the services, you consent to the processing of your data as described therein.</p>
-    <p>EU data subjects retain all rights under the GDPR.</p>
+    <p>Personal data is processed in accordance with the Privacy Policy. EU data subjects retain all rights under the GDPR.</p>
   </section>
 
   <section>
     <h2>11. Professional Liability Insurance</h2>
     <p>Studio Sun & Sea is insured through Markel Insurance SE via Exali AG.</p>
-
-    <h3>Policy Number</h3>
-    <p>EX.MDL.93787</p>
-
-    <h3>Insured Risks</h3>
+    <p><strong>Policy Number:</strong> EX.MDL.93787</p>
     <ul>
       <li>Financial Loss Insurance (FLI)</li>
       <li>General Liability Insurance (GLI)</li>
       <li>Product Liability Insurance</li>
       <li>Special clauses for yoga teachers (exali 2021-02)</li>
     </ul>
-
-    <h3>Territorial Scope</h3>
-    <p>The insurance provides coverage for insured activities worldwide, subject to the terms and exclusions of the policy. Only the German-language policy is legally binding.</p>
+    <p>The insurance provides coverage for insured activities worldwide, subject to the terms and exclusions of the policy. Only the German-language policy document is legally binding.</p>
   </section>
 
   <section>
-    <h2>12. Governing Law</h2>
-    <p>For EU-based participants, these Terms are governed by the laws of Germany.</p>
-    <p>For U.S.-based participants, these Terms are governed by the laws of the state in which the participant resides, to the extent permitted by applicable law.</p>
+    <h2>12. Governing Law and Jurisdiction</h2>
+    <p>For all services physically broadcast, streamed, or rendered from our location in Texas, or taught in person within the United States, these Terms are governed exclusively by the laws of the State of Texas. For all services broadcast, streamed, or rendered while the instructor is physically located within Europe, the laws of the Federal Republic of Germany apply exclusively.</p>
   </section>
 
   <section>
     <h2>13. Dispute Resolution</h2>
-    <p>EU consumers may use the Online Dispute Resolution platform: https://ec.europa.eu/consumers/odr/</p>
-    <p>Studio Sun & Sea is not obligated or willing to participate in consumer arbitration.</p>
+    <p>The European Commission provides a Consumer Redress Hub for consumer dispute settlements, accessible at: <a href="https://consumer-redress.ec.europa.eu/" target="_blank" rel="noopener noreferrer">https://consumer-redress.ec.europa.eu/</a>. Studio Sun & Sea is not obligated or willing to participate in consumer arbitration.</p>
   </section>
 
   <section>
     <h2>14. Release and Waiver of Liability</h2>
-    <p>Participation in services may require acceptance of the Release and Waiver of Liability. The waiver supplements these Terms and remains valid for all services provided.</p>
-    <p><a href="/en/waiver">View the full Release and Waiver of Liability</a></p>
+    <p>Participation in services requires acceptance of the Release and Waiver of Liability. The waiver supplements these Terms and remains valid for all services provided.</p>
+    <p><a href="/de/haftungsausschluss">Deutschsprachige Einverständniserklärung</a> | <a href="/en/waiver">English Release and Waiver of Liability</a></p>
   </section>
 
   <section>
