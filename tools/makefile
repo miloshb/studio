@@ -2,20 +2,24 @@
 # Combined Makefile: Schedule + Image Optimize
 # ============================================
 
+# Directories
+BUILD_DIR := ../build
+$(shell mkdir -p $(BUILD_DIR))
+
 # --------------------------------------------
 # Schedule-Grid image pipeline
 # --------------------------------------------
 
 INPUT_XPS = ../src/images/classes/Schedule.xps
-BASE = Schedule
+BASE = $(BUILD_DIR)/Schedule
 TRIM = $(BASE)-trim.png
 SCALED = $(BASE)-1080.png
 DEST = ../public/images/classes/studio-sun-and-sea-weekly-schedule
 FINAL = $(DEST).png
 A5 = $(DEST)-A5.png
-CHECKSUM = .schedule.sha256
+CHECKSUM = $(BUILD_DIR)/.schedule.sha256
 
-all: schedule optimize
+all: schedule optimize logo
 
 # --- Checksum dependency ---
 $(CHECKSUM): $(INPUT_XPS)
@@ -82,7 +86,47 @@ $(PUB_IMG_DIR)/%-400.webp: $(SRC_IMG_DIR)/%.jpg
 	convert $< -resize 400 -quality 60 $@
 	@echo "Generated $@"
 
+
+# --------------------------------------------
+# Logo with Studio Text
+# --------------------------------------------
+
+LOGO_DIR := ../public/logo
+LOGO=$(LOGO_DIR)/studio-sun-and-sea-logo.png
+LOCKUP=$(LOGO_DIR)/studio-sun-and-sea-textlogo.png
+
+# Font settings (1.5rem = 24px)
+FONT := Cormorant-Garamond-Regular
+COLOR := \#3A3A3C
+POINTSIZE := 24
+
+# Generate PNG text
+$(LOCKUP): $(LOGO)
+	magick $(LOGO) \
+		\( -background none \
+		  -fill "$(COLOR)" \
+		  -font "$(FONT)" \
+		  -pointsize $(POINTSIZE) \
+		  -gravity west \
+		  label:"Studio Sun & Sea" \
+		  -splice 8x0 \) \
+		+append \
+		-gravity center \
+		$(LOCKUP)
+
+# Convenience target
+logo: $(LOCKUP)
+	@echo "Generated: $(LOCKUP)"
+
+
+# --------------------------------------------
+# Common
+# --------------------------------------------
+
 clean:
-	rm -f $(BASE)-1.png $(TRIM) $(SCALED) $(FINAL) $(A5)
+	rm -Rf $(BUILD_DIR)/*
+
+cleanall: clean
+	rm -f $(FINAL) $(A5) $(LOCKUP)
 
 .PHONY: all clean check
