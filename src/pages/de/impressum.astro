@@ -1,25 +1,14 @@
 ---
 // src/pages/de/impressum.astro
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import Operator from "../../components/Operator.astro";
 import ExaliSeal from "../../components/ExaliSeal.astro";
 ---
 
 <BaseLayout lang="de" page="imprint" title="Impressum – Studio Sun & Sea">
   <h1>Impressum</h1>
 
-  <section>
-    <h2>Angaben gemäß § 5 TMG</h2>
-    <p><strong>Studio Sun & Sea</strong><br />
-    Inhaber: Miloš Borojević<br />
-    <strong>Sitz des Unternehmens (Deutschland):</strong><br />
-    Pfarrtannen 7<br />
-    49808 Lingen, Deutschland<br />
-    <br />
-    <strong>Weitere Betriebsstätte (USA):</strong><br />
-    9215 Jasmine Lane<br />
-    Irving, TX 75063, USA<br />
-    Email: privacy@studiosunandsea.com</p>
-  </section>
+  <Operator lang="de" heading="Angaben gemäß § 5 TMG" />
 
   <section>
     <h2>Berufshaftpflichtversicherung</h2>
