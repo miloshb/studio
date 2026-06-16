@@ -1,7 +1,7 @@
 /* -------------------------------------------------------
    Studio Sun & Sea — Global Styles
    Warm minimalism • Calm typography • Soft color palette
-------------------------------------------------------- */
+-------------------------------------------------------- */
 
 /* ---------------------------------
    1. CSS RESET (modern + minimal)
@@ -150,7 +150,25 @@ a:hover {
 }
 
 /* ---------------------------------
-   5. BUTTONS (minimal)
+   5. BRAND
+---------------------------------- */
+
+.brand {
+  font-family: var(--font-heading);
+  font-size: var(--text-xl);
+  color: var(--color-text);
+  display: inline-flex;
+  flex-wrap: nowrap;
+  gap: var(--space-xs);
+  z-index: 1;
+}
+
+.brand :global(img:hover) {
+  opacity: 0.8;
+}
+
+/* ---------------------------------
+   6. BUTTONS (minimal)
 ---------------------------------- */
 
 .button {
@@ -170,7 +188,7 @@ a:hover {
 }
 
 /* ---------------------------------
-   6. TABLES (consistent columns)
+   7. TABLES (consistent columns)
 ---------------------------------- */
 
 table {
@@ -215,7 +233,7 @@ table.no-global td:last-child {
 }
 
 /* ---------------------------------
-   7. LAYOUT UTILITIES
+   8. LAYOUT UTILITIES
 ---------------------------------- */
 
 .container {
@@ -241,7 +259,7 @@ section {
 }
 
 /* ---------------------------------
-   8. HEADER + FOOTER BASELINE
+   9. HEADER + FOOTER BASELINE
 ---------------------------------- */
 
 header, footer {
@@ -251,7 +269,7 @@ header, footer {
 }
 
 /* ---------------------------------
-   9. IMAGES
+   10. IMAGES
 ---------------------------------- */
 
 img {
