@@ -91,8 +91,8 @@ $(PUB_IMG_DIR)/%-400.webp: $(SRC_IMG_DIR)/%.jpg
 # Logo with Studio Text
 # --------------------------------------------
 
-LOGO_DIR := ../public/logo
-LOGO=$(LOGO_DIR)/studio-sun-and-sea-logo.png
+LOGO_DIR := ../public/favicon
+LOGO=$(LOGO_DIR)/favicon-48.png
 LOCKUP=$(LOGO_DIR)/studio-sun-and-sea-textlogo.png
 
 # Font settings (1.5rem = 24px)
@@ -110,8 +110,8 @@ $(LOCKUP): $(LOGO)
 		  -gravity west \
 		  label:"Studio Sun & Sea" \
 		  -splice 8x0 \) \
-		+append \
 		-gravity center \
+		+append \
 		$(LOCKUP)
 
 # Convenience target
