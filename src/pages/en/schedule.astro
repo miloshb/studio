@@ -5,13 +5,13 @@ import Timezone from "../../components/Timezone.astro";
 ---
 
 <BaseLayout lang="en" page="schedule" title="Schedule – Studio Sun & Sea">
-  <section class="schedule-page container">
-    <section class="timezone-notice">
-      <strong>⚠️ Important Booking Note for International Clients</strong><br />
-      All class registration cards loaded via the Mindbody widget below are displayed strictly in
-      <strong><Timezone lang="en" client:load /></strong>. Please determine your local timezone offset accordingly before submitting reservations.
-    </section>
+  <section class="timezone-notice">
+    <strong>⚠️ Important Booking Note for International Clients</strong><br />
+    All class registration cards loaded via the Mindbody widget below are displayed strictly in
+    <Timezone lang="en" client:load />. Please determine your local timezone offset accordingly before submitting reservations.
+  </section>
 
+  <section class="schedule-page container">
     <MindbodyScheduleV2 widgetId="985347314de" />
   </section>
 </BaseLayout>
