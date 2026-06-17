@@ -41,8 +41,7 @@ const fallbackText = {
       timeZoneName: "long",
     }).formatToParts(now);
 
-    const longName =
-      longNameParts.find((p) => p.type === "timeZoneName")?.value ??;
+    const longName = longNameParts.find((p) => p.type === "timeZoneName")?.value;
 
     // Fetch reliable short offset names across browser configurations
     const offsetParts = new Intl.DateTimeFormat(targetLocale, {
