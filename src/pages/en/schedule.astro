@@ -1,10 +1,22 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import MindbodyScheduleV2 from "../../components/widgets/MindbodyScheduleV2.astro";
+import Timezone from "../../components/Timezone.astro";
 ---
 
 <BaseLayout lang="en" page="schedule" title="Schedule – Studio Sun & Sea">
   <section class="schedule-page container">
+    <Timezone client:load />
+
+    <div class="schedule-notice-banner" style="background: var(--color-bg); border-left: 4px solid var(--color-accent); padding: var(--space-sm); margin-bottom: var(--space-md);">
+      <p style="margin: 0; font-weight: 600; color: var(--color-text); font-size: var(--text-md);">
+        ⚠️ Important Booking Note for International Clients
+      </p>
+      <p style="margin: var(--space-xxs) 0 0 0; font-size: var(--text-sm); color: var(--color-text-soft);">
+        All class registration cards loaded via the Mindbody widget below are displayed strictly in <strong>Central European Summer Time (CEST / German Time, UTC+2)</strong>. Please calculate your local cross-border time offset accordingly before submitting reservations (e.g., Irving, Texas is 7 hours behind Germany).
+      </p>
+    </div>
+
     <MindbodyScheduleV2 widgetId="985347314de" />
   </section>
 </BaseLayout>

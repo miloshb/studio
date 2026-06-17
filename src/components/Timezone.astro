@@ -1,0 +1,53 @@
+---
+/**
+ * Timezone.astro
+ * Client-side island: always correct CET/CEST + UTC offset.
+ */
+---
+
+<span id="tz-label" class="tz-label">
+  Central European Time
+</span>
+
+<script>
+  const el = document.getElementById("tz-label");
+  if (el) {
+    const now = new Date();
+
+    // Get the pretty descriptive long name (e.g., "Central European Summer Time")
+    const longNameParts = new Intl.DateTimeFormat("en-GB", {
+      timeZone: "Europe/Berlin",
+      timeZoneName: "long",
+    }).formatToParts(now);
+
+    const longName =
+      longNameParts.find((p) => p.type === "timeZoneName")?.value ??
+      "Central European Time";
+
+    // Safely get the short offset name (outputs cleanly like "GMT+1", "GMT+2")
+    const offsetParts = new Intl.DateTimeFormat("en-GB", {
+      timeZone: "Europe/Berlin",
+      timeZoneName: "shortOffset",
+    }).formatToParts(now);
+
+    const offsetRaw =
+      offsetParts.find((p) => p.type === "timeZoneName")?.value ?? "GMT+1";
+
+    // Normalize browser engine differences (convert "GMT" to "UTC" and handle zero offset safely)
+    let utcString = offsetRaw.replace(/GMT|UTC/, "");
+    if (utcString === "" || utcString === "Z") {
+      utcString = "+0";
+    }
+
+    // Update the text node content seamlessly
+    el.textContent = `${longName} (UTC${utcString})`;
+  }
+</script>
+
+<style>
+  .tz-label {
+    font-size: var(--text-sm);
+    color: var(--color-text-soft);
+    display: inline-block;
+  }
+</style>
