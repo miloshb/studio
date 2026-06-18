@@ -280,12 +280,13 @@ img {
 
 #teachers img {
   float: right;
-  margin: 0 0 var(--space-sm) var(--space-sm);
+  margin-left: var(--space-sm);
   border-radius: var(--radius-lg);
 }
 
 .thumbnail-right {
   float: right;
+  margin-left: var(--space-sm);
   border-radius: var(--radius-xl);
 }
 
@@ -300,6 +301,8 @@ img {
 .thumbnail-lg img {
   width: var(--thumbnail-width-lg);
 }
+
+/* TODO: aspect does not work as expected. */
 
 .aspect-square {
   aspect-ratio: 1 / 1;
