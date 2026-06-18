@@ -1,0 +1,64 @@
+---
+// src/components/TimezoneLabel.astro
+/**
+ * Localized client-side island: CET/CEST text + UTC offsets based on lang property input.
+ */
+interface Props {
+  lang?: "en" | "de";
+}
+
+const { lang = "en" } = Astro.props;
+
+// Hardcoded server fallbacks to prevent a flashing layout during browser hydration
+const fallbackText = {
+  en: "Central European Time",
+  de: "Mitteleuropäische Zeit"
+};
+---
+
+<span id="timezone-label" data-lang={lang}>
+  {fallbackText[lang]}
+</span>
+
+<script>
+  const el = document.getElementById("timezone-label");
+  if (el) {
+    // Read the language token dynamically passed from Astro's frontmatter
+    const currentLang = el.getAttribute("data-lang") || "en";
+
+    // Map lang codes to valid BCP 47 locale strings for strict browser internationalization engines
+    const localeMap = {
+      en: "en-GB",
+      de: "de-DE"
+    };
+    const targetLocale = localeMap[currentLang] || "en-GB";
+
+    const now = new Date();
+
+    // Fetch descriptive localized timezone name (e.g. "Central European Summer Time")
+    const longNameParts = new Intl.DateTimeFormat(targetLocale, {
+      timeZone: "Europe/Berlin",
+      timeZoneName: "long",
+    }).formatToParts(now);
+
+    const longName = longNameParts.find((p) => p.type === "timeZoneName")?.value;
+
+    // Fetch reliable short offset names across browser configurations
+    const offsetParts = new Intl.DateTimeFormat(targetLocale, {
+      timeZone: "Europe/Berlin",
+      timeZoneName: "shortOffset",
+    }).formatToParts(now);
+
+    const offsetRaw =
+      offsetParts.find((p) => p.type === "timeZoneName")?.value ?? "GMT+1";
+
+    // Clean and normalize variations out of localized offset strings (e.g. handles "GMT", "UTC", "MESZ")
+    let utcString = offsetRaw.replace(/GMT|UTC|MESZ|MEZ/, "").trim();
+    if (utcString === "" || utcString === "Z") {
+      utcString = "+0";
+    }
+
+    // Safely render the localized string payload
+    longName && (el.textContent = `${longName} (UTC${utcString})`);
+  }
+</script>

@@ -160,7 +160,7 @@ a:hover {
   display: inline-flex;
   flex-wrap: nowrap;
   gap: var(--space-xs);
-  z-index: 1;
+  z-index: 100; /* Ensures brand is visible */
 }
 
 .brand :global(img:hover) {
@@ -281,6 +281,12 @@ img {
 #teachers img {
   float: right;
   margin: 0 0 var(--space-sm) var(--space-sm);
+  border-radius: var(--radius-lg);
+}
+
+.thumbnail-right {
+  float: right;
+  border-radius: var(--radius-xl);
 }
 
 .thumbnail-sm img {
