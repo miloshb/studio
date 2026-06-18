@@ -281,6 +281,7 @@ img {
 #teachers img {
   float: right;
   margin: 0 0 var(--space-sm) var(--space-sm);
+  border-radius: var(--radius-lg);
 }
 
 .thumbnail-right {
