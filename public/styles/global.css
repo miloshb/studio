@@ -302,6 +302,8 @@ img {
   width: var(--thumbnail-width-lg);
 }
 
+/* TODO: aspect does not work as expected. */
+
 .aspect-square {
   aspect-ratio: 1 / 1;
   overflow: hidden;
