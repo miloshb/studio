@@ -283,6 +283,11 @@ img {
   margin: 0 0 var(--space-sm) var(--space-sm);
 }
 
+.thumbnail-right {
+  float: right;
+  border-radius: var(--radius-xl);
+}
+
 .thumbnail-sm img {
   width: var(--thumbnail-width-sm);
 }
