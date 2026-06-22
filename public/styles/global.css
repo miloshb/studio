@@ -302,6 +302,17 @@ img {
   width: var(--thumbnail-width-lg);
 }
 
+/* Responsive adjustments for smaller screens */
+@media (--mobile) {
+  .thumbnail-md img {
+    width: var(--thumbnail-width-sm);
+  }
+
+  .thumbnail-lg img {
+    width: var(--thumbnail-width-md);
+  }
+}
+
 /* TODO: aspect does not work as expected. */
 
 .aspect-square {

@@ -119,4 +119,10 @@ const { lang, page } = Astro.props;
       order: 2;
     }
   }
+
+  @media (--mobile) {
+    .header-tools {
+      flex-direction: column-reverse;
+    }
+  }
 </style>
