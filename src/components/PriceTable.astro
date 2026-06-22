@@ -1,11 +1,13 @@
 ---
 // src/components/PriceTable.astro
-import { formatMultiCurrency } from "../utils/currency";
+import PriceCell from "./PriceCell.astro";
+import { getLocaleFromUrl } from "../utils/i18n";
 
-const { rows, locale, descLabel, priceLabel, rowLabelOverride = false } = Astro.props;
+const { rows, locale: localeOverride, descLabel, priceLabel, rowLabelOverride = false } = Astro.props;
 
-const descHeading = descLabel || (locale === "de-DE" ? "Dauer" : "Duration");
-const priceHeading = priceLabel || (locale === "de-DE" ? "Preis" : "Price");
+const currentLocale = localeOverride || getLocaleFromUrl(Astro.url);
+const descHeading = descLabel || (currentLocale === "de-DE" ? "Dauer" : "Duration");
+const priceHeading = priceLabel || (currentLocale === "de-DE" ? "Preis" : "Price");
 
 // Duration helper
 // < 45 → treat as hours
@@ -23,19 +25,6 @@ function formatDuration(value: number, locale: string) {
     ? `${value} hours`
     : `${value} minutes`;
 }
-
-export function htmlCurrencyCell(prices: string[]) {
-  return (
-    <td>
-      {prices.map((price, index) => (
-        <>
-          {index > 0 && " / "}
-          <strong>{price}</strong>
-        </>
-      ))}
-    </td>
-  );
-}
 ---
 
 <table>
@@ -47,13 +36,11 @@ export function htmlCurrencyCell(prices: string[]) {
   </thead>
   <tbody>
     {rows.map((row) => {
-      const rowLabel = rowLabelOverride ? row.label : formatDuration(row.duration, locale);
-      const prices = formatMultiCurrency(row, locale);
-
+      const rowLabel = rowLabelOverride ? row.label : formatDuration(row.duration, currentLocale);
       return (
         <tr>
           <td>{rowLabel}</td>
-          {htmlCurrencyCell(prices)}
+          <PriceCell prices={row} locale={currentLocale} />
         </tr>
       );
     })}

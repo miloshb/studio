@@ -1,10 +1,12 @@
 // src/utils/currency.ts
+import type { SupportedLocale } from "./i18n";
+export type SupportedCurrency = "EUR" | "USD" | "GBP";
 
 // Format a number into a localized currency string
 export function formatCurrency(
   value: number | undefined,
-  currency: "EUR" | "USD" | "GBP",
-  locale: "de-DE" | "en-US" | "en-GB" = "en-US"
+  currency: SupportedCurrency,
+  locale: SupportedLocale = "en-US"
 ) {
   if (value === undefined || isNaN(value)) {
     return undefined;
@@ -28,7 +30,7 @@ export interface PriceData {
 // Overload 1: accept a row object
 export function formatMultiCurrency(
   row: PriceData,
-  locale: "de-DE" | "en-US" | "en-GB"
+  locale: SupportedLocale
 ): string[];
 
 // Overload 2: accept individual numbers
@@ -36,20 +38,20 @@ export function formatMultiCurrency(
   eur: number,
   usd: number,
   gbp: number,
-  locale: "de-DE" | "en-US" | "en-GB"
+  locale: SupportedLocale
 ): string[];
 
 // Implementation
 export function formatMultiCurrency(
   a: PriceData | number,
-  b: number | "de-DE" | "en-US" | "en-GB",
+  b: number | SupportedLocale,
   c?: number,
-  d?: "de-DE" | "en-US" | "en-GB"
+  d?: SupportedLocale
 ) {
   let eur: number | undefined;
   let usd: number | undefined;
   let gbp: number | undefined;
-  let locale: "de-DE" | "en-US" | "en-GB";
+  let locale: SupportedLocale;
 
   if (typeof a === "object" && a !== null) {
     // Case 1: (row, locale)
@@ -57,18 +59,18 @@ export function formatMultiCurrency(
     eur = row.eur;
     usd = row.usd;
     gbp = row.gbp;
-    locale = b as "de-DE" | "en-US" | "en-GB";
+    locale = b as SupportedLocale;
   } else {
     // Case 2: (eur, usd, gbp, locale)
     eur = a as number;
     usd = b as number;
     gbp = c as number;
-    locale = d as "de-DE" | "en-US" | "en-GB";
+    locale = d as SupportedLocale;
   }
 
   return [
     formatCurrency(eur, "EUR", locale),
     formatCurrency(usd, "USD", locale),
     formatCurrency(gbp, "GBP", locale),
-  ].filter(Boolean);
+  ].filter(Boolean) as string[];
 }

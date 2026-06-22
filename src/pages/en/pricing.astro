@@ -2,9 +2,8 @@
 // src/pages/en/pricing.astro
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import PriceTable from "../../components/PriceTable.astro";
+import PriceCell from "../../components/PriceCell.astro";
 import { pricing } from "../../data/pricing";
-import { formatMultiCurrency } from "../../utils/currency";
-import { htmlCurrencyCell } from "../../components/PriceTable.astro";
 
 const scheduledClasses = [
     { label: "Single Class (60-90 minutes)", ...pricing.class.single },
@@ -12,7 +11,6 @@ const scheduledClasses = [
     { label: "Unlimited 2-Week Pass (one-time)", eur: pricing.intro.trialTwoWeek },
     { label: "Unlimited Monthly Subscription (recurring)", ...pricing.membership.unlimitedMonth },
   ];
-const tenPack = formatMultiCurrency(pricing.class.tenPack, "en-US");
 ---
 
 <BaseLayout lang="en" page="pricing" title="Pricing – Studio Sun & Sea">
@@ -21,7 +19,7 @@ const tenPack = formatMultiCurrency(pricing.class.tenPack, "en-US");
   <!-- Scheduled Classes -->
   <section>
     <h2>Scheduled Classes</h2>
-    <PriceTable rows={scheduledClasses} rowLabelOverride descLabel="Option" locale="en-US" />
+    <PriceTable rows={scheduledClasses} rowLabelOverride descLabel="Option" />
     <p>
       The one-time unlimited passes are ideal for exploring Studio Sun & Sea and experiencing the full rhythm of practice. Designed for new students, each one-time pass can be purchased once per person.
     </p>
@@ -46,7 +44,7 @@ const tenPack = formatMultiCurrency(pricing.class.tenPack, "en-US");
       <tbody>
         <tr>
           <td>10-Class Pack</td>
-          {htmlCurrencyCell(tenPack)}
+          <PriceCell prices={pricing.class.tenPack} />
           <td>{pricing.class.tenPack.validity} months</td>
         </tr>
       </tbody>
@@ -60,7 +58,7 @@ const tenPack = formatMultiCurrency(pricing.class.tenPack, "en-US");
   <!-- Private One-to-One Sessions -->
   <section>
     <h2>Private Sessions — One-to-One</h2>
-    <PriceTable rows={pricing.private} locale="en-US" />
+    <PriceTable rows={pricing.private} />
     <p>
       Learn more about one-to-one private sessions on the
       <a href="/en/private#one-to-one">Private Yoga</a> page.
@@ -70,7 +68,7 @@ const tenPack = formatMultiCurrency(pricing.class.tenPack, "en-US");
   <!-- Duet Sessions -->
   <section>
     <h2>Duet Private Sessions — Paired Practice</h2>
-    <PriceTable rows={pricing.duet} locale="en-US" priceLabel="Price (for 2 students)"/>
+    <PriceTable rows={pricing.duet} priceLabel="Price (for 2 students)"/>
     <p>
       Learn more about duet private sessions on the
       <a href="/en/private#duet">Private Yoga</a> page.
@@ -80,7 +78,7 @@ const tenPack = formatMultiCurrency(pricing.class.tenPack, "en-US");
   <!-- Small-Group Sessions -->
   <section>
     <h2>Small-Group Private Sessions — Up to 4 Students</h2>
-    <PriceTable rows={pricing.group} locale="en-US" priceLabel="Price (up to 4 students)"/>
+    <PriceTable rows={pricing.group} priceLabel="Price (up to 4 students)"/>
     <p>
       Learn more about small-group private sessions on the
       <a href="/en/private#small-group">Private Yoga</a> page.
@@ -90,7 +88,7 @@ const tenPack = formatMultiCurrency(pricing.class.tenPack, "en-US");
   <!-- Workshops -->
   <section>
     <h2>Workshops</h2>
-    <PriceTable rows={pricing.workshop} locale="en-US" />
+    <PriceTable rows={pricing.workshop} />
     <p>
       Learn more about workshop structure and themes on the
       <a href="/en/workshops">Workshops</a> page.
