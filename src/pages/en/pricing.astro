@@ -1,11 +1,18 @@
 ---
+// src/pages/en/pricing.astro
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import PriceTable from "../../components/PriceTable.astro";
 import { pricing } from "../../data/pricing";
-import { formatCurrency, formatTrio } from "../../utils/currency";
+import { formatMultiCurrency } from "../../utils/currency";
+import { htmlCurrencyCell } from "../../components/PriceTable.astro";
 
-const single = formatTrio(pricing.class.single, "en-US");
-const tenPack = formatTrio(pricing.class.tenPack, "en-US");
+const scheduledClasses = [
+    { label: "Single Class (60-90 minutes)", ...pricing.class.single },
+    { label: "Unlimited Week (one-time)", eur: pricing.intro.trialWeek },
+    { label: "Unlimited 2-Week Pass (one-time)", eur: pricing.intro.trialTwoWeek },
+    { label: "Unlimited Monthly Subscription (recurring)", ...pricing.membership.unlimitedMonth },
+  ];
+const tenPack = formatMultiCurrency(pricing.class.tenPack, "en-US");
 ---
 
 <BaseLayout lang="en" page="pricing" title="Pricing – Studio Sun & Sea">
@@ -14,6 +21,7 @@ const tenPack = formatTrio(pricing.class.tenPack, "en-US");
   <!-- Scheduled Classes -->
   <section>
     <h2>Scheduled Classes</h2>
+    <PriceTable rows={scheduledClasses} rowLabelOverride descLabel="Option" locale="en-US" />
     <p>
       The one-time unlimited passes are ideal for exploring Studio Sun & Sea and experiencing the full rhythm of practice. Designed for new students, each one-time pass can be purchased once per person.
     </p>
@@ -38,7 +46,7 @@ const tenPack = formatTrio(pricing.class.tenPack, "en-US");
       <tbody>
         <tr>
           <td>10-Class Pack</td>
-          <td><strong>{tenPack.eur}</strong> / <strong>{tenPack.usd}</strong> / <strong>{tenPack.gbp}</strong></td>
+          {htmlCurrencyCell(tenPack)}
           <td>{pricing.class.tenPack.validity} months</td>
         </tr>
       </tbody>

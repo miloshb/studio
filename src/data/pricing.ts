@@ -8,7 +8,9 @@ export const pricing = {
   },
 
   membership: {
-    unlimitedMonth: 120,
+    unlimitedMonth: {
+      eur: 120,
+    },
   },
 
   class: {

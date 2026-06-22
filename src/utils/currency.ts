@@ -2,10 +2,14 @@
 
 // Format a number into a localized currency string
 export function formatCurrency(
-  value: number,
+  value: number | undefined,
   currency: "EUR" | "USD" | "GBP",
   locale: "de-DE" | "en-US" | "en-GB" = "en-US"
 ) {
+  if (value === undefined || isNaN(value)) {
+    return undefined;
+  }
+
   return new Intl.NumberFormat(locale, {
     style: "currency",
     currency,
@@ -14,54 +18,57 @@ export function formatCurrency(
   }).format(value);
 }
 
-// Currency trio helpers
+// Multi-Currency helpers
 export interface PriceData {
   eur: number;
-  usd: number;
-  gbp: number;
+  usd?: number;
+  gbp?: number;
 }
 
 // Overload 1: accept a row object
-export function formatTrio(
+export function formatMultiCurrency(
   row: PriceData,
   locale: "de-DE" | "en-US" | "en-GB"
-): { eur: string; usd: string; gbp: string };
+): string[];
 
 // Overload 2: accept individual numbers
-export function formatTrio(
+export function formatMultiCurrency(
   eur: number,
   usd: number,
   gbp: number,
   locale: "de-DE" | "en-US" | "en-GB"
-): { eur: string; usd: string; gbp: string };
+): string[];
 
 // Implementation
-export function formatTrio(
+export function formatMultiCurrency(
   a: PriceData | number,
   b: number | "de-DE" | "en-US" | "en-GB",
   c?: number,
   d?: "de-DE" | "en-US" | "en-GB"
 ) {
-  // Case 1: formatTrio(row, locale)
-  if (typeof a === "object") {
+  let eur: number | undefined;
+  let usd: number | undefined;
+  let gbp: number | undefined;
+  let locale: "de-DE" | "en-US" | "en-GB";
+
+  if (typeof a === "object" && a !== null) {
+    // Case 1: (row, locale)
     const row = a as PriceData;
-    const locale = b as "de-DE" | "en-US" | "en-GB";
-    return {
-      eur: formatCurrency(row.eur, "EUR", locale),
-      usd: formatCurrency(row.usd, "USD", locale),
-      gbp: formatCurrency(row.gbp, "GBP", locale),
-    };
+    eur = row.eur;
+    usd = row.usd;
+    gbp = row.gbp;
+    locale = b as "de-DE" | "en-US" | "en-GB";
+  } else {
+    // Case 2: (eur, usd, gbp, locale)
+    eur = a as number;
+    usd = b as number;
+    gbp = c as number;
+    locale = d as "de-DE" | "en-US" | "en-GB";
   }
 
-  // Case 2: formatTrio(eur, usd, gbp, locale)
-  const eur = a as number;
-  const usd = b as number;
-  const gbp = c as number;
-  const locale = d as "de-DE" | "en-US" | "en-GB";
-
-  return {
-    eur: formatCurrency(eur, "EUR", locale),
-    usd: formatCurrency(usd, "USD", locale),
-    gbp: formatCurrency(gbp, "GBP", locale),
-  };
+  return [
+    formatCurrency(eur, "EUR", locale),
+    formatCurrency(usd, "USD", locale),
+    formatCurrency(gbp, "GBP", locale),
+  ].filter(Boolean);
 }
