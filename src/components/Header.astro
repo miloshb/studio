@@ -17,11 +17,18 @@ const { lang, page } = Astro.props;
 
     <!-- Header Navigation -->
     <div class="header-nav">
-      {HEADER_ROUTE_KEYS.map((key) => (
+      {HEADER_ROUTE_KEYS.primary.map((key) => (
         <a href={ROUTES[key].href[lang]}>
           {ROUTES[key].nav[lang]}
         </a>
       ))}
+      <div class="header-nav-2nd">
+        {HEADER_ROUTE_KEYS.secondary.map((key) => (
+          <a href={ROUTES[key].href[lang]}>
+            {ROUTES[key].nav[lang]}
+          </a>
+        ))}
+      </div>
     </div>
 
     <div class="header-tools">
@@ -124,6 +131,9 @@ const { lang, page } = Astro.props;
   @media (width <= 600px) {
     .header-tools {
       flex-direction: column-reverse;
+    }
+    .header-nav-2nd {
+      display: none;
     }
   }
 </style>

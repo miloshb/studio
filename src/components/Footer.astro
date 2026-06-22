@@ -1,5 +1,5 @@
 ---
-import { FOOTER_ROUTE_KEYS, ROUTES } from "../data/routes.js";
+import { FOOTER_ROUTE_KEYS, HEADER_ROUTE_KEYS, ROUTES } from "../data/routes.js";
 import ExaliSeal from "./ExaliSeal.astro";
 const { lang, footerOffset } = Astro.props;
 const footerTopOffset = footerOffset ? "var(--offset-lg)" : "0px";
@@ -14,6 +14,13 @@ const footerTopOffset = footerOffset ? "var(--offset-lg)" : "0px";
           {ROUTES[key].nav[lang]}
         </a>
       ))}
+      <div class="header-in-footer-nav">
+        {HEADER_ROUTE_KEYS.secondary.map((key) => (
+          <a href={ROUTES[key].href[lang]}>
+            {ROUTES[key].nav[lang]}
+          </a>
+        ))}
+      </div>
     </div>
 
     <!-- Row 2: Left side -->
@@ -76,5 +83,15 @@ const footerTopOffset = footerOffset ? "var(--offset-lg)" : "0px";
   .footer-badge {
     order: 3;
     margin-left: auto;
+  }
+
+  .header-in-footer-nav {
+    display: none;
+  }
+
+  @media (width <= 600px) {
+    .header-in-footer-nav {
+      display: inherit;
+    }
   }
 </style>
