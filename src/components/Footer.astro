@@ -50,7 +50,7 @@ const footerTopOffset = footerOffset ? "var(--offset-lg)" : "0px";
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: self-end;
-    row-gap: var(--space-xs);
+    gap: var(--space-xs) 0;
   }
 
   /* ---------------------------
@@ -59,17 +59,25 @@ const footerTopOffset = footerOffset ? "var(--offset-lg)" : "0px";
   .footer-nav {
     order: 1;
     flex: 1 1 100%;
-    text-align: center;
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 var(--space-sm);
   }
 
   .footer-nav a {
-    margin: 0 var(--space-xs);
+    white-space: nowrap;
     font-size: var(--text-sm);
     color: var(--color-text-soft);
   }
 
   .footer-nav a:hover {
     color: var(--color-text);
+  }
+
+  .header-in-footer-nav {
+    display: none;
+    gap: 0 var(--space-sm);
   }
 
   /* ---------------------------
@@ -85,16 +93,16 @@ const footerTopOffset = footerOffset ? "var(--offset-lg)" : "0px";
     margin-left: auto;
   }
 
-  .header-in-footer-nav {
-    display: none;
-  }
-
+  /* ---------------------------
+     RESPONSIVE BREAKPOINTS
+  ---------------------------- */
   @media (width <= 600px) {
     .header-in-footer-nav {
-      display: inline;
+      display: inline-flex;
     }
-    .footer-nav a {
-      margin: 0 var(--space-xxs);
+
+    .footer-nav {
+      gap: 0 var(--space-xs);
     }
   }
 </style>
