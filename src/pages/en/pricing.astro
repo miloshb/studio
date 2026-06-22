@@ -14,29 +14,6 @@ const tenPack = formatTrio(pricing.class.tenPack, "en-US");
   <!-- Scheduled Classes -->
   <section>
     <h2>Scheduled Classes</h2>
-    <table>
-      <thead>
-        <tr><th>Option</th><th>Price</th></tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Single Class (60-90 minutes)</td>
-          <td><strong>{single.eur}</strong> / <strong>{single.usd}</strong> / <strong>{single.gbp}</strong></td>
-        </tr>
-        <tr>
-          <td>Unlimited Week (one-time)</td>
-          <td><strong>{formatCurrency(pricing.intro.trialWeek, "EUR", "en-US")}</strong></td>
-        </tr>
-        <tr>
-          <td>Unlimited 2-Week Pass (one-time)</td>
-          <td><strong>{formatCurrency(pricing.intro.trialTwoWeek, "EUR", "en-US")}</strong></td>
-        </tr>
-        <tr>
-          <td>Unlimited Monthly Subscription (recurring)</td>
-          <td><strong>{formatCurrency(pricing.membership.unlimitedMonth, "EUR", "en-US")}</strong></td>
-        </tr>
-      </tbody>
-    </table>
     <p>
       The one-time unlimited passes are ideal for exploring Studio Sun & Sea and experiencing the full rhythm of practice. Designed for new students, each one-time pass can be purchased once per person.
     </p>
@@ -87,7 +64,7 @@ const tenPack = formatTrio(pricing.class.tenPack, "en-US");
     <h2>Duet Private Sessions — Paired Practice</h2>
     <PriceTable rows={pricing.duet} locale="en-US" priceLabel="Price (for 2 students)"/>
     <p>
-      Learn more about duet sessions on the
+      Learn more about duet private sessions on the
       <a href="/en/private#duet">Private Yoga</a> page.
     </p>
   </section>
