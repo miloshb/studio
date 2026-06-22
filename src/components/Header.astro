@@ -32,8 +32,6 @@ const { lang, page } = Astro.props;
     </div>
 
     <div class="header-tools">
-      <MindbodyLogin />
-
       <!-- Language Switcher -->
       <div class="header-lang">
         {LANGS.map(code => (
@@ -49,6 +47,7 @@ const { lang, page } = Astro.props;
           </>
         ))}
       </div>
+      <MindbodyLogin />
     </div>
   </div>
 </header>
@@ -77,7 +76,7 @@ const { lang, page } = Astro.props;
 
 <style>
   .header {
-    display: flex;
+    display: grid;
     justify-content: space-between;
     align-items: center;
     padding: var(--space-sm) 0;
@@ -98,9 +97,8 @@ const { lang, page } = Astro.props;
     align-items: center;
     gap: var(--space-xs);
     z-index: 100; /* Ensures brand is visible */
-    flex: 0 1 auto;
-    order: 1;
     transform: translateY(-3px);
+    grid-column: 1;
   }
 
   .brand img:hover {
@@ -112,13 +110,12 @@ const { lang, page } = Astro.props;
   ---------------------------- */
   .header-nav {
     font-size: var(--text-md);
-    flex: 1 1 500px;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
     column-gap: var(--space-sm);
-    order: 3;
+    grid-column: 2;
   }
 
   .header-nav a {
@@ -138,12 +135,12 @@ const { lang, page } = Astro.props;
      TOOLS & LANGUAGE CONTROLS
   ---------------------------- */
   .header-tools {
-    display: flex;
-    flex-wrap: nowrap;
+    display: inline-flex;
+    flex-flow: row-reverse wrap;
     align-items: center;
+    justify-content: center;
     gap: var(--space-xxs) var(--space-xs);
-    flex: 0 1 auto;
-    order: 2;
+    grid-column: 3;
   }
 
   .header-login {
@@ -174,9 +171,6 @@ const { lang, page } = Astro.props;
      RESPONSIVE BREAKPOINTS
   ---------------------------- */
   @media (width <= 600px) {
-    .header-tools {
-      flex-direction: column-reverse;
-    }
     .header-nav-2nd {
       display: none;
     }
