@@ -1,0 +1,53 @@
+---
+// src/components/PriceTable.astro
+import { formatTrio } from "../utils/currency";
+
+const { rows, locale, priceLabel } = Astro.props;
+
+const priceHeading = priceLabel || (locale === "de-DE" ? "Preis" : "Price");
+
+// Duration helper
+// < 45 → treat as hours
+// >= 45 → treat as minutes
+function formatDuration(value: number, locale: string) {
+  const isHours = value < 45;
+
+  if (locale === "de-DE") {
+    return isHours
+      ? `${value} Stunden`
+      : `${value} Minuten`;
+  }
+
+  return isHours
+    ? `${value} hours`
+    : `${value} minutes`;
+}
+---
+
+<table>
+  <thead>
+    <tr>
+      <th>{locale === "de-DE" ? "Dauer" : "Duration"}</th>
+      <th>{priceHeading}</th>
+    </tr>
+  </thead>
+  <tbody>
+    {rows.map((row) => {
+      const duration = formatDuration(row.duration, locale);
+      const { eur, usd, gbp } = formatTrio(row, locale);
+
+      return (
+        <tr>
+          <td>{duration}</td>
+          <td>
+            <strong>{eur}</strong>
+            {" / "}
+            <strong>{usd}</strong>
+            {" / "}
+            <strong>{gbp}</strong>
+          </td>
+        </tr>
+      );
+    })}
+  </tbody>
+</table>
