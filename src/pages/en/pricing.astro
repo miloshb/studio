@@ -1,6 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-//import PriceTable from "../../components/PriceTable.astro";
+import PriceTable from "../../components/PriceTable.astro";
 import { pricing } from "../../data/pricing";
 ---
 
@@ -37,7 +37,6 @@ import { pricing } from "../../data/pricing";
         </tr>
       </tbody>
     </table>
-
     <p>
       The one-time unlimited passes are ideal for exploring Studio Sun & Sea and experiencing the full rhythm of practice. Designed for new students, each one-time pass can be purchased once per person.
     </p>
@@ -77,6 +76,7 @@ import { pricing } from "../../data/pricing";
   <!-- Private One-to-One Sessions -->
   <section>
     <h2>Private Sessions — One-to-One</h2>
+    <PriceTable row={pricing.private} locale="en-GB" />
     <p>
       Learn more about one-to-one private sessions on the
       <a href="/en/private#one-to-one">Private Yoga</a> page.
