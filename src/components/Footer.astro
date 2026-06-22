@@ -77,7 +77,7 @@ const footerTopOffset = footerOffset ? "var(--offset-lg)" : "0px";
 
   .header-in-footer-nav {
     display: none;
-    gap: 0 var(--space-sm);
+    gap: inherit;
   }
 
   /* ---------------------------
@@ -99,10 +99,6 @@ const footerTopOffset = footerOffset ? "var(--offset-lg)" : "0px";
   @media (width <= 600px) {
     .header-in-footer-nav {
       display: inline-flex;
-    }
-
-    .footer-nav {
-      gap: 0 var(--space-xs);
     }
   }
 </style>
