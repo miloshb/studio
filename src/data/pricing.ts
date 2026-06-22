@@ -7,8 +7,8 @@ export const pricing = {
     trialTwoWeek: 95,
   },
 
-  monthly: {
-    unlimited: 120,
+  membership: {
+    unlimitedMonth: 120,
   },
 
   class: {
@@ -19,6 +19,8 @@ export const pricing = {
     },
     tenPack: {
       eur: 180,
+      usd: 220,
+      gbp: 160,
       validity: 18, // months
     },
   },

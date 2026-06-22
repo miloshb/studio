@@ -2,6 +2,10 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import PriceTable from "../../components/PriceTable.astro";
 import { pricing } from "../../data/pricing";
+import { formatCurrency, formatTrio } from "../../utils/currency";
+
+const single = formatTrio(pricing.class.single, "en-US");
+const tenPack = formatTrio(pricing.class.tenPack, "en-US");
 ---
 
 <BaseLayout lang="en" page="pricing" title="Pricing – Studio Sun & Sea">
@@ -17,19 +21,19 @@ import { pricing } from "../../data/pricing";
       <tbody>
         <tr>
           <td>Single Class (60-90 minutes)</td>
-          <td><strong>€20</strong> / <strong>$25</strong> / <strong>£18</strong></td>
+          <td><strong>{single.eur}</strong> / <strong>{single.usd}</strong> / <strong>{single.gbp}</strong></td>
         </tr>
         <tr>
           <td>Unlimited Week (one-time)</td>
-          <td><strong>€55</strong></td>
+          <td><strong>{formatCurrency(pricing.intro.trialWeek, "EUR", "en-US")}</strong></td>
         </tr>
         <tr>
           <td>Unlimited 2-Week Pass (one-time)</td>
-          <td><strong>€95</strong></td>
+          <td><strong>{formatCurrency(pricing.intro.trialTwoWeek, "EUR", "en-US")}</strong></td>
         </tr>
         <tr>
           <td>Unlimited Monthly Subscription (recurring)</td>
-          <td><strong>€120</strong></td>
+          <td><strong>{formatCurrency(pricing.membership.unlimitedMonth, "EUR", "en-US")}</strong></td>
         </tr>
       </tbody>
     </table>
@@ -57,7 +61,7 @@ import { pricing } from "../../data/pricing";
       <tbody>
         <tr>
           <td>10-Class Pack</td>
-          <td><strong>{pricing.class.tenPack.eur} €</strong></td>
+          <td><strong>{tenPack.eur}</strong> / <strong>{tenPack.usd}</strong> / <strong>{tenPack.gbp}</strong></td>
           <td>{pricing.class.tenPack.validity} months</td>
         </tr>
       </tbody>
