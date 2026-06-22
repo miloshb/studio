@@ -76,7 +76,7 @@ import { pricing } from "../../data/pricing";
   <!-- Private One-to-One Sessions -->
   <section>
     <h2>Private Sessions — One-to-One</h2>
-    <PriceTable row={pricing.private} locale="en-GB" />
+    <PriceTable rows={pricing.private} locale="en-GB" />
     <p>
       Learn more about one-to-one private sessions on the
       <a href="/en/private#one-to-one">Private Yoga</a> page.
@@ -112,7 +112,7 @@ import { pricing } from "../../data/pricing";
 
   <!-- Small-Group Sessions -->
   <section>
-    <h2>Small‑Group Private Sessions — Up to 4 Students</h2>
+    <h2>Small-Group Private Sessions — Up to 4 Students</h2>
     <table>
       <thead>
         <tr><th>Duration</th><th>Price (up to 4 students)</th></tr>
@@ -132,7 +132,7 @@ import { pricing } from "../../data/pricing";
     </table>
 
     <p>
-      Learn more about small‑group private sessions on the
+      Learn more about small-group private sessions on the
       <a href="/en/private#small-group">Private Yoga</a> page.
     </p>
   </section>
@@ -140,24 +140,7 @@ import { pricing } from "../../data/pricing";
   <!-- Workshops -->
   <section>
     <h2>Workshops</h2>
-    <table>
-      <thead>
-        <tr><th>Duration</th><th>Price</th></tr>
-      </thead>
-      <tbody>
-        {pricing.workshop.map((row) => (
-          <tr>
-            <td>{row.duration} hours</td>
-            <td>
-              <strong>{row.eur} €</strong> /
-              <strong>{row.usd} $</strong> /
-              <strong>{row.gbp} £</strong>
-            </td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
-
+    <PriceTable rows={pricing.workshop} locale="en-GB" />
     <p>
       Learn more about workshop structure and themes on the
       <a href="/en/workshops">Workshops</a> page.
