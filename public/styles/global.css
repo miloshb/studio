@@ -151,25 +151,7 @@ a:hover {
 }
 
 /* ---------------------------------
-   5. BRAND
----------------------------------- */
-
-.brand {
-  font-family: var(--font-heading);
-  font-size: var(--text-xl);
-  color: var(--color-text);
-  display: inline-flex;
-  flex-wrap: nowrap;
-  gap: var(--space-xs);
-  z-index: 100; /* Ensures brand is visible */
-}
-
-.brand :global(img:hover) {
-  opacity: 0.8;
-}
-
-/* ---------------------------------
-   6. BUTTONS (minimal)
+   5. BUTTONS (minimal)
 ---------------------------------- */
 
 .button {
@@ -189,7 +171,7 @@ a:hover {
 }
 
 /* ---------------------------------
-   7. TABLES (consistent columns)
+   6. TABLES (consistent columns)
 ---------------------------------- */
 
 table {
@@ -227,7 +209,7 @@ table.no-global td:last-child {
 }
 
 /* ---------------------------------
-   8. RESPONSIVE LAYOUTS (MOBILE)
+   7. RESPONSIVE LAYOUTS (MOBILE)
 ---------------------------------- */
 
 /* --mobile-max-width */
@@ -240,7 +222,7 @@ table.no-global td:last-child {
 }
 
 /* ---------------------------------
-   9. LAYOUT UTILITIES
+   8. LAYOUT UTILITIES
 ---------------------------------- */
 
 .container {
@@ -266,7 +248,7 @@ section {
 }
 
 /* ---------------------------------
-   10. HEADER + FOOTER BASELINE
+   9. HEADER + FOOTER BASELINE
 ---------------------------------- */
 
 header, footer {
@@ -276,7 +258,7 @@ header, footer {
 }
 
 /* ---------------------------------
-   11. IMAGES
+   10. IMAGES
 ---------------------------------- */
 
 img {

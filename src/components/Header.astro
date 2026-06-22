@@ -86,17 +86,37 @@ const { lang, page } = Astro.props;
     column-gap: var(--space-md);
   }
 
+  /* ---------------------------------
+     BRAND / LOGO
+  ---------------------------------- */
+
+  .brand {
+    font-family: var(--font-heading);
+    font-size: var(--text-xl);
+    color: var(--color-text);
+    display: inline-flex;
+    flex-wrap: nowrap;
+    gap: var(--space-xs);
+    z-index: 100; /* Ensures brand is visible */
+    order: 1;
+  }
+
+  .brand img:hover {
+    opacity: 0.8;
+  }
+
   /* ---------------------------
      HEADER NAVIGATION
   ---------------------------- */
   .header-nav {
     font-size: var(--text-md);
-    flex: 1 1 auto;
+    flex: 1 1 100%;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
     column-gap: var(--space-sm);
+    order: 3;
   }
 
   .header-nav a {
@@ -110,7 +130,6 @@ const { lang, page } = Astro.props;
 
   .header-nav-2nd {
     display: contents;
-    align-items: center;
   }
 
   /* ---------------------------
@@ -121,6 +140,7 @@ const { lang, page } = Astro.props;
     flex-wrap: nowrap;
     align-items: center;
     gap: var(--space-xxs) var(--space-xs);
+    order: 2;
   }
 
   .header-login {
