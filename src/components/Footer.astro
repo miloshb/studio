@@ -63,7 +63,7 @@ const footerTopOffset = footerOffset ? "var(--offset-lg)" : "0px";
   }
 
   .footer-nav a {
-    margin: 0 var(--space-md);
+    margin: 0 var(--space-xs);
     font-size: var(--text-sm);
     color: var(--color-text-soft);
   }
@@ -92,6 +92,9 @@ const footerTopOffset = footerOffset ? "var(--offset-lg)" : "0px";
   @media (width <= 600px) {
     .header-in-footer-nav {
       display: inline;
+    }
+    .footer-nav a {
+      margin: 0 var(--space-xxs);
     }
   }
 </style>
