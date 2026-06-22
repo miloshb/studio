@@ -10,33 +10,7 @@ import { pricing } from "../../data/pricing";
   <!-- Scheduled Classes -->
   <section>
     <h2>Scheduled Classes</h2>
-    <table>
-      <thead>
-        <tr><th>Option</th><th>Price</th></tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Single Class (60-90 minutes)</td>
-          <td>
-            <strong>{pricing.class.single.eur} €</strong> /
-            <strong>{pricing.class.single.usd} $</strong> /
-            <strong>{pricing.class.single.gbp} £</strong>
-          </td>
-        </tr>
-        <tr>
-          <td>Unlimited Week (one-time)</td>
-          <td><strong>{pricing.intro.trialWeek} €</strong></td>
-        </tr>
-        <tr>
-          <td>Unlimited 2-Week Pass (one-time)</td>
-          <td><strong>{pricing.intro.trialTwoWeek} €</strong></td>
-        </tr>
-        <tr>
-          <td>Unlimited Monthly Subscription (recurring)</td>
-          <td><strong>{pricing.monthly.unlimited} €</strong></td>
-        </tr>
-      </tbody>
-    </table>
+
     <p>
       The one-time unlimited passes are ideal for exploring Studio Sun & Sea and experiencing the full rhythm of practice. Designed for new students, each one-time pass can be purchased once per person.
     </p>
@@ -76,7 +50,7 @@ import { pricing } from "../../data/pricing";
   <!-- Private One-to-One Sessions -->
   <section>
     <h2>Private Sessions — One-to-One</h2>
-    <PriceTable rows={pricing.private} locale="en-GB" />
+    <PriceTable rows={pricing.private} locale="en-US" />
     <p>
       Learn more about one-to-one private sessions on the
       <a href="/en/private#one-to-one">Private Yoga</a> page.
