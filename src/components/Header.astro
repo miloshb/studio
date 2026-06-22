@@ -80,20 +80,27 @@ const { lang, page } = Astro.props;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    text-align: center;
     padding: var(--space-sm) 0;
     flex-shrink: 0;
     flex-wrap: wrap;
-    gap: var(--space-xs);
+    gap: 0 var(--space-md);
   }
 
+  /* ---------------------------
+     HEADER NAVIGATION
+  ---------------------------- */
   .header-nav {
     font-size: var(--text-md);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0 var(--space-sm);
   }
 
   .header-nav a {
-    margin: 0 var(--space-xs);
     color: var(--color-text-soft);
+    white-space: nowrap;
   }
 
   .header-nav a:hover {
@@ -101,18 +108,37 @@ const { lang, page } = Astro.props;
   }
 
   .header-nav-2nd {
-    display: inline;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: inherit;
   }
 
+  /* ---------------------------
+     TOOLS & LANGUAGE CONTROLS
+  ---------------------------- */
   .header-tools {
-    display: inline-flex;
+    display: flex;
     flex-wrap: nowrap;
+    align-items: center;
+    gap: var(--space-sm);
+  }
+
+  .header-login {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xxs);
+    min-width: var(--space-md);
+    min-height: var(--space-md);
+    contain: layout size style;
   }
 
   .header-lang {
-    display: inline-flex;
+    display: flex;
+    flex-wrap: nowrap;
     align-items: center;
     font-size: var(--text-xs);
+    gap: var(--space-xxs);
   }
 
   .header-lang a {
@@ -124,17 +150,22 @@ const { lang, page } = Astro.props;
     font-weight: 600;
   }
 
-  /* drop nav links to second row when header breaks */
+  /* ---------------------------
+     RESPONSIVE BREAKPOINTS
+  ---------------------------- */
   @media (max-width: 900px) {
+    /* Drop nav links to second header row */
     .header-nav {
       order: 2;
-      width: stretch;
+      width: 100%; /* Fallback for 'stretch' to maximize layout cross-browser compatibility */
     }
   }
 
   @media (width <= 600px) {
     .header-tools {
       flex-direction: column-reverse;
+      align-items: flex-end;
+      gap: var(--space-xxs);
     }
     .header-nav-2nd {
       display: none;
