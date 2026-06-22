@@ -10,7 +10,29 @@ import { pricing } from "../../data/pricing";
   <!-- Scheduled Classes -->
   <section>
     <h2>Scheduled Classes</h2>
-
+    <table>
+      <thead>
+        <tr><th>Option</th><th>Price</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Single Class (60-90 minutes)</td>
+          <td><strong>€20</strong> / <strong>$25</strong> / <strong>£18</strong></td>
+        </tr>
+        <tr>
+          <td>Unlimited Week (one-time)</td>
+          <td><strong>€55</strong></td>
+        </tr>
+        <tr>
+          <td>Unlimited 2-Week Pass (one-time)</td>
+          <td><strong>€95</strong></td>
+        </tr>
+        <tr>
+          <td>Unlimited Monthly Subscription (recurring)</td>
+          <td><strong>€120</strong></td>
+        </tr>
+      </tbody>
+    </table>
     <p>
       The one-time unlimited passes are ideal for exploring Studio Sun & Sea and experiencing the full rhythm of practice. Designed for new students, each one-time pass can be purchased once per person.
     </p>
@@ -40,7 +62,6 @@ import { pricing } from "../../data/pricing";
         </tr>
       </tbody>
     </table>
-
     <p>
       A flexible option for students who prefer to practice at their own rhythm. The 10-Class Pack offers a gentle discount without creating pressure to use it quickly.<br />
       With an 18-month validity period, there is plenty of time to attend classes whenever it fits your life — no stress, no countdown, and no need for extensions.
@@ -60,24 +81,7 @@ import { pricing } from "../../data/pricing";
   <!-- Duet Sessions -->
   <section>
     <h2>Duet Private Sessions — Paired Practice</h2>
-    <table>
-      <thead>
-        <tr><th>Duration</th><th>Price (for 2 students)</th></tr>
-      </thead>
-      <tbody>
-        {pricing.duet.map((row) => (
-          <tr>
-            <td>{row.duration} minutes</td>
-            <td>
-              <strong>{row.eur} €</strong> /
-              <strong>{row.usd} $</strong> /
-              <strong>{row.gbp} £</strong>
-            </td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
-
+    <PriceTable rows={pricing.duet} locale="en-US" priceLabel="Price (for 2 students)"/>
     <p>
       Learn more about duet sessions on the
       <a href="/en/private#duet">Private Yoga</a> page.
@@ -87,24 +91,7 @@ import { pricing } from "../../data/pricing";
   <!-- Small-Group Sessions -->
   <section>
     <h2>Small-Group Private Sessions — Up to 4 Students</h2>
-    <table>
-      <thead>
-        <tr><th>Duration</th><th>Price (up to 4 students)</th></tr>
-      </thead>
-      <tbody>
-        {pricing.group.map((row) => (
-          <tr>
-            <td>{row.duration} minutes</td>
-            <td>
-              <strong>{row.eur} €</strong> /
-              <strong>{row.usd} $</strong> /
-              <strong>{row.gbp} £</strong>
-            </td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
-
+    <PriceTable rows={pricing.group} locale="en-US" priceLabel="Price (up to 4 students)"/>
     <p>
       Learn more about small-group private sessions on the
       <a href="/en/private#small-group">Private Yoga</a> page.
@@ -114,7 +101,7 @@ import { pricing } from "../../data/pricing";
   <!-- Workshops -->
   <section>
     <h2>Workshops</h2>
-    <PriceTable rows={pricing.workshop} locale="en-GB" />
+    <PriceTable rows={pricing.workshop} locale="en-US" />
     <p>
       Learn more about workshop structure and themes on the
       <a href="/en/workshops">Workshops</a> page.
