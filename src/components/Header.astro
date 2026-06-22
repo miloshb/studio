@@ -121,7 +121,7 @@ const { lang, page } = Astro.props;
     }
   }
 
-  @media (--mobile) {
+  @media (width <= 600px) {
     .header-tools {
       flex-direction: column-reverse;
     }

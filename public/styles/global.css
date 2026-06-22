@@ -108,6 +108,7 @@ li a:hover {
   --max-width: clamp(320px, 90vw, 1040px);
   --mobile-max-width: 600px;
   --header-width: 900px;
+  --table-layout-mode: fixed; /* ensures consistent column widths */
 }
 
 @custom-media --mobile (max-width: 600px);
@@ -195,7 +196,7 @@ table {
   margin: 0 0 var(--space-sm) 0;
   width: 100%;
   border-collapse: collapse;
-  table-layout: fixed; /* ensures consistent column widths */
+  table-layout: var(--table-layout-mode);
 }
 
 table th {
@@ -225,15 +226,21 @@ table.no-global td:last-child {
   width: auto;
 }
 
-/* Responsive adjustments for smaller screens */
-@media (--mobile) {
-  table {
-    table-layout: auto;
+/* ---------------------------------
+   8. RESPONSIVE LAYOUTS (MOBILE)
+---------------------------------- */
+
+/* --mobile-max-width */
+@media (width <= 600px) {
+  :root {
+    --table-layout-mode: auto;
+    --thumbnail-width-md: 120px; /* var(--thumbnail-width-sm) */
+    --thumbnail-width-lg: 180px; /* var(--thumbnail-width-md) */
   }
 }
 
 /* ---------------------------------
-   8. LAYOUT UTILITIES
+   9. LAYOUT UTILITIES
 ---------------------------------- */
 
 .container {
@@ -259,7 +266,7 @@ section {
 }
 
 /* ---------------------------------
-   9. HEADER + FOOTER BASELINE
+   10. HEADER + FOOTER BASELINE
 ---------------------------------- */
 
 header, footer {
@@ -269,7 +276,7 @@ header, footer {
 }
 
 /* ---------------------------------
-   10. IMAGES
+   11. IMAGES
 ---------------------------------- */
 
 img {
@@ -302,19 +309,7 @@ img {
   width: var(--thumbnail-width-lg);
 }
 
-/* Responsive adjustments for smaller screens */
-@media (--mobile) {
-  .thumbnail-md img {
-    width: var(--thumbnail-width-sm);
-  }
-
-  .thumbnail-lg img {
-    width: var(--thumbnail-width-md);
-  }
-}
-
 /* TODO: aspect does not work as expected. */
-
 .aspect-square {
   aspect-ratio: 1 / 1;
   overflow: hidden;
