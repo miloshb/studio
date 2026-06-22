@@ -83,7 +83,7 @@ const { lang, page } = Astro.props;
     padding: var(--space-sm) 0;
     flex-shrink: 0;
     flex-wrap: wrap;
-    gap: 0 var(--space-md);
+    column-gap: var(--space-md);
   }
 
   /* ---------------------------
@@ -91,11 +91,12 @@ const { lang, page } = Astro.props;
   ---------------------------- */
   .header-nav {
     font-size: var(--text-md);
+    flex: 1 1 auto;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    gap: 0 var(--space-sm);
+    column-gap: var(--space-sm);
   }
 
   .header-nav a {
@@ -108,10 +109,8 @@ const { lang, page } = Astro.props;
   }
 
   .header-nav-2nd {
-    display: flex;
-    flex-wrap: wrap;
+    display: contents;
     align-items: center;
-    gap: inherit;
   }
 
   /* ---------------------------
@@ -121,24 +120,22 @@ const { lang, page } = Astro.props;
     display: flex;
     flex-wrap: nowrap;
     align-items: center;
-    gap: var(--space-sm);
+    gap: var(--space-xxs) var(--space-xs);
   }
 
   .header-login {
     display: inline-flex;
     align-items: center;
-    gap: var(--space-xxs);
     min-width: var(--space-md);
     min-height: var(--space-md);
     contain: layout size style;
   }
 
   .header-lang {
+    font-size: var(--text-xs);
     display: flex;
     flex-wrap: nowrap;
     align-items: center;
-    font-size: var(--text-xs);
-    gap: var(--space-xxs);
   }
 
   .header-lang a {
@@ -153,19 +150,9 @@ const { lang, page } = Astro.props;
   /* ---------------------------
      RESPONSIVE BREAKPOINTS
   ---------------------------- */
-  @media (max-width: 900px) {
-    /* Drop nav links to second header row */
-    .header-nav {
-      order: 2;
-      width: 100%; /* Fallback for 'stretch' to maximize layout cross-browser compatibility */
-    }
-  }
-
   @media (width <= 600px) {
     .header-tools {
       flex-direction: column-reverse;
-      align-items: flex-end;
-      gap: var(--space-xxs);
     }
     .header-nav-2nd {
       display: none;

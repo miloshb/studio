@@ -56,18 +56,19 @@ const footerTopOffset = footerOffset ? "var(--offset-lg)" : "0px";
      ROW 1 — NAVIGATION
   ---------------------------- */
   .footer-nav {
+    font-size: var(--text-sm);
     order: 1;
     flex: 1 1 100%;
-    justify-content: center;
     display: flex;
     flex-wrap: wrap;
-    gap: 0 var(--space-sm);
+    align-items: center;
+    justify-content: center;
+    column-gap: var(--space-sm);
   }
 
   .footer-nav a {
-    white-space: nowrap;
-    font-size: var(--text-sm);
     color: var(--color-text-soft);
+    white-space: nowrap;
   }
 
   .footer-nav a:hover {
@@ -76,7 +77,6 @@ const footerTopOffset = footerOffset ? "var(--offset-lg)" : "0px";
 
   .header-in-footer-nav {
     display: none;
-    gap: inherit;
   }
 
   /* ---------------------------
@@ -97,7 +97,7 @@ const footerTopOffset = footerOffset ? "var(--offset-lg)" : "0px";
   ---------------------------- */
   @media (width <= 600px) {
     .header-in-footer-nav {
-      display: inline-flex;
+      display: contents;
     }
   }
 </style>
