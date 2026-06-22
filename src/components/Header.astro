@@ -81,7 +81,6 @@ const { lang, page } = Astro.props;
     justify-content: space-between;
     align-items: center;
     padding: var(--space-sm) 0;
-    flex-shrink: 0;
     flex-wrap: wrap;
     column-gap: var(--space-md);
   }
@@ -96,9 +95,12 @@ const { lang, page } = Astro.props;
     color: var(--color-text);
     display: inline-flex;
     flex-wrap: nowrap;
+    align-items: center;
     gap: var(--space-xs);
     z-index: 100; /* Ensures brand is visible */
+    flex: 0 1 auto;
     order: 1;
+    transform: translateY(-3px);
   }
 
   .brand img:hover {
@@ -110,7 +112,7 @@ const { lang, page } = Astro.props;
   ---------------------------- */
   .header-nav {
     font-size: var(--text-md);
-    flex: 1 1 100%;
+    flex: 1 1 500px;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -140,6 +142,7 @@ const { lang, page } = Astro.props;
     flex-wrap: nowrap;
     align-items: center;
     gap: var(--space-xxs) var(--space-xs);
+    flex: 0 1 auto;
     order: 2;
   }
 
