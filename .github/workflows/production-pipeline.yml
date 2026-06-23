@@ -2,9 +2,9 @@ name: Production Pipeline
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, stage ]
   pull_request:
-    branches: [ main ]
+    branches: [ main, stage ]
 
 jobs:
   # JOB 1: Test and validate everything first
@@ -43,13 +43,15 @@ jobs:
         run: npm run test:sitemap
 
       - name: Scan Entire Site for Broken Internal Links
+        # This securely spins up the server, runs linkinator, catches real errors, and spins it down.
         run: npm run test:links
 
-  # JOB 2: Only run version bumping if the validation job passes perfectly
+  # JOB 2: Only run version bumping if the validation job passes AND it's the main branch
   bump-version:
     runs-on: ubuntu-latest
-    needs: validate # 💡 THE KEY LINK: This blocks execution if Job 1 fails!
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main' # Only bump on merges to main
+    needs: validate
+    # Only bump on merges to main
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     permissions:
       contents: write # Allows the action to push changes back to GitHub
 
@@ -68,7 +70,7 @@ jobs:
       - name: Configure Git
         run: |
           git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@://github.com"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
       # This reads your commit message. If it contains [major] or [minor], it bumps accordingly.
       # Otherwise, it defaults to a standard patch bump (0.0.2 -> 0.0.3).
