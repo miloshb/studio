@@ -10,10 +10,12 @@ const { lang, page } = Astro.props;
 <header>
   <div class="header container">
     <!-- Brand always links to the correct language root -->
-    <a class="brand" href={getLangRoot(lang)}>
-      <img class="aspect-square" src="/favicon/favicon-48.png" alt="Studio Sun & Sea Logo" />
-      Studio Sun & Sea
-    </a>
+    <div class="header-brand">
+      <a class="brand" href={getLangRoot(lang)}>
+        <img class="aspect-square" src="/favicon/favicon-48.png" alt="Studio Sun & Sea Logo" />
+        Studio Sun & Sea
+      </a>
+    </div>
 
     <!-- Header Navigation -->
     <div class="header-nav">
@@ -76,7 +78,7 @@ const { lang, page } = Astro.props;
 
 <style>
   .header {
-    display: grid;
+    display: flex;
     justify-content: space-between;
     align-items: center;
     padding: var(--space-sm) 0;
@@ -88,17 +90,19 @@ const { lang, page } = Astro.props;
      BRAND / LOGO
   ---------------------------------- */
 
-  .brand {
-    font-family: var(--font-heading);
-    font-size: var(--text-xl);
-    color: var(--color-text);
+  .header-brand {
     display: inline-flex;
     flex-wrap: nowrap;
     align-items: center;
     gap: var(--space-xs);
+  }
+
+  .brand {
+    font-family: var(--font-heading);
+    font-size: var(--text-xl);
+    color: var(--color-text);
     z-index: 100; /* Ensures brand is visible */
     transform: translateY(-3px);
-    grid-column: 1;
   }
 
   .brand img {
@@ -115,7 +119,7 @@ const { lang, page } = Astro.props;
   ---------------------------- */
   .header-nav {
     font-size: var(--text-md);
-    display: flex;
+    display: inline-flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
@@ -145,7 +149,6 @@ const { lang, page } = Astro.props;
     align-items: center;
     justify-content: center;
     gap: var(--space-xxs) var(--space-xs);
-    grid-column: 3;
   }
 
   .header-lang {
