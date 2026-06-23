@@ -91,10 +91,11 @@ const { lang, page } = Astro.props;
   ---------------------------------- */
 
   .header-brand {
-    display: inline-flex;
+    display: flex;
     flex-wrap: nowrap;
     align-items: center;
     gap: var(--space-xs);
+    transform: translateY(-3px);
   }
 
   .brand {
@@ -102,7 +103,7 @@ const { lang, page } = Astro.props;
     font-size: var(--text-xl);
     color: var(--color-text);
     z-index: 100; /* Ensures brand is visible */
-    transform: translateY(-3px);
+    display: contents;
   }
 
   .brand img {
@@ -119,12 +120,11 @@ const { lang, page } = Astro.props;
   ---------------------------- */
   .header-nav {
     font-size: var(--text-md);
-    display: inline-flex;
+    display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
     column-gap: var(--space-sm);
-    grid-column: 2;
   }
 
   .header-nav a {
@@ -144,7 +144,7 @@ const { lang, page } = Astro.props;
      TOOLS & LANGUAGE CONTROLS
   ---------------------------- */
   .header-tools {
-    display: inline-flex;
+    display: flex;
     flex-flow: row-reverse wrap;
     align-items: center;
     justify-content: center;
@@ -170,6 +170,13 @@ const { lang, page } = Astro.props;
   /* ---------------------------
      RESPONSIVE BREAKPOINTS
   ---------------------------- */
+  @media (max-width: 930px) {
+    /* Drop nav links to second header row */
+    .header-nav {
+      order: 2;
+      width: 100%; /* Fallback for 'stretch' to maximize layout cross-browser compatibility */
+    }
+  }
   @media (width <= 600px) {
     .header-nav-2nd {
       display: none;
