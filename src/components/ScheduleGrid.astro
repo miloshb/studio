@@ -293,14 +293,12 @@ const getStartMinutes = (id) => START_TIMES.find((t) => t.id === id).minutes;
     cursor: pointer;
     text-align-last: right; /* Forces text selection alignment to the right */
     direction: ltr; /* Assures punctuation layout behaves properly when right aligned */
-    padding: 0 var(--space-sm);
   }
 
   .tz-dropdown option {
     text-align: right;
     background-color: var(--color-bg); /* Prevents default system style overlaps */
     color: var(--color-text);
-    padding: 0 var(--space-sm); /* Most browsers do not use this */
   }
 
   .tz-dropdown:focus {
