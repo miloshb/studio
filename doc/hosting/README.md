@@ -4,13 +4,15 @@ This document tracks the multi-regional domain routing, security protocols, and 
 
 ## 1. Master Configuration At-A-Glance
 
-| Domain Name | Registrar | DNS Management | Active Routing Target | Outbound Mail |
-| :--- | :--- | :--- | :--- | :--- |
-| **studiosunandsea.com** | GoDaddy | Cloudflare | **Primary Host** (Astro Page App) | Google Workspace |
-| `studiosunandsea.eu` | GoDaddy | Cloudflare | Redirects to English Root | Banned (Null SPF) |
-| `studiosonneundmeer.eu`| GoDaddy | Cloudflare | Redirects to Local `/de/` Path | Banned (Null SPF) |
-| `sunceimore.eu` | GoDaddy | Cloudflare | Redirects to English Root (or `/hr/`) | Banned (Null SPF) |
-| `studiosunceimore.eu`  | GoDaddy | Cloudflare | Redirects to English Root (or `/hr/`) | Banned (Null SPF) |
+| Domain Name | Registrar | DNS Management | Active Routing Target | Outbound Mail | Domain Privacy | Expiration Date |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **studiosunandsea.com** | GoDaddy | Cloudflare | **Primary Host** (Astro Page App) | Google Workspace | **ON** (High Security) | **Dec 5, 2028** |
+| `studiosunandsea.eu` | GoDaddy | Cloudflare | Redirects to English Root | Banned (Null SPF) | OFF (Limited) | **Dec 6, 2026** |
+| `studiosonneundmeer.eu`| GoDaddy | Cloudflare | Redirects to Local `/de/` Path | Banned (Null SPF) | OFF (Limited) | **Dec 6, 2026** |
+| `sunceimore.eu` | GoDaddy | Cloudflare | Redirects to English Root (or `/hr/`) | Banned (Null SPF) | OFF (Limited) | **Dec 6, 2026** |
+| `studiosunceimore.eu`  | GoDaddy | Cloudflare | Redirects to English Root (or `/hr/`) | Banned (Null SPF) | OFF (Limited) | **Dec 6, 2026** |
+| *verticalis.us* | GoDaddy | Internal/Other | Secondary Brand Asset Tracking | | **ON** (High Security) | **Sep 19, 2027** |
+| *nanoonan.com* | GoDaddy | Internal/Other | Secondary Brand Asset Tracking | | **ON** (High Security) | **Mar 19, 2033** |
 
 ---
 
@@ -75,7 +77,7 @@ To prevent bad actors from forging addresses to spoof the brand name, secondary 
 ## 5. Agentic Web Optimization & Machine Discovery
 
 ### Crawler Discoverability
-* **Sitemap Framework**: Built dynamically via `@astrojs/sitemap` to emit canonical paths at `/sitemap.xml` on every production build event. Re-indexed explicitly at the base line of `public/robots.txt`.
+* **Sitemap Framework**: Built dynamically via `@astrojs/sitemap` to emit canonical paths at `/sitemap-index.xml` on every production build event. Re-indexed explicitly at the base line of `src/pages/robots.txt.ts`.
 * **Decentralized Discovery (DNS-AID)**: Cryptographically signed via **DNSSEC** protocol chains. Leverages `HTTPS/SVCB` target entrypoint tracks under `_index._agents` and `_a2a._agents` to declare agent compatibility parameters globally.
 
 ### Semantic Content Optimization (Markdown Negotiation)
@@ -99,7 +101,7 @@ To prevent bad actors from forging addresses to spoof the brand name, secondary 
 
 ### Test Coverage Matrix
 1. **Compilation Step**: Compiles the final production output into the static `./dist` matrix layout folder.
-2. **Sitemap Integrity**: Asserts that `sitemap.xml` exists and evaluates that `public/robots.txt` contains the correct absolute header target string reference.
+2. **Sitemap Integrity**: Asserts that `sitemap-index.xml` exists and evaluates that `public/robots.txt` contains the correct absolute header target string reference.
 3. **URL Health Routing (Linkinator)**: Crawls all generated canonical links inside the sitemap file and deep-scans every compiled HTML page to verify there are zero broken internal links (404 protection).
 
 ---
