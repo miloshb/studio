@@ -1,6 +1,6 @@
 ;;
 ;; Domain:     sunceimore.eu.
-;; Exported:   2026-06-23 17:36:48
+;; Exported:   2026-06-23 18:53:52
 ;;
 ;; This file is intended for use for informational and archival
 ;; purposes ONLY and MUST be edited before use on a production
@@ -24,19 +24,20 @@
 ;;
 ;; Use at your own risk.
 ;; SOA Record
-sunceimore.eu	3600	IN	SOA	monika.ns.cloudflare.com. dns.cloudflare.com. 2053390280 10000 2400 604800 3600
+sunceimore.eu	3600	IN	SOA	monika.ns.cloudflare.com. dns.cloudflare.com. 2053390743 10000 2400 604800 3600
 
 ;; NS Records
 sunceimore.eu.	86400	IN	NS	monika.ns.cloudflare.com.
 sunceimore.eu.	86400	IN	NS	trevor.ns.cloudflare.com.
 
-;; A Records
-sunceimore.eu.	1	IN	A	3.33.251.168 ; cf_tags=cf-proxied:true
-sunceimore.eu.	1	IN	A	15.197.225.128 ; cf_tags=cf-proxied:true
+;; AAAA Records
+sunceimore.eu.	1	IN	AAAA	100:: ; cf_tags=cf-proxied:true
 
 ;; CNAME Records
-_domainconnect.sunceimore.eu.	1	IN	CNAME	_domainconnect.gd.domaincontrol.com. ; cf_tags=cf-proxied:true
 www.sunceimore.eu.	1	IN	CNAME	sunceimore.eu. ; cf_tags=cf-proxied:true
 
+;; MX Records
+sunceimore.eu.	1	IN	MX	0 .
+
 ;; TXT Records
-_dmarc.sunceimore.eu.	1	IN	TXT	"v=DMARC1; p=quarantine; adkim=r; aspf=r; rua=mailto:dmarc_rua@onsecureserver.net;"
+_dmarc.sunceimore.eu.	1	IN	TXT	"v=DMARC1; p=quarantine; adkim=r; aspf=r; rua=mailto:infosec@studiosunandsea.com;"

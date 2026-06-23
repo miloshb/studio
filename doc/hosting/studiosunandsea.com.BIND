@@ -1,6 +1,6 @@
 ;;
 ;; Domain:     studiosunandsea.com.
-;; Exported:   2026-06-23 17:07:49
+;; Exported:   2026-06-23 18:53:18
 ;;
 ;; This file is intended for use for informational and archival
 ;; purposes ONLY and MUST be edited before use on a production
@@ -24,15 +24,18 @@
 ;;
 ;; Use at your own risk.
 ;; SOA Record
-studiosunandsea.com	3600	IN	SOA	monika.ns.cloudflare.com. dns.cloudflare.com. 2053390106 10000 2400 604800 3600
+studiosunandsea.com	3600	IN	SOA	monika.ns.cloudflare.com. dns.cloudflare.com. 2053390739 10000 2400 604800 3600
 
 ;; NS Records
 studiosunandsea.com.	86400	IN	NS	monika.ns.cloudflare.com.
 studiosunandsea.com.	86400	IN	NS	trevor.ns.cloudflare.com.
 
 ;; CNAME Records
-_domainconnect.studiosunandsea.com.	1	IN	CNAME	_domainconnect.gd.domaincontrol.com. ; cf_tags=cf-proxied:true
+de.studiosunandsea.com.	1	IN	CNAME	studiosunandsea.com. ; cf_tags=cf-proxied:true
+en.studiosunandsea.com.	1	IN	CNAME	studiosunandsea.com. ; cf_tags=cf-proxied:true
+hr.studiosunandsea.com.	1	IN	CNAME	studiosunandsea.com. ; cf_tags=cf-proxied:true
 studiosunandsea.com.	1	IN	CNAME	studio-sun-and-sea.pages.dev. ; cf_tags=cf-proxied:true
+www.studiosunandsea.com.	1	IN	CNAME	studio-sun-and-sea.pages.dev. ; cf_tags=cf-proxied:true
 
 ;; MX Records
 studiosunandsea.com.	1	IN	MX	10 alt4.aspmx.l.google.com.
@@ -42,7 +45,7 @@ studiosunandsea.com.	1	IN	MX	5 alt1.aspmx.l.google.com.
 studiosunandsea.com.	1	IN	MX	1 aspmx.l.google.com.
 
 ;; TXT Records
-_dmarc.studiosunandsea.com.	1	IN	TXT	"v=DMARC1; p=quarantine; adkim=r; aspf=r; rua=mailto:dmarc_rua@onsecureserver.net;"
+_dmarc.studiosunandsea.com.	1	IN	TXT	"v=DMARC1; p=quarantine; adkim=r; aspf=r; rua=mailto:infosec@studiosunandsea.com;"
 google._domainkey.studiosunandsea.com.	1	IN	TXT	"v=DKIM1;k=rsa;p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAsy0VrxViYYf+HdC0wFkc/BlVYVhqDv38Q0/Rervm+ydNwTB7hw2pShi6QZBdU/br98RqkBquxv3myPAH2v0wNfKlcI6pWhV26ZDO/CyNQmqrIUk3KjIdCFSq23QwVnITEwzriy1KLO34/2dEnwxVMUgVvT1uww5JuJP5NG3jHwQsL51EfW6aRArjZJeELkYjv0m" "hVCsC9XyqUt3t8pOfmG6TV9VF3Pv4oB84YIsleRll9TZ3Lu1zEFudkDv7WS8sWHUPrcH+rrKmAMfmWOR51Pd+mVzp/RDLtl3xfdjVeBb1ZDx+0ZShod5NCBcn3XzDPvxx7K/ZwTBGvlFSlBwsdwIDAQAB"
+studiosunandsea.com.	1	IN	TXT	"v=spf1 include:_spf.google.com ~all"
 studiosunandsea.com.	1	IN	TXT	"google-site-verification=s-_rAu56fklHBXr4YGz9F_-I7aJbyvDb_FPguGVJwAY"
-studiosunandsea.com.	1	IN	TXT	"v=spf1 include:dc-aa8e722993._spfm.studiosunandsea.com ~all"
