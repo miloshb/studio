@@ -7,18 +7,32 @@ export interface StartTime {
 
 export interface ClassEntry {
   day: "Mon" | "Tue" | "Wed" | "Thu" | "Fri" | "Sat" | "Sun";
-  startId: number;       // references StartTime.id (foreign key)
+  startId: number;     // references StartTime.id (foreign key)
   duration: number;    // minutes
   label: string;       // e.g. "Yoga 75", "26+2 Express"
+}
+
+export interface TimezoneOption {
+  value: string;       // IANA Timezone string or 'detect'
+  label: Record<"en" | "de", string>; // Localized labels
 }
 
 export interface ScheduleData {
   startTimes: StartTime[];
   classes: ClassEntry[];
+  timezones: TimezoneOption[];
 }
 
-// Data for the schedule grid, including start times and class entries. This is imported by ScheduleGrid.astro
+// Data for the schedule grid, including start times (in CET) and class entries. This is imported by ScheduleGrid.astro
 export const scheduleData: ScheduleData = {
+  "timezones": [
+    { value: "detect", label: { en: "My Local Time", de: "Meine Lokalzeit" } },
+    { value: "Europe/Berlin", label: { en: "Central European Time", de: "Mitteleuropäische Zeit" } },
+    { value: "America/New_York", label: { en: "US Eastern Time", de: "US-Ostküstenzeit" } },
+    { value: "America/Chicago", label: { en: "US Central Time", de: "US-Zentralzeit" } },
+    { value: "Europe/London", label: { en: "UK Time", de: "UK-Zeit" } }
+  ],
+
   "startTimes": [
     { "id": 830, "label": "08:30", "minutes": 510 },
     { "id": 1000, "label": "10:00", "minutes": 600 },

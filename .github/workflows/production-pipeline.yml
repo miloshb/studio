@@ -1,0 +1,104 @@
+```yaml
+name: Production Pipeline
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  # JOB 1: Test and validate everything first
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22.12.0'
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Compile Production Astro Build
+        run: npm run build
+        env:
+          ASTRO_SITE: https://studiosunandsea.com
+
+      - name: Assert Sitemap & Robots.txt Alignment
+        run: |
+          if [ ! -f ./dist/sitemap-index.xml ]; then
+            echo "❌ ERROR: sitemap-index.xml missing!"
+            exit 1
+          fi
+          if ! grep -q "Sitemap: https://studiosunandsea.com" ./dist/robots.txt; then
+            echo "❌ ERROR: robots.txt missing sitemap reference!"
+            exit 1
+          fi
+
+      - name: Run Dynamic Sitemap URL Validation
+        run: npm run test:sitemap
+
+      - name: Scan Entire Site for Broken Internal Links
+        run: |
+          # Serve the built site locally so Linkinator resolves root-relative links correctly
+          npx http-server ./dist -p 8080 -c-1 >/dev/null 2>&1 & SERVER_PID=$!
+          # wait for server to start
+          for i in 1 2 3 4 5; do
+            if curl -fsS --head http://127.0.0.1:8080 >/dev/null 2>&1; then
+              break
+            fi
+            sleep 1
+          done
+          # Run Linkinator against the local server root
+          npx linkinator http://127.0.0.1:8080 --recursive --links-to-skip https://mindbodyonline.com
+          EXIT_CODE=$?
+          kill $SERVER_PID || true
+          exit $EXIT_CODE
+
+  # JOB 2: Only run version bumping if the validation job passes perfectly
+  bump-version:
+    runs-on: ubuntu-latest
+    needs: validate # 💡 THE KEY LINK: This blocks execution if Job 1 fails!
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main' # Only bump on merges to main
+    permissions:
+      contents: write # Allows the action to push changes back to GitHub
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Required to see commit history cleanly
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22.12.0'
+          cache: 'npm'
+
+      - name: Configure Git
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@://github.com"
+
+      # This reads your commit message. If it contains [major] or [minor], it bumps accordingly.
+      # Otherwise, it defaults to a standard patch bump (0.0.2 -> 0.0.3).
+      - name: Evaluate Commits & Bump Version
+        run: |
+          COMMIT_MSG=$(git log -1 --pretty=%B)
+          if [[ "$COMMIT_MSG" == *"[major]"* ]]; then
+            npm version major -m "chore: bump version to %s [skip ci]"
+          elif [[ "$COMMIT_MSG" == *"[minor]"* ]]; then
+            npm version minor -m "chore: bump version to %s [skip ci]"
+          else
+            npm version patch -m "chore: bump version to %s [skip ci]"
+          fi
+
+      - name: Push Version Update to GitHub
+        run: |
+          git push origin main --follow-tags
+```

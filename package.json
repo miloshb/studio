@@ -1,7 +1,7 @@
 {
   "name": "studio",
   "type": "module",
-  "version": "0.2.0",
+  "version": "0.3.3",
   "engines": {
     "node": ">=22.12.0"
   },
@@ -9,9 +9,12 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "test:sitemap": "linkinator ./dist/sitemap-index.xml --recurse",
+    "test:links": "linkinator ./dist/**/*.html --links-to-skip https://mindbodyonline.com"
   },
   "dependencies": {
+    "@astrojs/sitemap": "^3.7.3",
     "astro": "^6.4.4"
   },
   "allowScripts": {
@@ -19,6 +22,7 @@
     "sharp@0.34.5": true
   },
   "devDependencies": {
+    "linkinator": "^7.6.1",
     "postcss-custom-media": "^12.0.1"
   }
 }

@@ -1,5 +1,7 @@
 ---
+// src/components/ScheduleGrid.astro
 import { scheduleData } from "../data/schedule.ts";
+import { TZ_STORE_KEY } from "../data/constants.js";
 
 const { lang = "en" } = Astro.props;
 const debug = false; // Set to true to show debug info
@@ -8,15 +10,22 @@ const dayHeader = {
   en: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
   de: ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"]
 };
-const TimeHeader = {
+const timeHeader = {
   en: "Time",
   de: "Zeit"
 };
+const tooltipHeader = {
+  en: "Select a timezone to translate the right-hand column labels",
+  de: "Wähle eine Zeitzone aus, um die rechten Spaltenbeschriftungen anzupassen"
+};
 const dayKeys = dayHeader["en"]; // Use English keys for data mapping, but display labels based on lang
 const dayLabels = dayHeader[lang as keyof typeof dayHeader];
-const timeLabel = TimeHeader[lang as keyof typeof TimeHeader];
+const timeLabel = timeHeader[lang as keyof typeof timeHeader];
+const hoverTooltip = tooltipHeader[lang as keyof typeof tooltipHeader];
 const START_TIMES = scheduleData.startTimes;
 const CLASSES = scheduleData.classes;
+const TIMEZONES = scheduleData.timezones;
+
 
 // Determine schedule start (firstMinute) and end (lastMinute) times
 const firstMinute = START_TIMES[0].minutes;
@@ -33,6 +42,7 @@ const totalMinutes = lastMinute - firstMinute + headerMinutes;
 // Compute row heights from time differences to build CSS grid rows
 const ROW_HEIGHTS = START_TIMES.map((start, i) => {
   if (i === START_TIMES.length - 1) return longestLastClass; // Last row height = longest class duration starting at last time slot
+  if (i === 0) return START_TIMES[1].minutes - start.minutes - 5; // reduce first slot size by 5 for better visual alignment
   return START_TIMES[i + 1].minutes - start.minutes; // difference between NEXT and CURRENT start times
 });
 const gridRows = ROW_HEIGHTS.map((h) => `calc(${h} * var(--minute))`).join(" ");
@@ -47,10 +57,22 @@ const guideOffsets = GUIDE_TIMES
 const getStartMinutes = (id) => START_TIMES.find((t) => t.id === id).minutes;
 ---
 
+
+<!-- Timezone Selector Control Panel Container (&emsp; added for padding inside the dropdown) -->
+<div class="timezone-control-panel" title={hoverTooltip}>
+  <select id="schedule-tz-select" class="tz-dropdown">
+    {TIMEZONES.map((tz) => (
+      <option value={tz.value} selected={tz.value === "detect"}>
+        &emsp; {tz.label[lang as keyof typeof tz.label]} &emsp;
+      </option>
+    ))}
+  </select>
+</div>
+
 <div class="schedule-grid"
   style={`--total-minutes: ${totalMinutes}; --grid-rows: ${gridRows};`}
 >
-  <!-- Left time column -->
+  <!-- Left time column (Locked to Studio Time) -->
   <div class="time-col">
     <div class="day">{timeLabel}</div>
     {START_TIMES.map((t) => <div class="time">{t.label}</div>)}
@@ -79,10 +101,15 @@ const getStartMinutes = (id) => START_TIMES.find((t) => t.id === id).minutes;
     </div>
   ))}
 
-  <!-- Right time column -->
-  <div class="time-col">
-    <div class="day">{timeLabel}</div>
-    {START_TIMES.map((t) => <div class="time">{t.label}</div>)}
+  <!-- Right time column (DYNAMIC: Automatically shifts text values dynamically) -->
+  <div id="right-tz-col" class="time-col">
+    <div id="user-tz-label" class="day">{timeLabel}</div>
+    {START_TIMES.map((t) => (
+      /* Attaching the total numerical minute value lets the engine recalculate math directly */
+      <div class="time adaptive-time-label" data-minutes={t.minutes}>
+        {t.label}
+      </div>
+    ))}
   </div>
 
   <div class="overlay">
@@ -106,6 +133,93 @@ const getStartMinutes = (id) => START_TIMES.find((t) => t.id === id).minutes;
     lastMinute: {lastMinute}<br />
   </p>
 )}
+
+
+<!-- Client Side script to coordinate timezone shift events -->
+<script define:vars={{ TZ_STORE_KEY }}>
+  const dropdown = document.getElementById('schedule-tz-select');
+  const timeLabels = document.querySelectorAll('.adaptive-time-label');
+  const userHeaderLabel = document.getElementById('user-tz-label');
+
+  // Hardcode studio local parameter configuration (Europe/Berlin)
+  const STUDIO_TIMEZONE = "Europe/Berlin";
+
+  function updateScheduleTimezone(isInitialRun = false) {
+    if (!dropdown || timeLabels.length === 0) return;
+
+    // Resolve target timezone string
+    let targetZone = dropdown.value;
+
+    if (isInitialRun) {
+      try {
+        const savedZone = localStorage.getItem(TZ_STORE_KEY);
+        if (savedZone && dropdown.querySelector(`option[value="${savedZone}"]`)) {
+          dropdown.value = savedZone;
+          targetZone = savedZone;
+        }
+      } catch (e) {
+        console.warn("Storage read blocked by browser constraints:", e);
+      }
+    }
+
+    let calculatedZone = targetZone;
+    if (targetZone === 'detect') {
+      calculatedZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    }
+
+    // Update column subtitle index
+    if (userHeaderLabel) {
+      const shortName = calculatedZone.split('/').pop()?.replace('_', ' ');
+      userHeaderLabel.textContent = `${shortName || calculatedZone}`;
+    }
+
+    // Generate a reference date token to capture dynamic DST variance offsets
+    const baseDateString = new Date().toISOString().split('T')[0]; // "2026-06-23"
+
+    timeLabels.forEach((el) => {
+      const rawMinutesStr = el.getAttribute('data-minutes');
+      if (!rawMinutesStr) return;
+
+      const totalMinutes = parseInt(rawMinutesStr, 10);
+      const hours = Math.floor(totalMinutes / 60);
+      const mins = totalMinutes % 60;
+
+      // Construct a concrete parsing date scoped strictly in the physical Studio's perspective
+      const studioDateTimeStr = `${baseDateString}T${String(hours).padStart(2, '0')}:${String(mins).padStart(2, '0')}:00`;
+      // Calculate accurate offsets across the specific zones
+      const utcTimestamp = Date.parse(new Date(studioDateTimeStr).toLocaleString('en-US', { timeZone: STUDIO_TIMEZONE }));
+
+      if (isNaN(utcTimestamp)) return;
+
+      // Format the target timestamp into the user's selected context layout display string
+      const localizedTimeString = new Intl.DateTimeFormat(navigator.language, {
+        timeZone: calculatedZone,
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false
+      }).format(new Date(utcTimestamp));
+
+      // Paint the text safely
+      el.textContent = localizedTimeString;
+    });
+
+    if (!isInitialRun) {
+      try {
+        localStorage.setItem(TZ_STORE_KEY, targetZone);
+      } catch (e) {
+        console.warn("Storage write blocked by browser configuration:", e);
+      }
+    }
+  }
+
+  // Bind listener logic to the controller node elements
+  if (dropdown) {
+    dropdown.addEventListener('change', () => updateScheduleTimezone(false));
+    // Boot instantly on load to run the standard user local system detection routine
+    updateScheduleTimezone(true);
+  }
+</script>
+
 
 <style>
   .schedule-grid {
@@ -137,12 +251,20 @@ const getStartMinutes = (id) => START_TIMES.find((t) => t.id === id).minutes;
   .day {
     text-align: center;
     font-weight: bold;
+    font-size: var(--text-md);
     position: sticky;
     top: 0;
     z-index: 10;
     background: var(--color-bg); /* ensures it covers classes behind it */
     box-shadow: 0 2px 4px rgba(0,0,0,0.08);
     height: var(--space-md);
+  }
+
+  .time {
+    font-size: var(--text-sm);
+    color: var(--color-text-soft);
+    justify-content: center;
+    text-align: center;
   }
 
   .grid-element {
@@ -157,6 +279,43 @@ const getStartMinutes = (id) => START_TIMES.find((t) => t.id === id).minutes;
     padding: var(--space-xxs);
   }
 
+  /* Dropdown UI configuration container */
+  .timezone-control-panel {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: var(--space-xxs);
+  }
+
+  .tz-dropdown {
+    background-color: transparent;
+    color: var(--color-text-soft);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    text-align-last: right; /* Forces text selection alignment to the right */
+    direction: ltr; /* Assures punctuation layout behaves properly when right aligned */
+  }
+
+  .tz-dropdown option {
+    text-align: right;
+    background-color: var(--color-bg); /* Prevents default system style overlaps */
+    color: var(--color-text);
+  }
+
+  .tz-dropdown:focus {
+    outline: none;
+    border-color: var(--color-accent);
+    color: var(--color-text);
+  }
+
+  #user-tz-label {
+    display: flex;
+    justify-content: center;
+    width: var(--space-lg);
+    font-size: var(--text-sm);
+    white-space: nowrap;
+  }
+
+  /* Overlay visual guides */
   .overlay {
     position: absolute;
     top: 0;
