@@ -1,6 +1,7 @@
 ---
 // src/components/ScheduleGrid.astro
 import { scheduleData } from "../data/schedule.ts";
+import { TZ_STORE_KEY } from "../data/constants.js";
 
 const { lang = "en" } = Astro.props;
 const debug = false; // Set to true to show debug info
@@ -134,12 +135,12 @@ const getStartMinutes = (id) => START_TIMES.find((t) => t.id === id).minutes;
 
 
 <!-- Client Side script to coordinate timezone shift events -->
-<script>
+<script define:vars={{ TZ_STORE_KEY }}>
   const dropdown = document.getElementById('schedule-tz-select') as HTMLSelectElement;
   const timeLabels = document.querySelectorAll('.adaptive-time-label');
   const userHeaderLabel = document.getElementById('user-tz-label');
 
-  // Hardcode studio local parameter configuration (e.g. Europe/Berlin)
+  // Hardcode studio local parameter configuration (Europe/Berlin)
   const STUDIO_TIMEZONE = "Europe/Berlin";
 
   function updateScheduleTimezone() {
@@ -147,14 +148,28 @@ const getStartMinutes = (id) => START_TIMES.find((t) => t.id === id).minutes;
 
     // Resolve target timezone string
     let targetZone = dropdown.value;
+
+    if (isInitialRun) {
+      try {
+        const savedZone = localStorage.getItem(TZ_STORE_KEY);
+        if (savedZone && dropdown.querySelector(`option[value="${savedZone}"]`)) {
+          dropdown.value = savedZone;
+          targetZone = savedZone;
+        }
+      } catch (e) {
+        console.warn("Storage read blocked by browser constraints:", e);
+      }
+    }
+
+    let calculatedZone = targetZone;
     if (targetZone === 'detect') {
-      targetZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+      calculatedZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
     }
 
     // Update column subtitle index
     if (userHeaderLabel) {
-      const shortName = targetZone.split('/').pop()?.replace('_', ' ');
-      userHeaderLabel.textContent = `${shortName || targetZone}`;
+      const shortName = calculatedZone.split('/').pop()?.replace('_', ' ');
+      userHeaderLabel.textContent = `${shortName || calculatedZone}`;
     }
 
     // Generate a reference date token to capture dynamic DST variance offsets
@@ -170,7 +185,6 @@ const getStartMinutes = (id) => START_TIMES.find((t) => t.id === id).minutes;
 
       // Construct a concrete parsing date scoped strictly in the physical Studio's perspective
       const studioDateTimeStr = `${baseDateString}T${String(hours).padStart(2, '0')}:${String(mins).padStart(2, '0')}:00`;
-
       // Calculate accurate offsets across the specific zones
       const utcTimestamp = Date.parse(new Date(studioDateTimeStr).toLocaleString('en-US', { timeZone: STUDIO_TIMEZONE }));
 
@@ -178,7 +192,7 @@ const getStartMinutes = (id) => START_TIMES.find((t) => t.id === id).minutes;
 
       // Format the target timestamp into the user's selected context layout display string
       const localizedTimeString = new Intl.DateTimeFormat(navigator.language, {
-        timeZone: targetZone,
+        timeZone: calculatedZone,
         hour: '2-digit',
         minute: '2-digit',
         hour12: false
@@ -187,13 +201,21 @@ const getStartMinutes = (id) => START_TIMES.find((t) => t.id === id).minutes;
       // Paint the text safely
       el.textContent = localizedTimeString;
     });
+
+    if (!isInitialRun) {
+      try {
+        localStorage.setItem(TZ_STORE_KEY, targetZone);
+      } catch (e) {
+        console.warn("Storage write blocked by browser configuration:", e);
+      }
+    }
   }
 
   // Bind listener logic to the controller node elements
   if (dropdown) {
-    dropdown.addEventListener('change', updateScheduleTimezone);
+    dropdown.addEventListener('change', () => updateScheduleTimezone(false));
     // Boot instantly on load to run the standard user local system detection routine
-    updateScheduleTimezone();
+    updateScheduleTimezone(true);
   }
 </script>
 
