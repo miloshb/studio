@@ -100,8 +100,8 @@ const getStartMinutes = (id) => START_TIMES.find((t) => t.id === id).minutes;
   ))}
 
   <!-- Right time column (DYNAMIC: Automatically shifts text values dynamically) -->
-  <div class="time-col right-tz-col">
-    <div class="day user-tz-label">{timeLabel}</div>
+  <div id="right-tz-col" class="time-col">
+    <div id="user-tz-label" class="day">{timeLabel}</div>
     {START_TIMES.map((t) => (
       /* Attaching the total numerical minute value lets the engine recalculate math directly */
       <div class="time adaptive-time-label" data-minutes={t.minutes}>
@@ -137,7 +137,7 @@ const getStartMinutes = (id) => START_TIMES.find((t) => t.id === id).minutes;
 <script>
   const dropdown = document.getElementById('schedule-tz-select') as HTMLSelectElement;
   const timeLabels = document.querySelectorAll('.adaptive-time-label');
-  const userHeaderLabel = document.querySelector('.user-tz-label');
+  const userHeaderLabel = document.getElementById('user-tz-label');
 
   // Hardcode studio local parameter configuration (e.g. Europe/Berlin)
   const STUDIO_TIMEZONE = "Europe/Berlin";
@@ -237,6 +237,8 @@ const getStartMinutes = (id) => START_TIMES.find((t) => t.id === id).minutes;
   }
 
   .time {
+    font-size: var(--text-sm);
+    color: var(--color-text-soft);
     justify-content: center;
     text-align: center;
   }
@@ -261,11 +263,7 @@ const getStartMinutes = (id) => START_TIMES.find((t) => t.id === id).minutes;
   }
 
   .tz-dropdown {
-    padding: var(--space-xxs) var(--space-xs);
-    border: 1px solid var(--color-border);
     background-color: transparent;
-    font-family: var(--font-body);
-    font-size: var(--text-sm);
     color: var(--color-text-soft);
     border-radius: var(--radius-md);
     cursor: pointer;
@@ -283,6 +281,10 @@ const getStartMinutes = (id) => START_TIMES.find((t) => t.id === id).minutes;
     outline: none;
     border-color: var(--color-accent);
     color: var(--color-text);
+  }
+
+  #user-tz-label {
+    white-space: nowrap;
   }
 
   /* Overlay visual guides */
