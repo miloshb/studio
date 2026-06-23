@@ -54,6 +54,7 @@ Automated test pipeline is configured natively via GitHub Actions inside `.githu
 3. **Configuration Sync**: Verifies that `public/robots.txt` contains the correct absolute path matching the sitemap tracking string.
 4. **Link Health Integrity (Linkinator)**: Spins up a local background preview server instance to mimic Cloudflare's serving layer and crawls all links to guarantee **zero internal 404 broken routes**.
 5. **Automated Release Bumping**: Semantic versions (`npm version`) are calculated and pushed **only** upon successful validation landing on the `main` branch.
+6. **AI Agent Scan**: Check conformance to standards for agentic commerce: [AI Agent Scan Remediation](../security/com.isitagentready.md)
 
 ---
 *Last Checked: June 2026*
