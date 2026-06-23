@@ -144,7 +144,7 @@ const getStartMinutes = (id) => START_TIMES.find((t) => t.id === id).minutes;
   // Hardcode studio local parameter configuration (Europe/Berlin)
   const STUDIO_TIMEZONE = "Europe/Berlin";
 
-  function updateScheduleTimezone() {
+  function updateScheduleTimezone(isInitialRun = false) {
     if (!dropdown || timeLabels.length === 0) return;
 
     // Resolve target timezone string
