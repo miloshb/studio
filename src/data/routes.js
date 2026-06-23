@@ -233,7 +233,10 @@ export const ROUTES = {
 
 
 // NAV GROUPS (keys only)
-export const HEADER_ROUTE_KEYS = ["classes", "schedule", "private", "workshops", "teach", "about"];
+export const HEADER_ROUTE_KEYS = {
+  primary: ["classes", "schedule", "private", "workshops"], // always in header navigation
+  secondary: ["teach", "about"], // 2nd set drops to footer navigation on mobile
+};
 export const FOOTER_ROUTE_KEYS = [
   "scheduleOverview",
   "pricing",

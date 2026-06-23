@@ -1,5 +1,5 @@
 ---
-import { FOOTER_ROUTE_KEYS, ROUTES } from "../data/routes.js";
+import { FOOTER_ROUTE_KEYS, HEADER_ROUTE_KEYS, ROUTES } from "../data/routes.js";
 import ExaliSeal from "./ExaliSeal.astro";
 const { lang, footerOffset } = Astro.props;
 const footerTopOffset = footerOffset ? "var(--offset-lg)" : "0px";
@@ -14,6 +14,13 @@ const footerTopOffset = footerOffset ? "var(--offset-lg)" : "0px";
           {ROUTES[key].nav[lang]}
         </a>
       ))}
+      <div class="header-in-footer-nav">
+        {HEADER_ROUTE_KEYS.secondary.map((key) => (
+          <a href={ROUTES[key].href[lang]}>
+            {ROUTES[key].nav[lang]}
+          </a>
+        ))}
+      </div>
     </div>
 
     <!-- Row 2: Left side -->
@@ -43,26 +50,33 @@ const footerTopOffset = footerOffset ? "var(--offset-lg)" : "0px";
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: self-end;
-    row-gap: var(--space-xs);
   }
 
   /* ---------------------------
      ROW 1 — NAVIGATION
   ---------------------------- */
   .footer-nav {
+    font-size: var(--text-sm);
     order: 1;
     flex: 1 1 100%;
-    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    column-gap: var(--space-sm);
   }
 
   .footer-nav a {
-    margin: 0 var(--space-md);
-    font-size: var(--text-sm);
     color: var(--color-text-soft);
+    white-space: nowrap;
   }
 
   .footer-nav a:hover {
     color: var(--color-text);
+  }
+
+  .header-in-footer-nav {
+    display: none;
   }
 
   /* ---------------------------
@@ -76,5 +90,14 @@ const footerTopOffset = footerOffset ? "var(--offset-lg)" : "0px";
   .footer-badge {
     order: 3;
     margin-left: auto;
+  }
+
+  /* ---------------------------
+     RESPONSIVE BREAKPOINTS
+  ---------------------------- */
+  @media (width <= 600px) {
+    .header-in-footer-nav {
+      display: contents;
+    }
   }
 </style>

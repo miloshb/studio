@@ -1,0 +1,46 @@
+name: Auto Bump Version
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  bump-version:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # Allows the action to push the version change back to GitHub
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Required to see commit history cleanly
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-node: '22.12.0'
+          cache: 'npm'
+
+      - name: Configure Git
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@://github.com"
+
+      # This reads your commit message. If it contains [major] or [minor], it bumps accordingly.
+      # Otherwise, it defaults to a standard patch bump (0.0.2 -> 0.0.3).
+      - name: Bump Version
+        run: |
+          COMMIT_MSG=$(git log -1 --pretty=%B)
+          if [[ "$COMMIT_MSG" == *"[major]"* ]]; then
+            npm version major -m "chore: bump version to %s [skip ci]"
+          elif [[ "$COMMIT_MSG" == *"[minor]"* ]]; then
+            npm version minor -m "chore: bump version to %s [skip ci]"
+          else
+            npm version patch -m "chore: bump version to %s [skip ci]"
+          fi
+
+      - name: Push changes
+        run: |
+          git push origin main --follow-tags
