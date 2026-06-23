@@ -58,12 +58,12 @@ const getStartMinutes = (id) => START_TIMES.find((t) => t.id === id).minutes;
 ---
 
 
-<!-- Timezone Selector Control Panel Container -->
+<!-- Timezone Selector Control Panel Container (&emsp; added for padding inside the dropdown) -->
 <div class="timezone-control-panel" title={hoverTooltip}>
   <select id="schedule-tz-select" class="tz-dropdown">
     {TIMEZONES.map((tz) => (
       <option value={tz.value} selected={tz.value === "detect"}>
-        {tz.label[lang as keyof typeof tz.label]}
+        &emsp; {tz.label[lang as keyof typeof tz.label]} &emsp;
       </option>
     ))}
   </select>
@@ -293,12 +293,14 @@ const getStartMinutes = (id) => START_TIMES.find((t) => t.id === id).minutes;
     cursor: pointer;
     text-align-last: right; /* Forces text selection alignment to the right */
     direction: ltr; /* Assures punctuation layout behaves properly when right aligned */
+    padding: 0 var(--space-sm);
   }
 
   .tz-dropdown option {
     text-align: right;
     background-color: var(--color-bg); /* Prevents default system style overlaps */
     color: var(--color-text);
+    padding: 0 var(--space-sm); /* Most browsers do not use this */
   }
 
   .tz-dropdown:focus {
