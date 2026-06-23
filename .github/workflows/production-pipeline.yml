@@ -1,3 +1,4 @@
+```yaml
 name: Production Pipeline
 
 on:
@@ -43,7 +44,21 @@ jobs:
         run: npm run test:sitemap
 
       - name: Scan Entire Site for Broken Internal Links
-        run: npm run test:links
+        run: |
+          # Serve the built site locally so Linkinator resolves root-relative links correctly
+          npx http-server ./dist -p 8080 -c-1 >/dev/null 2>&1 & SERVER_PID=$!
+          # wait for server to start
+          for i in 1 2 3 4 5; do
+            if curl -fsS --head http://127.0.0.1:8080 >/dev/null 2>&1; then
+              break
+            fi
+            sleep 1
+          done
+          # Run Linkinator against the local server root
+          npx linkinator http://127.0.0.1:8080 --recursive --links-to-skip https://mindbodyonline.com
+          EXIT_CODE=$?
+          kill $SERVER_PID || true
+          exit $EXIT_CODE
 
   # JOB 2: Only run version bumping if the validation job passes perfectly
   bump-version:
@@ -86,3 +101,4 @@ jobs:
       - name: Push Version Update to GitHub
         run: |
           git push origin main --follow-tags
+```
