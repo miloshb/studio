@@ -1,0 +1,9 @@
+# =======================================================
+# Studio Sun & Sea — Core Crawler Schema Configuration
+# =======================================================
+
+User-agent: *
+Allow: /
+
+# Reference canonical machine sitemap path parameters
+Sitemap: https://studiosunandsea.com
