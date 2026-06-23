@@ -30,7 +30,7 @@ export const scheduleData: ScheduleData = {
     { value: "Europe/Berlin", label: { en: "Central European Time", de: "Mitteleuropäische Zeit" } },
     { value: "America/New_York", label: { en: "US Eastern Time", de: "US-Ostküstenzeit" } },
     { value: "America/Chicago", label: { en: "US Central Time", de: "US-Zentralzeit" } },
-    { value: "Europe/London", label: { en: "UK Time", de: "Britische Zeit" } }
+    { value: "Europe/London", label: { en: "UK Time", de: "UK-Zeit" } }
   ],
 
   "startTimes": [
