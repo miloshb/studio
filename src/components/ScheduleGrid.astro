@@ -137,7 +137,7 @@ const getStartMinutes = (id) => START_TIMES.find((t) => t.id === id).minutes;
 
 <!-- Client Side script to coordinate timezone shift events -->
 <script define:vars={{ TZ_STORE_KEY }}>
-  const dropdown = document.getElementById('schedule-tz-select') as HTMLSelectElement;
+  const dropdown = document.getElementById('schedule-tz-select');
   const timeLabels = document.querySelectorAll('.adaptive-time-label');
   const userHeaderLabel = document.getElementById('user-tz-label');
 
