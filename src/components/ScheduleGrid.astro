@@ -42,6 +42,7 @@ const totalMinutes = lastMinute - firstMinute + headerMinutes;
 // Compute row heights from time differences to build CSS grid rows
 const ROW_HEIGHTS = START_TIMES.map((start, i) => {
   if (i === START_TIMES.length - 1) return longestLastClass; // Last row height = longest class duration starting at last time slot
+  if (i === 0) return START_TIMES[1].minutes - start.minutes - 5; // reduce first slot size by 5 for better visual alignment
   return START_TIMES[i + 1].minutes - start.minutes; // difference between NEXT and CURRENT start times
 });
 const gridRows = ROW_HEIGHTS.map((h) => `calc(${h} * var(--minute))`).join(" ");
@@ -250,6 +251,7 @@ const getStartMinutes = (id) => START_TIMES.find((t) => t.id === id).minutes;
   .day {
     text-align: center;
     font-weight: bold;
+    font-size: var(--text-md);
     position: sticky;
     top: 0;
     z-index: 10;
@@ -306,6 +308,10 @@ const getStartMinutes = (id) => START_TIMES.find((t) => t.id === id).minutes;
   }
 
   #user-tz-label {
+    display: flex;
+    justify-content: center;
+    width: var(--space-lg);
+    font-size: var(--text-sm);
     white-space: nowrap;
   }
 
