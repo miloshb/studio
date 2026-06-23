@@ -9,15 +9,22 @@ const dayHeader = {
   en: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
   de: ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"]
 };
-const TimeHeader = {
+const timeHeader = {
   en: "Time",
   de: "Zeit"
 };
+const tooltipHeader = {
+  en: "Select a timezone to translate the right-hand column labels",
+  de: "Wähle eine Zeitzone aus, um die rechten Spaltenbeschriftungen anzupassen"
+};
 const dayKeys = dayHeader["en"]; // Use English keys for data mapping, but display labels based on lang
 const dayLabels = dayHeader[lang as keyof typeof dayHeader];
-const timeLabel = TimeHeader[lang as keyof typeof TimeHeader];
+const timeLabel = timeHeader[lang as keyof typeof timeHeader];
+const hoverTooltip = tooltipHeader[lang as keyof typeof tooltipHeader];
 const START_TIMES = scheduleData.startTimes;
 const CLASSES = scheduleData.classes;
+const TIMEZONES = scheduleData.timezones;
+
 
 // Determine schedule start (firstMinute) and end (lastMinute) times
 const firstMinute = START_TIMES[0].minutes;
@@ -50,14 +57,13 @@ const getStartMinutes = (id) => START_TIMES.find((t) => t.id === id).minutes;
 
 
 <!-- Timezone Selector Control Panel Container -->
-<div class="timezone-control-panel">
-  <label for="schedule-tz-select">Display Right Column In:</label>
+<div class="timezone-control-panel" title={hoverTooltip}>
   <select id="schedule-tz-select" class="tz-dropdown">
-    <option value="detect" selected>My Local Time (Detect Automatically)</option>
-    <option value="Europe/Berlin">Studio Time (CET/CEST)</option>
-    <option value="America/New_York">Eastern Time (ET)</option>
-    <option value="America/Los_Angeles">Pacific Time (PT)</option>
-    <option value="Europe/London">London (GMT/BST)</option>
+    {TIMEZONES.map((tz) => (
+      <option value={tz.value} selected={tz.value === "detect"}>
+        {tz.label[lang as keyof typeof tz.label]}
+      </option>
+    ))}
   </select>
 </div>
 
@@ -133,13 +139,13 @@ const getStartMinutes = (id) => START_TIMES.find((t) => t.id === id).minutes;
   const timeLabels = document.querySelectorAll('.adaptive-time-label');
   const userHeaderLabel = document.querySelector('.user-tz-label');
 
-  // Hardcode your studio local parameter configuration (e.g. Europe/Berlin)
+  // Hardcode studio local parameter configuration (e.g. Europe/Berlin)
   const STUDIO_TIMEZONE = "Europe/Berlin";
 
   function updateScheduleTimezone() {
     if (!dropdown || timeLabels.length === 0) return;
 
-    // 1. Resolve target timezone string
+    // Resolve target timezone string
     let targetZone = dropdown.value;
     if (targetZone === 'detect') {
       targetZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
@@ -151,7 +157,7 @@ const getStartMinutes = (id) => START_TIMES.find((t) => t.id === id).minutes;
       userHeaderLabel.textContent = `${shortName || targetZone}`;
     }
 
-    // 2. Generate a reference date token to capture dynamic DST variance offsets
+    // Generate a reference date token to capture dynamic DST variance offsets
     const baseDateString = new Date().toISOString().split('T')[0]; // "2026-06-23"
 
     timeLabels.forEach((el) => {
@@ -165,20 +171,12 @@ const getStartMinutes = (id) => START_TIMES.find((t) => t.id === id).minutes;
       // Construct a concrete parsing date scoped strictly in the physical Studio's perspective
       const studioDateTimeStr = `${baseDateString}T${String(hours).padStart(2, '0')}:${String(mins).padStart(2, '0')}:00`;
 
-      // Convert that explicit point in time to a standard JS UTC timestamp
-      const formatterStudio = new Intl.DateTimeFormat('en-US', {
-        timeZone: STUDIO_TIMEZONE,
-        year: 'numeric', month: 'numeric', day: 'numeric',
-        hour: 'numeric', minute: 'numeric', second: 'numeric',
-        hour12: false
-      });
-
       // Calculate accurate offsets across the specific zones
       const utcTimestamp = Date.parse(new Date(studioDateTimeStr).toLocaleString('en-US', { timeZone: STUDIO_TIMEZONE }));
 
       if (isNaN(utcTimestamp)) return;
 
-      // 3. Format the target timestamp into the user's selected context layout display string
+      // Format the target timestamp into the user's selected context layout display string
       const localizedTimeString = new Intl.DateTimeFormat(navigator.language, {
         timeZone: targetZone,
         hour: '2-digit',
@@ -186,7 +184,7 @@ const getStartMinutes = (id) => START_TIMES.find((t) => t.id === id).minutes;
         hour12: false
       }).format(new Date(utcTimestamp));
 
-      // 4. Paint the text safely
+      // Paint the text safely
       el.textContent = localizedTimeString;
     });
   }
@@ -255,6 +253,39 @@ const getStartMinutes = (id) => START_TIMES.find((t) => t.id === id).minutes;
     padding: var(--space-xxs);
   }
 
+  /* Dropdown UI configuration container */
+  .timezone-control-panel {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: var(--space-xxs);
+  }
+
+  .tz-dropdown {
+    padding: var(--space-xxs) var(--space-xs);
+    border: 1px solid var(--color-border);
+    background-color: transparent;
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    color: var(--color-text-soft);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    text-align-last: right; /* Forces text selection alignment to the right */
+    direction: ltr; /* Assures punctuation layout behaves properly when right aligned */
+  }
+
+  .tz-dropdown option {
+    text-align: right;
+    background-color: var(--color-bg); /* Prevents default system style overlaps */
+    color: var(--color-text);
+  }
+
+  .tz-dropdown:focus {
+    outline: none;
+    border-color: var(--color-accent);
+    color: var(--color-text);
+  }
+
+  /* Overlay visual guides */
   .overlay {
     position: absolute;
     top: 0;
