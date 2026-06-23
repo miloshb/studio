@@ -1,4 +1,5 @@
 ---
+// src/components/ScheduleGrid.astro
 import { scheduleData } from "../data/schedule.ts";
 
 const { lang = "en" } = Astro.props;
@@ -47,10 +48,23 @@ const guideOffsets = GUIDE_TIMES
 const getStartMinutes = (id) => START_TIMES.find((t) => t.id === id).minutes;
 ---
 
+
+<!-- Timezone Selector Control Panel Container -->
+<div class="timezone-control-panel">
+  <label for="schedule-tz-select">Display Right Column In:</label>
+  <select id="schedule-tz-select" class="tz-dropdown">
+    <option value="detect" selected>My Local Time (Detect Automatically)</option>
+    <option value="Europe/Berlin">Studio Time (CET/CEST)</option>
+    <option value="America/New_York">Eastern Time (ET)</option>
+    <option value="America/Los_Angeles">Pacific Time (PT)</option>
+    <option value="Europe/London">London (GMT/BST)</option>
+  </select>
+</div>
+
 <div class="schedule-grid"
   style={`--total-minutes: ${totalMinutes}; --grid-rows: ${gridRows};`}
 >
-  <!-- Left time column -->
+  <!-- Left time column (Locked to Studio Time) -->
   <div class="time-col">
     <div class="day">{timeLabel}</div>
     {START_TIMES.map((t) => <div class="time">{t.label}</div>)}
@@ -79,10 +93,15 @@ const getStartMinutes = (id) => START_TIMES.find((t) => t.id === id).minutes;
     </div>
   ))}
 
-  <!-- Right time column -->
-  <div class="time-col">
-    <div class="day">{timeLabel}</div>
-    {START_TIMES.map((t) => <div class="time">{t.label}</div>)}
+  <!-- Right time column (DYNAMIC: Automatically shifts text values dynamically) -->
+  <div class="time-col right-tz-col">
+    <div class="day user-tz-label">{timeLabel}</div>
+    {START_TIMES.map((t) => (
+      /* Attaching the total numerical minute value lets the engine recalculate math directly */
+      <div class="time adaptive-time-label" data-minutes={t.minutes}>
+        {t.label}
+      </div>
+    ))}
   </div>
 
   <div class="overlay">
@@ -106,6 +125,80 @@ const getStartMinutes = (id) => START_TIMES.find((t) => t.id === id).minutes;
     lastMinute: {lastMinute}<br />
   </p>
 )}
+
+
+<!-- Client Side script to coordinate timezone shift events -->
+<script>
+  const dropdown = document.getElementById('schedule-tz-select') as HTMLSelectElement;
+  const timeLabels = document.querySelectorAll('.adaptive-time-label');
+  const userHeaderLabel = document.querySelector('.user-tz-label');
+
+  // Hardcode your studio local parameter configuration (e.g. Europe/Berlin)
+  const STUDIO_TIMEZONE = "Europe/Berlin";
+
+  function updateScheduleTimezone() {
+    if (!dropdown || timeLabels.length === 0) return;
+
+    // 1. Resolve target timezone string
+    let targetZone = dropdown.value;
+    if (targetZone === 'detect') {
+      targetZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    }
+
+    // Update column subtitle index
+    if (userHeaderLabel) {
+      const shortName = targetZone.split('/').pop()?.replace('_', ' ');
+      userHeaderLabel.textContent = `${shortName || targetZone}`;
+    }
+
+    // 2. Generate a reference date token to capture dynamic DST variance offsets
+    const baseDateString = new Date().toISOString().split('T')[0]; // "2026-06-23"
+
+    timeLabels.forEach((el) => {
+      const rawMinutesStr = el.getAttribute('data-minutes');
+      if (!rawMinutesStr) return;
+
+      const totalMinutes = parseInt(rawMinutesStr, 10);
+      const hours = Math.floor(totalMinutes / 60);
+      const mins = totalMinutes % 60;
+
+      // Construct a concrete parsing date scoped strictly in the physical Studio's perspective
+      const studioDateTimeStr = `${baseDateString}T${String(hours).padStart(2, '0')}:${String(mins).padStart(2, '0')}:00`;
+
+      // Convert that explicit point in time to a standard JS UTC timestamp
+      const formatterStudio = new Intl.DateTimeFormat('en-US', {
+        timeZone: STUDIO_TIMEZONE,
+        year: 'numeric', month: 'numeric', day: 'numeric',
+        hour: 'numeric', minute: 'numeric', second: 'numeric',
+        hour12: false
+      });
+
+      // Calculate accurate offsets across the specific zones
+      const utcTimestamp = Date.parse(new Date(studioDateTimeStr).toLocaleString('en-US', { timeZone: STUDIO_TIMEZONE }));
+
+      if (isNaN(utcTimestamp)) return;
+
+      // 3. Format the target timestamp into the user's selected context layout display string
+      const localizedTimeString = new Intl.DateTimeFormat(navigator.language, {
+        timeZone: targetZone,
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false
+      }).format(new Date(utcTimestamp));
+
+      // 4. Paint the text safely
+      el.textContent = localizedTimeString;
+    });
+  }
+
+  // Bind listener logic to the controller node elements
+  if (dropdown) {
+    dropdown.addEventListener('change', updateScheduleTimezone);
+    // Boot instantly on load to run the standard user local system detection routine
+    updateScheduleTimezone();
+  }
+</script>
+
 
 <style>
   .schedule-grid {
@@ -143,6 +236,11 @@ const getStartMinutes = (id) => START_TIMES.find((t) => t.id === id).minutes;
     background: var(--color-bg); /* ensures it covers classes behind it */
     box-shadow: 0 2px 4px rgba(0,0,0,0.08);
     height: var(--space-md);
+  }
+
+  .time {
+    justify-content: center;
+    text-align: center;
   }
 
   .grid-element {
