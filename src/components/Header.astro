@@ -148,7 +148,7 @@ const { lang, page } = Astro.props;
     flex-flow: row-reverse wrap;
     align-items: center;
     justify-content: center;
-    gap: var(--space-xxs) var(--space-xs);
+    column-gap: var(--space-xs);
   }
 
   .header-lang {
@@ -171,13 +171,19 @@ const { lang, page } = Astro.props;
      RESPONSIVE BREAKPOINTS
   ---------------------------- */
   @media (max-width: 930px) {
+    .header-tools {
+      flex-direction: column;
+    }
+  }
+  @media (max-width: 900px) {
     /* Drop nav links to second header row */
     .header-nav {
       order: 2;
-      width: 100%; /* Fallback for 'stretch' to maximize layout cross-browser compatibility */
+      width: 100%;
     }
   }
   @media (width <= 600px) {
+    /* Send secondary navigation to footer on mobile */
     .header-nav-2nd {
       display: none;
     }
