@@ -59,7 +59,39 @@ To prevent bad actors from forging addresses to spoof the brand name, secondary 
 
 ---
 
-## 4. Hosting and Extrernal Accounts
+## 4. Threat Intelligence & Vulnerability Disclosure
+
+### Scraper Defenses (AI Labyrinth)
+* **Status**: Enabled via Cloudflare Edge WAF.
+* **Mechanics**: Identifies and blocks high-volume automated data collection bots (e.g., GPTBot, ClaudeBot) from scraping studio layout pages, conserving bandwidth resources and preserving original content.
+
+### Vulnerability Reporting Standard (`security.txt`)
+* **Path**: Stored natively in the source repository at `public/.well-known/security.txt`.
+* **Standardization**: Complies with **RFC 9116**. It establishes an isolated communication link, routing all white-hat security researcher vulnerability reports directly to `infosec@studiosunandsea.com` while bypassing standard customer-facing queues.
+* **Lifecycle**: Requires a manual text timestamp update on the `Expires` tag once per year.
+
+---
+
+## 5. Agentic Web Optimization & Machine Discovery
+
+### Crawler Discoverability
+* **Sitemap Framework**: Built dynamically via `@astrojs/sitemap` to emit canonical paths at `/sitemap.xml` on every production build event. Re-indexed explicitly at the base line of `public/robots.txt`.
+* **Decentralized Discovery (DNS-AID)**: Cryptographically signed via **DNSSEC** protocol chains. Leverages `HTTPS/SVCB` target entrypoint tracks under `_index._agents` and `_a2a._agents` to declare agent compatibility parameters globally.
+
+### Semantic Content Optimization (Markdown Negotiation)
+* **Infrastructure Pipeline**: Cloudflare *Markdown for Agents* edge routing is toggled **OFF** - requires upgrade of hosting plan.
+* **Mechanics**: Intercepts automated client crawler cycles requesting `Accept: text/markdown`. Converts studio schedule data and layouts into minified, token-optimized Markdown text content on the fly before delivery.
+
+### Decentralized Discovery (DNS-AID)
+* **Status**: Active & Authenticated via **DNSSEC** protocol chains.
+* **Records**: Formatted natively as RFC 9460 generic `SVCB` infrastructure records:
+  * Name: `_index._://studiosunandsea.com` | Target: `.` | Params: `alpn="h2" port="443"`
+  * Name: `_a2a._://studiosunandsea.com`  | Target: `.` | Params: `alpn="h2" port="443"`
+* **Rationale**: Swapped from standard `HTTPS` to `SVCB` types to strictly comply with the IETF DNS-AID standard, allowing semantic crawlers to negotiate custom protocol stacks (like MCP or A2A schemes) natively.
+
+---
+
+## 6. Extrernal Accounts (Hosting, Domains, Email, etc.)
 * Primary website hosting is handled by CloudFlare under the user milos@studiosunandsea.com and uses Google OAuth.
 * Business Email is handled via Google Workspace Starter with admin account milos@studiosunandsea.com
 * Scheduling, Booking, Account Management are supported via Mindbody with admin account milos@studiosunandsea.com (backup: miloshboroyevich@gmail.com)
