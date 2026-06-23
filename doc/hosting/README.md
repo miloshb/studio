@@ -93,20 +93,7 @@ To prevent bad actors from forging addresses to spoof the brand name, secondary 
 
 ---
 
-## 6. Continuous Integration & Production Validation
-
-### Automated Verification Triggers
-* **Pipeline Framework**: Handled natively via GitHub Actions in `.github/workflows/validate-site.yml`.
-* **Execution Boundary**: Evaluates on every explicit push event to `main` and all incoming Pull Requests.
-
-### Test Coverage Matrix
-1. **Compilation Step**: Compiles the final production output into the static `./dist` matrix layout folder.
-2. **Sitemap Integrity**: Asserts that `sitemap-index.xml` exists and evaluates that `public/robots.txt` contains the correct absolute header target string reference.
-3. **URL Health Routing (Linkinator)**: Crawls all generated canonical links inside the sitemap file and deep-scans every compiled HTML page to verify there are zero broken internal links (404 protection).
-
----
-
-## 7. Extrernal Accounts (Hosting, Domains, Email, etc.)
+## 6. Extrernal Accounts (Hosting, Domains, Email, etc.)
 * Primary website hosting is handled by CloudFlare under the user milos@studiosunandsea.com and uses Google OAuth.
 * Business Email is handled via Google Workspace Starter with admin account milos@studiosunandsea.com
 * Scheduling, Booking, Account Management are supported via Mindbody with admin account milos@studiosunandsea.com (backup: miloshboroyevich@gmail.com)
