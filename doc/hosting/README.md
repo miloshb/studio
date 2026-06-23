@@ -75,7 +75,7 @@ To prevent bad actors from forging addresses to spoof the brand name, secondary 
 ## 5. Agentic Web Optimization & Machine Discovery
 
 ### Crawler Discoverability
-* **Sitemap Framework**: Built dynamically via `@astrojs/sitemap` to emit canonical paths at `/sitemap.xml` on every production build event. Re-indexed explicitly at the base line of `public/robots.txt`.
+* **Sitemap Framework**: Built dynamically via `@astrojs/sitemap` to emit multi-regional indices at `/sitemap-index.xml` on every production build event. Re-indexed explicitly at the base line of `public/robots.txt`.
 * **Decentralized Discovery (DNS-AID)**: Cryptographically signed via **DNSSEC** protocol chains. Leverages `HTTPS/SVCB` target entrypoint tracks under `_index._agents` and `_a2a._agents` to declare agent compatibility parameters globally.
 
 ### Semantic Content Optimization (Markdown Negotiation)

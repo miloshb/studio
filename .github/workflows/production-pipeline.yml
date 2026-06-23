@@ -30,8 +30,8 @@ jobs:
 
       - name: Assert Sitemap & Robots.txt Alignment
         run: |
-          if [ ! -f ./dist/sitemap.xml ]; then
-            echo "❌ ERROR: sitemap.xml missing!"
+          if [ ! -f ./dist/sitemap-index.xml ]; then
+            echo "❌ ERROR: sitemap-index.xml missing!"
             exit 1
           fi
           if ! grep -q "Sitemap: https://studiosunandsea.com" ./dist/robots.txt; then
