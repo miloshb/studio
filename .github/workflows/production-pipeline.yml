@@ -1,3 +1,4 @@
+```yaml
 name: Production Pipeline
 
 on:
@@ -88,3 +89,4 @@ jobs:
       - name: Push Version Update to GitHub
         run: |
           git push origin main --follow-tags
+```
