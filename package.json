@@ -1,7 +1,7 @@
 {
   "name": "studio",
   "type": "module",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "engines": {
     "node": ">=22.12.0"
   },
@@ -10,7 +10,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "test:sitemap": "linkinator ./dist/sitemap.xml --recurse",
+    "test:sitemap": "linkinator ./dist/sitemap-index.xml --recurse",
     "test:links": "linkinator ./dist/**/*.html --links-to-skip https://mindbodyonline.com"
   },
   "dependencies": {
