@@ -27,10 +27,10 @@ export interface ScheduleData {
 export const scheduleData: ScheduleData = {
   "timezones": [
     { value: "detect", label: { en: "My Local Time", de: "Meine Lokalzeit" } },
-    { value: "Europe/Berlin", label: { en: "Central European Time", de: "Zentraleuropäischezeit" } },
-    { value: "America/New_York", label: { en: "US Eastern Time", de: "US Ostküstenzeit" } },
-    { value: "America/Chicago", label: { en: "US Central Time", de: "US Zentralzeit" } },
-    { value: "Europe/London", label: { en: "London Time", de: "Londoner Zeit" } }
+    { value: "Europe/Berlin", label: { en: "Central European Time", de: "Mitteleuropäische Zeit" } },
+    { value: "America/New_York", label: { en: "US Eastern Time", de: "US-Ostküstenzeit" } },
+    { value: "America/Chicago", label: { en: "US Central Time", de: "US-Zentralzeit" } },
+    { value: "Europe/London", label: { en: "UK Time", de: "Britische Zeit" } }
   ],
 
   "startTimes": [
