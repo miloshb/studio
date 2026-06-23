@@ -1,15 +1,33 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import MindbodyScheduleV2 from "../../components/widgets/MindbodyScheduleV2.astro";
+import TimezoneLabel from "../../components/TimezoneLabel.astro";
 ---
 
 <BaseLayout lang="en" page="schedule" title="Schedule – Studio Sun & Sea">
+  <section class="timezone-notice">
+    <strong>⚠️ Important Booking Note for International Clients</strong><br />
+    All class registration cards loaded via the Mindbody widget below are displayed strictly in
+    <TimezoneLabel lang="en" client:load />. Please determine your local timezone offset accordingly before submitting reservations.
+  </section>
+
   <section class="schedule-page container">
     <MindbodyScheduleV2 widgetId="985347314de" />
   </section>
 </BaseLayout>
 
 <style>
-  .schedule-page {
+  .timezone-notice {
+    border-left: 4px solid var(--color-accent);
+    padding-left: var(--space-xs);
+    color: var(--color-text-soft);
+    font-size: var(--text-xs);
+    position: relative;
+    z-index: 1;
+    width: 85%;
+  }
+
+  #timezone-label {
+    font-weight: bolder;
   }
 </style>

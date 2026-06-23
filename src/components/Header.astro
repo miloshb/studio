@@ -10,23 +10,30 @@ const { lang, page } = Astro.props;
 <header>
   <div class="header container">
     <!-- Brand always links to the correct language root -->
-    <a class="brand" href={getLangRoot(lang)}>
-      <img class="aspect-square" src="/favicon/favicon-48.png" alt="Studio Sun & Sea Logo" />
-      Studio Sun & Sea
-    </a>
+    <div class="header-brand">
+      <a class="brand" href={getLangRoot(lang)}>
+        <img class="aspect-square" src="/favicon/favicon-48.png" alt="Studio Sun & Sea Logo" />
+        Studio Sun & Sea
+      </a>
+    </div>
 
     <!-- Header Navigation -->
     <div class="header-nav">
-      {HEADER_ROUTE_KEYS.map((key) => (
+      {HEADER_ROUTE_KEYS.primary.map((key) => (
         <a href={ROUTES[key].href[lang]}>
           {ROUTES[key].nav[lang]}
         </a>
       ))}
+      <div class="header-nav-2nd">
+        {HEADER_ROUTE_KEYS.secondary.map((key) => (
+          <a href={ROUTES[key].href[lang]}>
+            {ROUTES[key].nav[lang]}
+          </a>
+        ))}
+      </div>
     </div>
 
     <div class="header-tools">
-      <MindbodyLogin />
-
       <!-- Language Switcher -->
       <div class="header-lang">
         {LANGS.map(code => (
@@ -42,6 +49,7 @@ const { lang, page } = Astro.props;
           </>
         ))}
       </div>
+      <MindbodyLogin />
     </div>
   </div>
 </header>
@@ -73,35 +81,81 @@ const { lang, page } = Astro.props;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    text-align: center;
     padding: var(--space-sm) 0;
-    flex-shrink: 0;
     flex-wrap: wrap;
-    gap: var(--space-xs);
+    column-gap: var(--space-md);
   }
 
+  /* ---------------------------------
+     BRAND / LOGO
+  ---------------------------------- */
+
+  .header-brand {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: var(--space-xs);
+    transform: translateY(-3px);
+  }
+
+  .brand {
+    font-family: var(--font-heading);
+    font-size: var(--text-xl);
+    color: var(--color-text);
+    z-index: 100; /* Ensures brand is visible */
+    display: contents;
+  }
+
+  .brand img {
+    min-width: fit-content;
+    min-height: fit-content;
+  }
+
+  .brand img:hover {
+    opacity: 0.8;
+  }
+
+  /* ---------------------------
+     HEADER NAVIGATION
+  ---------------------------- */
   .header-nav {
     font-size: var(--text-md);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    column-gap: var(--space-sm);
   }
 
   .header-nav a {
-    margin-left: var(--space-sm);
     color: var(--color-text-soft);
+    white-space: nowrap;
   }
 
   .header-nav a:hover {
     color: var(--color-text);
   }
 
+  .header-nav-2nd {
+    display: contents;
+  }
+
+  /* ---------------------------
+     TOOLS & LANGUAGE CONTROLS
+  ---------------------------- */
   .header-tools {
-    display: inline-flex;
-    flex-wrap: nowrap;
+    display: flex;
+    flex-flow: row-reverse wrap;
+    align-items: center;
+    justify-content: center;
+    column-gap: var(--space-xs);
   }
 
   .header-lang {
-    display: inline-flex;
-    align-items: center;
     font-size: var(--text-xs);
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
   }
 
   .header-lang a {
@@ -113,10 +167,25 @@ const { lang, page } = Astro.props;
     font-weight: 600;
   }
 
-  /* drop nav links to second row when header breaks */
-  @media (max-width: 800px) {
+  /* ---------------------------
+     RESPONSIVE BREAKPOINTS
+  ---------------------------- */
+  @media (max-width: 940px) {
+    .header-tools {
+      flex-direction: column;
+    }
+  }
+  @media (max-width: 900px) {
+    /* Drop nav links to second header row */
     .header-nav {
       order: 2;
+      width: 100%;
+    }
+  }
+  @media (width <= 600px) {
+    /* Send secondary navigation to footer on mobile */
+    .header-nav-2nd {
+      display: none;
     }
   }
 </style>

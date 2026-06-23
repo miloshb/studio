@@ -1,5 +1,13 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import GalleryRandom from "../../components/GalleryRandom.astro";
+
+const imagePool = [
+  { src: "/images/teachers/milos-natarajasana-400.webp", alt: "Naṭarājāsana" },
+  { src: "/images/classes/yoga-utthita-asva-sanchalanasana-400.webp", alt: "Utthita Aśva Sanchalanāsana" },
+  { src: "/images/classes/yoga-eka-pada-adho-mukha-svanasana-400.webp", alt: "Eka Pāda Adho Mukha Śvānāsana" },
+  { src: "/images/classes/yoga-class-sukhasana-nyana-mudra-400.webp", alt: "Sukhasana Nyāna Mudrā" }
+];
 ---
 
 <BaseLayout lang="en" page="workshops" title="Yoga Workshops – Studio Sun & Sea">
@@ -7,6 +15,12 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 
   <section>
     <h2>Deepening Your Practice</h2>
+    <GalleryRandom
+      imagePool={imagePool}
+      thumbnail="lg"
+      class="thumbnail-right"
+    />
+
     <p>
       Workshops at Studio Sun & Sea offer an immersive environment for deeper learning, reflection, refinement, and exploration of postures. These sessions move at a slower, more intentional pace than regular classes, giving time to understand technique, refine movement patterns, and explore alignment and breath with clarity and ease.
     </p>

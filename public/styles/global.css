@@ -108,6 +108,7 @@ li a:hover {
   --max-width: clamp(320px, 90vw, 1040px);
   --mobile-max-width: 600px;
   --header-width: 900px;
+  --table-layout-mode: fixed; /* ensures consistent column widths */
 }
 
 @custom-media --mobile (max-width: 600px);
@@ -150,25 +151,7 @@ a:hover {
 }
 
 /* ---------------------------------
-   5. BRAND
----------------------------------- */
-
-.brand {
-  font-family: var(--font-heading);
-  font-size: var(--text-xl);
-  color: var(--color-text);
-  display: inline-flex;
-  flex-wrap: nowrap;
-  gap: var(--space-xs);
-  z-index: 1;
-}
-
-.brand :global(img:hover) {
-  opacity: 0.8;
-}
-
-/* ---------------------------------
-   6. BUTTONS (minimal)
+   5. BUTTONS (minimal)
 ---------------------------------- */
 
 .button {
@@ -188,14 +171,14 @@ a:hover {
 }
 
 /* ---------------------------------
-   7. TABLES (consistent columns)
+   6. TABLES (consistent columns)
 ---------------------------------- */
 
 table {
   margin: 0 0 var(--space-sm) 0;
   width: 100%;
   border-collapse: collapse;
-  table-layout: fixed; /* ensures consistent column widths */
+  table-layout: var(--table-layout-mode);
 }
 
 table th {
@@ -225,10 +208,16 @@ table.no-global td:last-child {
   width: auto;
 }
 
-/* Responsive adjustments for smaller screens */
-@media (--mobile) {
-  table {
-    table-layout: auto;
+/* ---------------------------------
+   7. RESPONSIVE LAYOUTS (MOBILE)
+---------------------------------- */
+
+/* --mobile-max-width */
+@media (width <= 600px) {
+  :root {
+    --table-layout-mode: auto;
+    --thumbnail-width-md: 120px; /* var(--thumbnail-width-sm) */
+    --thumbnail-width-lg: 180px; /* var(--thumbnail-width-md) */
   }
 }
 
@@ -280,7 +269,14 @@ img {
 
 #teachers img {
   float: right;
-  margin: 0 0 var(--space-sm) var(--space-sm);
+  margin-left: var(--space-sm);
+  border-radius: var(--radius-lg);
+}
+
+.thumbnail-right {
+  float: right;
+  margin-left: var(--space-sm);
+  border-radius: var(--radius-xl);
 }
 
 .thumbnail-sm img {
@@ -295,6 +291,7 @@ img {
   width: var(--thumbnail-width-lg);
 }
 
+/* TODO: aspect does not work as expected. */
 .aspect-square {
   aspect-ratio: 1 / 1;
   overflow: hidden;

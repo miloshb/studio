@@ -1,0 +1,48 @@
+---
+// src/components/PriceTable.astro
+import PriceCell from "./PriceCell.astro";
+import { getLocaleFromUrl } from "../utils/i18n";
+
+const { rows, locale: localeOverride, descLabel, priceLabel, rowLabelOverride = false } = Astro.props;
+
+const currentLocale = localeOverride || getLocaleFromUrl(Astro.url);
+const descHeading = descLabel || (currentLocale === "de-DE" ? "Dauer" : "Duration");
+const priceHeading = priceLabel || (currentLocale === "de-DE" ? "Preis" : "Price");
+
+// Duration helper
+// < 45 → treat as hours
+// >= 45 → treat as minutes
+function formatDuration(value: number, locale: string) {
+  const isHours = value < 45;
+
+  if (locale === "de-DE") {
+    return isHours
+      ? `${value} Stunden`
+      : `${value} Minuten`;
+  }
+
+  return isHours
+    ? `${value} hours`
+    : `${value} minutes`;
+}
+---
+
+<table>
+  <thead>
+    <tr>
+      <th>{descHeading}</th>
+      <th>{priceHeading}</th>
+    </tr>
+  </thead>
+  <tbody>
+    {rows.map((row) => {
+      const rowLabel = rowLabelOverride ? row.label : formatDuration(row.duration, currentLocale);
+      return (
+        <tr>
+          <td>{rowLabel}</td>
+          <PriceCell prices={row} locale={currentLocale} />
+        </tr>
+      );
+    })}
+  </tbody>
+</table>

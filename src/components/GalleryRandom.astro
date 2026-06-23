@@ -1,0 +1,53 @@
+---
+// src/components/GalleryRandom.astro
+import StudioImage from "./StudioImage.astro";
+
+/**
+ * const imagePool = [
+ *  { src: "/images/gallery/yoga-pose-1.webp", alt: "Vinyasa flow practice" },
+ *  { src: "/images/gallery/yoga-pose-2.webp", alt: "Mindful meditation posture" },
+ *  { src: "/images/gallery/yoga-pose-3.webp", alt: "Breathe and relax sequence" },
+ *  { src: "/images/gallery/yoga-pose-4.webp", alt: "Studio space setting" }
+ * ];
+ */
+const {
+  imagePool,
+  ...rest
+} = Astro.props;
+
+// Pass a temporary fallback entry to the server render pass to keep the DOM structure valid
+const defaultImage = imagePool[0];
+---
+
+<div class="container">
+  <div class="random-image-container" data-pool={JSON.stringify(imagePool)}>
+    <StudioImage
+      id="target-random-img"
+      src={defaultImage.src}
+      alt={defaultImage.alt}
+      {...rest}
+    />
+  </div>
+</div>
+
+<!-- 3. Client-Side Island: Computes the random entry instantly in the browser -->
+<script>
+  const wrapper = document.querySelector('.random-image-container');
+  const imgElement = document.getElementById('target-random-img') as HTMLImageElement | null;
+
+  if (wrapper && imgElement) {
+    // Parse the pool array out of the HTML dataset attribute securely
+    const rawPool = wrapper.getAttribute('data-pool');
+    if (rawPool) {
+      const imagePool = JSON.parse(rawPool);
+
+      // Pick an absolute random index element from the list
+      const randomIndex = Math.floor(Math.random() * imagePool.length);
+      const selectedImage = imagePool[randomIndex];
+
+      // Swap the image attributes inline before the layout finishes painting
+      imgElement.src = selectedImage.src;
+      imgElement.alt = selectedImage.alt;
+    }
+  }
+</script>
