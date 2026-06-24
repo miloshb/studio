@@ -164,6 +164,7 @@ a:hover {
   font-size: var(--text-sm);
   text-decoration: none;
   border-radius: var(--radius-lg);
+  white-space: nowrap;
 }
 
 .button:hover {
