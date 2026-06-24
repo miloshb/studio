@@ -17,7 +17,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '22.12.0'
+          node-version: '22.14.0'
           cache: 'npm'
 
       - name: Install Dependencies
@@ -46,6 +46,15 @@ jobs:
         # start-server-and-test securely spins up the http-server, runs linkinator, catches real errors, and terminates gracefully on runner crash or test completion
         run: npm run test:links
 
+      # LIVE EDGE REDIRECT RUNNER: Executes exclusively on production merge environments
+      - name: Install Playwright Browsers (Production Only)
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: npx playwright install --with-deps chromium
+
+      - name: Execute Live Edge Domain Redirect Checks (Production Only)
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: npm run test:redirects
+
   # JOB 2: Only run version bumping if the validation job passes AND it's the main branch
   bump-version:
     runs-on: ubuntu-latest
@@ -64,7 +73,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '22.12.0'
+          node-version: '22.14.0'
           cache: 'npm'
 
       - name: Configure Git
