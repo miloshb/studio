@@ -13,6 +13,7 @@ This document tracks the multi-regional domain routing, security protocols, and 
 | `studiosonneundmeer.eu` | GoDaddy | Cloudflare | Redirects to Local `/de/` Path | Banned (Null SPF) | OFF (Limited) | **Dec 6, 2026** |
 | `sunceimore.eu` | GoDaddy | Cloudflare | Redirects to English Root (or `/hr/`) | Banned (Null SPF) | OFF (Limited) | **Dec 6, 2026** |
 | `studiosunceimore.eu` | GoDaddy | Cloudflare | Redirects to English Root (or `/hr/`) | Banned (Null SPF) | OFF (Limited) | **Dec 6, 2026** |
+| `studiosunandsea.hr` | INWX | | | | | $88 / $120 or 88€ / 119€ |
 | *verticalis.us* | GoDaddy | Internal/Other | Secondary Brand Asset Tracking | | **ON** (High Security) | **Sep 19, 2027** |
 | *nanoonan.com* | GoDaddy | Internal/Other | Secondary Brand Asset Tracking | | **ON** (High Security) | **Mar 19, 2033** |
 
