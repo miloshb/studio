@@ -1,0 +1,8 @@
+{
+  "recurse": true,
+  "checkCss": true,
+  "skip": [
+    "https://mindbodyonline.com",
+    "https://europa.eu"
+  ]
+}
