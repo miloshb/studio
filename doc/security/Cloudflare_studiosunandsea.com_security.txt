@@ -1,0 +1,5 @@
+Contact: mailto:infosec@studiosunandsea.com
+Expires: 2027-06-23T12:00:00Z
+Canonical: https://studiosunandsea.com/.well-known/security.txt
+Policy: https://studiosunandsea.com/en/privacy/
+Preferred-Languages: en, de
