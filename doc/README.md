@@ -21,7 +21,7 @@ We use a structured branch strategy to catch layout regressions and broken route
 
 ### Permanent (Long-Lived) Branches
 * **`main`**: Reflects the absolute current live state of production. Direct pushes are protected and should only come from `stage` or `hotfix`. Code must pass the validation engine before merging.
-* **`stage`**: Stable staging sandbox environment (Cloudlflare). All features and translations are integrated here first for layout review. Integration tests are validated.
+* **`stage`**: *Default* branch in GitHub. Stable staging sandbox environment (Cloudflare). All features and translations are integrated here first for layout review. Integration tests are validated.
 
 ### Semi-Permanent Branches
 * **`cm`**: Configuration Management and environment testing. Also, where test harnesses and other platform enhancements and tools are first implemented.
