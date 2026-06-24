@@ -97,6 +97,7 @@ To prevent bad actors from forging addresses to spoof the brand name, secondary 
 * Primary website hosting is handled by CloudFlare under the user milos@studiosunandsea.com and uses Google OAuth.
 * Business Email is handled via Google Workspace Starter with admin account milos@studiosunandsea.com
 * Scheduling, Booking, Account Management are supported via Mindbody with admin account milos@studiosunandsea.com (backup: miloshboroyevich@gmail.com)
+* Domains are registered with [GoDaddy](https://dcc.godaddy.com/control/portfolio) with Customer #: 1788537
 
 ---
 *Last Checked: June 2026*
