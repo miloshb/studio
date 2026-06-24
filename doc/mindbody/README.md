@@ -167,4 +167,10 @@ src/
 ```
 
 ---
+
+## 11. Reference
+- [Invoice and Mindbody app fees FAQ](https://support.mindbodyonline.com/s/article/217038307-What-are-Marketing-Platform-fees?language=en_US)
+- [Promoted intro offers FAQ](https://support.mindbodyonline.com/s/article/213753468-Promote-in-the-MINDBODY-app-FAQ?language=en_US)
+
+---
 *Last Checked: June 2026*

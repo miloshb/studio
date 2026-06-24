@@ -4,6 +4,11 @@ This directory serves as the centralized reference architecture for all official
 
 ## 🗺️ Integration Architecture At-A-Glance
 
+| 🌐 Branded Web Tools | ⚡ Public REST API | 🛒 Marketplace Hub |
+| :--- | :--- | :--- |
+| - Async JS Widgets | - Webhooks (JSON) | - ClassPass / GA4 |
+| - Astro Embeds | - Custom Web Stack | - Bookkeep / QuickBooks |
+
 ## 1. Native Client Interface: Branded Web Tools (Widgets)
 
 These out-of-the-box, asynchronous JavaScript code snippets are embedded directly into frontend frameworks like Astro. They dynamically render client-side interfaces using real-time data from the Studio Account ID.
