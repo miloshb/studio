@@ -8,9 +8,11 @@ This document tracks the multi-regional domain routing, security protocols, and 
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | **studiosunandsea.com** | GoDaddy | Cloudflare | **Primary Host** (Astro Page App) | Google Workspace | **ON** (High Security) | **Dec 5, 2028** |
 | `studiosunandsea.eu` | GoDaddy | Cloudflare | Redirects to English Root | Banned (Null SPF) | OFF (Limited) | **Dec 6, 2026** |
-| `studiosonneundmeer.eu`| GoDaddy | Cloudflare | Redirects to Local `/de/` Path | Banned (Null SPF) | OFF (Limited) | **Dec 6, 2026** |
+| `studiosunandsea.de` | INWX | Cloudflare | Redirects to Local `/de/` Path | Banned (Null SPF) | **ON** (DENIC Default) | **Jun 24, 2027** |
+| `studiosonneundmeer.de` | INWX | Cloudflare | Redirects to Local `/de/` Path | Banned (Null SPF) | **ON** (DENIC Default) | **Jun 24, 2027** |
+| `studiosonneundmeer.eu` | GoDaddy | Cloudflare | Redirects to Local `/de/` Path | Banned (Null SPF) | OFF (Limited) | **Dec 6, 2026** |
 | `sunceimore.eu` | GoDaddy | Cloudflare | Redirects to English Root (or `/hr/`) | Banned (Null SPF) | OFF (Limited) | **Dec 6, 2026** |
-| `studiosunceimore.eu`  | GoDaddy | Cloudflare | Redirects to English Root (or `/hr/`) | Banned (Null SPF) | OFF (Limited) | **Dec 6, 2026** |
+| `studiosunceimore.eu` | GoDaddy | Cloudflare | Redirects to English Root (or `/hr/`) | Banned (Null SPF) | OFF (Limited) | **Dec 6, 2026** |
 | *verticalis.us* | GoDaddy | Internal/Other | Secondary Brand Asset Tracking | | **ON** (High Security) | **Sep 19, 2027** |
 | *nanoonan.com* | GoDaddy | Internal/Other | Secondary Brand Asset Tracking | | **ON** (High Security) | **Mar 19, 2033** |
 
