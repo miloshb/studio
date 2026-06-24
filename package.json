@@ -1,7 +1,7 @@
 {
   "name": "studio",
   "type": "module",
-  "version": "0.3.4",
+  "version": "0.3.7",
   "engines": {
     "node": ">=22.12.0"
   },
@@ -11,8 +11,9 @@
     "preview": "astro preview",
     "astro": "astro",
     "test:sitemap": "linkinator ./dist/sitemap-index.xml --recurse",
-    "test:links:run": "linkinator http://127.0.0.1:8080/en/ http://127.0.0.1:8080/de/ --recurse --links-to-skip https://mindbodyonline.com",
-    "test:links": "npx http-server ./dist -p 8080 -c-1 & sleep 3 && npm run test:links:run && kill $!"
+    "test:links:run": "linkinator http://127.0.0.1:4321/en/ http://127.0.0.1:4321/de/ --recurse --links-to-skip https://mindbodyonline.com",
+    "test:links": "start-server-and-test 'npx http-server ./dist -p 4321 -c-1' http://127.0.0.1:4321 'npm run test:links:run'",
+    "test:redirects": "playwright test test/redirects.spec.ts"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.3",
@@ -24,6 +25,8 @@
   },
   "devDependencies": {
     "linkinator": "^7.6.1",
+    "start-server-and-test": "^3.0.11",
+    "@playwright/test": "^1.49.0",
     "postcss-custom-media": "^12.0.1"
   }
 }

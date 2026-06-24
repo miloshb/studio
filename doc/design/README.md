@@ -4,7 +4,7 @@ This README is the entry point for all visual, structural, and experiential guid
 
 ---
 
-# ✨ Purpose
+## ✨ Purpose
 
 The Studio Sun & Sea Design System ensures:
 
@@ -19,7 +19,7 @@ This system is intentionally minimal, serene, and grounded — reflecting the es
 
 ---
 
-# 🧭 System Overview
+## 🧭 System Overview
 
 The design system is organized into the following core areas:
 
@@ -36,9 +36,9 @@ Each section is documented in its own Markdown file for clarity and modularity.
 
 ---
 
-# 🎨 Visual Identity
+## 🎨 Visual Identity
 
-## **1. Color Palette**
+### **1. Color Palette**
 Warm minimalism inspired by the Dalmatian coast, natural studio light, and seashell tones.
 
 - Primary colors
@@ -50,7 +50,7 @@ Warm minimalism inspired by the Dalmatian coast, natural studio light, and seash
 📄 **File:** [/doc/design/color-palette.md](/doc/design/color-palette.md)
 🔗 **[Open color palette](ca://s?q=Define_warm_minimalism_palette)**
 
-## **2. Typography System**
+### **2. Typography System**
 Elegant serif headings + clean sans-serif body text.
 
 - Cormorant Garamond (headings)
@@ -64,9 +64,9 @@ Elegant serif headings + clean sans-serif body text.
 
 ---
 
-# 🏠 Layout & Structure
+## 🏠 Layout & Structure
 
-## **3. Homepage Hero Layout**
+### **3. Homepage Hero Layout**
 Poster-style, serene, warm, and actionable.
 
 - Seashell background
@@ -78,7 +78,7 @@ Poster-style, serene, warm, and actionable.
 📄 **File:** [/doc/design/hero-layout.md](/doc/design/hero-layout.md)
 🔗 **[Open hero layout](ca://s?q=Generate_homepage_hero_spec)**
 
-## **4. Navigation & IA**
+### **4. Navigation & IA**
 Calm, clear, minimal navigation.
 
 - Top-level IA
@@ -92,9 +92,9 @@ Calm, clear, minimal navigation.
 
 ---
 
-# 🧩 Components
+## 🧩 Components
 
-## **5. Component Library (future expansion)**
+### **5. Component Library (future expansion)**
 Reusable UI components built with Astro.
 
 Planned components:
@@ -113,9 +113,9 @@ Planned components:
 
 ---
 
-# 🗣️ Brand Expression
+## 🗣️ Brand Expression
 
-## **6. Voice & Tone Guidelines (future)**
+### **6. Voice & Tone Guidelines (future)**
 Defines how Studio Sun & Sea communicates.
 
 Themes:
@@ -132,7 +132,7 @@ Themes:
 
 ---
 
-# 🧱 Design Tokens (future)
+## 🧱 Design Tokens (future)
 
 A unified set of variables for:
 
@@ -151,7 +151,7 @@ Will be implemented as:
 
 ---
 
-# 🧘‍♂️ Mindbody Integration Styles (future)
+## 🧘‍♂️ Mindbody Integration Styles (future)
 
 Custom styling for:
 
@@ -165,7 +165,7 @@ Custom styling for:
 
 ---
 
-# 📁 Recommended Directory Structure
+## 📁 Recommended Directory Structure
 
 - /doc
   - /design
@@ -183,7 +183,7 @@ Custom styling for:
 
 ---
 
-# 🔗 Related Documentation
+## 🔗 Related Documentation
 
 - **[Color palette](ca://s?q=Define_warm_minimalism_palette)**
 - **[Typography system](ca://s?q=Generate_typography_system)**
@@ -191,3 +191,10 @@ Custom styling for:
 - **[Navigation structure](ca://s?q=Generate_navigation_structure)**
 - **[Component library](ca://s?q=Generate_component_library_spec)**
 - **[Voice & tone](ca://s?q=Generate_voice_and_tone_guidelines)**
+
+---
+
+## Reference
+
+- [Living Barre & Yoga (AU)](https://livingbarreandyoga.com.au/class/rooted-living/)
+- [Ellen Hoormann - Co-Working Space](https://ellenhoormann.de/co-working-space-in-lingen/)

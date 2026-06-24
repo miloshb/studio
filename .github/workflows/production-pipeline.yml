@@ -17,7 +17,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '22.12.0'
+          node-version: '22.14.0'
           cache: 'npm'
 
       - name: Install Dependencies
@@ -43,8 +43,17 @@ jobs:
         run: npm run test:sitemap
 
       - name: Scan Entire Site for Broken Internal Links
-        # This securely spins up the server, runs linkinator, catches real errors, and spins it down.
+        # start-server-and-test securely spins up the http-server, runs linkinator, catches real errors, and terminates gracefully on runner crash or test completion
         run: npm run test:links
+
+      # LIVE EDGE REDIRECT RUNNER: Executes exclusively on production merge environments
+      - name: Install Playwright Browsers (Production Only)
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: npx playwright install --with-deps chromium
+
+      - name: Execute Live Edge Domain Redirect Checks (Production Only)
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: npm run test:redirects
 
   # JOB 2: Only run version bumping if the validation job passes AND it's the main branch
   bump-version:
@@ -64,7 +73,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '22.12.0'
+          node-version: '22.14.0'
           cache: 'npm'
 
       - name: Configure Git
@@ -72,7 +81,7 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-      # This reads your commit message. If it contains [major] or [minor], it bumps accordingly.
+      # This reads the commit message. If it contains [major] or [minor], it bumps accordingly.
       # Otherwise, it defaults to a standard patch bump (0.0.2 -> 0.0.3).
       - name: Evaluate Commits & Bump Version
         run: |

@@ -8,9 +8,10 @@
 *.so
 *.dylib
 
-# build output
+# build and test output
 dist/
 build/
+test-results/
 
 # generated types
 .astro/
