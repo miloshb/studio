@@ -1,12 +1,9 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
+import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  // output: 'server', // Requires SSR mode to read live headers on request
-  // adapter: cloudflare(),
-  // i18n: {
-  //   defaultLocale: 'en',
-  //   locales: ['en', 'de'],
-  // }
+  site: 'https://studiosunandsea.com',
+  integrations: [sitemap()]
 });
