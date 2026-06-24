@@ -11,7 +11,7 @@
     "preview": "astro preview",
     "astro": "astro",
     "test:sitemap": "linkinator ./dist/sitemap-index.xml --recurse",
-    "test:links:run": "linkinator http://127.0.0.1:8080/en http://127.0.0.1:8080/de --recurse --links-to-skip https://mindbodyonline.com",
+    "test:links:run": "linkinator http://127.0.0.1:8080/en/ http://127.0.0.1:8080/de/ --recurse --links-to-skip https://mindbodyonline.com",
     "test:links": "npx http-server ./dist -p 8080 -c-1 & sleep 3 && npm run test:links:run && kill $!"
   },
   "dependencies": {
