@@ -1,6 +1,6 @@
 ;;
 ;; Domain:     studiosonneundmeer.de.
-;; Exported:   2026-06-24 02:42:43
+;; Exported:   2026-06-24 02:48:53
 ;;
 ;; This file is intended for use for informational and archival
 ;; purposes ONLY and MUST be edited before use on a production
@@ -24,13 +24,21 @@
 ;;
 ;; Use at your own risk.
 ;; SOA Record
-studiosonneundmeer.de	3600	IN	SOA	chris.ns.cloudflare.com. dns.cloudflare.com. 2053393556 10000 2400 604800 3600
+studiosonneundmeer.de	3600	IN	SOA	chris.ns.cloudflare.com. dns.cloudflare.com. 2053393593 10000 2400 604800 3600
 
 ;; NS Records
 studiosonneundmeer.de.	86400	IN	NS	chris.ns.cloudflare.com.
 studiosonneundmeer.de.	86400	IN	NS	magdalena.ns.cloudflare.com.
 
-;; A Records
-*.studiosonneundmeer.de.	1	IN	A	185.181.104.242 ; cf_tags=cf-proxied:true
-studiosonneundmeer.de.	1	IN	A	185.181.104.242 ; cf_tags=cf-proxied:true
-www.studiosonneundmeer.de.	1	IN	A	185.181.104.242 ; cf_tags=cf-proxied:true
+;; AAAA Records
+studiosonneundmeer.de.	1	IN	AAAA	100:: ; cf_tags=cf-proxied:true
+
+;; CNAME Records
+www.studiosonneundmeer.de.	1	IN	CNAME	studiosonneundmeer.de. ; cf_tags=cf-proxied:true
+
+;; MX Records
+studiosonneundmeer.de.	1	IN	MX	0 .
+
+;; TXT Records
+_dmarc.studiosonneundmeer.de.	1	IN	TXT	"v=DMARC1; p=quarantine; adkim=r; aspf=r; rua=mailto:infosec@studiosunandsea.com;"
+studiosonneundmeer.de.	1	IN	TXT	"v=spf1 -all"
