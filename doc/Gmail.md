@@ -26,10 +26,11 @@ All incoming system emails bypass the Primary Inbox and map cleanly into one of 
 │   ├── 📈 04-Sales/Retention       [AUTOMATED BIRTHDAYS / ANNIVERSARIES]
 │   ├── 🤝 04-Sales/Partnerships    [Joint Ventures, B2B contracts, revenue-share]
 │   ├── 🔍 04-Sales/Market-Research [Competitor Promos & Memberships Intel]
-│   └── 🗣️ 04-Sales/Collaboration   [Informal cross-promo, networking, casual co-marketing]
-├── 📁 05-Security-IT
-│   ├── 🤖 05-Security-IT/System-Logs       [AUTOMATED MINDBODY/INWX/GODADDY/CLOUDFLARE - ARCHIVED + NO SPAM]
-│   └── ⚙️ 05-Security-IT/Platform-Admin    [HUMAN/PLATFORM SETUPS & ACCOUNTS TRACK]
+│   ├── 🗣️ 04-Sales/Collaboration   [Informal cross-promo, networking, casual co-marketing]
+│   └── 📥 04-Sales/Inbound-Offers  [Cold pitches, vendor promos, tool deals]
+├── 📁 05-IT-Security
+│   ├── 🤖 05-IT-Security/System-Logs       [AUTOMATED MINDBODY/INWX/GODADDY/CLOUDFLARE - ARCHIVED + NO SPAM]
+│   └── ⚙️ 05-IT-Security/Platform-Admin    [HUMAN/PLATFORM SETUPS & ACCOUNTS TRACK]
 └── 📁 06-Legal
     ├── 📥 06-Legal/Privacy    [MANUAL - STAYS IN INBOX - GDPR/Datenschutz]
     ├── ⚖️ 06-Legal/Legal      [AUTOMATED/MANUAL ARCHIVE - Exali, lawyers]
@@ -104,17 +105,21 @@ Houses outbound communication streams, promotions, and brand relationship milest
     *   **Source:** External instructors, local micro-influencers, wellness brands, or community groups seeking informal mutual support.
     *   **Contents:** Informal guest-teacher requests, community event coordination, social media cross-promotions, and casual co-marketing ideas.
     *   **Behavior:** No auto-archive rule. Passes through the inbox for organic review, then manually archived here for relationship tracking.
+*   **`04-Sales/Inbound-Offers`**
+    *   **Source:** Vendor pitches, cold emails from software services, B2B marketing lists, and non-partner promotions.
+    *   **Contents:** Software tool discount offers, equipment vendor catalogs, cold outreach marketing materials.
+    *   **Behavior:** Appends label; skips the inbox (archives instantly). This clears cold corporate clutter from your primary workspace while keeping it fully searchable for later reference.
 
-### 🔴 05-Security-IT
+### 🔴 05-IT-Security
 Protects digital real estate, platform configurations, infrastructure states, and tech support.
-*   **`05-Security-IT`**
+*   **`05-IT-Security`**
     *   **Source:** Direct manual IT questions to `it@...` or tech support queries to `support@...` and `hilfe@...`.
     *   **Behavior:** Appends label; skips the inbox (archives instantly).
-*   **`05-Security-IT/System-Logs`**
+*   **`05-IT-Security/System-Logs`**
     *   **Source:** Automated engines (`Business5754454@mindbodyonline.com`, `inwx.de`, `godaddy.com`, `cloudflare.com`).
     *   **Contents:** Server log notifications, sub reminders, domain alerts, API telemetry.
     *   **Behavior:** Appends label; skips the inbox; **never forces mail to Spam**.
-*   **`05-Security-IT/Platform-Admin`**
+*   **`05-IT-Security/Platform-Admin`**
     *   **Source:** Google Workspace Admin Team, INWX platform setup, registrar account creations.
     *   **Contents:** Platform onboarding records, master account tokens, new user creation notices.
     *   **Behavior:** No auto-archive rule for third-party human signups. Stays in the inbox for immediate configuration visibility, then manually archived here for long-term look-back.

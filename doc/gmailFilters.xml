@@ -128,7 +128,22 @@
 		<apps:property name='sizeUnit' value='s_smb'/>
 	</entry>
 
-	<!-- 10. CORE SALES & MARKETING INQUIRIES -->
+	<!-- 10. SALES - INBOUND OFFERS -->
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<id>tag:mail.google.com,2008:filter:z0000001782418979606*2334125333660421274</id>
+		<updated>2026-06-25T20:33:31Z</updated>
+		<content></content>
+		<apps:property name='to' value='info@studiosunandsea.com OR contact@studiosunandsea.com'/>
+		<apps:property name='hasTheWord' value='offer OR discount OR promotion OR software OR platform OR &quot;special deal&quot;'/>
+		<apps:property name='label' value='04-Sales/Inbound-Offers'/>
+		<apps:property name='shouldArchive' value='true'/>
+		<apps:property name='sizeOperator' value='s_sl'/>
+		<apps:property name='sizeUnit' value='s_smb'/>
+	</entry>
+
+	<!-- 11. CORE SALES & MARKETING INQUIRIES -->
 	<entry>
 		<category term='filter'></category>
 		<title>Mail Filter</title>
@@ -141,7 +156,7 @@
 		<apps:property name='sizeUnit' value='s_smb'/>
 	</entry>
 
-	<!-- 11. INFRASTRUCTURE TECH SYSTEM LOGS -->
+	<!-- 12. INFRASTRUCTURE TECH SYSTEM LOGS -->
 	<entry>
 		<category term='filter'></category>
 		<title>Mail Filter</title>
@@ -149,42 +164,42 @@
 		<apps:property name='to' value='it@studiosunandsea.com OR support@studiosunandsea.com OR hilfe@studiosunandsea.com OR infosec@studiosunandsea.com OR security@studiosunandsea.com'/>
 		<apps:property name='from' value='inwx.de OR godaddy.com OR cloudflare.com'/>
 		<apps:property name='doesNotHaveTheWord' value='billing'/>
-		<apps:property name='label' value='05-Security-IT/System-Logs'/>
+		<apps:property name='label' value='05-IT-Security/System-Logs'/>
 		<apps:property name='shouldArchive' value='true'/>
 		<apps:property name='shouldNeverSpam' value='true'/>
 		<apps:property name='sizeOperator' value='s_sl'/>
 		<apps:property name='sizeUnit' value='s_smb'/>
 	</entry>
 
-	<!-- 12. CORE TECH MANAGEMENT -->
+	<!-- 1§. CORE TECH MANAGEMENT -->
 	<entry>
 		<category term='filter'></category>
 		<title>Mail Filter</title>
 		<content></content>
 		<apps:property name='to' value='it@studiosunandsea.com OR support@studiosunandsea.com OR hilfe@studiosunandsea.com OR infosec@studiosunandsea.com OR security@studiosunandsea.com'/>
 		<apps:property name='from' value='-Business5754454@mindbodyonline.com -inwx.de -godaddy.com -cloudflare.com'/>
-		<apps:property name='label' value='05-Security-IT'/>
+		<apps:property name='label' value='05-IT-Security'/>
 		<apps:property name='shouldArchive' value='true'/>
 		<apps:property name='shouldNeverSpam' value='true'/>
 		<apps:property name='sizeOperator' value='s_sl'/>
 		<apps:property name='sizeUnit' value='s_smb'/>
 	</entry>
 
-	<!-- 13. PLATFORM ADMIN TRACK -->
+	<!-- 14. PLATFORM ADMIN TRACK -->
 	<entry>
 		<category term='filter'></category>
 		<title>Mail Filter</title>
 		<id>tag:mail.google.com,2008:filter:z0000001782417144882*2795217598386990615</id>
 		<updated>2026-06-25T19:52:43Z</updated>
 		<content></content>
-		<apps:property name='from' value='workspace-noreply@google.com OR support@inwx.de'/>
-		<apps:property name='label' value='05-Security-IT/Platform-Admin'/>
+		<apps:property name='from' value='workspace-noreply@google.com OR support@inwx.de OR info@e.atlassian.com OR @godaddy.com'/>
+		<apps:property name='label' value='05-IT-Security/Platform-Admin'/>
 		<apps:property name='shouldNeverSpam' value='true'/>
 		<apps:property name='sizeOperator' value='s_sl'/>
 		<apps:property name='sizeUnit' value='s_smb'/>
 	</entry>
 
-	<!-- 14. DATA PRIVACY & GDPR TRACK (STAYS IN INBOX) -->
+	<!-- 15. DATA PRIVACY & GDPR TRACK (STAYS IN INBOX) -->
 	<entry>
 		<category term='filter'></category>
 		<title>Mail Filter</title>
@@ -196,7 +211,7 @@
 		<apps:property name='sizeUnit' value='s_smb'/>
 	</entry>
 
-	<!-- 15. CORE LEGAL TRACK -->
+	<!-- 16. CORE LEGAL TRACK -->
 	<entry>
 		<category term='filter'></category>
 		<title>Mail Filter</title>
@@ -211,7 +226,7 @@
 		<apps:property name='sizeUnit' value='s_smb'/>
 	</entry>
 
-	<!-- 16. REGULATORY COMPLIANCE TRACK -->
+	<!-- 17. REGULATORY COMPLIANCE TRACK -->
 	<entry>
 		<category term='filter'></category>
 		<title>Mail Filter</title>
