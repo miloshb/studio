@@ -15,10 +15,11 @@ All incoming system emails bypass the Primary Inbox and map cleanly into one of 
 │   └── 🤖 01-Bookings/Mindbody-System      [AUTOMATED - ARCHIVED]
 ├── 📁 02-Operations
 │   ├── 👥 02-Operations/Mindbody-Corporate [HUMAN STAFF / ONBOARDING / SUPPORT]
-│   ├── 🤖 02-Operations/Waivers-Audits     [AUTOMATED - ARCHIVED]
+│   ├── 🤖 02-Operations/Waivers            [AUTOMATED - ARCHIVED]
 │   └── 🧘 02-Operations/Internal-Studio    [Team logistics, shift swaps, Instructors]
 ├── 📁 03-Finance
-│   ├── 📥 03-Finance/Invoices              [MANUAL/VENDOR/INWX/GODADDY/CLOUDFLARE/GOOGLE - ARCHIVED + STARRED]
+│   ├── 📥 03-Finance/AP-Invoices-Received  [BILLS OWED - Vendor / Insurance / Platform Costs]
+│   ├── 📤 03-Finance/AR-Invoices-Issued    [MONEY EARNED - Invoices sent out for payment]
 │   ├── 🤖 03-Finance/Mindbody-Payouts      [AUTOMATED - ARCHIVED + STARRED]
 │   └── 🏦 03-Finance/Banking               [Zelle, Venmo, Wise Automated Logs]
 ├── 📁 04-Sales
@@ -58,7 +59,7 @@ Manages internal administration, facilities coordination, and legal liability tr
 * **`02-Operations`**
   * **Source:** Real humans, vendors, or staff coordinating studio management tasks.
   * **Behavior:** Appends label; skips the inbox (archives instantly).
-* **`02-Operations/Waivers-Audits`**
+* **`02-Operations/Waivers`**
   * **Source:** Mindbody automated engine (`Business5754454@mindbodyonline.com`).
   * **Contents:** Carbon copies of completed Client Intake Forms and digital Liability Waivers.
   * **Behavior:** Appends label; skips the inbox (archives instantly).
@@ -71,11 +72,13 @@ Manages internal administration, facilities coordination, and legal liability tr
   * **Contents:** Schedule adjustments, team coordination updates, shift swaps, teacher workshop logistics, and internal studio announcements.
   * **Behavior:** No auto-archive rule. Stays in the primary inbox for active team coordination, then manually filed here.
 
-### 🟡 03-Finance
+### 🟡 03-Finance (Accounts Ledger)
 Secures all revenue tracking, credit card processing states, and business expenditures.
-* **`03-Finance/Invoices`**
-  * **Source:** Direct third-party vendors, suppliers, and external accounts payable communication. INWX billing, and professional insurance statements from **exali AG**.
+* **`03-Finance/AP-Invoices-Received`**
+  * **Source:** Incoming vendors, suppliers, utilities, exali AG policy fees, INWX domain renewals, and accounts payable communication - incoming to `ap@StudioSunAndSea.com`.
   * **Behavior:** Appends label; skips the inbox; **adds a Gmail Star** for urgent visual priority.
+* **`03-Finance/AR-Invoices-Issued`**
+  * **Source:** Invoices or automated receipts sent to clients, guest teachers, or workshop renters - outgoing from `billing@StudioSunAndSea.com`.
 * **`03-Finance/Mindbody-Payouts`**
   * **Source:** Mindbody automated engine (`Business5754454@mindbodyonline.com`).
   * **Contents:** Merchant processing statements, AutoPay success logs, AutoPay failure notices, expiring credit card alerts, and automated customer invoices.

@@ -39,7 +39,7 @@
 		<content></content>
 		<apps:property name='to' value='studio@studiosunandsea.com OR studioleitung@studiosunandsea.com OR operations@studiosunandsea.com'/>
 		<apps:property name='from' value='Business5754454@mindbodyonline.com'/>
-		<apps:property name='label' value='02-Operations/Waivers-Audits'/>
+		<apps:property name='label' value='02-Operations/Waivers'/>
 		<apps:property name='shouldArchive' value='true'/>
 		<apps:property name='sizeOperator' value='s_sl'/>
 		<apps:property name='sizeUnit' value='s_smb'/>
@@ -80,14 +80,30 @@
 		<apps:property name='to' value='billing@studiosunandsea.com OR abrechnung@studiosunandsea.com OR ap@studiosunandsea.com'/>
 		<apps:property name='from' value='inwx.de OR godaddy.com OR cloudflare.com OR exali.de'/>
 		<apps:property name='hasTheWord' value='billing'/>
-		<apps:property name='label' value='03-Finance/Invoices'/>
+		<apps:property name='label' value='03-Finance/AP-Invoices-Received'/>
 		<apps:property name='shouldArchive' value='true'/>
 		<apps:property name='shouldStar' value='true'/>
 		<apps:property name='sizeOperator' value='s_sl'/>
 		<apps:property name='sizeUnit' value='s_smb'/>
 	</entry>
 
-	<!-- 7. AUTOMATED BANKING RELATIONSHIPS (ZELLE, VENMO, WISE) -->
+	<!-- 7. ACCOUNTS RECEIVABLE (INVOICES ISSUED) -->
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<id>tag:mail.google.com,2008:filter:z0000001782424480715*6387810790847995100</id>
+		<updated>2026-06-25T21:54:46Z</updated>
+		<content></content>
+		<apps:property name='from' value='billing@studiosunandsea.com'/>
+		<apps:property name='subject' value='Rechnung'/>
+		<apps:property name='label' value='03-Finance/AR-Invoices-Issued'/>
+		<apps:property name='shouldArchive' value='true'/>
+		<apps:property name='shouldAlwaysMarkAsImportant' value='true'/>
+		<apps:property name='sizeOperator' value='s_sl'/>
+		<apps:property name='sizeUnit' value='s_smb'/>
+	</entry>
+
+	<!-- 8. AUTOMATED BANKING RELATIONSHIPS (ZELLE, VENMO, WISE) -->
 	<entry>
 		<category term='filter'></category>
 		<title>Mail Filter</title>
@@ -100,7 +116,7 @@
 		<apps:property name='sizeUnit' value='s_smb'/>
 	</entry>
 
-	<!-- 8. MINDBODY ONBOARDING AUTOMATIONS (04-SALES) -->
+	<!-- 9. MINDBODY ONBOARDING AUTOMATIONS (04-SALES) -->
 	<entry>
 		<category term='filter'></category>
 		<title>Mail Filter</title>
@@ -114,7 +130,7 @@
 		<apps:property name='sizeUnit' value='s_smb'/>
 	</entry>
 
-	<!-- 9. MINDBODY RETENTION AUTOMATIONS (04-SALES) -->
+	<!-- 10. MINDBODY RETENTION AUTOMATIONS (04-SALES) -->
 	<entry>
 		<category term='filter'></category>
 		<title>Mail Filter</title>
@@ -128,7 +144,7 @@
 		<apps:property name='sizeUnit' value='s_smb'/>
 	</entry>
 
-	<!-- 10. SALES - INBOUND OFFERS -->
+	<!-- 11. SALES - INBOUND OFFERS -->
 	<entry>
 		<category term='filter'></category>
 		<title>Mail Filter</title>
@@ -143,7 +159,7 @@
 		<apps:property name='sizeUnit' value='s_smb'/>
 	</entry>
 
-	<!-- 11. CORE SALES & MARKETING INQUIRIES -->
+	<!-- 12. CORE SALES & MARKETING INQUIRIES -->
 	<entry>
 		<category term='filter'></category>
 		<title>Mail Filter</title>
@@ -156,13 +172,13 @@
 		<apps:property name='sizeUnit' value='s_smb'/>
 	</entry>
 
-	<!-- 12. INFRASTRUCTURE TECH SYSTEM LOGS -->
+	<!-- 13. INFRASTRUCTURE TECH SYSTEM LOGS -->
 	<entry>
 		<category term='filter'></category>
 		<title>Mail Filter</title>
 		<content></content>
 		<apps:property name='to' value='it@studiosunandsea.com OR support@studiosunandsea.com OR hilfe@studiosunandsea.com OR infosec@studiosunandsea.com OR security@studiosunandsea.com'/>
-		<apps:property name='from' value='inwx.de OR godaddy.com OR cloudflare.com'/>
+		<apps:property name='from' value='inwx.de OR godaddy.com OR cloudflare.com OR noreply-dmarc-support'/>
 		<apps:property name='doesNotHaveTheWord' value='billing'/>
 		<apps:property name='label' value='05-IT-Security/System-Logs'/>
 		<apps:property name='shouldArchive' value='true'/>
@@ -171,7 +187,7 @@
 		<apps:property name='sizeUnit' value='s_smb'/>
 	</entry>
 
-	<!-- 1§. CORE TECH MANAGEMENT -->
+	<!-- 14. CORE TECH MANAGEMENT -->
 	<entry>
 		<category term='filter'></category>
 		<title>Mail Filter</title>
@@ -185,7 +201,7 @@
 		<apps:property name='sizeUnit' value='s_smb'/>
 	</entry>
 
-	<!-- 14. PLATFORM ADMIN TRACK -->
+	<!-- 15. PLATFORM ADMIN TRACK -->
 	<entry>
 		<category term='filter'></category>
 		<title>Mail Filter</title>
@@ -199,7 +215,7 @@
 		<apps:property name='sizeUnit' value='s_smb'/>
 	</entry>
 
-	<!-- 15. DATA PRIVACY & GDPR TRACK (STAYS IN INBOX) -->
+	<!-- 16. DATA PRIVACY & GDPR TRACK (STAYS IN INBOX) -->
 	<entry>
 		<category term='filter'></category>
 		<title>Mail Filter</title>
@@ -211,7 +227,7 @@
 		<apps:property name='sizeUnit' value='s_smb'/>
 	</entry>
 
-	<!-- 16. CORE LEGAL TRACK -->
+	<!-- 17. CORE LEGAL TRACK -->
 	<entry>
 		<category term='filter'></category>
 		<title>Mail Filter</title>
@@ -226,7 +242,7 @@
 		<apps:property name='sizeUnit' value='s_smb'/>
 	</entry>
 
-	<!-- 17. REGULATORY COMPLIANCE TRACK -->
+	<!-- 18. REGULATORY COMPLIANCE TRACK -->
 	<entry>
 		<category term='filter'></category>
 		<title>Mail Filter</title>
