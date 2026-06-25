@@ -1,10 +1,24 @@
-# ============================================
-# Combined Makefile: Schedule + Image Optimize
-# ============================================
+# ===================================================
+# Combined Makefile: Schedule + Image Optimize + Logo
+# ===================================================
+
+# Print usage before any target
+$(info Usage: make <target>)
+$(info Targets: schedule optimize logo [favicons] all clean cleanall)
+$(info --------------------------------------------------)
+$(info	 schedule	- build Weekly Rhytm PNG)
+$(info	 optimize	- /src JPG optimized -> /public WebP)
+$(info	 logo    	- build the Logo with Name)
+$(info	 favicons	- build favicons - not part of target all)
+$(info	 )
+$(info make -B <target> = force build <target>)
+$(info --------------------------------------------------)
 
 # Directories
 BUILD_DIR := ../build
 $(shell mkdir -p $(BUILD_DIR))
+
+
 
 # --------------------------------------------
 # Schedule-Grid image pipeline
@@ -52,6 +66,7 @@ $(A5): $(CHECKSUM) $(TRIM)
 schedule: $(FINAL) $(A5)
 
 
+
 # --------------------------------------------
 # General JPEG optimization pipeline
 # --------------------------------------------
@@ -65,7 +80,7 @@ SRC_JPGS := $(shell find $(SRC_IMG_DIR) -type f -iname '*.jpg')
 # Map each JPG to 3 WebP outputs
 OPT_1600 := $(patsubst $(SRC_IMG_DIR)/%.jpg,$(PUB_IMG_DIR)/%-1600.webp,$(SRC_JPGS))
 OPT_1080 := $(patsubst $(SRC_IMG_DIR)/%.jpg,$(PUB_IMG_DIR)/%-1080.webp,$(SRC_JPGS))
-OPT_400  := $(patsubst $(SRC_IMG_DIR)/%.jpg,$(PUB_IMG_DIR)/%-400.webp,$(SRC_JPGS))
+OPT_400	:= $(patsubst $(SRC_IMG_DIR)/%.jpg,$(PUB_IMG_DIR)/%-400.webp,$(SRC_JPGS))
 
 optimize: $(OPT_1600) $(OPT_1080) $(OPT_400)
 	@echo "All JPG images optimized."
@@ -87,36 +102,87 @@ $(PUB_IMG_DIR)/%-400.webp: $(SRC_IMG_DIR)/%.jpg
 	@echo "Generated $@"
 
 
+
 # --------------------------------------------
-# Logo with Studio Text
+# Logos with Studio Text
 # --------------------------------------------
 
-LOGO_DIR := ../public/favicon
-LOGO=$(LOGO_DIR)/favicon-48.png
-LOCKUP=$(LOGO_DIR)/studio-sun-and-sea-textlogo.png
+# MindBody expects 3 logos (of which 2 with name) - and will resize to fit!
+#	 1. 200x50px (20pt text)
+#	 2. 300x70px (32pt text)
+#	 3. 600x600px (logo only)
+# Font settings global css (1.5rem = 24px)
+# Point = Pixel * 0,75
 
-# Font settings (1.5rem = 24px)
+LOGO_SRC := ../src/assets/studio-sun-and-sea-natarajasana.png
+LOGO_DEST := ../public/favicon
+LOCKUP=$(LOGO_DEST)/studio-sun-and-sea-logo
+FILTER := -filter Lanczos -define filter:blur=0.8
+
+favicons:
+	@echo "Generating favicon variants…"
+	convert $(LOGO_SRC) $(FILTER) -resize 16x16 $(LOGO_DEST)/favicon-16.png
+	convert $(LOGO_SRC) $(FILTER) -resize 32x32 $(LOGO_DEST)/favicon-32.png
+	convert $(LOGO_SRC) $(FILTER) -resize 48x48 $(LOGO_DEST)/favicon-48.png
+	convert $(LOGO_SRC) $(FILTER) -resize 180x180 $(LOGO_DEST)/apple-touch-icon.png
+	convert $(LOGO_SRC) $(FILTER) -resize 192x192 $(LOGO_DEST)/icon-192.png
+	convert $(LOGO_SRC) $(FILTER) -resize 512x512 $(LOGO_DEST)/icon-512.png
+	convert $(LOGO_SRC) $(FILTER) -resize 600x600 $(LOGO_DEST)/icon-600.png
+	convert $(LOGO_SRC) \
+		\( -clone 0 -resize 16x16 \) \
+		\( -clone 0 -resize 32x32 \) \
+		\( -clone 0 -resize 48x48 \) \
+		-delete 0 $(LOGO_DEST)/favicon.ico
+	@echo "Favicons generated."
+
+
 FONT := Cormorant-Garamond-Regular
 COLOR := \#3A3A3C
-POINTSIZE := 24
+BG_COLOR := \#F7EFEA
 
-# Generate PNG text
-$(LOCKUP): $(LOGO)
-	magick $(LOGO) \
+# Generate PNG Logo+text
+# 200x50px Version (High-Res 4x Canvas: 800x200 -> Resampled)
+$(LOCKUP)-200.png: $(LOGO_SRC)
+	magick -density 288 \
+		\( $(LOGO_SRC) -resize x192 \) \
 		\( -background none \
-		  -fill "$(COLOR)" \
-		  -font "$(FONT)" \
-		  -pointsize $(POINTSIZE) \
-		  -gravity west \
-		  label:"Studio Sun & Sea" \
-		  -splice 8x0 \) \
+			-fill "$(COLOR)" \
+			-font "$(FONT)" \
+			-pointsize 20 \
+			-gravity west \
+			label:"Studio Sun & Sea" \
+			-splice 32x0 \) \
 		-gravity center \
 		+append \
-		$(LOCKUP)
+		-background none \
+		-gravity west \
+		-extent 800x200 \
+		-resample 72 \
+		$@
+
+# 300x70px Version (High-Res 4x Canvas: 1200x280 -> Resampled)
+$(LOCKUP)-300.png: $(LOGO_SRC)
+	magick -density 288 \
+		\( $(LOGO_SRC) -resize x272 \) \
+		\( -background none \
+			-fill "$(COLOR)" \
+			-font "$(FONT)" \
+			-pointsize 32 \
+			-gravity west \
+			label:"Studio Sun & Sea" \
+			-splice 32x0 \) \
+		-gravity center \
+		+append \
+		-background none \
+		-gravity west \
+		-extent 1200x280 \
+		-resample 72 \
+		$@
 
 # Convenience target
-logo: $(LOCKUP)
-	@echo "Generated: $(LOCKUP)"
+logo: $(LOCKUP)-200.png $(LOCKUP)-300.png
+	@echo "Completed $@"
+
 
 
 # --------------------------------------------
@@ -127,6 +193,6 @@ clean:
 	rm -Rf $(BUILD_DIR)/*
 
 cleanall: clean
-	rm -f $(FINAL) $(A5) $(LOCKUP)
+	rm -f $(FINAL) $(A5) $(LOCKUP)-200.png $(LOCKUP)-300.png
 
 .PHONY: all clean check
