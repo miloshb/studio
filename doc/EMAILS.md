@@ -36,9 +36,9 @@ It serves as the authoritative reference for routing, support flows, billing, se
 | legal      | privacy@StudioSunAndSea.com        | infosec@StudioSunAndSea.com | GDPR requests, privacy, and related inquiries    |
 | legal      | datenschutz@StudioSunAndSea.com    | infosec@StudioSunAndSea.com | **German**-language GDPR requests, privacy, etc. |
 | legal      | legal@StudioSunAndSea.com          | infosec@StudioSunAndSea.com | General legal inquiries                          |
+| legal      | compliance@StudioSunAndSea.com     | infosec@StudioSunAndSea.com | Compliance, policy, audit, and regulatory        |
 | security   | infosec@StudioSunAndSea.com        | infosec@StudioSunAndSea.com | Security & vulnerability reports / notifications |
 | security   | security@StudioSunAndSea.com       | infosec@StudioSunAndSea.com | General security contact                         |
-| security   | compliance@StudioSunAndSea.com     | infosec@StudioSunAndSea.com | Compliance, policy, audit, and regulatory        |
 | support    | it@StudioSunAndSea.com             | infosec@StudioSunAndSea.com | General IT support and operations                |
 | support    | support@StudioSunAndSea.com        | infosec@StudioSunAndSea.com | Technical issues, account help                   |
 | support    | hilfe@StudioSunAndSea.com          | infosec@StudioSunAndSea.com | **German**-language support                      |
@@ -61,6 +61,27 @@ These addresses are **groups** rather than simple aliases and may have different
 - All aliases route to the configured mailbox or group unless otherwise specified.
 - Aliases and groups should be added to Cloudflare Email Routing (or equivalent) and verified.
 - When adding new aliases or groups, update this document to maintain a single source of truth.
+
+---
+
+## External Infrastructure: Mindbody Integration
+
+These mappings dictate how automated client notifications, liability assets, financial tracking, marketing flows, corporate statements, and transactional emails route out of our Mindbody business management suite. For the Mindbody Starter subscription, clients receive emails from the generic address: `Business5754454@mindbodyonline.com`, but reply to the emails below.
+
+| Mindbody Configuration Parameter | Target Routing Alias | Functional Delivery Intent |
+| :--- | :--- | :--- |
+| **Client Forms Notification** | `studio@StudioSunAndSea.com` | Automated copies of sent intake waivers and health registration forms. |
+| **Contract Agreement** | `studio@StudioSunAndSea.com` | Automated copies of membership terms and unsigned customer contracts. |
+| **Contract Lifecycle Tracking** | `studio@StudioSunAndSea.com` | Mindbody contract renewals, reminders, unsuspensions, and presale updates. |
+| **Internal Employee Mappings** | `studio@StudioSunAndSea.com` | Teacher substitution reminders and staff contact logs. |
+| **Business Contact Email** | `hello@StudioSunAndSea.com` | Primary client-facing directory listing email. |
+| **Auto-Email Reply-To Address** | `booking@StudioSunAndSea.com` | Target for automated client cancellation/booking responses. |
+| **Auto-Email BCC Copy Field** | `booking@StudioSunAndSea.com` | Live auditing stream for standard system-generated client emails. |
+| **Merchant/Financial Contact** | `billing@StudioSunAndSea.com` | Credit card processing statements, failed autopays, and invoices. |
+| **Transactional Receipts & Invoices** | `billing@StudioSunAndSea.com` | Copies of all Business Mode and Consumer Mode POS receipts and invoices. |
+| **Client Retention & Onboarding** | `sales@StudioSunAndSea.com` | Welcome emails, first-visit follow-ups, birthdays, and anniversaries. |
+| **Support Mappings** | `it@StudioSunAndSea.com` | Password reset logs. |
+| **Account Owner / Admin Login** | `milos@StudioSunAndSea.com` | Account ownership notifications and system-wide admin privileges. |
 
 ---
 

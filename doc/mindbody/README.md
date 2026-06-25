@@ -8,6 +8,7 @@ Studio Sun & Sea integrates **Mindbody Starter 2.0** using:
 - Astro components for encapsulation
 - Language‑aware routing (`/en/*` and `/de/*`)
 - Static site generation on Cloudflare Pages
+- Mindbody always emails clients from the generic system address: `Business5754454@mindbodyonline.com`
 
 The goal is a seamless booking and account experience while keeping the website fully custom‑coded, fast, and accessible.
 
