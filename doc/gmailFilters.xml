@@ -170,7 +170,21 @@
 		<apps:property name='sizeUnit' value='s_smb'/>
 	</entry>
 
-	<!-- 13. DATA PRIVACY & GDPR TRACK (STAYS IN INBOX) -->
+	<!-- 13. PLATFORM ADMIN TRACK -->
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<id>tag:mail.google.com,2008:filter:z0000001782417144882*2795217598386990615</id>
+		<updated>2026-06-25T19:52:43Z</updated>
+		<content></content>
+		<apps:property name='from' value='workspace-noreply@google.com OR support@inwx.de'/>
+		<apps:property name='label' value='05-Security-IT/Platform-Admin'/>
+		<apps:property name='shouldNeverSpam' value='true'/>
+		<apps:property name='sizeOperator' value='s_sl'/>
+		<apps:property name='sizeUnit' value='s_smb'/>
+	</entry>
+
+	<!-- 14. DATA PRIVACY & GDPR TRACK (STAYS IN INBOX) -->
 	<entry>
 		<category term='filter'></category>
 		<title>Mail Filter</title>
@@ -182,7 +196,7 @@
 		<apps:property name='sizeUnit' value='s_smb'/>
 	</entry>
 
-	<!-- 14. CORE LEGAL TRACK -->
+	<!-- 15. CORE LEGAL TRACK -->
 	<entry>
 		<category term='filter'></category>
 		<title>Mail Filter</title>
@@ -197,7 +211,7 @@
 		<apps:property name='sizeUnit' value='s_smb'/>
 	</entry>
 
-	<!-- 15. REGULATORY COMPLIANCE TRACK -->
+	<!-- 16. REGULATORY COMPLIANCE TRACK -->
 	<entry>
 		<category term='filter'></category>
 		<title>Mail Filter</title>

@@ -14,8 +14,9 @@ All incoming system emails bypass the Primary Inbox and map cleanly into one of 
 │   ├── 📥 01-Bookings/Clients              [MANUAL - STAYS IN INBOX]
 │   └── 🤖 01-Bookings/Mindbody-System      [AUTOMATED - ARCHIVED]
 ├── 📁 02-Operations
-│   └── 👥 02-Operations/Mindbody-Corporate [HUMAN STAFF / ONBOARDING / SUPPORT]
-│   └── 🤖 02-Operations/Waivers-Audits     [AUTOMATED - ARCHIVED]
+│   ├── 👥 02-Operations/Mindbody-Corporate [HUMAN STAFF / ONBOARDING / SUPPORT]
+│   ├── 🤖 02-Operations/Waivers-Audits     [AUTOMATED - ARCHIVED]
+│   └── 🧘 02-Operations/Internal-Studio    [Team logistics, shift swaps, Instructors]
 ├── 📁 03-Finance
 │   ├── 📥 03-Finance/Invoices              [MANUAL/VENDOR/INWX/GODADDY/CLOUDFLARE/GOOGLE - ARCHIVED + STARRED]
 │   ├── 🤖 03-Finance/Mindbody-Payouts      [AUTOMATED - ARCHIVED + STARRED]
@@ -23,10 +24,12 @@ All incoming system emails bypass the Primary Inbox and map cleanly into one of 
 ├── 📁 04-Sales
 │   ├── 🤖 04-Sales/Onboarding      [AUTOMATED WELCOME / REGISTRATION]
 │   ├── 📈 04-Sales/Retention       [AUTOMATED BIRTHDAYS / ANNIVERSARIES]
-│   ├── 🤝 04-Sales/Partnerships    [Yoga Instructors & Studio Joint Ventures]
-│   └── 🔍 04-Sales/Market-Research [Competitor Promos & Memberships Intel]
+│   ├── 🤝 04-Sales/Partnerships    [Joint Ventures, B2B contracts, revenue-share]
+│   ├── 🔍 04-Sales/Market-Research [Competitor Promos & Memberships Intel]
+│   └── 🗣️ 04-Sales/Collaboration   [Informal cross-promo, networking, casual co-marketing]
 ├── 📁 05-Security-IT
-│   └── 🤖 05-Security-IT/System-Logs       [AUTOMATED MINDBODY/INWX/GODADDY/CLOUDFLARE - ARCHIVED + NO SPAM]
+│   ├── 🤖 05-Security-IT/System-Logs       [AUTOMATED MINDBODY/INWX/GODADDY/CLOUDFLARE - ARCHIVED + NO SPAM]
+│   └── ⚙️ 05-Security-IT/Platform-Admin    [HUMAN/PLATFORM SETUPS & ACCOUNTS TRACK]
 └── 📁 06-Legal
     ├── 📥 06-Legal/Privacy    [MANUAL - STAYS IN INBOX - GDPR/Datenschutz]
     ├── ⚖️ 06-Legal/Legal      [AUTOMATED/MANUAL ARCHIVE - Exali, lawyers]
@@ -60,6 +63,10 @@ Manages internal administration, facilities coordination, and legal liability tr
     *   **Source:** Real human Mindbody staff (Onboarding managers, corporate sales, executive tech support).
     *   **Contents:** Manual project launch emails, platform settings discussions, account tier modifications.
     *   **Behavior:** No auto-archive rule. Stays in the main inbox for immediate action, then manually archived here for ledger tracking.
+*   **`02-Operations/Internal-Studio`**
+    *   **Source:** Internal communication between Milos, studio instructors, and core staff members.
+    *   **Contents:** Schedule adjustments, team coordination updates, shift swaps, teacher workshop logistics, and internal studio announcements.
+    *   **Behavior:** No auto-archive rule. Stays in the primary inbox for active team coordination, then manually filed here.
 
 ### 🟡 03-Finance
 Secures all revenue tracking, credit card processing states, and business expenditures.
@@ -93,6 +100,10 @@ Houses outbound communication streams, promotions, and brand relationship milest
 *   **`04-Sales/Market-Research`**
     *   **Source:** Newsletter signups, membership frameworks, promotional flyers, and tier metrics from **competing yoga studios**.
     *   **Behavior:** Manually filed here to curate local market intelligence.
+*   **`04-Sales/Collaboration`**
+    *   **Source:** External instructors, local micro-influencers, wellness brands, or community groups seeking informal mutual support.
+    *   **Contents:** Informal guest-teacher requests, community event coordination, social media cross-promotions, and casual co-marketing ideas.
+    *   **Behavior:** No auto-archive rule. Passes through the inbox for organic review, then manually archived here for relationship tracking.
 
 ### 🔴 05-Security-IT
 Protects digital real estate, platform configurations, infrastructure states, and tech support.
@@ -103,6 +114,10 @@ Protects digital real estate, platform configurations, infrastructure states, an
     *   **Source:** Automated engines (`Business5754454@mindbodyonline.com`, `inwx.de`, `godaddy.com`, `cloudflare.com`).
     *   **Contents:** Server log notifications, sub reminders, domain alerts, API telemetry.
     *   **Behavior:** Appends label; skips the inbox; **never forces mail to Spam**.
+*   **`05-Security-IT/Platform-Admin`**
+    *   **Source:** Google Workspace Admin Team, INWX platform setup, registrar account creations.
+    *   **Contents:** Platform onboarding records, master account tokens, new user creation notices.
+    *   **Behavior:** No auto-archive rule for third-party human signups. Stays in the inbox for immediate configuration visibility, then manually archived here for long-term look-back.
 
 ### ⚖️ 06-Legal
 Defends the legal framework, corporate liability, insurance standing, and consumer data rights.
