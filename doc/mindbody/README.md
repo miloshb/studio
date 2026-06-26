@@ -21,6 +21,8 @@ The goal is a seamless booking and account experience while keeping the website 
 - **MB Site ID:** 5754454
 - **Product:** Mindbody Starter 2.0
 - **Features:** Branded Web, Mindbody App Listing, Business App, Standard Support
+- [Mindbody Software Packages: Features and options comparison](https://support.mindbodyonline.com/s/article/203886078-Software-Level-Features-and-Options-Full-Breakdown?language=en_US)
+- [Mindbody Reports: Feature comparison](https://support.mindbodyonline.com/s/article/207342557-Which-reports-do-I-have-access-to-Software-Levels-Full-Breakdown?language=en_US)
 
 ---
 
