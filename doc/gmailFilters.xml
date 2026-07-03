@@ -87,13 +87,13 @@
 		<apps:property name='sizeUnit' value='s_smb'/>
 	</entry>
 
-	<!-- 6b. 03-Finance INFRASTRUCTURE & VENDOR (INVOICES + EXALI) -->
+	<!-- 6b. 03-Finance INFRASTRUCTURE & VENDOR (INVOICES RECEIVED) -->
 	<entry>
 		<category term='filter'></category>
 		<title>Mail Filter</title>
 		<content></content>
 		<apps:property name='to' value='billing@studiosunandsea.com OR abrechnung@studiosunandsea.com OR ap@studiosunandsea.com'/>
-		<apps:property name='from' value='inwx.de OR godaddy.com OR cloudflare.com OR exali.de'/>
+		<apps:property name='from' value='inwx.com OR inwx.de OR godaddy.com OR cloudflare.com OR exali.de OR payments-noreply@google.com'/>
 		<apps:property name='hasTheWord' value='billing'/>
 		<apps:property name='label' value='03-Finance/AP-Invoices-Received'/>
 		<apps:property name='shouldArchive' value='true'/>
@@ -193,8 +193,8 @@
 		<category term='filter'></category>
 		<title>Mail Filter</title>
 		<content></content>
-		<apps:property name='to' value='it@studiosunandsea.com OR support@studiosunandsea.com OR hilfe@studiosunandsea.com OR infosec@studiosunandsea.com OR security@studiosunandsea.com'/>
-		<apps:property name='from' value='inwx.de OR godaddy.com OR cloudflare.com OR noreply-dmarc-support'/>
+		<apps:property name='to' value='it@studiosunandsea.com OR support@studiosunandsea.com OR hilfe@studiosunandsea.com OR infosec@studiosunandsea.com OR security@studiosunandsea.com OR milos@studiosunandsea.com'/>
+		<apps:property name='from' value='noreply-dmarc-support OR @accounts.google.com OR dmarcreport@microsoft.com OR DMARC OR list:(&lt;infosec.studiosunandsea.com&gt;) OR postmaster@amazonses.com'/>
 		<apps:property name='doesNotHaveTheWord' value='billing'/>
 		<apps:property name='label' value='05-IT-Security/System-Logs'/>
 		<apps:property name='shouldArchive' value='true'/>
@@ -209,7 +209,8 @@
 		<title>Mail Filter</title>
 		<content></content>
 		<apps:property name='to' value='it@studiosunandsea.com OR support@studiosunandsea.com OR hilfe@studiosunandsea.com OR infosec@studiosunandsea.com OR security@studiosunandsea.com'/>
-		<apps:property name='from' value='-Business5754454@mindbodyonline.com -inwx.de -godaddy.com -cloudflare.com'/>
+		<apps:property name='from' value='-Business5754454@mindbodyonline.com -DMARC -support@inwx'/>
+		<apps:property name='doesNotHaveTheWord' value='DMARC label:05-IT-Security/System-Logs'/>
 		<apps:property name='label' value='05-IT-Security'/>
 		<apps:property name='shouldArchive' value='true'/>
 		<apps:property name='shouldNeverSpam' value='true'/>
@@ -224,7 +225,7 @@
 		<id>tag:mail.google.com,2008:filter:z0000001782417144882*2795217598386990615</id>
 		<updated>2026-06-25T19:52:43Z</updated>
 		<content></content>
-		<apps:property name='from' value='workspace-noreply@google.com OR support@inwx.de OR info@e.atlassian.com OR @godaddy.com'/>
+		<apps:property name='from' value='workspace-noreply@google.com OR support@inwx OR info@e.atlassian.com OR @godaddy.com OR cloudflare.com'/>
 		<apps:property name='label' value='05-IT-Security/Platform-Admin'/>
 		<apps:property name='shouldNeverSpam' value='true'/>
 		<apps:property name='sizeOperator' value='s_sl'/>

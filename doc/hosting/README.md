@@ -5,18 +5,34 @@ This document tracks the multi-regional domain routing, security protocols, and 
 
 ## 1. Master Configuration At-A-Glance
 
-| Domain Name | Registrar | DNS Management | Active Routing Target | Outbound Mail | Domain Privacy | Expiration Date |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **studiosunandsea.com** | GoDaddy | Cloudflare | **Primary Host** (Astro Page App) | Google Workspace | **ON** (High Security) | **Dec 5, 2028** |
-| `studiosunandsea.eu` | GoDaddy | Cloudflare | Redirects to English Root | Banned (Null SPF) | OFF (Limited) | **Dec 6, 2026** |
-| `studiosunandsea.de` | INWX | Cloudflare | Redirects to Local `/de/` Path | Banned (Null SPF) | **ON** (DENIC Default) | **Jun 24, 2027** |
-| `studiosonneundmeer.de` | INWX | Cloudflare | Redirects to Local `/de/` Path | Banned (Null SPF) | **ON** (DENIC Default) | **Jun 24, 2027** |
-| `studiosonneundmeer.eu` | GoDaddy | Cloudflare | Redirects to Local `/de/` Path | Banned (Null SPF) | OFF (Limited) | **Dec 6, 2026** |
-| `sunceimore.eu` | GoDaddy | Cloudflare | Redirects to English Root (or `/hr/`) | Banned (Null SPF) | OFF (Limited) | **Dec 6, 2026** |
-| `studiosunceimore.eu` | GoDaddy | Cloudflare | Redirects to English Root (or `/hr/`) | Banned (Null SPF) | OFF (Limited) | **Dec 6, 2026** |
+| Domain Name | Registrar | DNS Management | Active Routing Target | Outbound Mail | Domain Privacy | Expiration Date (term) | Cost (current/renewal) |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **studiosunandsea.com** | GoDaddy | Cloudflare | **Primary Host** (Astro Page App) | Google Workspace | **ON** (High Security) | **Dec 5, 2028** (3 year) | $15 / $22 |
+| `studiosunandsea.eu` | GoDaddy | Cloudflare | Redirects to English Root | Banned (Null SPF) | OFF (Limited) | **Dec 6, 2026** (1 year) | $5.99 / $12.99 |
+| `studiosunandsea.de` | INWX | Cloudflare | Redirects to Local `/de/` Path | Banned (Null SPF) | **ON** (DENIC Default) | **Jun 24, 2027** (1 year) | $2.90 / |
+| `studiosonneundmeer.de` | INWX | Cloudflare | Redirects to Local `/de/` Path | Banned (Null SPF) | **ON** (DENIC Default) | **Jun 24, 2027** (1 year) | $2.90 / $4.00 |
+| `studiosonneundmeer.eu` | GoDaddy | Cloudflare | Redirects to Local `/de/` Path | Banned (Null SPF) | OFF (Limited) | **Dec 6, 2026** (1 year) | $5.99 / $12.99 |
+| `sunceimore.eu` | GoDaddy | Cloudflare | Redirects to English Root (or `/hr/`) | Banned (Null SPF) | OFF (Limited) | **Dec 6, 2026** (1 year) | $5.99 / $12.99 |
+| `studiosunceimore.eu` | GoDaddy | Cloudflare | Redirects to English Root (or `/hr/`) | Banned (Null SPF) | OFF (Limited) | **Dec 6, 2026** (1 year) | $5.99 / $12.99 |
 | `studiosunandsea.hr` | INWX | | | | | $88 / $120 or 88€ / 119€ |
-| *verticalis.us* | GoDaddy | Internal/Other | Secondary Brand Asset Tracking | | **ON** (High Security) | **Sep 19, 2027** |
-| *nanoonan.com* | GoDaddy | Internal/Other | Secondary Brand Asset Tracking | | **ON** (High Security) | **Mar 19, 2033** |
+| *verticalis.us* | GoDaddy | Internal/Other | Secondary Brand Asset Tracking | | **ON** (High Security) | **Sep 19, 2027** | |
+| *nanoonan.com* | GoDaddy | Internal/Other | Secondary Brand Asset Tracking | | **ON** (High Security) | **Mar 19, 2033** | |
+
+| Domain Pricing | TLD | Cost (1st yr / renewal) |
+| :--- | :--- | :--- |
+| GoDaddy | .com | $15 / $22 |
+| INWX.com | .com | $17.52 / $17.52 |
+| INWX.de | .com | €17.37 / €17.37 |
+| INWX.com | .eu | $5.00 / $12.00 |
+| INWX.de | .eu | €5.95 / €11.90 |
+| GoDaddy | .eu | $5.99 / $12.99 |
+| INWX.com | .de | $2.90 / $4.00 |
+| INWX.de | .de | €3.57 / €4.65 |
+| INWX.com | .hr | $88.33 / $120.00 |
+| INWX.de | .hr | €87.60 / €119.00 |
+| GoDaddy | .us | |
+| INWX.com | .us | $5.00 / $12.45 |
+| INWX.de | .us | €5.95 / €12.35 |
 
 ---
 
@@ -107,4 +123,4 @@ To prevent bad actors from forging addresses to spoof the brand name, secondary 
   - [INWX-DE](https://account.inwx.de/en/domainlist) - Customer #: 252541
 
 ---
-*Last Checked: June 2026*
+*Last Checked: July 2026*
