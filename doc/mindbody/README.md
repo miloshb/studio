@@ -9,6 +9,7 @@ Studio Sun & Sea integrates **Mindbody Starter 2.0** using:
 - Language‑aware routing (`/en/*` and `/de/*`)
 - Static site generation on Cloudflare Pages
 - Mindbody always emails clients from the generic system address: `Business5754454@mindbodyonline.com`
+- https://clients.mindbodyonline.com/app/business/businessinfo/ContactInfo
 
 The goal is a seamless booking and account experience while keeping the website fully custom‑coded, fast, and accessible.
 
@@ -20,6 +21,8 @@ The goal is a seamless booking and account experience while keeping the website 
 - **MB Site ID:** 5754454
 - **Product:** Mindbody Starter 2.0
 - **Features:** Branded Web, Mindbody App Listing, Business App, Standard Support
+- [Mindbody Software Packages: Features and options comparison](https://support.mindbodyonline.com/s/article/203886078-Software-Level-Features-and-Options-Full-Breakdown?language=en_US)
+- [Mindbody Reports: Feature comparison](https://support.mindbodyonline.com/s/article/207342557-Which-reports-do-I-have-access-to-Software-Levels-Full-Breakdown?language=en_US)
 
 ---
 

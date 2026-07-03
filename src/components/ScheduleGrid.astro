@@ -144,6 +144,17 @@ const getStartMinutes = (id) => START_TIMES.find((t) => t.id === id).minutes;
   // Hardcode studio local parameter configuration (Europe/Berlin)
   const STUDIO_TIMEZONE = "Europe/Berlin";
 
+  // Helper function to extract a clean timezone offset in minutes for a specific date
+  function getTimezoneOffsetForZone(zone, date) {
+    const tzString = date.toLocaleString('en-US', { timeZone: zone, timeZoneName: 'longOffset' });
+    const match = tzString.match(/GMT([+-])(\d+):(\d+)/);
+    if (!match) return 0;
+
+    const [_, sign, hours, minutes] = match;
+    const totalMinutes = parseInt(hours, 10) * 60 + parseInt(minutes, 10);
+    return sign === '+' ? totalMinutes : -totalMinutes;
+  }
+
   function updateScheduleTimezone(isInitialRun = false) {
     if (!dropdown || timeLabels.length === 0) return;
 
@@ -173,31 +184,34 @@ const getStartMinutes = (id) => START_TIMES.find((t) => t.id === id).minutes;
       userHeaderLabel.textContent = `${shortName || calculatedZone}`;
     }
 
-    // Generate a reference date token to capture dynamic DST variance offsets
-    const baseDateString = new Date().toISOString().split('T')[0]; // "2026-06-23"
+    // Capture dynamic DST variance offsets using the current exact date context
+    const referenceDate = new Date();
+
+    // Get the exact minute offsets relative to UTC for both zones
+    const studioOffset = getTimezoneOffsetForZone(STUDIO_TIMEZONE, referenceDate);
+    const targetOffset = getTimezoneOffsetForZone(calculatedZone, referenceDate);
+
+    // Net difference: How many minutes do we need to shift the Studio grid time?
+    // Example: Berlin (+120) to London (+60) -> 60 - 120 = -60 minutes (Subtract 1 hour)
+    const netMinuteShift = targetOffset - studioOffset;
 
     timeLabels.forEach((el) => {
       const rawMinutesStr = el.getAttribute('data-minutes');
       if (!rawMinutesStr) return;
 
-      const totalMinutes = parseInt(rawMinutesStr, 10);
-      const hours = Math.floor(totalMinutes / 60);
-      const mins = totalMinutes % 60;
+      const studioMinutes = parseInt(rawMinutesStr, 10);
 
-      // Construct a concrete parsing date scoped strictly in the physical Studio's perspective
-      const studioDateTimeStr = `${baseDateString}T${String(hours).padStart(2, '0')}:${String(mins).padStart(2, '0')}:00`;
-      // Calculate accurate offsets across the specific zones
-      const utcTimestamp = Date.parse(new Date(studioDateTimeStr).toLocaleString('en-US', { timeZone: STUDIO_TIMEZONE }));
+      // Calculate the final adjusted total minutes for the target timezone
+      let finalMinutes = studioMinutes + netMinuteShift;
 
-      if (isNaN(utcTimestamp)) return;
+      // Handle potential 24-hour wrap arounds (+/- days) safely
+      finalMinutes = (finalMinutes + 1440) % 1440;
 
-      // Format the target timestamp into the user's selected context layout display string
-      const localizedTimeString = new Intl.DateTimeFormat(navigator.language, {
-        timeZone: calculatedZone,
-        hour: '2-digit',
-        minute: '2-digit',
-        hour12: false
-      }).format(new Date(utcTimestamp));
+      const finalHours = Math.floor(finalMinutes / 60);
+      const finalMins = finalMinutes % 60;
+
+      // Format the string manually to keep it ultra-fast and generic
+      const localizedTimeString = `${String(finalHours).padStart(2, '0')}:${String(finalMins).padStart(2, '0')}`;
 
       // Paint the text safely
       el.textContent = localizedTimeString;
