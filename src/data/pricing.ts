@@ -1,5 +1,6 @@
 // src/data/pricing.ts
 // Pricing data for service offerings
+// Note: These do NOT display on the website unless you choose to surface them.
 export const pricing = {
   intro: {
     trialClass: 10,
@@ -8,8 +9,21 @@ export const pricing = {
   },
 
   membership: {
-    unlimitedMonth: {
+    unlimitedMonthly: {
       eur: 120,
+    },
+    // Mindbody-only memberships (not displayed on website)
+    fiveClassMonthly: {
+      eur: 75,
+      minCommit: 3,
+      rollover: false,
+      unpublished: true,
+    },
+    tenClassMonthly: {
+      eur: 95,
+      minCommit: 3,
+      rollover: false,
+      unpublished: true,
     },
   },
 
@@ -24,6 +38,11 @@ export const pricing = {
       usd: 220,
       gbp: 160,
       validity: 18, // months
+    },
+    // Mindbody-only (not displayed on website)
+    unlimitedMonth: {
+      eur: 150,
+      unpublished: true,
     },
   },
 

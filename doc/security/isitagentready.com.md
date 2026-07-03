@@ -1,7 +1,9 @@
 # Is Your Site Agent-Ready?
-## Scan your website to see how ready it is for AI agents.
+## Scan your website to see how ready it is for AI agents
+
 We check multiple emerging standards — from robots.txt and Markdown negotiation to MCP, OAuth, Agent Skills and agentic commerce.
 https://isitagentready.com/studiosunandsea.com
+[View downloaded report](scans/isitagentready.com.mhtml).
 
 ---
 

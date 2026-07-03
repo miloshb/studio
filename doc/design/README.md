@@ -198,3 +198,6 @@ Custom styling for:
 
 - [Living Barre & Yoga (AU)](https://livingbarreandyoga.com.au/class/rooted-living/)
 - [Ellen Hoormann - Co-Working Space](https://ellenhoormann.de/co-working-space-in-lingen/)
+
+---
+*Last Checked: June 2026*
