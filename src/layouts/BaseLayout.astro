@@ -3,6 +3,9 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import Hreflang from "../components/Hreflang.astro";
 import NextSteps from "../components/NextSteps.astro";
+// Switch back to linking CSS via HTML
+//import "../styles/global.css";
+//import "../styles/mindbody.css";
 
 const {
   title = "Studio Sun & Sea",
@@ -30,32 +33,32 @@ const showNextSteps = nextStepsPages.includes(page);
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
     {noindex && <meta name="robots" content="noindex, nofollow" />}
-
     {noindex && <link rel="canonical" href="https://studiosunandsea.com/" />}
 
     <!-- Hreflang automatically injected -->
     {page && <Hreflang page={page} />}
 
-    <!-- Allow pages to add extra <head> content -->
-    <slot name="head" />
-
     <!-- Manifest -->
     <link rel="manifest" href="/site.webmanifest" />
 
     <!-- Favicons -->
-    <link rel="icon" type="image/png" sizes="48x48" href="/favicon/favicon-48.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16.png" />
-    <link rel="icon" href="/favicon/favicon.ico" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicon/favicon-48.png" />
     <link rel="icon" type="image/png" sizes="192x192" href="/favicon/icon-192.png" />
     <link rel="icon" type="image/png" sizes="512x512" href="/favicon/icon-512.png" />
     <link rel="icon" type="image/png" href="/favicon/icon.png" />
+    <link rel="icon" href="/favicon/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
 
-    <title>{title}</title>
-
+    <!-- Cascading Style Sheets -->
     <link rel="stylesheet" href="/styles/global.css" />
     <link rel="stylesheet" href="/styles/mindbody.css" />
+
+    <!-- Allow pages to add extra <head> content -->
+    <slot name="head" />
+
+    <title>{title}</title>
   </head>
 
   <body class="layout">

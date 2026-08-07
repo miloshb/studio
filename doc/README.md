@@ -20,8 +20,13 @@ We use a structured branch strategy to catch layout regressions and broken route
 ```
 
 ### Permanent (Long-Lived) Branches
-* **`main`**: Reflects the absolute current live state of production. Direct pushes are protected. Code must pass the validation engine before merging.
-* **`stage`**: Our stable staging sandbox environment. All features and translations are integrated here first for layout review.
+* **`main`**: Reflects the absolute current live state of production. Direct pushes are protected and should only come from `stage` or `hotfix`. Code must pass the validation engine before merging.
+* **`stage`**: *Default* branch in GitHub. Stable staging sandbox environment (Cloudflare). All features and translations are integrated here first for layout review. Integration tests are validated.
+
+### Semi-Permanent Branches
+* **`cm`**: Configuration Management and environment testing. Also, where test harnesses and other platform enhancements and tools are first implemented.
+* **`content`**: Content and UI/UX development work. Separate branch for content management.
+* **`mindbody`**: Widget testing branch and environment. Keeps all Mindbody related development on this branch.
 
 ### Ephemeral (Short-Lived) Branches
 * **`feat/*` or `fix/*`**: Branched off `stage` for development isolation. Deleted immediately upon successful merge back into `stage`.
@@ -37,7 +42,7 @@ Cloudflare Pages compiles every single active branch in the repository into its 
 | :--- | :--- | :--- |
 | **`main`** | [studiosunandsea.com](https://studiosunandsea.com) | Live Production Site |
 | **`stage`** | [stage.studio-sun-and-sea.pages.dev](https://stage.studio-sun-and-sea.pages.dev) | QA Staging Sandbox |
-| `mindbody` | [mindbody.studio-sun-and-sea.pages.dev](https://mindbody.studio-sun-and-sea.pages.dev) | Widget Testing Branch |
+| `mindbody` | [mindbody.studio-sun-and-sea.pages.dev](https://mindbody.studio-sun-and-sea.pages.dev) | Widget Testing Environment |
 | `content` | [content.studio-sun-and-sea.pages.dev](https://content.studio-sun-and-sea.pages.dev) | Content and UI Testing |
 | `cm` | [cm.studio-sun-and-sea.pages.dev](https://cm.studio-sun-and-sea.pages.dev) | Configuration Management Testing |
 | `feat/*` | `[branch-name].studio-sun-and-sea.pages.dev` | Automated Preview Link |
@@ -52,7 +57,7 @@ Automated test pipeline is configured natively via GitHub Actions inside `.githu
 1. **Compilation Step**: Compiles the final production output into the static `./dist` matrix layout folder.
 2. **Compilation Validation**: Asserts that `sitemap-index.xml` compiles cleanly without truncation bugs.
 3. **Configuration Sync**: Verifies that `public/robots.txt` contains the correct absolute path matching the sitemap tracking string.
-4. **Link Health Integrity (Linkinator)**: Spins up a local background preview server instance to mimic Cloudflare's serving layer and crawls all links to guarantee **zero internal 404 broken routes**.
+4. **Link Health Integrity ([Linkinator](https://jbeckwith.com/projects/linkinator))**: Spins up a local background preview server instance to mimic Cloudflare's serving layer and crawls all links to guarantee **zero internal 404 broken routes**.
 5. **Automated Release Bumping**: Semantic versions (`npm version`) are calculated and pushed **only** upon successful validation landing on the `main` branch.
 6. **AI Agent Scan**: Check conformance to standards for agentic commerce: [AI Agent Scan Remediation](../security/com.isitagentready.md)
 
