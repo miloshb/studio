@@ -1,0 +1,16 @@
+---
+// src/components/widgets/GoogleAnalytics.astro
+const { widgetId, className = "" } = Astro.props;
+const goggleTadId = widgetId || "G-4GXDJFE7PD";
+---
+
+<div class={`google-widget-wrapper ${className}`}>
+  <!-- Google tag (gtag.js) -->
+  <script async src={`https://www.googletagmanager.com/gtag/js?id=${goggleTadId}`}></script>
+  <script define:vars={{ goggleTadId }}>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', goggleTadId);
+  </script>
+</div>
