@@ -41,9 +41,13 @@ const lang = "en";
 const guide = guides[unit.location];
 
 // Auto-load photos from public/images/stays/<UnitID>/
-const photos = import.meta.glob(`/public/images/stays/${unit.id}/*.jpg`, {
-  eager: true
-});
+const allPhotos = import.meta.glob("/public/images/stays/**/*.jpg", { eager: true });
+
+const photos = Object.fromEntries(
+  Object.entries(allPhotos).filter(([path]) =>
+    path.includes(`/public/images/stays/${unit.id}/`)
+  )
+);
 ---
 
 <html lang={lang}>
