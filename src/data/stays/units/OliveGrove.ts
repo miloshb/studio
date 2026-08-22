@@ -1,10 +1,10 @@
 import type { UnitConfig } from "../unitType.ts";
 
-const olivegrove: UnitConfig = {
-  id: "olivegrove",
+const OliveGrove: UnitConfig = {
+  id: "OliveGrove",
   name: "Olive Grove",
   title: "Cozy Studio Apartment near Supetar Harbor",
-  location: "jadranska",
+  location: "Jadranska",
 
   internal: {
     wifiPassword: "0234a12?52Jk"
@@ -62,4 +62,4 @@ const olivegrove: UnitConfig = {
   },
 };
 
-export default olivegrove;
+export default OliveGrove;

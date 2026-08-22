@@ -1,10 +1,10 @@
 import type { UnitConfig } from "../unitType.ts";
 
-const sunsetsuite: UnitConfig = {
-  id: "sunsetsuite",
+const SunsetSuite: UnitConfig = {
+  id: "SunsetSuite",
   name: "Sunset Suite",
   title: "1-Bedroom Apartment with Coastal Charm",
-  location: "jadranska",
+  location: "Jadranska",
 
   internal: {
     wifiPassword: "0234a12?52Jk"
@@ -64,4 +64,4 @@ const sunsetsuite: UnitConfig = {
   },
 };
 
-export default sunsetsuite;
+export default SunsetSuite;

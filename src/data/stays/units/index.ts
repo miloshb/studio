@@ -1,12 +1,12 @@
 // src/data/stays/units/index.ts
-import jasminesound from "./JasmineSound";
-import olivegrove from "./OliveGrove";
-import sunsetsuite from "./SunsetSuite";
+import JasmineSound from "./JasmineSound";
+import OliveGrove from "./OliveGrove";
+import SunsetSuite from "./SunsetSuite";
 
 export const units = {
-  jasminesound,
-  olivegrove,
-  sunsetsuite,
+  JasmineSound,
+  OliveGrove,
+  SunsetSuite,
 };
 
 export type UnitKey = keyof typeof units;

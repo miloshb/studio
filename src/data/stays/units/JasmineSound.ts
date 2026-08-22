@@ -1,10 +1,10 @@
 import type { UnitConfig } from "../unitType.ts";
 
-const jasminesound: UnitConfig = {
-  id: "jasminesound",
+const JasmineSound: UnitConfig = {
+  id: "JasmineSound",
   name: "Jasmine Sound",
   title: "Convenient 4BR house w/ balcony view",
-  location: "jasmine",
+  location: "Jasmine",
 
   internal: {
     wifiPassword: "0234a12?52Jk"
@@ -97,4 +97,4 @@ const jasminesound: UnitConfig = {
   },
 };
 
-export default jasminesound;
+export default JasmineSound;
