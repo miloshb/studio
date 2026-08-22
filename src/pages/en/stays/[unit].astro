@@ -1,0 +1,144 @@
+---
+// src/pages/en/stays/[unit].astro
+import { guides } from "../../../data/stays/guides/index.ts";
+import { units } from "../../../data/stays/units/index.ts";
+import type { UnitKey } from "../../../data/stays/units/index.ts";
+import type { UnitConfig } from "../../../data/stays/unitType.ts";
+
+export interface Props {
+  unit: UnitConfig;
+}
+
+// Generate static paths for SEO‑friendly URLs
+export async function getStaticPaths() {
+  return (Object.keys(units) as UnitKey[]).map((id) => ({
+    params: { unit: id }
+  }));
+}
+
+// Load the correct unit based on URL
+export async function get({ params }: { params: { unit: UnitKey } }) {
+  const unit = units[params.unit];
+  return {
+    props: {
+      unit
+    }
+  };
+}
+
+const { unit } = Astro.props;
+
+const booking = {
+  airbnb: "https://airbnb.com/h/" + unit.id,
+  booking: ""
+};
+const email = unit.id + "@StudioSunAndSea.com";
+
+// Language selection (later: dynamic detect)
+const lang = "en";
+
+// Load correct guide based on unit.location
+const guide = guides[unit.location];
+
+// Auto-load photos from public/images/stays/<UnitID>/
+const photos = import.meta.glob(`/public/images/stays/${unit.id}/*.jpg`, {
+  eager: true
+});
+---
+
+<html lang={lang}>
+  <head>
+    <title>{unit.name} — Stay at Studio Sun & Sea</title>
+    <meta name="description" content={unit.descriptions[lang].short} />
+  </head>
+
+  <body>
+    <main>
+      <!-- Title + Short Description -->
+      <section>
+        <h1>{unit.title}</h1>
+        <p>{unit.descriptions[lang].short}</p>
+      </section>
+
+      <!-- Long Description -->
+      {unit.descriptions[lang].long && (
+        <section>
+          <h2>About This Stay</h2>
+          <p>{unit.descriptions[lang].long}</p>
+        </section>
+      )}
+
+      <!-- Booking Links -->
+      <section>
+        <h2>Book This Stay</h2>
+        <ul>
+          {booking.airbnb && (
+            <li><a href={booking.airbnb}>Airbnb</a></li>
+          )}
+          {booking.booking && (
+            <li><a href={booking.booking}>Booking.com</a></li>
+          )}
+        </ul>
+      </section>
+
+      <!-- Rooms + Beds -->
+      <section>
+        <h2>Rooms & Sleeping Arrangements</h2>
+
+        {unit.rooms.map((room) => (
+          <div class="room-block">
+            <h3>{room.name}</h3>
+
+            {room.beds ? (
+              <ul>
+                {room.beds.map((bed) => (
+                  <li>
+                    {bed.type} — sleeps {bed.sleeps}
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p>No sleeping arrangements in this room.</p>
+            )}
+          </div>
+        ))}
+      </section>
+
+      <!-- Directions -->
+      {unit.directions[lang] && (
+        <section>
+          <h2>Directions</h2>
+          <p>{unit.directions[lang]}</p>
+        </section>
+      )}
+
+      <!-- Local Guide (Generic Rendering) -->
+      <section>
+        <h2>Local Guide</h2>
+
+        {Object.entries(guide[lang]).map(([category, items]) =>
+          items.length > 0 && (
+            <div class="guide-block">
+              <h3>{category.charAt(0).toUpperCase() + category.slice(1)}</h3>
+              <ul>
+                {items.map((item) => (
+                  <li>{item}</li>
+                ))}
+              </ul>
+            </div>
+          )
+        )}
+      </section>
+
+      <!-- Photos -->
+      <section>
+        <h2>Photos</h2>
+        <div class="photo-grid">
+          {Object.keys(photos).map((src) => (
+            <img src={src.replace("/public", "")} alt={`${unit.name} photo`} />
+          ))}
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

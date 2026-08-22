@@ -1,0 +1,41 @@
+---
+// src/pages/en/stays/index.astro
+import { units } from "../../../data/stays/units/index.ts";
+import type { UnitKey } from "../../../data/stays/units/index.ts";
+import type { UnitConfig } from "../../../data/stays/unitType.ts";
+
+// Astro props typing (none needed here)
+export interface Props {}
+
+// Convert units object → typed array of entries
+const unitEntries = Object.entries(units) as [UnitKey, UnitConfig][];
+---
+
+<html lang="en">
+  <head>
+    <title>Stays — Studio Sun & Sea</title>
+    <meta name="description" content="Explore our curated stays at Studio Sun & Sea." />
+  </head>
+
+  <body>
+    <main>
+      <section>
+        <h1>Stay at Studio Sun & Sea</h1>
+        <p>Choose from our curated selection of apartments and studios.</p>
+      </section>
+
+      <section class="stays-list">
+        <ul>
+          {unitEntries.map(([key, unit]) => (
+            <li class="stay-item">
+              <a href={`/en/stays/${key}`}>
+                <h2>{unit.title}</h2>
+                <p>{unit.descriptions.en.short}</p>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    </main>
+  </body>
+</html>
