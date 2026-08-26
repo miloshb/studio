@@ -49,7 +49,6 @@ const guide = guides[unit.location];
 // Language selection (later: dynamic detect)
 const lang = "en";
 
-
 // Auto-load photos from public/images/stays/<UnitID>/
 const allPhotos = import.meta.glob("/public/images/stays/**/*.jpg", { eager: true });
 const photos = Object.fromEntries(
@@ -59,15 +58,16 @@ const photos = Object.fromEntries(
 );
 ---
 
-<BaseLayout lang="en" page="stays" title="{unit.name} – Stay at Studio Sun & Sea" description="{unit.descriptions[lang].short}">
+<BaseLayout lang={lang} page="stays" title={`${unit.name} – Stay at Studio Sun & Sea`}>
   <h1>{unit.name} – Stay at Studio Sun & Sea</h1>
+
   <section>
     <h1>{unit.title}</h1>
     <p>{unit.descriptions[lang].short}</p>
   </section>
 
   <!-- Long Description -->
-  {unit.descriptions[lang].long && (
+  {unit.descriptions?.[lang]?.long && (
     <section>
       <h2>About This Stay</h2>
       <p>{unit.descriptions[lang].long}</p>
@@ -111,7 +111,7 @@ const photos = Object.fromEntries(
   </section>
 
   <!-- Directions -->
-  {unit.directions[lang] && (
+  {unit.directions?.[lang] && (
     <section>
       <h2>Directions</h2>
       <p>{unit.directions[lang]}</p>
