@@ -13,11 +13,11 @@ const SunsetSuite: UnitConfig = {
   descriptions: {
     en: {
       short: "Lorem ipsum dolorem set amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      long: ""
+      long: "",
     },
     de: {
       short: "",
-      long: ""
+      long: "",
     }
   },
 
@@ -30,19 +30,19 @@ const SunsetSuite: UnitConfig = {
     workspace: true,
     parking: true,
     petsAllowed: false,
-    smokingAllowed: false
+    smokingAllowed: false,
   },
 
   rooms: [
     {
       name: "Living Room",
       type: "living",
-      beds: [{ type: "couch", sleeps: 2 }]
+      beds: [{ type: "couch", sleeps: 2 }],
     },
     {
       name: "Bedroom",
       type: "bedroom",
-      beds: [{ type: "king", sleeps: 2 }]
+      beds: [{ type: "king", sleeps: 2 }],
     },
     {
       name: "Kitchenette",
@@ -60,7 +60,7 @@ const SunsetSuite: UnitConfig = {
 
   directions: {
     en: "",
-    de: ""
+    de: "",
   },
 };
 

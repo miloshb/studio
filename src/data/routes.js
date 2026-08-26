@@ -184,6 +184,15 @@ export const ROUTES = {
       de: "Erfahre mehr über die dienstorientierte Kunga-Yoga-Tradition und wie wir gemeinnützige Projekte unterstützen."
     }
   },
+  stays: {
+    href: { en: "/en/stays", de: "/de/stays" },
+    nav: { en: "Stays", de: "Unterkünfte" },
+    label: { en: "Stays", de: "Unterkünfte" },
+    desc: {
+      en: "Discover our selection of accommodations.",
+      de: "Entdecken Sie unsere Auswahl an Unterkünften.",
+    }
+  },
   imprint: {
     href: { en: "/en/imprint", de: "/de/impressum" },
     nav: { en: "Imprint", de: "Impressum" },

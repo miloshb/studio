@@ -13,11 +13,11 @@ const OliveGrove: UnitConfig = {
   descriptions: {
     en: {
       short: "Lorem ipsum dolorem set amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      long: ""
+      long: "",
     },
     de: {
       short: "",
-      long: ""
+      long: "",
     }
   },
 
@@ -35,11 +35,11 @@ const OliveGrove: UnitConfig = {
 
   rooms: [
     {
-      name: "Studio Space",
+      name: "Living",
       type: "studio",
       beds: [
         { type: "queen", sleeps: 2 },
-        { type: "couch", sleeps: 1 }
+        { type: "couch", sleeps: 1 },
       ]
     },
     {
@@ -58,7 +58,7 @@ const OliveGrove: UnitConfig = {
 
   directions: {
     en: "",
-    de: ""
+    de: "",
   },
 };
 

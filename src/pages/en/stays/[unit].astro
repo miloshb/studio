@@ -10,7 +10,8 @@ export interface Props {
   unit: UnitConfig;
 }
 
-const debug = false; // Set to true to show debug info
+const debug = false; // Set to true to show debug logs
+const info = true; // Set to true to show info logs
 
 // Generate static paths AND pass props to the page
 export async function getStaticPaths() {
@@ -23,19 +24,17 @@ export async function getStaticPaths() {
 // Access props passed from getStaticPaths()
 const { unit } = Astro.props;
 
-if (debug) {
-  console.log("DEBUG: Astro.props =", Astro.props);
-  console.log("DEBUG: Astro.props.unit =", Astro.props.unit);
-}
+  info &&console.log("INFO: Astro.props =", Astro.props);
+  debug && console.log("DEBUG: Astro.props.unit =", Astro.props.unit);
 
 if (!unit) {
   console.error("ERROR: unit is undefined inside component");
   throw new Error("unit is undefined inside component");
 }
 
-if (debug) {
-  console.log("DEBUG: unit.id =", unit.id);
-  console.log("DEBUG: unit.location =", unit.location);
+if (info) {
+  console.log("INFO: unit.id =", unit.id);
+  console.log("INFO: unit.location =", unit.location);
 }
 
 const booking = {
