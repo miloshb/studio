@@ -1,11 +1,11 @@
 ---
 // src/pages/en/stays/index.astro
+import BaseLayout from "../../../layouts/BaseLayout.astro";
 import { units } from "../../../data/stays/units/index.ts";
 import type { UnitKey } from "../../../data/stays/units/index.ts";
 import type { UnitConfig } from "../../../data/stays/unitType.ts";
 
-// Astro props typing (none needed here)
-export interface Props {}
+const { lang = "en" } = Astro.props;
 
 // Convert units object → typed array of entries
 const unitEntries = Object.entries(units) as [UnitKey, UnitConfig][];
@@ -20,31 +20,15 @@ a Supetar vs Irving grouping based on location: GuideKey
 */
 ---
 
-<html lang="en">
-  <head>
-    <title>Stays — Studio Sun & Sea</title>
-    <meta name="description" content="Explore our curated stays at Studio Sun & Sea." />
-  </head>
-
-  <body>
-    <main>
-      <section>
-        <h1>Stay at Studio Sun & Sea</h1>
-        <p>Choose from our curated selection of apartments and studios.</p>
-      </section>
-
-      <section class="stays-list">
-        <ul>
-          {unitEntries.map(([key, unit]) => (
-            <li class="stay-item">
-              <a href={`/en/stays/${key}`}>
-                <h2>{unit.title}</h2>
-                <p>{unit.descriptions.en.short}</p>
-              </a>
-            </li>
-          ))}
-        </ul>
-      </section>
-    </main>
-  </body>
-</html>
+<BaseLayout lang="en" page="stays" title="Stays – Studio Sun & Sea" description="Explore our curated stays at Studio Sun & Sea.">
+  <h1>Stay at Studio Sun & Sea</h1>
+  <section class="stays-list">
+    <p>Choose from our curated selection of apartments and studios.</p>
+    {unitEntries.map(([key, unit]) => (
+      <a href={`/${lang}/stays/${key}`}>
+        <h2>{unit.title}</h2>
+      </a>
+      <p>{unit.descriptions.en.short}</p>
+    ))}
+  </section>
+</BaseLayout>
