@@ -9,40 +9,48 @@ export interface Props {
   unit: UnitConfig;
 }
 
-// Generate static paths for SEO‑friendly URLs
+const debug = false; // Set to true to show debug info
+
+// Generate static paths AND pass props to the page
 export async function getStaticPaths() {
   return (Object.keys(units) as UnitKey[]).map((id) => ({
-    params: { unit: id }
+    params: { unit: id },
+    props: { unit: units[id] },
   }));
 }
 
-// Load the correct unit based on URL
-export async function get({ params }: { params: { unit: UnitKey } }) {
-  const unit = units[params.unit];
-  return {
-    props: {
-      unit
-    }
-  };
+// Access props passed from getStaticPaths()
+const { unit } = Astro.props;
+
+if (debug) {
+  console.log("DEBUG: Astro.props =", Astro.props);
+  console.log("DEBUG: Astro.props.unit =", Astro.props.unit);
 }
 
-const { unit } = Astro.props;
+if (!unit) {
+  console.error("ERROR: unit is undefined inside component");
+  throw new Error("unit is undefined inside component");
+}
+
+if (debug) {
+  console.log("DEBUG: unit.id =", unit.id);
+  console.log("DEBUG: unit.location =", unit.location);
+}
 
 const booking = {
   airbnb: "https://airbnb.com/h/" + unit.id,
-  booking: ""
+  booking: "",
 };
 const email = unit.id + "@StudioSunAndSea.com";
+// Load correct guide based on unit.location
+const guide = guides[unit.location];
 
 // Language selection (later: dynamic detect)
 const lang = "en";
 
-// Load correct guide based on unit.location
-const guide = guides[unit.location];
 
 // Auto-load photos from public/images/stays/<UnitID>/
 const allPhotos = import.meta.glob("/public/images/stays/**/*.jpg", { eager: true });
-
 const photos = Object.fromEntries(
   Object.entries(allPhotos).filter(([path]) =>
     path.includes(`/public/images/stays/${unit.id}/`)
