@@ -1,6 +1,5 @@
 ---
 // src/components/Operator.astro
-
 /**
  * Output consistently the Owner/Operator of the business for legal content.
  */
@@ -21,6 +20,7 @@ const companyData = {
   mbs: "060519793",                       // Court Registry Number (MBS)
   euid: "HRSR.060519793",                 // European Unique Identifier (EUID)
   court: "Trgovački sud u Splitu",
+  registryUrl: "https://sudreg.pravosudje.hr/ords/r/esudreg/public/podaci-o-poslovnom-subjektu?p28_sbt_mbs=060519793",
   capital: "2.500,00 EUR (u cijelosti uplaćen)",
   director: "Miloš Borojević",
 
@@ -43,26 +43,28 @@ const companyData = {
 
 const localeLabel = {
   de: {
-    brand: "Betriebsmarke:",
-    legal: "Medieninhaber & Betreiber der Website:",
-    registeredSeat: "Sitz der Gesellschaft (Verwaltungssitz):",
-    studio: "Künftiger Studiostandort (in Fertigstellung):",
-    represented: "Vertreten durch den Geschäftsführer:",
-    court: "Handelsregister:",
-    vat: "USt-IdNr. (PDV):",
-    germanyTitle: "Weitere Betriebsstätte (Deutschland):",
-    usaTitle: "Weitere Betriebsstätte (USA):",
+    brand: "Betriebsmarke: ",
+    legal: "Medieninhaber & Betreiber der Website: ",
+    registeredSeat: "Sitz der Gesellschaft (Verwaltungssitz): ",
+    studio: "Künftiger Studiostandort (in Fertigstellung): ",
+    represented: "Vertreten durch den Geschäftsführer: ",
+    court: "Handelsregister: ",
+    registry: "Eintrag im Handelsregister (Sudski registar)",
+    vat: "USt-IdNr. (PDV): ",
+    germanyTitle: "Weitere Betriebsstätte (Deutschland): ",
+    usaTitle: "Weitere Betriebsstätte (USA): ",
   },
   en: {
-    brand: "Operating Brand:",
-    legal: "Legal Entity & Website Operator:",
-    registeredSeat: "Registered Head Office:",
-    studio: "Future Studio Location (Under Construction):",
-    represented: "Represented by Managing Director:",
-    court: "Commercial Register:",
-    vat: "VAT ID (PDV ID):",
-    germanyTitle: "Secondary Office (Germany):",
-    usaTitle: "Secondary Location (USA):",
+    brand: "Operating Brand: ",
+    legal: "Legal Entity & Website Operator: ",
+    registeredSeat: "Registered Head Office: ",
+    studio: "Future Studio Location (Under Construction): ",
+    represented: "Represented by Managing Director: ",
+    court: "Commercial Register: ",
+    registry: "Official Court Registry Entry (Sudski registar)",
+    vat: "VAT ID (PDV): ",
+    germanyTitle: "Secondary Office (Germany): ",
+    usaTitle: "Secondary Office (USA): ",
   }
 }[lang];
 ---
@@ -75,7 +77,7 @@ const localeLabel = {
     <strong>{localeLabel.legal}</strong> {companyData.legal}
   </p>
 
-  <address>
+  <p>
     <strong>{localeLabel.registeredSeat}</strong><br />
     {companyData.adminAddress1}<br />
     {companyData.adminAddress2}<br /><br />
@@ -86,7 +88,6 @@ const localeLabel = {
 
     {localeLabel.represented} {companyData.director}<br />
     OIB: {companyData.oib}<br />
-    MBS: {companyData.mbs}<br />
     EUID: {companyData.euid}<br />
     {companyData.vat ? (
       <>{localeLabel.vat} {companyData.vat}<br /></>
@@ -94,6 +95,17 @@ const localeLabel = {
       <small>Nije u sustavu PDV-a prema čl. 90. Zakona o PDV-u<br /></small>
     )}
     {localeLabel.court} {companyData.court}<br /><br />
+    MBS: {companyData.mbs}<br />
+    <small>
+      <a
+        href={companyData.registryUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="registry-link"
+      >
+        {localeLabel.registry} ↗
+      </a>
+    </small>
 
     <strong>{localeLabel.germanyTitle}</strong><br />
     {companyData.germanyAddress1}<br />
@@ -104,5 +116,5 @@ const localeLabel = {
     {companyData.usaAddress2}<br /><br />
 
     E-Mail: <a href={`mailto:${companyData.email}`}>{companyData.email}</a>
-  </address>
+  </p>
 </section>

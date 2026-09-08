@@ -34,13 +34,7 @@ const footerOffset = mindbodyOffestPages.includes(page);
 const nextStepsPages = ["about", "private", "teach", "classes", "pricing", "thankYou"];
 const showNextSteps = nextStepsPages.includes(page);
 
-// --- Title Formatting Logic ---
-// 1. If it's the home page, or title equals/contains siteName, don't append siteName twice.
-// 2. Otherwise, format as "<title> – <siteName>".
-const isHome = page === "index" || title === site.siteName;
-const formattedTitle = isHome
-  ? (title.includes(site.siteName) ? title : site.siteName)
-  : `${title} – ${site.siteName}`;
+const formattedTitle = title.includes(site.siteName) ? title : `${title} – ${site.siteName}`;
 ---
 
 <html lang={lang}>
