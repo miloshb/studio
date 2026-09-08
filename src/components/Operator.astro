@@ -3,12 +3,15 @@
 /**
  * Output consistently the Owner/Operator of the business for legal content.
  */
+import { getSiteConfig } from "../data/config.ts";
 interface Props {
   lang: "en" | "de";
   heading: string;
 }
 
 const { lang, heading } = Astro.props;
+
+const site = getSiteConfig();
 
 const companyData = {
   brand: "Studio Sun & Sea",
@@ -38,7 +41,7 @@ const companyData = {
   usaAddress1: "9215 Jasmine Lane",
   usaAddress2: "Irving, TX 75063, USA",
 
-  email: "privacy@studiosunandsea.com",
+  email: site.email,
 }
 
 const localeLabel = {
@@ -73,8 +76,8 @@ const localeLabel = {
   <h2>{heading}</h2>
 
   <p>
-    <strong>{localeLabel.brand}</strong> {companyData.brand}<br />
-    <strong>{localeLabel.legal}</strong> {companyData.legal}
+    {localeLabel.brand} {companyData.brand}<br />
+    {localeLabel.legal} {companyData.legal}
   </p>
 
   <p>
@@ -84,8 +87,10 @@ const localeLabel = {
 
     <strong>{localeLabel.studio}</strong><br />
     {companyData.studioAddress1}<br />
-    {companyData.studioAddress2}<br /><br />
+    {companyData.studioAddress2}
+  </p>
 
+  <p>
     {localeLabel.represented} {companyData.director}<br />
     OIB: {companyData.oib}<br />
     EUID: {companyData.euid}<br />
@@ -94,19 +99,19 @@ const localeLabel = {
     ) : (
       <small>Nije u sustavu PDV-a prema čl. 90. Zakona o PDV-u<br /></small>
     )}
-    {localeLabel.court} {companyData.court}<br /><br />
-    MBS: {companyData.mbs}<br />
-    <small>
-      <a
-        href={companyData.registryUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="registry-link"
-      >
-        {localeLabel.registry} ↗
-      </a>
-    </small>
+    {localeLabel.court} {companyData.court}<br />
+    MBS: {companyData.mbs}
+    <small><a
+      href={companyData.registryUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="registry-link"
+    >
+      {localeLabel.registry} ↗
+    </a></small>
+  </p>
 
+  <p>
     <strong>{localeLabel.germanyTitle}</strong><br />
     {companyData.germanyAddress1}<br />
     {companyData.germanyAddress2}<br /><br />
@@ -114,7 +119,9 @@ const localeLabel = {
     <strong>{localeLabel.usaTitle}</strong><br />
     {companyData.usaAddress1}<br />
     {companyData.usaAddress2}<br /><br />
+  </p>
 
+  <p>
     E-Mail: <a href={`mailto:${companyData.email}`}>{companyData.email}</a>
   </p>
 </section>

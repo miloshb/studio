@@ -7,7 +7,7 @@ export interface SiteConfig {
   isCorporate: boolean;
   canonical: string;
   description: string;
-  contactEmail: string;
+  email: string;
 }
 
 export function getSiteConfig(): SiteConfig {
@@ -20,7 +20,7 @@ export function getSiteConfig(): SiteConfig {
       isCorporate: true,
       canonical: "https://eireneintentiocitta.hr",
       description: "Eirene Intentio Citta d.o.o. – Peace · Intention · Mind",
-      contactEmail: "info@eireneintentiocitta.hr",
+      email: "privacy@eireneintentiocitta.hr",
     };
   }
 
@@ -30,6 +30,6 @@ export function getSiteConfig(): SiteConfig {
     isCorporate: false,
     canonical: "https://studiosunandsea.com",
     description: "Yoga classes, private sessions, and workshops with Studio Sun & Sea.",
-    contactEmail: "privacy@studiosunandsea.com",
+    email: "privacy@studiosunandsea.com",
   };
 }
