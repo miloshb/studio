@@ -1,8 +1,11 @@
 ---
+// src/components/Hreflang.astro
 import { HREFLANG } from "../data/routes.js";
+import { getSiteConfig } from "../data/config.ts";
+
 const { page } = Astro.props;
 const urls = HREFLANG[page];
-const base = "https://studiosunandsea.com";
+const base = getSiteConfig().canonical;
 ---
 
 <link rel="alternate" hreflang="en" href={base + urls.en} />
