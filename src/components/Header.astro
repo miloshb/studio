@@ -1,7 +1,7 @@
 ---
 // src/components/Header.astro
 import { ROUTES, LANGS, HEADER_ROUTE_KEYS, getLangRoot, getLangUrl } from "../data/routes.js";
-import { LANG_STORE_KEY } from "../data/constants.js";
+import { LANG_STORE_KEY } from "../data/config.ts";
 import MindbodyLogin from "./widgets/MindbodyLoginLinkV1.astro";
 
 const { lang, page } = Astro.props;

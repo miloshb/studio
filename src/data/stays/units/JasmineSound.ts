@@ -95,6 +95,19 @@ const JasmineSound: UnitConfig = {
     en: "Access the house from Ranchview Drive. It is the house with the red front door on the right side of Jasmine Lane just before the semi-cul-de-sac. Street and driveway parking are available without restriction.",
     de: "Greifen Sie auf das Haus über Ranchview Drive zu. Es ist das Haus mit der roten Vordertür auf der rechten Seite von Jasmine Lane, direkt vor dem Halbkreis. Straßen- und Einfahrt-Parkplätze sind ohne Beschränkung verfügbar.",
   },
+
+  arrival: {
+    lockbox: {
+      en: "Lockbox Access: The lockbox is located in the recessed entry alcove, mounted on the brick wall directly opposite the front door (not visible from the street).\n Lockbox code: 2214 \n Inside the lockbox you'll find two keys, each on its own keyring. The keys open both exterior doors. The second key is a backup. After unlocking, close the door firmly. Please return both keys to the lockbox at checkout.",
+    },
+    checkin: {
+      en: "🚗 Parking: You may park in the driveway directly in front of the house. Street parking is available and unrestricted. Please do not block neighboring driveways. \n 📍 Finding the Entrance: The property is located at 9215 Jasmine Lane, Irving, TX 75063. The entrance is the front RED door facing Jasmine Lane.",
+    }
+  },
+
+  manual: {
+    en: ""
+  },
 };
 
 export default JasmineSound;

@@ -72,6 +72,22 @@ export interface UnitConfig {
 
   directions: {
     en: string;
-    de: string;
+    de?: string;
+  };
+
+  arrival: {
+    lockbox: {
+      en: string;
+      de?: string;
+    };
+    checkin: {
+      en: string;
+      de?: string;
+    };
+  };
+
+  manual: {
+    en: string;
+    de?: string;
   };
 }

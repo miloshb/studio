@@ -62,6 +62,22 @@ const SunsetSuite: UnitConfig = {
     en: "",
     de: "",
   },
+
+  arrival: {
+    lockbox: {
+      en: "",
+      de: "",
+    },
+    checkin: {
+      en: "",
+      de: "",
+    },
+  },
+
+  manual: {
+    en: "",
+    de: "",
+  },
 };
 
 export default SunsetSuite;

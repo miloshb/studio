@@ -1,20 +1,23 @@
 ---
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
-import Hreflang from "../components/Hreflang.astro";
-import NextSteps from "../components/NextSteps.astro";
-// Switch back to linking CSS via HTML (instead of using Astro to embed below)
-//import "../styles/global.css";
-//import "../styles/mindbody.css";
-
 /**
  * CRITICAL: ensure that the "page" property value is defined in routes.js
  *
  * This layout is used for all pages, including the Mindbody widgets. It is important to keep the DOM structure   consistent across all pages to avoid hydration errors. The layout should not be changed without careful consideration of the impact on the Mindbody widgets and other components.
  */
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import Hreflang from "../components/Hreflang.astro";
+import NextSteps from "../components/NextSteps.astro";
+import { getSiteConfig } from "../data/config.ts";
+// Switch back to linking CSS via HTML (instead of using Astro to embed below)
+//import "../styles/global.css";
+//import "../styles/mindbody.css";
+
+const site = getSiteConfig();
+
 const {
-  title = "Studio Sun & Sea",
-  description = "Yoga classes, private sessions, and workshops with Studio Sun & Sea.",
+  title = site.siteName,
+  description = site.description,
   lang = "en",
   page = null,
   fullBleed = false,
@@ -30,6 +33,14 @@ const footerOffset = mindbodyOffestPages.includes(page);
 // Pages where next steps should be displayed
 const nextStepsPages = ["about", "private", "teach", "classes", "pricing", "thankYou"];
 const showNextSteps = nextStepsPages.includes(page);
+
+// --- Title Formatting Logic ---
+// 1. If it's the home page, or title equals/contains siteName, don't append siteName twice.
+// 2. Otherwise, format as "<title> – <siteName>".
+const isHome = page === "index" || title === site.siteName;
+const formattedTitle = isHome
+  ? (title.includes(site.siteName) ? title : site.siteName)
+  : `${title} – ${site.siteName}`;
 ---
 
 <html lang={lang}>
@@ -38,7 +49,7 @@ const showNextSteps = nextStepsPages.includes(page);
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
     {noindex && <meta name="robots" content="noindex, nofollow" />}
-    {noindex && <link rel="canonical" href="https://studiosunandsea.com/" />}
+    {noindex && <link rel="canonical" href={site.canonical} />}
 
     <!-- Hreflang automatically injected -->
     {page && <Hreflang page={page} />}
@@ -63,7 +74,7 @@ const showNextSteps = nextStepsPages.includes(page);
     <!-- Allow pages to add extra <head> content -->
     <slot name="head" />
 
-    <title>{title}</title>
+    <title>{formattedTitle}</title>
   </head>
 
   <body class="layout">
