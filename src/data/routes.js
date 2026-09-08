@@ -242,10 +242,12 @@ export const ROUTES = {
 
 
 // NAV GROUPS (keys only)
+// Header Navigation
 export const HEADER_ROUTE_KEYS = {
   primary: ["classes", "schedule", "private", "workshops"], // always in header navigation
   secondary: ["teach", "about"], // 2nd set drops to footer navigation on mobile
 };
+// Footer Navigation
 export const FOOTER_ROUTE_KEYS = [
   "scheduleOverview",
   "pricing",
@@ -257,6 +259,7 @@ export const FOOTER_ROUTE_KEYS = [
   "waiver",
   "contact"
 ];
+// Next Steps Navigation (used at bottom of select pages - see BaseLayout.astro)
 export const NEXT_STEPS_ROUTE_KEYS = ["classes", "private", "workshops", "scheduleOverview", "teach", "contact"];
 
 // HREFLANG MAP
