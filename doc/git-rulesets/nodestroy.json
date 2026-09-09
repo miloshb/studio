@@ -1,0 +1,26 @@
+{
+  "id": 22620909,
+  "name": "nodestroy",
+  "target": "branch",
+  "source_type": "Repository",
+  "source": "miloshb/studio",
+  "enforcement": "active",
+  "conditions": {
+    "ref_name": {
+      "exclude": [],
+      "include": [
+        "refs/heads/stage",
+        "~ALL"
+      ]
+    }
+  },
+  "rules": [
+    {
+      "type": "deletion"
+    },
+    {
+      "type": "non_fast_forward"
+    }
+  ],
+  "bypass_actors": []
+}
