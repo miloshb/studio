@@ -4,7 +4,7 @@ import { NEXT_STEPS_ROUTE_KEYS, ROUTES } from "../data/routes.js";
 const { lang = "en", page = null } = Astro.props;
 
 // Filter out the current page
-const stepKeys = NEXT_STEPS_ROUTE_KEYS.filter(key => key !== page);
+const stepKeys = (NEXT_STEPS_ROUTE_KEYS ?? []).filter(key => key !== page);
 ---
 
 <section class="next-steps">

@@ -1,7 +1,10 @@
 // src/data/routes.js
+import { getSiteConfig, LANGS as languages } from "../data/config.ts";
+
+const site = getSiteConfig();
 
 // Supported lanugages (first listed is primary/default)
-export const LANGS = ["en", "de"];
+export const LANGS = languages;
 
 // Mapping EN ↔ DE equivalents
 export const ROUTES = {
@@ -244,23 +247,38 @@ export const ROUTES = {
 // NAV GROUPS (keys only)
 // Header Navigation
 export const HEADER_ROUTE_KEYS = {
-  primary: ["classes", "schedule", "private", "workshops"], // always in header navigation
-  secondary: ["teach", "about"], // 2nd set drops to footer navigation on mobile
-};
+  brand: {
+    primary: ["classes", "schedule", "private", "workshops"], // always in header navigation
+    secondary: ["teach", "about"], // 2nd set drops to footer navigation on mobile
+  },
+  corp: {
+    primary: ["about", "teach", "contact"], // always in header navigation
+    secondary: [], // 2nd set drops to footer navigation on mobile
+  },
+}[site.mode];
 // Footer Navigation
-export const FOOTER_ROUTE_KEYS = [
-  "scheduleOverview",
-  "pricing",
-  "payment",
-  "kunga",
-  "imprint",
-  "privacy",
-  "terms",
-  "waiver",
-  "contact"
-];
+export const FOOTER_ROUTE_KEYS = {
+  brand: [
+    "scheduleOverview",
+    "pricing",
+    "payment",
+    "kunga",
+    "imprint",
+    "privacy",
+    "terms",
+    "waiver",
+    "contact",
+  ],
+  corp: [
+    "payment",
+    "imprint",
+    "privacy",
+    "terms",
+  ],
+}[site.mode];
 // Next Steps Navigation (used at bottom of select pages - see BaseLayout.astro)
-export const NEXT_STEPS_ROUTE_KEYS = ["classes", "private", "workshops", "scheduleOverview", "teach", "contact"];
+export const NEXT_STEPS_ROUTE_KEYS =
+  ["classes", "private", "workshops", "scheduleOverview", "teach", "contact"];
 
 // HREFLANG MAP
 export const HREFLANG = Object.fromEntries(
