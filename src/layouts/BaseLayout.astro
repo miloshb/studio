@@ -16,7 +16,7 @@ import { getSiteConfig } from "../data/config.ts";
 const site = getSiteConfig();
 
 const {
-  title = site.siteName,
+  title = site.name,
   description = site.description,
   lang = "en",
   page = null,
@@ -34,7 +34,7 @@ const footerOffset = mindbodyOffestPages.includes(page);
 const nextStepsPages = ["about", "private", "classes", "pricing", "thankYou"];
 const showNextSteps = nextStepsPages.includes(page);
 
-const formattedTitle = title.includes(site.siteName) ? title : `${title} – ${site.siteName}`;
+const formattedTitle = title.includes(site.name) ? title : `${title} – ${site.name}`;
 ---
 
 <html lang={lang}>

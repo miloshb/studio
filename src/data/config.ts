@@ -9,7 +9,7 @@ export const debug = false; // Set to true to show debug logs
 export const info = true; // Set to true to show info logs
 
 export interface SiteConfig {
-  siteName: string;
+  name: string;
   mode: "brand" | "corp";
   canonical: string;
   description: string;
@@ -22,7 +22,7 @@ export function getSiteConfig(): SiteConfig {
 
   if (mode === "corp") {
     return {
-      siteName: "Eirene Intentio Citta d.o.o.",
+      name: "Eirene Intentio Citta d.o.o.",
       mode: mode,
       canonical: "https://eireneintentiocitta.hr",
       description: "Eirene Intentio Citta d.o.o. – Peace · Intention · Consciousness",
@@ -32,7 +32,7 @@ export function getSiteConfig(): SiteConfig {
 
   // Default build for Studio Sun & Sea
   return {
-    siteName: "Studio Sun & Sea",
+    name: "Studio Sun & Sea",
     mode: mode,
     canonical: "https://studiosunandsea.com",
     description: "Yoga classes, private sessions, and workshops with Studio Sun & Sea.",
