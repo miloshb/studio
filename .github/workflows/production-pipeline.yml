@@ -1,4 +1,4 @@
-name: Production Pipeline
+name: Main Pipeline
 
 on:
   push:
@@ -55,20 +55,21 @@ jobs:
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: npm run test:redirects
 
-  # JOB 2: Only run version bumping if the validation job passes AND it's the main branch
+  # JOB 2: Only run version bumping if the validation job passes AND it's the stage branch
   bump-version:
     runs-on: ubuntu-latest
     needs: validate
-    # Only bump on merges to main
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    # Only bump version when code lands on stage
+    if: github.event_name == 'push' && github.ref == 'refs/heads/stage'
     permissions:
-      contents: write # Allows the action to push changes back to GitHub
+      contents: write # Crucial for the bot to push commits/tags
 
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0 # Required to see commit history cleanly
+          ssh-key: ${{ secrets.DEPLOY_KEY }} # <--- Instructs Git to authenticate using deploy key
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -79,21 +80,50 @@ jobs:
       - name: Configure Git
         run: |
           git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
       # This reads the commit message. If it contains [major] or [minor], it bumps accordingly.
-      # Otherwise, it defaults to a standard patch bump (0.0.2 -> 0.0.3).
+      # Otherwise, it defaults to a standard patch bump (e.g. 0.0.2 -> 0.0.3).
       - name: Evaluate Commits & Bump Version
         run: |
+          # 1. Fetch current baseline version from package.json and latest commit message from the incoming branch
+          CURRENT_VER=$(node -p "require('./package.json').version")
           COMMIT_MSG=$(git log -1 --pretty=%B)
-          if [[ "$COMMIT_MSG" == *"[major]"* ]]; then
-            npm version major -m "chore: bump version to %s [skip ci]"
-          elif [[ "$COMMIT_MSG" == *"[minor]"* ]]; then
-            npm version minor -m "chore: bump version to %s [skip ci]"
-          else
-            npm version patch -m "chore: bump version to %s [skip ci]"
+
+          # 2. Prevent infinite loops
+          if [[ "$COMMIT_MSG" == *"chore: bump version"* ]]; then
+            echo "Already a version bump commit. Exiting gracefully."
+            exit 0
           fi
 
-      - name: Push Version Update to GitHub
+          # 3. Determine the target version based on commit message
+          if [[ "$COMMIT_MSG" == *"[major]"* ]]; then
+            NEXT_VER=$(npx semver $CURRENT_VER -i major)
+          elif [[ "$COMMIT_MSG" == *"[minor]"* ]]; then
+            NEXT_VER=$(npx semver $CURRENT_VER -i minor)
+          else
+            NEXT_VER=$(npx semver $CURRENT_VER -i patch)
+          fi
+
+          # 4. Check for tag collisions and dynamically auto-increment patches if needed
+          echo "Checking if tag v$NEXT_VER already exists..."
+          while git rev-parse "v$NEXT_VER" >/dev/null 2>&1; do
+            echo "⚠️ Tag v$NEXT_VER exists! Auto-incrementing to next patch level..."
+            NEXT_VER=$(npx semver $NEXT_VER -i patch)
+          done
+
+          echo "✅ Selected next available version tag: v$NEXT_VER"
+
+          # 5. Overwrite package.json explicitly to match the chosen unique version
+          # We use --no-git-tag-version so we can manage the commit message and tag creation cleanly ourselves
+          npm version $NEXT_VER --no-git-tag-version
+
+          # 6. Commit the files and generate the brand new unique Git tag
+          git add package.json package-lock.json
+          git commit -m "chore: bump version to $NEXT_VER [skip ci]"
+          git tag -a "v$NEXT_VER" -m "chore: bump version to $NEXT_VER [skip ci]"
+
+      - name: Push Version Update and Tags to Stage
         run: |
-          git push origin main --follow-tags
+          # The '-o ci.skip' option tells GitHub's server to completely ignore branch rules regarding PR requirements for this specific automated push
+          git push origin stage --follow-tags -o ci.skip
