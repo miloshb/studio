@@ -22,10 +22,10 @@ export function getSiteConfig(): SiteConfig {
 
   if (mode === "corp") {
     return {
-      name: "Eirene Intentio Citta d.o.o.",
+      name: "Eirene Intentio Citta",
       mode: mode,
       canonical: "https://eireneintentiocitta.hr",
-      description: "Eirene Intentio Citta d.o.o. – Peace · Intention · Consciousness",
+      description: "Eirene Intentio Citta – Peace · Intention · Consciousness",
       email: "privacy@eireneintentiocitta.hr",
     };
   }
