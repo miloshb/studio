@@ -1,6 +1,8 @@
 # Studio Sun & Sea - Website
 
-Business-sensitive documentation has been moved to the private repository:
+Dynamic responsive multiligual website using Astro framework and Cloudflare edge-CDN static pages.
+- [Source code documentation for the website](doc)
+- Business-sensitive documentation has been moved to the private repository:
 [studio-internal (private)](https://github.com/miloshb/studio-internal.git).
 
 ## Astro Starter Kit: Basics
