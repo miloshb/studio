@@ -1,10 +1,14 @@
 // src/data/routes.js
-import { getSiteConfig, LANGS as languages } from "../data/config.ts";
+import { getSiteConfig, LANGS as languages, info, debug } from "../data/config.ts";
 
 const site = getSiteConfig();
 
 // Supported lanugages (first listed is primary/default)
 export const LANGS = languages;
+
+info && console.log("INFO: site.mode =", site.mode);
+debug && console.log("DEBUG: Site Config =", site);
+info && console.log("INFO: LANGS =", LANGS);
 
 // Mapping EN ↔ DE equivalents
 export const ROUTES = {

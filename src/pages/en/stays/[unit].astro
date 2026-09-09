@@ -3,15 +3,14 @@
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 import { guides } from "../../../data/stays/guides/index.ts";
 import { units } from "../../../data/stays/units/index.ts";
+import { info, debug } from "../../../data/config.ts";
+
 import type { UnitKey } from "../../../data/stays/units/index.ts";
 import type { UnitConfig } from "../../../data/stays/unitType.ts";
 
 export interface Props {
   unit: UnitConfig;
 }
-
-const debug = false; // Set to true to show debug logs
-const info = true; // Set to true to show info logs
 
 // Generate static paths AND pass props to the page
 export async function getStaticPaths() {

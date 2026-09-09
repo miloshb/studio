@@ -5,6 +5,9 @@ export const TZ_STORE_KEY = "preferredTimezone";
 // Supported lanugages (first listed is primary/default)
 export const LANGS = ["en", "de"];
 
+export const debug = false; // Set to true to show debug logs
+export const info = true; // Set to true to show info logs
+
 export interface SiteConfig {
   siteName: string;
   mode: "brand" | "corp";
