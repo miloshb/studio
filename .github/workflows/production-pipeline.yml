@@ -86,22 +86,42 @@ jobs:
       # Otherwise, it defaults to a standard patch bump (e.g. 0.0.2 -> 0.0.3).
       - name: Evaluate Commits & Bump Version
         run: |
-          # Grabs the latest commit message from the incoming branch
+          # 1. Fetch current baseline version from package.json and latest commit message from the incoming branch
+          CURRENT_VER=$(node -p "require('./package.json').version")
           COMMIT_MSG=$(git log -1 --pretty=%B)
 
-          # Prevent infinite loop if the last commit was already a version bump
+          # 2. Prevent infinite loops
           if [[ "$COMMIT_MSG" == *"chore: bump version"* ]]; then
             echo "Already a version bump commit. Exiting gracefully."
             exit 0
           fi
 
+          # 3. Determine the target version based on commit message
           if [[ "$COMMIT_MSG" == *"[major]"* ]]; then
-            npm version major -m "chore: bump version to %s [skip ci]"
+            NEXT_VER=$(npx semver $CURRENT_VER -i major)
           elif [[ "$COMMIT_MSG" == *"[minor]"* ]]; then
-            npm version minor -m "chore: bump version to %s [skip ci]"
+            NEXT_VER=$(npx semver $CURRENT_VER -i minor)
           else
-            npm version patch -m "chore: bump version to %s [skip ci]"
+            NEXT_VER=$(npx semver $CURRENT_VER -i patch)
           fi
+
+          # 4. Check for tag collisions and dynamically auto-increment patches if needed
+          echo "Checking if tag v$NEXT_VER already exists..."
+          while git rev-parse "v$NEXT_VER" >/dev/null 2>&1; do
+            echo "⚠️ Tag v$NEXT_VER exists! Auto-incrementing to next patch level..."
+            NEXT_VER=$(npx semver $NEXT_VER -i patch)
+          done
+
+          echo "✅ Selected next available version tag: v$NEXT_VER"
+
+          # 5. Overwrite package.json explicitly to match the chosen unique version
+          # We use --no-git-tag-version so we can manage the commit message and tag creation cleanly ourselves
+          npm version $NEXT_VER --no-git-tag-version
+
+          # 6. Commit the files and generate the brand new unique Git tag
+          git add package.json package-lock.json
+          git commit -m "chore: bump version to $NEXT_VER [skip ci]"
+          git tag -a "v$NEXT_VER" -m "chore: bump version to $NEXT_VER [skip ci]"
 
       - name: Push Version Update and Tags to Stage
         run: |
