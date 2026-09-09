@@ -79,7 +79,7 @@ jobs:
       - name: Configure Git
         run: |
           git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@://github.com"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
       # This reads the commit message. If it contains [major] or [minor], it bumps accordingly.
       # Otherwise, it defaults to a standard patch bump (e.g. 0.0.2 -> 0.0.3).
