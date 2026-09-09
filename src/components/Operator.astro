@@ -1,9 +1,9 @@
 ---
 // src/components/Operator.astro
-
 /**
  * Output consistently the Owner/Operator of the business for legal content.
  */
+import { getSiteConfig } from "../data/config.ts";
 interface Props {
   lang: "en" | "de";
   heading: string;
@@ -11,41 +11,117 @@ interface Props {
 
 const { lang, heading } = Astro.props;
 
-const commonContent = {
-  labelCompany: "Studio Sun & Sea",
-  ownerName: "Miloš Borojević",
-  officeAddress1: "Pfarrtannen 7",
-  officeAddress2: "49808 Lingen, Deutschland",
-  secondaryAddress1: "9215 Jasmine Lane",
-  secondaryAddress2: "Irving, TX 75063, USA",
-  emailLabel: "E-Mail: privacy@studiosunandsea.com"
+const site = getSiteConfig();
+
+const companyData = {
+  brand: "Studio Sun & Sea",
+  legal: "Eirene Intentio Citta d.o.o.",
+
+  // HR Legal Identifiers
+  oib: "79177761868",                     // OIB (Personal Identification Number)
+  vat: "HR79177761868",                   // PDV (VAT) ID
+  mbs: "060519793",                       // Court Registry Number (MBS)
+  euid: "HRSR.060519793",                 // European Unique Identifier (EUID)
+  court: "Trgovački sud u Splitu",
+  registryUrl: "https://sudreg.pravosudje.hr/ords/r/esudreg/public/podaci-o-poslovnom-subjektu?p28_sbt_mbs=060519793",
+  capital: "2.500,00 EUR (u cijelosti uplaćen)",
+  director: "Miloš Borojević",
+
+  // Registered Head Office (Split)
+  adminAddress1: "Varaždinska 2B",
+  adminAddress2: "21000 Split, Hrvatska",
+
+  // Future Studio Location (Supetar, Brač)
+  studioAddress1: "Jadranska 35",
+  studioAddress2: "21400 Supetar, Otok Brač, Hrvatska",
+
+  // Secondary Offices
+  germanyAddress1: "Pfarrtannen 7",
+  germanyAddress2: "49808 Lingen, Deutschland",
+  usaAddress1: "9215 Jasmine Lane",
+  usaAddress2: "Irving, TX 75063, USA",
+
+  email: site.email,
 }
 
-const localeContent = {
+const localeLabel = {
   de: {
-    ownerLabel: "Inhaber:",
-    officeTitle: "Sitz des Unternehmens (Deutschland):",
-    secondaryTitle: "Weitere Betriebsstätte (USA):",
+    brand: "Betriebsmarke: ",
+    legal: "Medieninhaber & Betreiber der Website: ",
+    registeredSeat: "Sitz der Gesellschaft (Verwaltungssitz): ",
+    studio: "Künftiger Studiostandort (in Fertigstellung): ",
+    represented: "Vertreten durch den Geschäftsführer: ",
+    court: "Handelsregister: ",
+    registry: "Eintrag im Handelsregister (Sudski registar)",
+    vat: "USt-IdNr. (PDV): ",
+    germanyTitle: "Weitere Betriebsstätte (Deutschland): ",
+    usaTitle: "Weitere Betriebsstätte (USA): ",
   },
   en: {
-    ownerLabel: "Owner:",
-    officeTitle: "Registered Office (Germany):",
-    secondaryTitle: "Secondary Location (USA):",
+    brand: "Operating Brand: ",
+    legal: "Legal Entity & Website Operator: ",
+    registeredSeat: "Registered Head Office: ",
+    studio: "Future Studio Location (Under Construction): ",
+    represented: "Represented by Managing Director: ",
+    court: "Commercial Register: ",
+    registry: "Official Court Registry Entry (Sudski registar)",
+    vat: "VAT ID (PDV): ",
+    germanyTitle: "Secondary Office (Germany): ",
+    usaTitle: "Secondary Office (USA): ",
   }
 }[lang];
 ---
 
-<section>
+<section class="legal-operator">
   <h2>{heading}</h2>
+
   <p>
-    <strong>{commonContent.labelCompany}</strong><br />
-    {localeContent.ownerLabel} {commonContent.ownerName}<br />
-    <strong>{localeContent.officeTitle}</strong><br />
-    {commonContent.officeAddress1}<br />
-    {commonContent.officeAddress2}<br />
-    <strong>{localeContent.secondaryTitle}</strong><br />
-    {commonContent.secondaryAddress1}<br />
-    {commonContent.secondaryAddress2}<br />
-    {commonContent.emailLabel}
+    {localeLabel.brand} <strong>{companyData.brand}</strong><br />
+    {localeLabel.legal} <strong>{companyData.legal}</strong>
+  </p>
+
+  <p>
+    <strong>{localeLabel.registeredSeat}</strong><br />
+    {companyData.adminAddress1}<br />
+    {companyData.adminAddress2}
+    <br /><br />
+    <strong>{localeLabel.studio}</strong><br />
+    {companyData.studioAddress1}<br />
+    {companyData.studioAddress2}
+  </p>
+
+  <p>
+    {localeLabel.represented} {companyData.director}<br />
+    OIB: {companyData.oib}<br />
+    EUID: {companyData.euid}<br />
+    {companyData.vat ? (
+      <>{localeLabel.vat} {companyData.vat}<br /></>
+    ) : (
+      <small>Nije u sustavu PDV-a prema čl. 90. Zakona o PDV-u<br /></small>
+    )}
+    {localeLabel.court} {companyData.court}<br />
+    MBS: {companyData.mbs}
+    <small><a
+      href={companyData.registryUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="registry-link"
+    >
+      {localeLabel.registry} ↗
+    </a></small>
+  </p>
+
+  <p>
+    <strong>{localeLabel.germanyTitle}</strong><br />
+    {companyData.germanyAddress1}<br />
+    {companyData.germanyAddress2}
+    <br /><br />
+    <strong>{localeLabel.usaTitle}</strong><br />
+    {companyData.usaAddress1}<br />
+    {companyData.usaAddress2}
+  </p>
+
+  <p>
+    E-Mail: <a href={`mailto:${companyData.email}`}>{companyData.email}</a>
   </p>
 </section>

@@ -27,7 +27,7 @@
       if (bodyNode) bodyNode.textContent = matchedContent.body;
 
       // Update the tab title to match
-      document.title = `${matchedContent.title} – Studio Sun & Sea`;
+      document.title = `${matchedContent.title}`;
     }
   } catch (error) {
     console.error("Failed to parse dynamic content payload:", error);
