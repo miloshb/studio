@@ -40,12 +40,14 @@ Cloudflare Pages compiles every single active branch in the repository into its 
 
 | Git Branch | Deployment Target URL | Environment Purpose |
 | :--- | :--- | :--- |
-| **`main`** | [studiosunandsea.com](https://studiosunandsea.com) | Live Production Site |
-| **`stage`** | [stage.studio-sun-and-sea.pages.dev](https://stage.studio-sun-and-sea.pages.dev) | QA Staging Sandbox |
+| **`main`** | [studiosunandsea.com](https://studiosunandsea.com) and [eireneintentiocitta.hr](https://eireneintentiocitta.hr) | Live Production Sites |
+| **`stage`** (default) | [stage.studio-sun-and-sea.pages.dev](https://stage.studio-sun-and-sea.pages.dev) | QA Staging Sandbox |
 | `mindbody` | [mindbody.studio-sun-and-sea.pages.dev](https://mindbody.studio-sun-and-sea.pages.dev) | Widget Testing Environment |
 | `content` | [content.studio-sun-and-sea.pages.dev](https://content.studio-sun-and-sea.pages.dev) | Content and UI Testing |
 | `cm` | [cm.studio-sun-and-sea.pages.dev](https://cm.studio-sun-and-sea.pages.dev) | Configuration Management Testing |
 | `feat/*` | `[branch-name].studio-sun-and-sea.pages.dev` | Automated Preview Link |
+
+Cloudflare hosts both [studiosunandsea.com](https://studiosunandsea.com) and [eireneintentiocitta.hr](https://eireneintentiocitta.hr) from this GitHub repo. The environment variable **SITE_MODE** is used to drive different site behaviour where needed (*brand* => Studio Sun & Sea; *corp* => Eirene Intentio Citta d.o.o.).
 
 ---
 
@@ -64,4 +66,4 @@ Automated test pipeline is configured natively via GitHub Actions inside `.githu
 6. **AI Agent Scan**: Check conformance to standards for agentic commerce: [AI Agent Scan Remediation](../security/com.isitagentready.md)
 
 ---
-*Last Checked: June 2026*
+*Last Checked: September 2026*
