@@ -1,10 +1,11 @@
 // src/pages/robots.txt.ts
 import type { APIRoute } from 'astro';
+import { getSiteConfig } from "../data/config.ts";
 
 export const prerender = true;
 
 export const GET: APIRoute = () => {
-  const site = process.env.ASTRO_SITE ?? 'https://studiosunandsea.com';
+  const site = process.env.ASTRO_SITE ?? getSiteConfig().canonical;
   const body = [
     '# =======================================================',
     '# Studio Sun & Sea — Core Crawler Schema Configuration',

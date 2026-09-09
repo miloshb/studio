@@ -1,22 +1,41 @@
 ---
-const { lang } = Astro.props;
+import { getSiteConfig } from "../data/config.ts";
+
+const site = getSiteConfig();
+const { lang } = Astro.props as { lang?: "en" | "de" };
 
 const TEXT = {
-  en: {
-    title: "Breathe. Flow. Relax.",
-    subtitle: "Mindful movement for a calm, connected life.",
-    cta: "View Schedule",
-    ctaHref: "/en/schedule-overview",
+  brand: {
+    en: {
+      title: "Breathe. Flow. Relax.",
+      subtitle: "Mindful movement for a calm, connected life.",
+      cta: "View Schedule",
+      ctaHref: "/en/schedule-overview",
+    },
+    de: {
+      title: "Atme. Fließe. Entspanne.",
+      subtitle: "Achtsame Bewegung für ein ruhiges, verbundenes Leben.",
+      cta: "Stundenplan ansehen",
+      ctaHref: "/de/schedule-overview",
+    },
   },
-  de: {
-    title: "Atme. Fließe. Entspanne.",
-    subtitle: "Achtsame Bewegung für ein ruhiges, verbundenes Leben.",
-    cta: "Stundenplan ansehen",
-    ctaHref: "/de/schedule-overview",
+  corp: {
+    en: {
+      title: "Peace · Intention · Consciousness",
+      subtitle: "Mindful movement for a calm, connected life.",
+      cta: "Who we are?",
+      ctaHref: "/en/about",
+    },
+    de: {
+      title: "Frieden · Intention · Geist",
+      subtitle: "Achtsame Bewegung für ein ruhiges, verbundenes Leben.",
+      cta: "Wer sind wir?",
+      ctaHref: "/de/about",
+    },
   },
 };
 
-const copy = TEXT[lang] ?? TEXT.en;
+const copy = TEXT[site.mode]?.[lang ?? "en"] || TEXT.brand[lang ?? "en"];
 ---
 
 <section class="hero">

@@ -1,7 +1,14 @@
 // src/data/routes.js
+import { getSiteConfig, LANGS as languages, info, debug } from "../data/config.ts";
+
+const site = getSiteConfig();
 
 // Supported lanugages (first listed is primary/default)
-export const LANGS = ["en", "de"];
+export const LANGS = languages;
+
+info && console.log("INFO: site.mode =", site.mode);
+debug && console.log("DEBUG: Site Config =", site);
+info && console.log("INFO: LANGS =", LANGS);
 
 // Mapping EN ↔ DE equivalents
 export const ROUTES = {
@@ -184,6 +191,15 @@ export const ROUTES = {
       de: "Erfahre mehr über die dienstorientierte Kunga-Yoga-Tradition und wie wir gemeinnützige Projekte unterstützen."
     }
   },
+  stays: {
+    href: { en: "/en/stays", de: "/de/stays" },
+    nav: { en: "Stays", de: "Unterkünfte" },
+    label: { en: "Stays", de: "Unterkünfte" },
+    desc: {
+      en: "Discover our selection of accommodations.",
+      de: "Entdecken Sie unsere Auswahl an Unterkünften.",
+    }
+  },
   imprint: {
     href: { en: "/en/imprint", de: "/de/impressum" },
     nav: { en: "Imprint", de: "Impressum" },
@@ -233,22 +249,40 @@ export const ROUTES = {
 
 
 // NAV GROUPS (keys only)
+// Header Navigation
 export const HEADER_ROUTE_KEYS = {
-  primary: ["classes", "schedule", "private", "workshops"], // always in header navigation
-  secondary: ["teach", "about"], // 2nd set drops to footer navigation on mobile
-};
-export const FOOTER_ROUTE_KEYS = [
-  "scheduleOverview",
-  "pricing",
-  "payment",
-  "kunga",
-  "imprint",
-  "privacy",
-  "terms",
-  "waiver",
-  "contact"
-];
-export const NEXT_STEPS_ROUTE_KEYS = ["classes", "private", "workshops", "scheduleOverview", "teach", "contact"];
+  brand: {
+    primary: ["classes", "schedule", "private", "workshops"], // always in header navigation
+    secondary: ["teach", "about"], // 2nd set drops to footer navigation on mobile
+  },
+  corp: {
+    primary: ["about", "teach", "contact"], // always in header navigation
+    secondary: [], // 2nd set drops to footer navigation on mobile
+  },
+}[site.mode];
+// Footer Navigation
+export const FOOTER_ROUTE_KEYS = {
+  brand: [
+    "scheduleOverview",
+    "pricing",
+    "payment",
+    "kunga",
+    "imprint",
+    "privacy",
+    "terms",
+    "waiver",
+    "contact",
+  ],
+  corp: [
+    "payment",
+    "imprint",
+    "privacy",
+    "terms",
+  ],
+}[site.mode];
+// Next Steps Navigation (used at bottom of select pages - see BaseLayout.astro)
+export const NEXT_STEPS_ROUTE_KEYS =
+  ["classes", "private", "workshops", "scheduleOverview", "teach", "contact"];
 
 // HREFLANG MAP
 export const HREFLANG = Object.fromEntries(

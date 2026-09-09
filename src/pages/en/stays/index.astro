@@ -1,0 +1,34 @@
+---
+// src/pages/en/stays/index.astro
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { units } from "../../../data/stays/units/index.ts";
+import type { UnitKey } from "../../../data/stays/units/index.ts";
+import type { UnitConfig } from "../../../data/stays/unitType.ts";
+
+const { lang = "en" } = Astro.props;
+
+// Convert units object → typed array of entries
+const unitEntries = Object.entries(units) as [UnitKey, UnitConfig][];
+
+/*
+If you want, I can also generate:
+a grid layout version
+a card‑based UI
+a photo‑preview index (auto‑loading first photo of each unit)
+a multi‑language index with EN/DE switching
+a Supetar vs Irving grouping based on location: GuideKey
+*/
+---
+
+<BaseLayout lang={lang} page="stays" title="Stays" description="Explore our curated stays at Studio Sun & Sea.">
+  <h1>Stay at Studio Sun & Sea</h1>
+  <section class="stays-list">
+    <p>Choose from our curated selection of apartments and studios.</p>
+    {unitEntries.map(([key, unit]) => (
+      <a href={`/${lang}/stays/${key}`}>
+        <h2>{unit.name}</h2>
+      </a>
+      <p>{unit.title}</p>
+    ))}
+  </section>
+</BaseLayout>

@@ -1,6 +1,6 @@
 ---
 import { LANGS, ROUTES } from "../data/routes.js";
-import { LANG_STORE_KEY } from "../data/constants.js";
+import { LANG_STORE_KEY } from "../data/config.ts";
 
 const defaultLocale = LANGS[0];
 const defaultHref = ROUTES.thankYou.href[defaultLocale];
@@ -12,7 +12,7 @@ const supported = JSON.stringify(LANGS);
 <html lang={defaultLocale}>
 <head>
   <meta charset="UTF-8">
-  <title>Redirecting…Thanks – Studio Sun & Sea</title>
+  <title>Redirecting…Thanks</title>
   <noscript><meta http-equiv="refresh" content={`0;url=${defaultHref}`} /></noscript>
   <script is:inline define:vars={{ hrefs, supported, defaultLocale, defaultHref, LANG_STORE_KEY }}>
     const map = JSON.parse(hrefs), langs = JSON.parse(supported);
