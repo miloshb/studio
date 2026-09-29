@@ -2,7 +2,7 @@ import type { UnitConfig } from "../unitType.ts";
 
 const CourtyardStudio: UnitConfig = {
   id: "CourtyardStudio",
-  name: "Courtyard Studio",
+  name: "Courtyard Studio Apartment",
   title: "Sun & Sea Studio Apartment • Café Lifestyle",
   location: "Jadranska",
   available: new Date("2027-06-01"),

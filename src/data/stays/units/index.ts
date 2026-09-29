@@ -11,18 +11,18 @@ import GardenResidence from "./GardenResidence";
 import HorizonResidence from "./HorizonResidence";
 
 export const units = {
-  JasmineSound,
-
-  CourtyardStudio,
-  GardenStudio,
-
-  GardenApt,
+  GardenResidence,
+  HorizonResidence,
 
   SunriseSuite,
   GardenSuite,
 
-  GardenResidence,
-  HorizonResidence,
+  GardenApt,
+
+  CourtyardStudio,
+  GardenStudio,
+
+  JasmineSound,
 };
 
 export type UnitKey = keyof typeof units;
