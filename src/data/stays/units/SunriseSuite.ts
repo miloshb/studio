@@ -1,7 +1,7 @@
 import type { UnitConfig } from "../unitType.ts";
 
-const SunriseSuite: UnitConfig = {
-  id: "SunriseSuite",
+const SunSeaSunriseSuite: UnitConfig = {
+  id: "SunSeaSunriseSuite",
   name: "Sunrise Wellness Suite",
   title: "Sun & Sea Wellness Suite • Private Steam Spa",
   location: "Jadranska",
@@ -122,4 +122,4 @@ const SunriseSuite: UnitConfig = {
   },
 };
 
-export default SunriseSuite;
+export default SunSeaSunriseSuite;

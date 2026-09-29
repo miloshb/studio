@@ -3,6 +3,7 @@
  * This file defines the structure of a unit configuration for stays.
  * Each unit has an ID, name, title, booking information, email, internal details (like WiFi), descriptions in multiple languages, details about the unit (type, bedrooms, bathrooms, etc.), bed configurations, directions, and a guide with recommendations for restaurants, beaches, cafes, groceries, transport, and hidden gems.
  * The following data elements are constructed automatically using the unit ID (lowercase) and naming conventions:
+ * Airbnb links can only contain lowercase letters, numbers, and dashes. Dashes are not allowed in TypeScript identifiers.
  * - Airbnb URL ("https://airbnb.com/h/<unitid>")
  * - Booking.com URL ("https://booking.com/h/<unitid>")
  * - Vrbo URL ("https://vrbo.com/h/<unitid>")

@@ -2,25 +2,25 @@
 
 // TODO: see whether this can all be dynamically built based on the files present in the "units"folder, rather than having to manually import each unit and add it to the "units" object.
 import JasmineSound from "./JasmineSound";
-import CourtyardStudio from "./CourtyardStudio";
-import GardenStudio from "./GardenStudio";
+import SunSeaCourtyardStudio from "./CourtyardStudio";
+import SunSeaGardenStudio from "./GardenStudio";
 import GardenApt from "./GardenApt";
-import SunriseSuite from "./SunriseSuite";
-import GardenSuite from "./GardenSuite";
-import GardenResidence from "./GardenResidence";
-import HorizonResidence from "./HorizonResidence";
+import SunSeaSunriseSuite from "./SunriseSuite";
+import SunSeaGardenSuite from "./GardenSuite";
+import SunSeaGardenResidence from "./GardenResidence";
+import SunSeaHorizonResidence from "./HorizonResidence";
 
 export const units = {
-  GardenResidence,
-  HorizonResidence,
+  SunSeaGardenResidence,
+  SunSeaHorizonResidence,
 
-  SunriseSuite,
-  GardenSuite,
+  SunSeaSunriseSuite,
+  SunSeaGardenSuite,
 
   GardenApt,
 
-  CourtyardStudio,
-  GardenStudio,
+  SunSeaCourtyardStudio,
+  SunSeaGardenStudio,
 
   JasmineSound,
 };

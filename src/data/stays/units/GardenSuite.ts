@@ -1,7 +1,7 @@
 import type { UnitConfig } from "../unitType.ts";
 
 const GardenSuite: UnitConfig = {
-  id: "GardenSuite",
+  id: "SunSeaGardenSuite",
   name: "Garden Wellness Suite",
   title: "Sun & Sea Wellness Suite • Private Steam Spa",
   location: "Jadranska",
