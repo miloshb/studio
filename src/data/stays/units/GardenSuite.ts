@@ -5,6 +5,8 @@ const GardenSuite: UnitConfig = {
   name: "Garden Wellness Suite",
   title: "Sun & Sea Wellness Suite • Private Steam Spa",
   location: "Jadranska",
+  available: new Date("2028-06-01"),
+  market: false,
 
   internal: {
     wifiPassword: "0234a12?52Jk",

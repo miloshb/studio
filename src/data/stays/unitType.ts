@@ -20,7 +20,8 @@ export interface UnitConfig {
   id: UnitKey;                // "JasmineSound", "OliveGrove", "SunsetSuite"
   name: string;               // Internal name
   title: string;              // Marketing title for listing pages
-  active?: boolean;            // Whether the unit is currently available for booking
+  market: boolean;            // Whether the unit is currently being marketed for booking
+  available?: Date;           // When the unit is available for booking
   location: GuideKey;
 
   internal: {

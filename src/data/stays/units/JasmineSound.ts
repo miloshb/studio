@@ -5,6 +5,8 @@ const JasmineSound: UnitConfig = {
   name: "Jasmine Sound",
   title: "Convenient 4BR house w/ balcony view",
   location: "Jasmine",
+  available: new Date("2026-09-01"),
+  market: false,
 
   internal: {
     wifiPassword: "0234a12?52Jk",

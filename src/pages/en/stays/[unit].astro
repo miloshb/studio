@@ -39,6 +39,7 @@ if (info) {
 const booking = {
   airbnb: "https://airbnb.com/h/" + unit.id,
   booking: "",
+  vrbo: "",
 };
 const email = unit.id + "@StudioSunAndSea.com";
 // Load correct guide based on unit.location
@@ -82,6 +83,9 @@ const photos = Object.fromEntries(
       {booking.booking && (
         <li><a href={booking.booking}>Booking.com</a></li>
       )}
+      {booking.vrbo && (
+        <li><a href={booking.vrbo}>VRBO</a></li>
+      )}
     </ul>
   </section>
 
@@ -93,7 +97,7 @@ const photos = Object.fromEntries(
       <div class="room-block">
         <h3>{room.name}</h3>
 
-        {room.beds ? (
+        {room.beds && (
           <ul>
             {room.beds.map((bed) => (
               <li>
@@ -101,8 +105,6 @@ const photos = Object.fromEntries(
               </li>
             ))}
           </ul>
-        ) : (
-          <p>No sleeping arrangements in this room.</p>
         )}
       </div>
     ))}

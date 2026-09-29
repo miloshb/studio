@@ -5,6 +5,8 @@ const GardenApt: UnitConfig = {
   name: "Garden Apartment",
   title: "Sun & Sea Apartment • Separate Bedroom",
   location: "Jadranska",
+  available: new Date("2028-06-01"),
+  market: false,
 
   internal: {
     wifiPassword: "0234a12?52Jk",

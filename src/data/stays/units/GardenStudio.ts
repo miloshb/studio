@@ -5,6 +5,8 @@ const GardenStudio: UnitConfig = {
   name: "Garden Studio",
   title: "Sun & Sea Studio Apartment • Quiet Serenity",
   location: "Jadranska",
+  available: new Date("2027-06-01"),
+  market: true,
 
   internal: {
     wifiPassword: "0234a12?52Jk",

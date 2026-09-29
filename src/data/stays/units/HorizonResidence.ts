@@ -5,6 +5,8 @@ const HorizonResidence: UnitConfig = {
   name: "Horizon Residence",
   title: "Sun & Sea Wellness Residence • Private Steam Spa",
   location: "Jadranska",
+  available: new Date("2029-06-01"),
+  market: false,
 
   internal: {
     wifiPassword: "0234a12?52Jk",
@@ -28,8 +30,8 @@ const HorizonResidence: UnitConfig = {
 
   descriptions: {
     en: {
-      short: `Experience the ultimate island retreat in this luxurious 3-bedroom residence, featuring a private steam spa, oversized king bed, and radiant floor heating. Enjoy complimentary espresso at Sun & Sea Café and take advantage of the garden access for a serene escape.`,
-      long: `This luxurious residence offers the perfect blend of relaxation and comfort, featuring a private steam spa, oversized king bed, and radiant floor heating. Enjoy complimentary espresso at Sun & Sea Café and take advantage of the garden access for a serene escape. Ideal for families, wellness travelers, and those seeking a unique island experience.
+      short: `Experience the ultimate island retreat in this luxurious 3-bedroom wellness residence, featuring a private steam spa, oversized king bed, and radiant floor heating. Enjoy complimentary espresso at Sun & Sea Café and take advantage of the garden access for a serene escape.`,
+      long: `This luxurious residence offers the perfect blend of relaxation and comfort, featuring a private steam spa, oversized king bed, and radiant floor heating. Enjoy complimentary espresso at Sun & Sea Café and take advantage of the views across the Horizon looking at Split Harbor and the Velebit mountains. Ideal for families, wellness travelers, and those seeking a unique island experience.
       Private sleeping spaces
 Luxury:
 Bedroom 1
