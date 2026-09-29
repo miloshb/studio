@@ -4,6 +4,11 @@ import BaseLayout from "../../../layouts/BaseLayout.astro";
 import { units } from "../../../data/stays/units/index.ts";
 import type { UnitKey } from "../../../data/stays/units/index.ts";
 import type { UnitConfig } from "../../../data/stays/unitType.ts";
+import type { Language } from "../../../data/config.ts";
+
+interface Props {
+  lang: Language;
+}
 
 const { lang = "en" } = Astro.props;
 
@@ -48,7 +53,8 @@ a Supetar vs Irving grouping based on location: GuideKey
 
     <!-- Only display units that should be marketed -->
     {unitEntries.map(([key, unit]) => (
-      {unit.market && (
+      unit.market && (
+        <>
         <a href={`/${lang}/stays/${key}`}>
           <h2>{unit.title}</h2>
         </a>
@@ -56,7 +62,8 @@ a Supetar vs Irving grouping based on location: GuideKey
           <h3>Available from {unit.available.toLocaleDateString(lang, { year: 'numeric', month: 'long' })}</h3>
         )}
         <p>{unit.descriptions[lang].short}</p>
-      )}
+        </>
+      )
     ))}
   </section>
 

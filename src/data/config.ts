@@ -3,7 +3,8 @@ export const LANG_STORE_KEY = "preferredLanguage";
 export const TZ_STORE_KEY = "preferredTimezone";
 
 // Supported lanugages (first listed is primary/default)
-export const LANGS = ["en", "de"];
+export const LANGS = ["en", "de"] as const;
+export type Language = typeof LANGS[number];
 
 export const debug = false; // Set to true to show debug logs
 export const info = true; // Set to true to show info logs

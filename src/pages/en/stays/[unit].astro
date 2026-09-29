@@ -7,21 +7,23 @@ import { info, debug } from "../../../data/config.ts";
 
 import type { UnitKey } from "../../../data/stays/units/index.ts";
 import type { UnitConfig } from "../../../data/stays/unitType.ts";
+import type { Language } from "../../../data/config.ts";
 
 export interface Props {
   unit: UnitConfig;
+  lang: Language;
 }
 
 // Generate static paths AND pass props to the page
 export async function getStaticPaths() {
   return (Object.keys(units) as UnitKey[]).map((id) => ({
     params: { unit: id },
-    props: { unit: units[id] },
+    props: { unit: units[id], lang: "en" },
   }));
 }
 
 // Access props passed from getStaticPaths()
-const { unit } = Astro.props;
+const { unit, lang } = Astro.props;
 
   info &&console.log("INFO: Astro.props =", Astro.props);
   debug && console.log("DEBUG: Astro.props.unit =", Astro.props.unit);
@@ -45,9 +47,6 @@ const email = unit.id + "@StudioSunAndSea.com";
 // Load correct guide based on unit.location
 const guide = guides[unit.location];
 
-// Language selection (later: dynamic detect)
-const lang = "en";
-
 // Auto-load photos from public/images/stays/<UnitID>/
 const allPhotos = import.meta.glob("/public/images/stays/**/*.jpg", { eager: true });
 const photos = Object.fromEntries(
@@ -57,11 +56,10 @@ const photos = Object.fromEntries(
 );
 ---
 
-<BaseLayout lang={lang} page="stays" title={`${unit.name} – Stay at Studio Sun & Sea`}>
+<BaseLayout lang={lang} page="stays" title={unit.name}>
   <h1>{unit.name} – Stay at Studio Sun & Sea</h1>
 
   <section>
-    <h1>{unit.title}</h1>
     <p>{unit.descriptions[lang].short}</p>
   </section>
 
