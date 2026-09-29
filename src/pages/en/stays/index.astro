@@ -52,6 +52,9 @@ a Supetar vs Irving grouping based on location: GuideKey
         <a href={`/${lang}/stays/${key}`}>
           <h2>{unit.title}</h2>
         </a>
+        {unit.available && (
+          <h3>Available from {unit.available.toLocaleDateString(lang, { year: 'numeric', month: 'long' })}</h3>
+        )}
         <p>{unit.descriptions[lang].short}</p>
       )}
     ))}
