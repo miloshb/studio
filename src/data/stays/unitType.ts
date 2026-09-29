@@ -5,6 +5,7 @@
  * The following data elements are constructed automatically using the unit ID (lowercase) and naming conventions:
  * - Airbnb URL ("https://airbnb.com/h/<unitid>")
  * - Booking.com URL ("https://booking.com/h/<unitid>")
+ * - Vrbo URL ("https://vrbo.com/h/<unitid>")
  * - Email alias ("<unitid>@StudioSunAndSea.com")
  * - WiFi SSID ("<unitid>")
  *
@@ -13,19 +14,28 @@
 
 import type { UnitKey } from "./units/index.ts";
 import type { GuideKey } from "./guides/index.ts";
+import type { RateKey } from "./rates/index.ts";
 
 export interface UnitConfig {
-  id: UnitKey;                 // "JasmineSound", "OliveGrove", "SunsetSuite"
-  name: string;               // Human-readable name
+  id: UnitKey;                // "JasmineSound", "OliveGrove", "SunsetSuite"
+  name: string;               // Internal name
   title: string;              // Marketing title for listing pages
+  active?: boolean;            // Whether the unit is currently available for booking
   location: GuideKey;
 
   internal: {
     wifiPassword: string;
-    lockboxCode?: string;     // Optional lockbox code for self-check-in
+    lockboxCode?: number;     // Optional lockbox code for self-check-in
     internalNotes?: string;   // Optional internal notes for staff
     accessNotes?: string;     // Optional access notes for guests
     cleaningNotes?: string;   // Optional cleaning notes for staff
+  };
+
+  rate: {
+    rateRule: RateKey;
+    base: number; // Base rate per night
+    nightsOffset?: number, // Minimum nights offset for this unit (e.g., +2 nights for residence)
+    extraGuestFee?: number, // Override extra guest fee
   };
 
   descriptions: {
@@ -43,7 +53,12 @@ export interface UnitConfig {
     type: "studio" | "apartment" | "house";
     bedrooms: number;
     bathrooms: number;
-    maxGuests: number;
+    guestMax: number;
+    size: number; // Size in square meters
+    descriptions?: {
+      en: string;
+      de: string;
+    };
 
     kitchen: boolean;
     workspace: boolean;
@@ -52,22 +67,32 @@ export interface UnitConfig {
     smokingAllowed: boolean;
   };
 
+  address: {
+    street: string;
+    apt?: number;
+    city: string;
+    postalCode: string;
+    country: string;
+  };
+
   rooms: Array<{
     name: string;           // "Bedroom 1", "Living Room", "Studio Space"
     type: "bedroom" | "living" | "studio" | "kitchen" | "bathroom" | "dining" | "balcony";
     beds?: Array<{
       type:
-        | "king"
-        | "queen"
-        | "double"
-        | "single"
-        | "toddler"
+        | "king"    // 200×200 cm
+        | "queen"   // 180×200 cm
+        | "double"  // 160×200 cm
+        | "single"  // 100×200 cm
+        | "toddler" // 80×160 cm
         | "crib"
         | "bunk"
         | "couch"
-        | "pullout";
+        | "pullout" // 160×200 cm
+        ;
       sleeps: number;       // number of people this bed accommodates
     }>;
+    description?: string;    // Optional description of the room
   }>;
 
   directions: {
