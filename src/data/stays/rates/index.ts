@@ -2,9 +2,40 @@
 import Jadranska from "./Jadranska";
 import Jasmine from "./Jasmine";
 
-export const rates = {
+export const rateRules = {
   Jadranska,
   Jasmine,
 } as const;
 
-export type RateKey = keyof typeof rates;
+export type RateRuleKey = keyof typeof rateRules;
+
+export interface RateConfig {
+  rateRule: RateRuleKey;
+  base: number; // Base rate per night
+  nightsOffset?: number, // Minimum nights offset for this unit (e.g., +2 nights for residence)
+  extraGuestFee?: number, // Override extra guest fee
+};
+
+export const unitRates = {
+  Studio: {
+    rateRule: "Jadranska",
+    base: 125,
+  },
+  Apartment: {
+    rateRule: "Jadranska",
+    base: 175,
+  },
+  Suite: {
+    rateRule: "Jadranska",
+    base: 250,
+    extraGuestFee: 25, // Lower extra guest fee for Wellness Suite (can be waived)
+  },
+  Residence: {
+    rateRule: "Jadranska",
+    base: 400,
+    nightsOffset: 2, // Higher minimum nights (+2) for Residence
+    extraGuestFee: 25, // Lower extra guest fee for Residence (can be waived)
+  },
+} satisfies Record<string, RateConfig>;
+
+export type UnitRateKey = keyof typeof unitRates;

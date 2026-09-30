@@ -1,3 +1,4 @@
+import { unitRates } from "../rates/index.ts";
 import type { UnitConfig } from "../unitType.ts";
 
 const HorizonResidence: UnitConfig = {
@@ -13,12 +14,7 @@ const HorizonResidence: UnitConfig = {
     lockboxCode: 2214,
   },
 
-  rate: {
-    rateRule: "Jadranska",
-    base: 400,
-    nightsOffset: 2, // Higher minimum nights (+2) for Residence
-    extraGuestFee: 25, // Lower extra guest fee for Residence
-  },
+  rate: unitRates.Residence,
 
   address: {
     street: "Jadranska ulica 33",

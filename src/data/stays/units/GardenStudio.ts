@@ -1,3 +1,4 @@
+import { unitRates } from "../rates/index.ts";
 import type { UnitConfig } from "../unitType.ts";
 
 const GardenStudio: UnitConfig = {
@@ -13,10 +14,7 @@ const GardenStudio: UnitConfig = {
     lockboxCode: 2214,
   },
 
-  rate: {
-    rateRule: "Jadranska",
-    base: 125,
-  },
+  rate: unitRates.Studio,
 
   address: {
     street: "Jadranska ulica 35",

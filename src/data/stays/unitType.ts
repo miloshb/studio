@@ -15,7 +15,7 @@
 
 import type { UnitKey } from "./units/index.ts";
 import type { GuideKey } from "./guides/index.ts";
-import type { RateKey } from "./rates/index.ts";
+import type { RateConfig } from "./rates/index.ts";
 
 export interface UnitConfig {
   id: UnitKey;                // "JasmineSound", "OliveGrove", "SunsetSuite"
@@ -33,12 +33,7 @@ export interface UnitConfig {
     cleaningNotes?: string;   // Optional cleaning notes for staff
   };
 
-  rate: {
-    rateRule: RateKey;
-    base: number; // Base rate per night
-    nightsOffset?: number, // Minimum nights offset for this unit (e.g., +2 nights for residence)
-    extraGuestFee?: number, // Override extra guest fee
-  };
+  rate: RateConfig;
 
   descriptions: {
     en: {
