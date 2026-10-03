@@ -84,6 +84,15 @@ export const ROUTES = {
       de: "Buche eine Yoga-Workshop über Mindbody."
     }
   },
+  retreats: {
+    href: { en: "/en/retreats", de: "/de/retreats" },
+    nav: { en: "Retreats", de: "Retreats" },
+    label: { en: "Yoga Retreats", de: "Yoga Retreats" },
+    desc: {
+      en: "Deepen your practice with our yoga retreats.",
+      de: "Vertiefen Sie Ihre Praxis mit unseren Yoga Retreats."
+    }
+  },
   teach: {
     href: { en: "/en/teach", de: "/de/teach" },
     nav: { en: "Teach", de: "Unterrichten" },
@@ -182,6 +191,15 @@ export const ROUTES = {
       de: "Zahlungsmöglichkeiten für Kurse und Sessions."
     }
   },
+  journey: {
+    href: { en: "/en/journey", de: "/de/journey" },
+    nav: { en: "Journey", de: "Journey" },
+    label: { en: "Sun & Sea Journey", de: "Sun & Sea Journey" },
+    desc: {
+      en: "Learn about the Sun & Sea Journey.",
+      de: "Erfahre mehr über die Sun & Sea Journey."
+    }
+  },
   kunga: {
     href: { en: "/en/kunga", de: "/de/kunga" },
     nav: { en: "Kunga Yoga", de: "Kunga Yoga" },
@@ -252,7 +270,7 @@ export const ROUTES = {
 // Header Navigation
 export const HEADER_ROUTE_KEYS = {
   brand: {
-    primary: ["classes", "schedule", "private", "workshops"], // always in header navigation
+    primary: ["classes", "schedule", "private", "workshops", "retreats"], // always in header navigation
     secondary: ["teach", "about"], // 2nd set drops to footer navigation on mobile
   },
   corp: {
@@ -266,6 +284,7 @@ export const FOOTER_ROUTE_KEYS = {
     "scheduleOverview",
     "pricing",
     "payment",
+    "journey",
     "kunga",
     "imprint",
     "privacy",

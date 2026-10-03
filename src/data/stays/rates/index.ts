@@ -33,7 +33,7 @@ export const unitRates = {
   Residence: {
     rateRule: "Jadranska",
     base: 400,
-    nightsOffset: 2, // Higher minimum nights (+2) for Residence
+    nightsOffset: 2, // Higher nights (+2) for Residence
     extraGuestFee: 25, // Lower extra guest fee for Residence (can be waived)
   },
 } satisfies Record<string, RateConfig>;

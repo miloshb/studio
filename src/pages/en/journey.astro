@@ -1,0 +1,95 @@
+---
+// src/pages/en/journey.astro
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import StudioImage from "../../components/StudioImage.astro";
+const blueHeronImage = '/images/about/blue-heron-1600.webp';
+---
+
+<BaseLayout lang="en" page="journey" title="Sun & Sea Journey">
+  <h1>Make Sun & Sea Part of Your Journey</h1>
+
+  <section>
+    <h2>Sun & Sea Journey Philosophy</h2>
+    <p>Yoga is not a destination. It is the practice of being fully present along the journey.</p>
+    <p>
+      The Sun & Sea Journey is not a points program.
+      It is a reflection of the relationships that develop through hospitality, practice, retreats, and community.
+    </p>
+    <p>
+      Each level represents a deeper connection with Sun & Sea.
+      The Journey rewards participation rather than transactions, and recognizes those who choose to continue walking the path with us.
+    </p>
+    <p>
+      The greatest rewards are not discounts, but the experiences, friendships, and opportunities that emerge through continued participation.
+    </p>
+    <p>
+      Every journey begins with a single step. Whether arriving as a guest, joining a yoga class, attending a retreat, or participating in a Blue Heron Gathering, each stage of the Journey offers an opportunity to deepen one's connection with practice, place, and community.
+    </p>
+    <p>
+      Every participant progresses at their own pace.
+      Benefits are determined by the highest Journey level achieved.
+    </p>
+  </section>
+
+  <section>
+    <h2>The Sun & Sea Journey</h2>
+    <ol>
+      <li>Journey Member</li>
+      <li>Stay Guest</li>
+      <li>Yoga Member</li>
+      <li>Yoga Alumni</li>
+      <li>Blue Heron Alumni</li>
+    </ol>
+  </section>
+
+  <section>
+    <h3>1. Journey Member</h3>
+    <p>
+      Journey Members are part of the Sun & Sea community and receive news, updates, and early access to upcoming opportunities.
+    </p>
+    <p>
+      Whether you are curious about yoga, planning a future retreat, or simply exploring what Studio Sun & Sea has to offer, this is where the journey begins.
+    </p>
+
+    <h3>2. Stay Guest</h3>
+    <p>
+      Stay Guests have experienced Studio Sun & Sea through hospitality. They have stayed with us during their vacation, and trusted us with their time, and their memories.
+    </p>
+    <p>
+      Many journeys begin with a stay by the sea. For some, that stay becomes the first step toward a deeper relationship with the community.
+    </p>
+
+    <h3>3. Yoga Member</h3>
+    <p>
+      Yoga Members have chosen to incorporate practice as a regular part of their lives.
+    </p>
+    <p>
+      Through active yoga membership with Studio Sun & Sea, they contribute to the living community that forms around the studio and help create a space where others can begin their own journeys.
+    </p>
+
+    <h3>4. Yoga Alumni</h3>
+    <p>
+      Yoga Alumni have completed a retreat or advanced immersion experience with Studio Sun & Sea.
+    </p>
+    <p>
+      They have stepped away from everyday routines to invest in personal growth, reflection, and transformation. Their journey has moved beyond individual classes into a deeper experience of practice and community.
+    </p>
+  </section>
+
+  <section>
+    <h3>Blue Heron Alumni</h3>
+    <p>
+      The Blue Heron is a symbol of patience, awareness, stillness, observation, and self-reliance.
+      <StudioImage
+        src={blueHeronImage}
+        alt="Blue Heron taking flight"
+      />
+    </p>
+    <p>
+      Blue Heron Alumni represent the deepest level of participation along the Sun & Sea Journey. Membership is limited and earned through continued participation in the Sun & Sea community. Blue Heron Alumni are invited to gatherings, experiences, and opportunities that are not publicly available.
+    </p>
+    <p>
+      The Blue Heron reminds us that meaningful growth happens gradually through practice, reflection, and presence along the journey itself.
+    </p>
+  </section>
+</BaseLayout>

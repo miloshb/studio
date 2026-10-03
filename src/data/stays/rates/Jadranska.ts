@@ -1,4 +1,4 @@
-import type { RateInfo } from "../rateType.ts";
+import { journeyLevels, type RateInfo } from "../rateType.ts";
 
 /**
  * Jadranska base rate definition to be tested for Airbnb, Booking.com, and Vrbo.
@@ -10,26 +10,31 @@ import type { RateInfo } from "../rateType.ts";
  * Base season == Shoulder season (01 Apr - 14 Jun, 16 Sep - 31 Oct)
  *
  * Base rates assume:
- * - 0 cleaning fee
+ * - 0€ fees (cleaning, etc.)
+ * - 50€ extra guest (reduced to 25€ and waiveable for wellness suites and residences)
  * - 5 night minimum stay
- * - 21 night maximum stay
+ * - 24 night maximum stay
  * - selective booking model
  * - retreat-first utilization
  *
- * Seasonal rates are defined with start and end dates, and can either override the base rate or be a percentage increase/decrease of the base rate.
+ * Seasonal rates are defined with start and end dates, and can either override the base rate or be a percentage increase/decrease of the base rate. These rates are annually recurring unless a year is specified. Seasonal rates can also be used to block off dates for retreats, maintenance, or other reasons using the unavailability flag.
  */
 
 const Jadranska: RateInfo = {
   currency: "EUR",
   extraGuestFee: 50, // Can be waived for wellness suites and residences
   nightMin: 5,
-  nightMax: 21,
+  nightMax: 24, // 3 weeks + extra weekend
   discounts: {
-    maxDiscount: 20,
     prepayment: 5,
     earlyBird: 5,
-    clubMember: 5,
-    returnGuest: 5, // Increment after base price increase to provide loyalty offsets (e.g. swimming pool, market conditions, etc.)
+    journey: {
+      [journeyLevels.JourneyMember]: 5,
+      [journeyLevels.StayGuest]: 10,
+      [journeyLevels.YogaMember]: 15,
+      [journeyLevels.YogaAlumni]: 20,
+      [journeyLevels.BlueHeronAlumni]: 25,
+    },
   },
   seasons: [
     {
@@ -43,6 +48,7 @@ const Jadranska: RateInfo = {
       start: "01-11",
       end: "31-03",
       adjustmentPercent: -20,
+      nightMax: 89, // Allow longer stays in winter
     },
   ]
 };

@@ -12,7 +12,6 @@ const Jasmine: RateInfo = {
     monthly: 20,
     prepayment: 10,
     earlyBird: 10,
-    clubMember: 0,
   },
 };
 
