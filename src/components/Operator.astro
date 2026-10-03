@@ -7,9 +7,11 @@ import { getSiteConfig } from "../data/config.ts";
 interface Props {
   lang: "en" | "de";
   heading: string;
+  short?: boolean;
+  email?: string;
 }
 
-const { lang, heading } = Astro.props;
+const { lang, heading, short , email} = Astro.props;
 
 const site = getSiteConfig();
 
@@ -42,7 +44,7 @@ const companyData = {
   usaAddress1: "9215 Jasmine Lane",
   usaAddress2: "Irving, TX 75063, USA",
 
-  email: site.email,
+  email: email || site.email,
 }
 
 const localeLabel = {
@@ -76,6 +78,21 @@ const localeLabel = {
 <section class="legal-operator">
   <h2>{heading}</h2>
 
+  // Display short version of the operator information if `short` is true, otherwise display full details.
+  {short && (
+    <p>
+      {localeLabel.legal} <strong>{companyData.legal}</strong>
+      <br />
+      <strong>{localeLabel.studio}</strong><br />
+      {companyData.studioAddress1}<br />
+      {companyData.studioAddress2}
+      <br />
+      {localeLabel.represented} {companyData.director}<br />
+      E-Mail: <a href={`mailto:${companyData.email}`}>{companyData.email}</a>
+    </p>
+  )}
+
+{!short && (
   <p>
     {localeLabel.brand} <strong>{companyData.brand}</strong><br />
     {localeLabel.legal} <strong>{companyData.legal}</strong>
@@ -125,4 +142,5 @@ const localeLabel = {
   <p>
     E-Mail: <a href={`mailto:${companyData.email}`}>{companyData.email}</a>
   </p>
+)}
 </section>
