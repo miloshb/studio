@@ -1,6 +1,6 @@
-import type { RateInfo } from "../rateType.ts";
+import type { StayRateInfo } from "../rateType.ts";
 
-const Jasmine: RateInfo = {
+const Jasmine: StayRateInfo = {
   currency: "USD",
   cleaningFee: 220,
   serviceFee: 0,

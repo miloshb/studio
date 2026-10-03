@@ -36,7 +36,7 @@ const companyData = {
 
   // Future Studio Location (Supetar, Brač)
   studioAddress1: "Jadranska 35",
-  studioAddress2: "21400 Supetar, Otok Brač, Hrvatska",
+  studioAddress2: "21400 Supetar, Otok Brač, Split, Hrvatska",
 
   // Secondary Offices
   germanyAddress1: "Pfarrtannen 7",
@@ -78,14 +78,12 @@ const localeLabel = {
 <section class="legal-operator">
   <h2>{heading}</h2>
 
-  // Display short version of the operator information if `short` is true, otherwise display full details.
   {short && (
     <p>
-      {localeLabel.legal} <strong>{companyData.legal}</strong>
-      <br />
       <strong>{localeLabel.studio}</strong><br />
       {companyData.studioAddress1}<br />
       {companyData.studioAddress2}
+      <br />
       <br />
       {localeLabel.represented} {companyData.director}<br />
       E-Mail: <a href={`mailto:${companyData.email}`}>{companyData.email}</a>

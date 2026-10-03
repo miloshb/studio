@@ -301,7 +301,7 @@ export const FOOTER_ROUTE_KEYS = {
 }[site.mode];
 // Next Steps Navigation (used at bottom of select pages - see BaseLayout.astro)
 export const NEXT_STEPS_ROUTE_KEYS =
-  ["classes", "private", "workshops", "scheduleOverview", "teach", "contact"];
+  ["classes", "retreats", "private", "workshops", "scheduleOverview", "teach", "contact"];
 
 // HREFLANG MAP
 export const HREFLANG = Object.fromEntries(

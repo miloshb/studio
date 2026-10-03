@@ -1,7 +1,29 @@
 // src/data/pricing.ts
+import type { DiscountInfo } from "./config.ts";
+
 // Pricing data for service offerings
 // Note: These do NOT display on the website unless you choose to surface them.
-export const pricing = {
+export const pricing: {
+  intro: {
+    trialClass: number;
+    trialWeek: number;
+    trialTwoWeek: number;
+  };
+  membership: {
+    unlimitedMonthly: ClassInfo;
+    fiveClassMonthly: ClassInfo;
+    tenClassMonthly: ClassInfo;
+  };
+  class: {
+    single: ClassInfo;
+    tenPack: ClassInfo;
+    unlimitedMonth: ClassInfo;
+  };
+  private: ClassInfo[];
+  duet: ClassInfo[];
+  group: ClassInfo[];
+  workshop: ClassInfo[];
+} = {
   intro: {
     trialClass: 10,
     trialWeek: 55,
@@ -73,3 +95,16 @@ export const pricing = {
     { duration: 4, eur: 95, usd: 115, gbp: 85 },
   ],
 };
+
+export interface ClassInfo {
+  duration?: number; // Duration in minutes (optional, default: 60)
+  validity?: number; // Validity in months (optional, default: 18)
+  minCommit?: number; // Minimum commitment in months (optional, default: 1)
+  rollover?: boolean; // Whether unused classes roll over to the next month (optional, default: false)
+  unpublished?: boolean; // Whether this class option is unpublished (not displayed on website) (optional, default: false)
+  recurring?: boolean; // Whether this class option is recurring (optional, default: false)
+  discounts?: DiscountInfo; // Discounting rules
+  eur: number; // Price in EUR
+  usd?: number; // Price in USD (optional, default: 1.15 * EUR)
+  gbp?: number; // Price in GBP (optional, default: 0.90 * EUR)
+}
