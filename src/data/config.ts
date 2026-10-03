@@ -35,9 +35,9 @@ export const jadranska33: Address = {
 };
 
 export const jadranska35: Address = {
-  street: "Jadranska ulica 35",
+  ...jadranska33,
+  street: "Jadranska ulica 35", // Updated street number for the address
   unit: 200,
-  ...jadranska33
 };
 
 
