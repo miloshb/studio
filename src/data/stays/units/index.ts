@@ -4,7 +4,7 @@
 import JasmineSound from "./JasmineSound";
 import SunSeaCourtyardStudio from "./CourtyardStudio";
 import SunSeaGardenStudio from "./GardenStudio";
-import GardenApt from "./GardenApt";
+import SunSeaGardenApartment from "./GardenApt";
 import SunSeaSunriseSuite from "./SunriseSuite";
 import SunSeaGardenSuite from "./GardenSuite";
 import SunSeaGardenResidence from "./GardenResidence";
@@ -17,7 +17,7 @@ export const units = {
   SunSeaSunriseSuite,
   SunSeaGardenSuite,
 
-  GardenApt,
+  SunSeaGardenApartment,
 
   SunSeaCourtyardStudio,
   SunSeaGardenStudio,

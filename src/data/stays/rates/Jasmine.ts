@@ -1,6 +1,6 @@
 import type { StayRateInfo } from "../rateType.ts";
 
-const Jasmine: StayRateInfo = {
+const jasmineRate: StayRateInfo = {
   currency: "USD",
   cleaningFee: 220,
   serviceFee: 0,
@@ -15,4 +15,4 @@ const Jasmine: StayRateInfo = {
   },
 };
 
-export default Jasmine;
+export default jasmineRate;

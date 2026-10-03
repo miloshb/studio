@@ -17,6 +17,30 @@ export interface SiteConfig {
   email: string;
 };
 
+export interface Address {
+  street?: string;
+  unit?: number;
+  city: string;
+  province: string;
+  postalCode: string;
+  country: string;
+};
+
+export const jadranska33: Address = {
+  street: "Jadranska ulica 33",
+  city: "Supetar",
+  province: "Brač, Split-Dalmacija",
+  postalCode: "21400",
+  country: "Hrvatska"
+};
+
+export const jadranska35: Address = {
+  street: "Jadranska ulica 35",
+  unit: 200,
+  ...jadranska33
+};
+
+
 export function getSiteConfig(): SiteConfig {
   // Read environment variable set in Cloudflare Pages dashboard
   const mode = import.meta.env.SITE_MODE || "brand";
@@ -39,6 +63,28 @@ export function getSiteConfig(): SiteConfig {
     description: "Yoga classes, private sessions, and workshops with Studio Sun & Sea.",
     email: "privacy@studiosunandsea.com",
   };
+};
+
+/**
+ * This interface defines the structure of the products offered (studio classes, workshops, memberships, yoga retreats, retreat upgrade options, etc.).
+ * Upgrades can be used to offer additional nights or special packages for guests who want to continue or enhance their experience.
+ */
+export interface ProductInfo {
+  label?: string; // Optional label (e.g., "Single Class", "Unlimited Month", "Yoga Retreat", "Integration Stay", etc.)
+  description?: string; // Description of the product
+  note?: string; // Optional note for the product (e.g. availability, restrictions, clarifications)
+  inventory?: number; // Optional actual number of units available for sale
+  capacity?: number; // target capacity (people) for this class option (+2 for hard limit) (optional, default: unlimited)
+  duration?: number; // Duration in minutes for values >=60;  (optional, default: 60)
+  validity?: number; // Validity in months (optional, default: 18)
+  minCommit?: number; // Minimum commitment in months (optional, default: 1)
+  rollover?: boolean; // Whether unused classes roll over to the next month (optional, default: false)
+  unpublished?: boolean; // Whether this class option is unpublished (not displayed on website) (optional, default: false)
+  recurring?: boolean; // Whether this class option is recurring (optional, default: false)
+  discounts?: DiscountInfo; // Discounting rules
+  eur: number; // Price in EUR
+  usd?: number; // Price in USD (optional, default: ~1.15 * EUR)
+  gbp?: number; // Price in GBP (optional, default: ~0.90 * EUR)
 };
 
 /**
@@ -71,7 +117,7 @@ export interface JourneyInfo {
   journeyLevel: JourneyLevel; // Journey level of the guest
 };
 
-export const journeyLevels = {
+export const journeyLevel = {
   JourneyMember: "Journey Member",
   StayGuest: "Stay Guest",
   YogaMember: "Yoga Member",
@@ -79,7 +125,7 @@ export const journeyLevels = {
   BlueHeronAlumni: "Blue Heron Alumni",
 } as const;
 
-export type JourneyLevel = typeof journeyLevels[keyof typeof journeyLevels];
+export type JourneyLevel = typeof journeyLevel[keyof typeof journeyLevel];
 
 export type JourneyDiscounts = Partial<
   Record<JourneyLevel, number>

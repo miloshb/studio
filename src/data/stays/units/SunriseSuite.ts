@@ -1,27 +1,23 @@
-import { unitRates } from "../rates";
 import type { UnitConfig } from "../unitType.ts";
+import { unitRates } from "../rates";
+import { jadranska35 } from "../../config.ts";
 
 const SunSeaSunriseSuite: UnitConfig = {
   id: "SunSeaSunriseSuite",
   name: "Sunrise Wellness Suite",
   title: "Sun & Sea Wellness Suite • Private Steam Spa",
-  location: "Jadranska",
   available: new Date("2027-06-01"),
   market: true,
+  rate: unitRates.Suite,
+
+  location: {
+    guide: "jadranskaGuide",
+    address: {...jadranska35, unit: 151},
+  },
 
   internal: {
     wifiPassword: "0234a12?52Jk",
     lockboxCode: 2214,
-  },
-
-  rate: unitRates.Suite,
-
-  address: {
-    street: "Jadranska ulica 35",
-    apt: 151,
-    city: "Supetar",
-    postalCode: "21400",
-    country: "Croatia",
   },
 
   descriptions: {

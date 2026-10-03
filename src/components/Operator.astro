@@ -3,7 +3,8 @@
 /**
  * Output consistently the Owner/Operator of the business for legal content.
  */
-import { getSiteConfig } from "../data/config.ts";
+import { getSiteConfig, jadranska35 } from "../data/config.ts";
+
 interface Props {
   lang: "en" | "de";
   heading: string;
@@ -35,8 +36,8 @@ const companyData = {
   adminAddress2: "21000 Split, Hrvatska",
 
   // Future Studio Location (Supetar, Brač)
-  studioAddress1: "Jadranska 35",
-  studioAddress2: "21400 Supetar, Otok Brač, Split, Hrvatska",
+  studioAddress1: jadranska35.street + " #" + jadranska35.unit,
+  studioAddress2: jadranska35.postalCode + " " + jadranska35.city + ", " + jadranska35.province + ", " + jadranska35.country,
 
   // Secondary Offices
   germanyAddress1: "Pfarrtannen 7",

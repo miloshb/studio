@@ -1,10 +1,10 @@
 // src/data/stays/rates/index.ts
-import Jadranska from "./Jadranska";
-import Jasmine from "./Jasmine";
+import jadranskaRate from "./Jadranska";
+import jasmineRate from "./Jasmine";
 
 export const rateRules = {
-  Jadranska,
-  Jasmine,
+  jadranskaRate,
+  jasmineRate,
 } as const;
 
 export type RateRuleKey = keyof typeof rateRules;
@@ -18,20 +18,20 @@ export interface RateConfig {
 
 export const unitRates = {
   Studio: {
-    rateRule: "Jadranska",
+    rateRule: "jadranskaRate",
     base: 125,
   },
   Apartment: {
-    rateRule: "Jadranska",
+    rateRule: "jadranskaRate",
     base: 175,
   },
   Suite: {
-    rateRule: "Jadranska",
+    rateRule: "jadranskaRate",
     base: 250,
     extraGuestFee: 25, // Lower extra guest fee for Wellness Suite (can be waived)
   },
   Residence: {
-    rateRule: "Jadranska",
+    rateRule: "jadranskaRate",
     base: 400,
     nightsOffset: 2, // Higher nights (+2) for Residence
     extraGuestFee: 25, // Lower extra guest fee for Residence (can be waived)

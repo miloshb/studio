@@ -1,6 +1,6 @@
 // src/data/stays/guideType.ts
 
-export type GuideInfo = {
+export interface GuideInfo {
   restaurants: string[];
   beaches: string[];
   cafes: string[];

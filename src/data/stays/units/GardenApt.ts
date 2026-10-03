@@ -1,27 +1,23 @@
-import { unitRates } from "../rates/index.ts";
 import type { UnitConfig } from "../unitType.ts";
+import { unitRates } from "../rates";
+import { jadranska33 } from "../../config.ts";
 
 const GardenApt: UnitConfig = {
-  id: "GardenApt",
+  id: "SunSeaGardenApartment",
   name: "Garden Standard Apartment",
   title: "Sun & Sea Apartment • Separate Bedroom",
-  location: "Jadranska",
   available: new Date("2028-06-01"),
   market: false,
+  rate: unitRates.Apartment,
+
+  location: {
+    guide: "jadranskaGuide",
+    address: {...jadranska33, unit: 133},
+  },
 
   internal: {
     wifiPassword: "0234a12?52Jk",
     lockboxCode: 2214,
-  },
-
-  rate: unitRates.Apartment,
-
-  address: {
-    street: "Jadranska ulica 33",
-    apt: 132,
-    city: "Supetar",
-    postalCode: "21400",
-    country: "Croatia",
   },
 
   descriptions: {

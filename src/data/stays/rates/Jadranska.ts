@@ -1,5 +1,5 @@
 import { type StayRateInfo } from "../rateType.ts";
-import { journeyLevels } from "../../config.ts"
+import { journeyLevel } from "../../config.ts"
 
 /**
  * Jadranska base rate definition to be tested for Airbnb, Booking.com, and Vrbo.
@@ -21,7 +21,7 @@ import { journeyLevels } from "../../config.ts"
  * Seasonal rates are defined with start and end dates, and can either override the base rate or be a percentage increase/decrease of the base rate. These rates are annually recurring unless a year is specified. Seasonal rates can also be used to block off dates for retreats, maintenance, or other reasons using the unavailability flag.
  */
 
-const Jadranska: StayRateInfo = {
+const jadranskaRate: StayRateInfo = {
   currency: "EUR",
   extraGuestFee: 50, // Can be waived for wellness suites and residences
   nightMin: 5,
@@ -30,11 +30,11 @@ const Jadranska: StayRateInfo = {
     prepayment: 5,
     earlyBird: 5,
     journey: {
-      [journeyLevels.JourneyMember]: 5,
-      [journeyLevels.StayGuest]: 10,
-      [journeyLevels.YogaMember]: 15,
-      [journeyLevels.YogaAlumni]: 20,
-      [journeyLevels.BlueHeronAlumni]: 25,
+      [journeyLevel.JourneyMember]: 5,
+      [journeyLevel.StayGuest]: 10,
+      [journeyLevel.YogaMember]: 15,
+      [journeyLevel.YogaAlumni]: 20,
+      [journeyLevel.BlueHeronAlumni]: 25,
     },
   },
   seasons: [
@@ -54,4 +54,4 @@ const Jadranska: StayRateInfo = {
   ]
 };
 
-export default Jadranska;
+export default jadranskaRate;

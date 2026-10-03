@@ -45,7 +45,7 @@ const booking = {
 };
 const email = unit.id + "@StudioSunAndSea.com";
 // Load correct guide based on unit.location
-const guide = guides[unit.location];
+const guide = guides[unit.location.guide];
 
 // Auto-load photos from public/images/stays/<UnitID>/
 const allPhotos = import.meta.glob("/public/images/stays/**/*.jpg", { eager: true });

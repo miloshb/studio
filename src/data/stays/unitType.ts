@@ -13,9 +13,10 @@
  * The unit configuration is used to generate the unit's page, including descriptions, details, and guides for guests.
  */
 
-import type { UnitKey } from "./units/index.ts";
-import type { GuideKey } from "./guides/index.ts";
-import type { RateConfig } from "./rates/index.ts";
+import type { UnitKey } from "./units";
+import type { GuideKey } from "./guides";
+import type { RateConfig } from "./rates";
+import type { Address } from "../config.ts";
 
 export interface UnitConfig {
   id: UnitKey;                // "JasmineSound", "OliveGrove", "SunsetSuite"
@@ -23,7 +24,10 @@ export interface UnitConfig {
   title: string;              // Marketing title for listing pages
   market: boolean;            // Whether the unit is currently being marketed for booking
   available?: Date;           // When the unit is available for booking
-  location: GuideKey;
+  location: {
+    guide: GuideKey;
+    address?: Address;
+  };
 
   internal: {
     wifiPassword: string;
@@ -62,14 +66,6 @@ export interface UnitConfig {
     parking: boolean;
     petsAllowed: boolean;
     smokingAllowed: boolean;
-  };
-
-  address: {
-    street: string;
-    apt?: number;
-    city: string;
-    postalCode: string;
-    country: string;
   };
 
   rooms: Array<{

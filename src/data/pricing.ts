@@ -1,5 +1,64 @@
 // src/data/pricing.ts
-import type { DiscountInfo } from "./config.ts";
+import { journeyLevel } from "./config.ts"
+import type { DiscountInfo, ProductInfo } from "./config.ts";
+
+const retreatProducts: Record<string, ProductInfo> = {
+  "suite": {
+    label: "Wellness Suite",
+    description: "Upgrade to the Wellness Suite for a more spacious and luxurious stay. The Wellness Suite offers a private steam spa, soaking tub, a comfortable living area, a spacious king bedroom, and enhanced amenities for a truly relaxing experience.",
+    inventory: 1, // Only one Wellness Suite available in Phase 1 (then 3 total in Phase 2)
+    eur: 400,
+  },
+  "residence": {
+    label: "Wellness Residence",
+    description: "Upgrade to the luxurious 3-bedroom Wellness Residence with three private sleeping areas. Designed for three participants traveling together who wish to share a premium accommodation experience.",
+    note: "Per person; 3 participants required.",
+    inventory: 0, // Wellness Residence only available after Phase 2
+    eur: 400,
+  },
+  "singleOccupancy": {
+    label: "Single Occupancy",
+    description: "Upgrade shared accommodations to private occupancy for a more spacious and private retreat experience.",
+    note: "Subject to accommodation availability and retreat occupancy.",
+    capacity: 4, // Soft limit (additional upgrades may require spillover lodging)
+    inventory: 8, // Actual number of stays units available for upgrades if only 8 participants are attending the retreat
+    eur: 800,
+  },
+  "arrivalStay": {
+    label: "Arrival Stay",
+    description: "Arrive early, settle into the island rhythm, and begin your retreat fully relaxed. Arrival Stay participants enjoy unlimited access to regular studio classes, beach walks, and unstructured space before beginning the retreat.",
+    note: "Per person per night (no retreat programming)",
+    eur: 100,
+  },
+  "integrationStay": {
+    label: "Integration Stay",
+    description: "Continue your time on Brač with additional nights after the retreat concludes. Integration Stay participants enjoy unlimited access to regular studio classes, open practice time, beach walks, journaling, reflection, and unstructured space to integrate their experience before returning home.",
+    note: "Per person per night",
+    eur: 100,
+  },
+  "earlyDeparture": {
+    label: "Early Departure",
+    description: "Provides schedule flexibility if attendance for the full week is not feasible.",
+    note: "Available for participants unable to commit to the full retreat week.",
+    eur: -100,
+  },
+  "advancedImmersion": {
+    label: "Advanced Immersion",
+    description: "An intensive 5-day small-group experience intended for dedicated practitioners who wish to go deeper into the practice. Designed as a standalone retreat or as an extension to the 7-day retreat, Advanced Immersion is a more focused and intimate experience with additional time for practice, reflection, and personalized guidance.",
+    note: "Capped at 8 students",
+    duration: 5,
+    capacity: 6, // Target participants 4-6
+    inventory: 8, // Capped at 8 students
+    eur: 1500, // 25% discount for those attending the 7-day retreat
+  },
+  "coreRetreat": {
+    label: "7-Day Yoga Retreat",
+    duration: 7,
+    capacity: 14, // Target participants 12-14
+    inventory: 0, // Capped at 16 participants (set to 0 here to hide from upgrade options)
+    eur: 2000,
+  },
+};
 
 // Pricing data for service offerings
 // Note: These do NOT display on the website unless you choose to surface them.
@@ -10,19 +69,24 @@ export const pricing: {
     trialTwoWeek: number;
   };
   membership: {
-    unlimitedMonthly: ClassInfo;
-    fiveClassMonthly: ClassInfo;
-    tenClassMonthly: ClassInfo;
+    unlimitedMonthly: ProductInfo;
+    fiveClassMonthly: ProductInfo;
+    tenClassMonthly: ProductInfo;
   };
   class: {
-    single: ClassInfo;
-    tenPack: ClassInfo;
-    unlimitedMonth: ClassInfo;
+    single: ProductInfo;
+    tenPack: ProductInfo;
+    unlimitedMonth: ProductInfo;
   };
-  private: ClassInfo[];
-  duet: ClassInfo[];
-  group: ClassInfo[];
-  workshop: ClassInfo[];
+  private: ProductInfo[];
+  duet: ProductInfo[];
+  group: ProductInfo[];
+  workshop: ProductInfo[];
+  retreats: {
+    retreat: ProductInfo[];
+    discounts: DiscountInfo;
+    upgrades: Record<string, ProductInfo>;
+  }
 } = {
   intro: {
     trialClass: 10,
@@ -94,17 +158,30 @@ export const pricing: {
     { duration: 3, eur: 75, usd: 95, gbp: 70 },
     { duration: 4, eur: 95, usd: 115, gbp: 85 },
   ],
-};
 
-export interface ClassInfo {
-  duration?: number; // Duration in minutes (optional, default: 60)
-  validity?: number; // Validity in months (optional, default: 18)
-  minCommit?: number; // Minimum commitment in months (optional, default: 1)
-  rollover?: boolean; // Whether unused classes roll over to the next month (optional, default: false)
-  unpublished?: boolean; // Whether this class option is unpublished (not displayed on website) (optional, default: false)
-  recurring?: boolean; // Whether this class option is recurring (optional, default: false)
-  discounts?: DiscountInfo; // Discounting rules
-  eur: number; // Price in EUR
-  usd?: number; // Price in USD (optional, default: 1.15 * EUR)
-  gbp?: number; // Price in GBP (optional, default: 0.90 * EUR)
-}
+  // Retreats
+  retreats: {
+    retreat: [
+      {
+        ...retreatProducts["coreRetreat"],
+        inventory: 16, // Capped at 16 participants
+      },
+      {
+        ...retreatProducts["advancedImmersion"],
+        eur: 2000,
+      },
+    ],
+    discounts: {
+      prepayment: 5,
+      earlyBird: 5,
+      journey: {
+        [journeyLevel.JourneyMember]: 0,
+        [journeyLevel.StayGuest]: 5,
+        [journeyLevel.YogaMember]: 10,
+        [journeyLevel.YogaAlumni]: 15,
+        [journeyLevel.BlueHeronAlumni]: 20,
+      },
+    },
+    upgrades: retreatProducts,
+  },
+};

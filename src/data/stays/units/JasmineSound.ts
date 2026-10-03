@@ -4,25 +4,27 @@ const JasmineSound: UnitConfig = {
   id: "JasmineSound",
   name: "Jasmine Sound",
   title: "Convenient 4BR house w/ balcony view",
-  location: "Jasmine",
   available: new Date("2026-09-01"),
   market: false,
+  rate: {
+    rateRule: "jasmineRate",
+    base: 188,
+  },
+
+  location: {
+    guide: "jasmineGuide",
+    address: {
+      street: "9215 Jasmine Lane",
+      city: "Irving",
+      province: "TX",
+      postalCode: "75063",
+      country: "USA",
+    },
+  },
 
   internal: {
     wifiPassword: "0234a12?52Jk",
     lockboxCode: 2214,
-  },
-
-  rate: {
-    rateRule: "Jasmine",
-    base: 188,
-  },
-
-  address: {
-    street: "9215 Jasmine Lane",
-    city: "Irving",
-    postalCode: "75063",
-    country: "USA",
   },
 
   descriptions: {
