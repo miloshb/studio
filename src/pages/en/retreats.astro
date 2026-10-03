@@ -1,0 +1,95 @@
+---
+// src/pages/en/retreats.astro
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import StudioImage from "../../components/StudioImage.astro";
+import GalleryRandom from "../../components/GalleryRandom.astro";
+
+const retreatImage = "/images/about/retreat-1600.webp";
+
+const imagePool = [
+  { src: "/images/teachers/milos-natarajasana-400.webp", alt: "Naṭarājāsana" },
+  { src: "/images/classes/yoga-utthita-asva-sanchalanasana-400.webp", alt: "Utthita Aśva Sanchalanāsana" },
+  { src: "/images/classes/yoga-eka-pada-adho-mukha-svanasana-400.webp", alt: "Eka Pāda Adho Mukha Śvānāsana" },
+  { src: "/images/classes/yoga-class-sukhasana-nyana-mudra-400.webp", alt: "Sukhasana Nyāna Mudrā" }
+];
+---
+
+<BaseLayout lang="en" page="retreats" title="Yoga Retreats">
+  <h1>Yoga Retreats</h1>
+
+  <GalleryRandom
+    imagePool={imagePool}
+    thumbnail="lg"
+    class="thumbnail-right"
+  />
+
+  <section id="retreat">
+    <h2>Studio Sun & Sea 7-Day Yoga Retreat</h2>
+    <p>
+      A week of practice, reflection, community, and renewal on the Dalmatian island of Brač.
+    </p>
+    <p>
+      The Studio Sun & Sea Yoga Retreat is designed to create space away from the pace and distractions of everyday life. Through daily yoga, guided practice, time for rest, community meals, and personal reflection, participants are invited to reconnect with themselves and deepen their relationship with practice.
+    </p>
+    <p>
+      Retreats begin on Sunday and conclude the following Saturday. Optional arrival on Saturday is included to allow for international travel and a relaxed start to the week.
+    </p>
+    <p>
+      Shared accommodation and daily breakfast is included. Optional upgrades such as Wellness Suites and single occupancy can be added based on availability.
+    </p>
+  </section>
+
+  <section id="immersion">
+    <h2>Studio Sun & Sea Advanced Immersion</h2>
+    <p>
+      A small-group experience intended for dedicated practitioners who wish to go deeper.
+    </p>
+    <p>
+      Advanced Immersions focus on sustained practice, individual attention, thoughtful discussion, and integration. Group size is intentionally limited (six to eight participants) to preserve an intimate learning environment.
+    </p>
+    <p>
+      Participation requires an application and may not be appropriate for every student or stage of practice.
+    </p>
+    <p>
+      The Advanced Immersion may be attended as a standalone offering or, when available, as a continuation of the Studio Sun & Sea 7-Day Yoga Retreat. Retreat participants receive priority consideration and may be eligible for continuation pricing when extending their experience directly into the Immersion experience.
+    </p>
+    <p>
+      Current and former retreat participants receive priority consideration when space is limited.
+    </p>
+  </section>
+
+  <section>
+    <h2>Accommodation & Optional Upgrades</h2>
+    <p>
+      Retreat accommodations prioritize Stays @ Studio Sun & Sea and also incorporates carefully selected accommodations within walking distance of the studio.
+    </p>
+    <p>
+      Wellness Suite upgrades, single occupancy upgrades, extended stay, and early arrival options may be available depending on retreat capacity and season.
+    </p>
+    <p>All upgrades must be reserved in advance.</p>
+  </section>
+
+  <section>
+    <h2>The Sun & Sea Approach</h2>
+    <p>
+      We believe yoga is not a destination. It is the practice of being fully present along the journey.
+    </p>
+    <p>
+      Our retreats are intentionally small, relationship-focused, and community-oriented. We value depth over scale, connection over transaction, and long-term growth over short-term intensity.
+    </p>
+    <p>
+      Many participants return as Yoga Alumni and continue their relationship with the Sun & Sea community through future retreats, workshops, classes, holidays, and gatherings.
+    </p>
+  </section>
+
+  <section class="next-steps">
+    <h2>Request Information</h2>
+    <p>
+      Retreat dates, pricing, accommodation options, and availability vary throughout the year.
+    </p>
+    <p>
+      If you would like to learn more about an upcoming retreat or Advanced Immersion, we'd love to hear from you.
+    </p>
+    <p><a href="/en/contact/?interest=retreats">Request Retreat Information</a></p>
+  </section>
+</BaseLayout>
