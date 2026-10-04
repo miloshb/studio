@@ -17,7 +17,7 @@ const scheduledClasses = [
   <h1>Pricing</h1>
 
   <!-- Scheduled Classes -->
-  <section>
+  <section id="classes">
     <h2>Scheduled Classes</h2>
     <PriceTable rows={scheduledClasses} rowLabelOverride descLabel="Option" />
     <p>
@@ -35,7 +35,7 @@ const scheduledClasses = [
   </section>
 
   <!-- Class Pack -->
-  <section>
+  <section id="class-pack">
     <h2>Class Pack</h2>
     <table>
       <thead>
@@ -56,7 +56,7 @@ const scheduledClasses = [
   </section>
 
   <!-- Private One-to-One Sessions -->
-  <section>
+  <section id="private">
     <h2>Private Sessions — One-to-One</h2>
     <PriceTable rows={pricing.private} />
     <p>
@@ -66,7 +66,7 @@ const scheduledClasses = [
   </section>
 
   <!-- Duet Sessions -->
-  <section>
+  <section id="duet">
     <h2>Duet Private Sessions — Paired Practice</h2>
     <PriceTable rows={pricing.duet} priceLabel="Price (for 2 students)"/>
     <p>
@@ -76,7 +76,7 @@ const scheduledClasses = [
   </section>
 
   <!-- Small-Group Sessions -->
-  <section>
+  <section id="group">
     <h2>Small-Group Private Sessions — Up to 4 Students</h2>
     <PriceTable rows={pricing.group} priceLabel="Price (up to 4 students)"/>
     <p>
@@ -86,7 +86,7 @@ const scheduledClasses = [
   </section>
 
   <!-- Workshops -->
-  <section>
+  <section id="workshops">
     <h2>Workshops</h2>
     <PriceTable rows={pricing.workshop} />
     <p>
