@@ -103,7 +103,7 @@ const scheduledClasses = [
     </p>
     <PriceTable rows={pricing.retreats.retreat} rowLabelOverride descLabel="Retreat"/>
     <h3>Available Retreat Upgrades</h3>
-    <PriceTable rows={pricing.retreats.upgrades} rowLabelOverride descLabel="Upgrade"/>
+    <PriceTable rows={Object.values(pricing.retreats.upgrades)} rowLabelOverride descLabel="Upgrade"/>
     <p>
       Learn more about how to expand and enhance your journey with one of our
       <a href="/en/retreats">Yoga Retreats</a>.
