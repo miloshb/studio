@@ -2,7 +2,7 @@
 import { journeyLevel } from "./config.ts"
 import type { DiscountInfo, ProductInfo } from "./config.ts";
 
-const retreatProducts: Record<string, ProductInfo> = {
+const products: Record<string, ProductInfo> = {
   "suite": {
     label: "Wellness Suite",
     description: "Upgrade to the Wellness Suite for a more spacious and luxurious stay. The Wellness Suite offers a private steam spa, soaking tub, a comfortable living area, a spacious king bedroom, and enhanced amenities for a truly relaxing experience.",
@@ -60,6 +60,8 @@ const retreatProducts: Record<string, ProductInfo> = {
   },
 };
 
+export type ProductKey = keyof typeof products;
+
 // Pricing data for service offerings
 // Note: These do NOT display on the website unless you choose to surface them.
 export const pricing: {
@@ -85,7 +87,7 @@ export const pricing: {
   retreats: {
     retreat: ProductInfo[];
     discounts: DiscountInfo;
-    upgrades: Record<string, ProductInfo>;
+    upgrades: Record<ProductKey, ProductInfo>;
   }
 } = {
   intro: {
@@ -163,11 +165,11 @@ export const pricing: {
   retreats: {
     retreat: [
       {
-        ...retreatProducts["coreRetreat"],
+        ...products.coreRetreat,
         inventory: 16, // Capped at 16 participants
       },
       {
-        ...retreatProducts["advancedImmersion"],
+        ...products.advancedImmersion,
         eur: 2000,
       },
     ],
@@ -182,6 +184,6 @@ export const pricing: {
         [journeyLevel.BlueHeronAlumni]: 20,
       },
     },
-    upgrades: retreatProducts,
+    upgrades: products,
   },
 };
