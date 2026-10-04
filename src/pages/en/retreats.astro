@@ -3,6 +3,7 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import StudioImage from "../../components/StudioImage.astro";
 import GalleryRandom from "../../components/GalleryRandom.astro";
+import { pricing } from "../../data/pricing";
 
 const retreatImage = "/images/about/retreat-1600.webp";
 
@@ -83,6 +84,14 @@ const imagePool = [
     <p>
       Wellness Suite upgrades, single occupancy upgrades, extended stay, and early arrival options may be available based on retreat capacity and season.
     </p>
+    {pricing.retreats.upgrades.map(([key, product]) => (
+      product.inventory && (
+        <>
+        <h3>{product.label}</h3>
+        <p>{product.description}</p>
+        </>
+      )
+    ))}
     <h3>Integration Stay</h3>
     <p>
       Continue your time on Brač with additional nights after the retreat concludes. Integration Stay participants enjoy unlimited access to regular studio classes, open practice time, beach walks, journaling, reflection, and unstructured space to integrate their experience before returning home.

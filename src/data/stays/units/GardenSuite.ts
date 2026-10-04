@@ -20,7 +20,7 @@ const GardenSuite: UnitConfig = {
     lockboxCode: 2214,
   },
 
-  descriptions: {
+  description: {
     en: {
       short: "Wake to the morning sun over Brač and begin your day with a complimentary espresso from Sun & Sea Café.  This wellness-focused suite combines a private steam spa, soaking tub, radiant floor heating, and a spacious king bedroom to create a relaxing retreat just minutes from the waterfront.",
       long: `
@@ -46,7 +46,7 @@ const GardenSuite: UnitConfig = {
     parking: true,
     petsAllowed: false,
     smokingAllowed: false,
-    descriptions: {
+    description: {
       en: `The apartment offers approximately 50 m² of thoughtfully designed living space.
         Features include:
         - Oversized 200 × 200 cm king bed

@@ -39,7 +39,7 @@ export interface UnitConfig {
 
   rate: RateConfig;
 
-  descriptions: {
+  description: {
     en: {
       short: string;
       long: string;
@@ -56,7 +56,7 @@ export interface UnitConfig {
     bathrooms: number;
     guestMax: number;
     size: number; // Size in square meters
-    descriptions?: {
+    description?: {
       en: string;
       de: string;
     };

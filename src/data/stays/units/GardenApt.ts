@@ -20,7 +20,7 @@ const GardenApt: UnitConfig = {
     lockboxCode: 2214,
   },
 
-  descriptions: {
+  description: {
     en: {
       short: "Lorem ipsum dolorem set amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
       long: "",

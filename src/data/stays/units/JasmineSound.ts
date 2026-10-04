@@ -27,7 +27,7 @@ const JasmineSound: UnitConfig = {
     lockboxCode: 2214,
   },
 
-  descriptions: {
+  description: {
     en: {
       short: "Enjoy the simple things in life with this comfortable and spacious house centrally located in the DFW metroplex close to The Sound and DFW Airport. A quick drive to (easy access to multiple highways: I635, I35E, 114, 121, 161/PGBT) Las Colinas, Addison, Dallas Uptown, Park Cities, Plano Legacy, Grapevine, Richardson, Love Field Airport, etc.",
       long: "This beautiful one-and-a-half story Valley Ranch home is light and bright, featuring 4 bedrooms and 3 baths and soaring ceilings. Recently upgraded kitchen opens to family room, and formal living. Game room, study area, balcony, and one bed/one bath are located upstairs. The home is located in a quiet neighborhood with easy access to highways, shopping, and dining. Enjoy the nearby walking trails and parks, or take a short drive to the lake for some outdoor fun.",
