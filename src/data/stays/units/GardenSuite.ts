@@ -61,7 +61,7 @@ const GardenSuite: UnitConfig = {
         - High-speed Wi-Fi
         - Smart TV
         - Comfortable sofa bed (160 × 200 cm)
-        - Comfortably accommodates up to 4 guests.
+        - Comfortably sleeps up to 4 guests.
       `,
       de: ``,
     },

@@ -123,6 +123,21 @@ const geplanteKurse = [
     </p>
   </section>
 
+  <!-- Retreats -->
+  <section>
+    <h2>Yoga Retreats</h2>
+    <p>
+      Der Yoga Retreat von Studio Sun & Sea ist darauf ausgelegt, Raum fernab des Alltags zu schaffen. Durch tägliche Yoga-Praxis, geführte Übungen, Zeit für Ruhe, gemeinschaftliche Mahlzeiten und persönliche Reflexion werden die Teilnehmer eingeladen, sich wieder mit sich selbst zu verbinden und ihre Beziehung zur Praxis zu vertiefen.
+    </p>
+    <PriceTable rows={pricing.retreats.retreat} rowLabelOverride descLabel="Retreat"/>
+    <PriceTable rows={Object.values(pricing.retreats.upgrades).filter((product) => (product.upgrade && product.category === "stay"))} rowLabelOverride descLabel="Stay Enhancement"/>
+    <PriceTable rows={Object.values(pricing.retreats.upgrades).filter((product) => (product.upgrade && product.category === "retreat"))} rowLabelOverride descLabel="Retreat Extension"/>
+    <p>
+      Mehr über den Retreat Programm, Yoga-Praxis, und Weg findest du auf der Seite
+      <a href="/de/retreats">Yoga Retreats</a>.
+    </p>
+  </section>
+
   <!-- Payment Options -->
   <section>
     <h2>Zahlungsoptionen</h2>

@@ -83,7 +83,7 @@ export interface UnitConfig {
         | "couch"
         | "pullout" // 160×200 cm
         ;
-      sleeps: number;       // number of people this bed accommodates
+      sleeps: number;       // number of people supported by this bed
     }>;
     description?: string;    // Optional description of the room
   }>;

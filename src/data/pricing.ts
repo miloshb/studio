@@ -18,7 +18,7 @@ const products: Record<string, ProductInfo> = {
   "residence": {
     label: "Wellness Residence",
     category: "stay",
-    description: "Upgrade to the luxurious 3-bedroom Wellness Residence with three private sleeping areas. Designed for three participants traveling together who wish to share a premium accommodation experience.",
+    description: "Upgrade to the luxurious 3-bedroom Wellness Residence with three private sleeping areas. Designed for three participants traveling together who wish to share a premium stay experience.",
     note: "Per person; 3 participants required.",
     inventory: 2, // Wellness Residences only in Jadranska 33
     eur: 400,
@@ -31,9 +31,9 @@ const products: Record<string, ProductInfo> = {
   "singleOccupancy": {
     label: "Single Occupancy",
     category: "stay",
-    description: "Upgrade shared accommodations to private occupancy for a more spacious and private retreat experience.",
-    note: "Subject to accommodation availability and retreat occupancy.",
-    capacity: 4, // Soft limit (additional upgrades may require spillover lodging)
+    description: "Enhance the shared stay by upgrading to private occupancy for a more spacious and private retreat experience.",
+    note: "Subject to availability and retreat occupancy.",
+    capacity: 4, // Soft limit (additional upgrades may require spillover bookings)
     inventory: 8, // Actual number of stays units available for upgrades if only 8 participants are attending the retreat
     eur: 800,
     usd: 1000,
@@ -89,7 +89,7 @@ const products: Record<string, ProductInfo> = {
     eur: 1500, // 25% discount for those attending the 7-day retreat
     usd: 1800,
     gbp: 1350,
-    billingUnit: "5 days yoga + 6 days stay",
+    billingUnit: "5-day program + 6-day stay · small-group intensive",
     standalone: true,
     upgrade: true,
   },
@@ -102,7 +102,7 @@ const products: Record<string, ProductInfo> = {
     eur: 2000,
     usd: 2400,
     gbp: 1800,
-    billingUnit: "7 days yoga + 8 days stay",
+    billingUnit: "7-day program + 8-day stay",
     standalone: true,
     upgrade: false,
   },
