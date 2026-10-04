@@ -71,6 +71,7 @@ export function getSiteConfig(): SiteConfig {
  */
 export interface ProductInfo {
   label?: string; // Optional label (e.g., "Single Class", "Unlimited Month", "Yoga Retreat", "Integration Stay", etc.)
+  category?: "class" | "retreat" | "stay"; // Optional category for the product
   description?: string; // Description of the product
   note?: string; // Optional note for the product (e.g. availability, restrictions, clarifications)
   inventory?: number; // Optional actual number of units available for sale

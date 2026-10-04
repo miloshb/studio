@@ -5,6 +5,7 @@ import type { DiscountInfo, ProductInfo } from "./config.ts";
 const products: Record<string, ProductInfo> = {
   "suite": {
     label: "Wellness Suite",
+    category: "stay",
     description: "Upgrade to the Wellness Suite for a more spacious and luxurious stay. The Wellness Suite offers a private steam spa, soaking tub, a comfortable living area, a spacious king bedroom, and enhanced amenities for a truly relaxing experience.",
     inventory: 1, // Only one Wellness Suite available in Phase 1 (then 3 total in Phase 2)
     eur: 400,
@@ -16,6 +17,7 @@ const products: Record<string, ProductInfo> = {
   },
   "residence": {
     label: "Wellness Residence",
+    category: "stay",
     description: "Upgrade to the luxurious 3-bedroom Wellness Residence with three private sleeping areas. Designed for three participants traveling together who wish to share a premium accommodation experience.",
     note: "Per person; 3 participants required.",
     inventory: 2, // Wellness Residences only in Jadranska 33
@@ -28,6 +30,7 @@ const products: Record<string, ProductInfo> = {
   },
   "singleOccupancy": {
     label: "Single Occupancy",
+    category: "stay",
     description: "Upgrade shared accommodations to private occupancy for a more spacious and private retreat experience.",
     note: "Subject to accommodation availability and retreat occupancy.",
     capacity: 4, // Soft limit (additional upgrades may require spillover lodging)
@@ -41,6 +44,7 @@ const products: Record<string, ProductInfo> = {
   },
   "arrivalStay": {
     label: "Arrival Stay",
+    category: "retreat",
     description: "Arrive early, settle into the island rhythm, and begin your retreat fully relaxed. Arrival Stay participants enjoy unlimited access to regular studio classes, beach walks, and unstructured space before beginning the retreat.",
     note: "Per person per night (no retreat programming)",
     eur: 100,
@@ -52,6 +56,7 @@ const products: Record<string, ProductInfo> = {
   },
   "integrationStay": {
     label: "Integration Stay",
+    category: "retreat",
     description: "Continue your time on Brač with additional nights after the retreat concludes. Integration Stay participants enjoy unlimited access to regular studio classes, open practice time, beach walks, journaling, reflection, and unstructured space to integrate their experience before returning home.",
     note: "Per person per night",
     eur: 100,
@@ -63,6 +68,7 @@ const products: Record<string, ProductInfo> = {
   },
   "earlyDeparture": {
     label: "Early Departure",
+    category: "retreat",
     description: "Provides schedule flexibility if attendance for the full week is not feasible.",
     note: "Available for participants unable to commit to the full retreat week.",
     eur: -100,
@@ -74,6 +80,7 @@ const products: Record<string, ProductInfo> = {
   },
   "advancedImmersion": {
     label: "Advanced Immersion",
+    category: "retreat",
     description: "An intensive 5-day small-group experience intended for dedicated practitioners who wish to go deeper into the practice. Designed as a standalone retreat or as an extension to the 7-day retreat, Advanced Immersion is a more focused and intimate experience with additional time for practice, reflection, and personalized guidance.",
     note: "Capped at 8 students",
     duration: 5,
@@ -88,6 +95,7 @@ const products: Record<string, ProductInfo> = {
   },
   "coreRetreat": {
     label: "7-Day Yoga Retreat",
+    category: "retreat",
     duration: 7,
     capacity: 14, // Target participants 12-14
     inventory: 16, // Capped at 16 participants
