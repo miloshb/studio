@@ -77,20 +77,24 @@ const imagePool = [
   </section>
 
   <section>
-    <h2>Accommodations & Optional Upgrades</h2>
+    <h2>Accommodation Upgrades and Journey Options</h2>
     <p>
       Retreat accommodations prioritize Stays @ Studio Sun & Sea and also incorporate, as needed, carefully selected properties within walking distance of the studio.
     </p>
-    <p>
-      Wellness Suite upgrades, single occupancy upgrades, extended stay, and early arrival options may be available based on retreat capacity and season.
-    </p>
-    {Object.values(pricing.retreats.upgrades).filter((product) => product.upgrade).map((product) => (
+    {Object.values(pricing.retreats.upgrades).filter((product) => (product.upgrade && product.category === "stay")).map((product) => (
       <>
       <h3>{product.label}</h3>
       <p>{product.description}</p>
       </>
     ))}
-    <p>All upgrades subject to availability and must be reserved in advance.</p>
+    <h3>Journey Options</h3>
+    {Object.values(pricing.retreats.upgrades).filter((product) => (product.upgrade && product.category === "retreat")).map((product) => (
+      <>
+      <h4>{product.label}</h4>
+      <p>{product.description}</p>
+      </>
+    ))}
+    <p>All upgrades subject to availability based on retreat capacity and must be reserved in advance.</p>
   </section>
 
   <section>
