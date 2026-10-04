@@ -89,6 +89,7 @@ const products: Record<string, ProductInfo> = {
     eur: 1500, // 25% discount for those attending the 7-day retreat
     usd: 1800,
     gbp: 1350,
+    billingUnit: "5 days yoga + 6 days stay",
     standalone: true,
     upgrade: true,
   },
@@ -101,6 +102,7 @@ const products: Record<string, ProductInfo> = {
     eur: 2000,
     usd: 2400,
     gbp: 1800,
+    billingUnit: "7 days yoga + 8 days stay",
     standalone: true,
     upgrade: false,
   },
