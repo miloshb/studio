@@ -8,6 +8,8 @@ const products: Record<string, ProductInfo> = {
     description: "Upgrade to the Wellness Suite for a more spacious and luxurious stay. The Wellness Suite offers a private steam spa, soaking tub, a comfortable living area, a spacious king bedroom, and enhanced amenities for a truly relaxing experience.",
     inventory: 1, // Only one Wellness Suite available in Phase 1 (then 3 total in Phase 2)
     eur: 400,
+    standalone: false,
+    upgrade: true,
   },
   "residence": {
     label: "Wellness Residence",
@@ -15,6 +17,8 @@ const products: Record<string, ProductInfo> = {
     note: "Per person; 3 participants required.",
     inventory: 0, // Wellness Residence only available after Phase 2
     eur: 400,
+    standalone: false,
+    upgrade: true,
   },
   "singleOccupancy": {
     label: "Single Occupancy",
@@ -23,40 +27,52 @@ const products: Record<string, ProductInfo> = {
     capacity: 4, // Soft limit (additional upgrades may require spillover lodging)
     inventory: 8, // Actual number of stays units available for upgrades if only 8 participants are attending the retreat
     eur: 800,
+    standalone: false,
+    upgrade: true,
   },
   "arrivalStay": {
     label: "Arrival Stay",
     description: "Arrive early, settle into the island rhythm, and begin your retreat fully relaxed. Arrival Stay participants enjoy unlimited access to regular studio classes, beach walks, and unstructured space before beginning the retreat.",
     note: "Per person per night (no retreat programming)",
     eur: 100,
+    standalone: false,
+    upgrade: true,
   },
   "integrationStay": {
     label: "Integration Stay",
     description: "Continue your time on Brač with additional nights after the retreat concludes. Integration Stay participants enjoy unlimited access to regular studio classes, open practice time, beach walks, journaling, reflection, and unstructured space to integrate their experience before returning home.",
     note: "Per person per night",
     eur: 100,
+    standalone: false,
+    upgrade: true,
   },
   "earlyDeparture": {
     label: "Early Departure",
     description: "Provides schedule flexibility if attendance for the full week is not feasible.",
     note: "Available for participants unable to commit to the full retreat week.",
     eur: -100,
+    standalone: false,
+    upgrade: true,
   },
   "advancedImmersion": {
-    label: "Advanced Immersion",
+    label: "Advanced Immersion Extension",
     description: "An intensive 5-day small-group experience intended for dedicated practitioners who wish to go deeper into the practice. Designed as a standalone retreat or as an extension to the 7-day retreat, Advanced Immersion is a more focused and intimate experience with additional time for practice, reflection, and personalized guidance.",
     note: "Capped at 8 students",
     duration: 5,
     capacity: 6, // Target participants 4-6
     inventory: 8, // Capped at 8 students
     eur: 1500, // 25% discount for those attending the 7-day retreat
+    standalone: true,
+    upgrade: true,
   },
   "coreRetreat": {
     label: "7-Day Yoga Retreat",
     duration: 7,
     capacity: 14, // Target participants 12-14
-    inventory: 0, // Capped at 16 participants (set to 0 here to hide from upgrade options)
+    inventory: 16, // Capped at 16 participants
     eur: 2000,
+    standalone: true,
+    upgrade: false,
   },
 };
 
@@ -164,12 +180,10 @@ export const pricing: {
   // Retreats
   retreats: {
     retreat: [
-      {
-        ...products.coreRetreat,
-        inventory: 16, // Capped at 16 participants
-      },
+      products.coreRetreat,
       {
         ...products.advancedImmersion,
+        label: "Advanced Immersion",
         eur: 2000,
       },
     ],

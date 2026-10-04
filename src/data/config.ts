@@ -82,6 +82,8 @@ export interface ProductInfo {
   unpublished?: boolean; // Whether this class option is unpublished (not displayed on website) (optional, default: false)
   recurring?: boolean; // Whether this class option is recurring (optional, default: false)
   discounts?: DiscountInfo; // Discounting rules
+  standalone?: boolean; // Whether this product can be purchased as a standalone product (optional, default: false)
+  upgrade?: boolean; // Whether this product is an upgrade option for a retreat (optional, default: false)
   eur: number; // Price in EUR
   usd?: number; // Price in USD (optional, default: ~1.15 * EUR)
   gbp?: number; // Price in GBP (optional, default: ~0.90 * EUR)

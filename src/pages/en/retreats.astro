@@ -84,13 +84,11 @@ const imagePool = [
     <p>
       Wellness Suite upgrades, single occupancy upgrades, extended stay, and early arrival options may be available based on retreat capacity and season.
     </p>
-    {Object.values(pricing.retreats.upgrades).map((product) => (
-      product.inventory && (
-        <>
-        <h3>{product.label}</h3>
-        <p>{product.description}</p>
-        </>
-      )
+    {Object.values(pricing.retreats.upgrades).filter((product) => product.upgrade).map((product) => (
+      <>
+      <h3>{product.label}</h3>
+      <p>{product.description}</p>
+      </>
     ))}
     <h3>Integration Stay</h3>
     <p>

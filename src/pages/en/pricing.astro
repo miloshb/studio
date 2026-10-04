@@ -102,8 +102,7 @@ const scheduledClasses = [
       The Studio Sun & Sea Yoga Retreat is designed to create space away from the pace and distractions of everyday life. Through daily yoga, guided practice, time for rest, community meals, and personal reflection, participants are invited to reconnect with themselves and deepen their relationship with practice.
     </p>
     <PriceTable rows={pricing.retreats.retreat} rowLabelOverride descLabel="Retreat"/>
-    <h3>Available Retreat Upgrades</h3>
-    <PriceTable rows={Object.values(pricing.retreats.upgrades)} rowLabelOverride descLabel="Upgrade"/>
+    <PriceTable rows={Object.values(pricing.retreats.upgrades).filter((product) => product.upgrade)} rowLabelOverride descLabel="Retreat Upgrade"/>
     <p>
       Learn more about how to expand and enhance your journey with one of our
       <a href="/en/retreats">Yoga Retreats</a>.

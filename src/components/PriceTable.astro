@@ -41,7 +41,10 @@ function formatDuration(value: number, locale: string) {
         <tr>
           <td>{rowLabel}</td>
           <PriceCell prices={row} locale={currentLocale} />
-        </tr>
+          {row.note && (
+            <td>{row.note}</td>
+          )}
+      </tr>
       );
     })}
   </tbody>
