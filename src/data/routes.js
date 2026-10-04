@@ -211,8 +211,8 @@ export const ROUTES = {
   },
   stays: {
     href: { en: "/en/stays", de: "/de/stays" },
-    nav: { en: "Stays", de: "Genießen" },
-    label: { en: "Stays", de: "Genießen" },
+    nav: { en: "Stays", de: "Stays" },
+    label: { en: "Stays", de: "Stays" },
     desc: {
       en: "Discover our selection of overnight experiences.",
       de: "Entdecken Sie unsere Auswahl an Übernachtungserlebnissen.",

@@ -1,4 +1,5 @@
 // src/data/stays/rateType.ts
+import type { SupportedCurrency } from "../../utils/currency.ts";
 import type { DiscountInfo } from "../config.ts";
 
 /**
@@ -9,7 +10,7 @@ import type { DiscountInfo } from "../config.ts";
  */
 
 export interface StayRateInfo {
-  currency: "EUR" | "USD" | "GBP"; // Currency code
+  currency: SupportedCurrency, // Primary currency
   cleaningFee?: number; // Optional cleaning fee
   serviceFee?: number; // Optional service fee
   extraGuestFee?: number; // Optional extra guest fee (can be waived for certain units)
