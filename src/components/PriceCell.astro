@@ -25,4 +25,7 @@ const formattedPrices = Array.isArray(prices)
       <strong>{price}</strong>
     </>
   ))}
+  {formattedPrices.length > 0 && prices?.billingUnit && (
+    {prices.billingUnit}
+  )}
 </td>

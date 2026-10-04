@@ -84,6 +84,7 @@ export interface ProductInfo {
   discounts?: DiscountInfo; // Discounting rules
   standalone?: boolean; // Whether this product can be purchased as a standalone product (optional, default: false)
   upgrade?: boolean; // Whether this product is an upgrade option for a retreat (optional, default: false)
+  billingUnit?: string; // "/ person" | "/ unit" | "/ booking" | "/ day" Billing unit for the product (optional, default: none)
   eur: number; // Price in EUR
   usd?: number; // Price in USD (optional, default: ~1.15 * EUR)
   gbp?: number; // Price in GBP (optional, default: ~0.90 * EUR)
