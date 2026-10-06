@@ -4,11 +4,11 @@
  * Each unit has an ID, name, title, booking information, email, internal details (like WiFi), descriptions in multiple languages, details about the unit (type, bedrooms, bathrooms, etc.), bed configurations, directions, and a guide with recommendations for restaurants, beaches, cafes, groceries, transport, and hidden gems.
  * The following data elements are constructed automatically using the unit ID (lowercase) and naming conventions:
  * Airbnb links can only contain lowercase letters, numbers, and dashes. Dashes are not allowed in TypeScript identifiers.
- * - Airbnb URL ("https://airbnb.com/h/<unitid>")
- * - Booking.com URL ("https://booking.com/h/<unitid>")
- * - Vrbo URL ("https://vrbo.com/h/<unitid>")
+ * - Airbnb URL ("https://airbnb.com/h/studiosunandsea<unitid>")
+ * - Booking.com URL ("https://booking.com/h/studiosunandsea<unitid>")
+ * - Vrbo URL ("https://vrbo.com/h/studiosunandsea<unitid>")
  * - Email alias ("<unitid>@StudioSunAndSea.com")
- * - WiFi SSID ("<unitid>")
+ * - WiFi SSID ("<unitid>") // Or a single comprehensive SSID "StudioSunAndSea" with repeaters all over the property - probably logistically easier to manage and more reliable for guests.
  *
  * The unit configuration is used to generate the unit's page, including descriptions, details, and guides for guests.
  */
@@ -19,7 +19,7 @@ import type { RateConfig } from "./rates";
 import type { Address } from "../config.ts";
 
 export interface UnitConfig {
-  id: UnitKey;                // "JasmineSound", "OliveGrove", "SunsetSuite"
+  id: UnitKey;                // "jasmineSound", "gardenStudio", "sunsetSuite"
   name: string;               // Internal name
   title: string;              // Marketing title for listing pages
   market: boolean;            // Whether the unit is currently being marketed for booking

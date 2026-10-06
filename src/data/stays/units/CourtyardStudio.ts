@@ -2,17 +2,17 @@ import type { UnitConfig } from "../unitType.ts";
 import { unitRates } from "../rates";
 import { jadranska35 } from "../../config.ts";
 
-const CourtyardStudio: UnitConfig = {
-  id: "SunSeaCourtyardStudio",
-  name: "Courtyard Studio Apartment • Café Lifestyle",
-  title: "Sun & Sea Studio Apartment • Café Lifestyle",
+const courtyardStudio: UnitConfig = {
+  id: "courtyardStudio",
+  name: "Courtyard Studio",
+  title: "Courtyard Studio • Café Lifestyle",
   available: new Date("2027-06-01"),
   market: true,
   rate: unitRates.Studio,
 
   location: {
     guide: "jadranskaGuide",
-    address: {...jadranska35, unit: 156},
+    address: {...jadranska35, unit: 155},
   },
 
   internal: {
@@ -85,4 +85,4 @@ const CourtyardStudio: UnitConfig = {
   },
 };
 
-export default CourtyardStudio;
+export default courtyardStudio;

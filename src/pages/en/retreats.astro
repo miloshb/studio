@@ -5,27 +5,27 @@ import StudioImage from "../../components/StudioImage.astro";
 import GalleryRandom from "../../components/GalleryRandom.astro";
 import { pricing } from "../../data/pricing";
 
-const retreatImage = "/images/about/retreat-1600.webp";
+const immersionImage = { src: "/images/classes/yoga-janu-sirsasana-400.webp", alt: "Janu Śirsāsana" };
 
-const imagePool = [
+const retreatPool = [
   { src: "/images/teachers/milos-natarajasana-400.webp", alt: "Naṭarājāsana" },
   { src: "/images/classes/yoga-utthita-asva-sanchalanasana-400.webp", alt: "Utthita Aśva Sanchalanāsana" },
   { src: "/images/classes/yoga-eka-pada-adho-mukha-svanasana-400.webp", alt: "Eka Pāda Adho Mukha Śvānāsana" },
-  { src: "/images/classes/yoga-class-sukhasana-nyana-mudra-400.webp", alt: "Sukhasana Nyāna Mudrā" }
+  { src: "/images/classes/yoga-class-sukhasana-nyana-mudra-400.webp", alt: "Sukhasana Nyāna Mudrā" },
+  immersionImage,
 ];
 ---
 
 <BaseLayout lang="en" page="retreats" title="Yoga Retreats">
   <h1>Yoga Retreats</h1>
 
-  <GalleryRandom
-    imagePool={imagePool}
-    thumbnail="lg"
-    class="thumbnail-right"
-  />
-
   <section id="retreat">
     <h2>Studio Sun & Sea 7-Day Yoga Retreat</h2>
+    <GalleryRandom
+      imagePool={retreatPool}
+      thumbnail="lg"
+      class="thumbnail-right"
+    />
     <p>
       A week of practice, reflection, community, and renewal on the Dalmatian island of Brač.
     </p>
@@ -40,7 +40,7 @@ const imagePool = [
     </p>
     <p>
       <strong>Programming:</strong> 7 Full Days<br />
-      <strong>Stay:</strong> 8 Nights Included<br />
+      <strong>Stay:</strong> 8 Nights Included (double occupancy w/ breakfast)<br />
       <strong>Schedule:</strong> Saturday Arrival · Sunday Opening · Saturday Closing · Sunday Departure<br />
       <strong>Group Size:</strong> 12–16 Participants<br />
       <strong>Experience Level:</strong> Open to All Levels
@@ -49,6 +49,12 @@ const imagePool = [
 
   <section id="immersion">
     <h2>Studio Sun & Sea Advanced Immersion</h2>
+    <StudioImage
+      src={immersionImage.src}
+      alt={immersionImage.alt}
+      thumbnail="lg"
+      class="thumbnail-right"
+    />
     <p>
       A small-group experience intended for dedicated practitioners who wish to go deeper.
     </p>
@@ -69,7 +75,7 @@ const imagePool = [
     </p>
     <p>
       <strong>Programming:</strong> 5 Full Days<br />
-      <strong>Stay:</strong> 6 Nights Included<br />
+      <strong>Stay:</strong> 6 Nights Included (double occupancy w/ breakfast)<br />
       <strong>Schedule:</strong> Saturday Arrival · Sunday Opening · Thursday Closing · Friday Departure<br />
       <strong>Group Size:</strong> 6–8 Participants<br />
       <strong>Experience Level:</strong> Application Required

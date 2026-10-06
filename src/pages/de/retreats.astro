@@ -5,27 +5,27 @@ import StudioImage from "../../components/StudioImage.astro";
 import GalleryRandom from "../../components/GalleryRandom.astro";
 import { pricing } from "../../data/pricing";
 
-const retreatImage = "/images/about/retreat-1600.webp";
+const immersionImage = { src: "/images/classes/yoga-janu-sirsasana-400.webp", alt: "Janu Śirsāsana" };
 
-const imagePool = [
+const retreatPool = [
   { src: "/images/teachers/milos-natarajasana-400.webp", alt: "Naṭarājāsana" },
   { src: "/images/classes/yoga-utthita-asva-sanchalanasana-400.webp", alt: "Utthita Aśva Sanchalanāsana" },
   { src: "/images/classes/yoga-eka-pada-adho-mukha-svanasana-400.webp", alt: "Eka Pāda Adho Mukha Śvānāsana" },
-  { src: "/images/classes/yoga-class-sukhasana-nyana-mudra-400.webp", alt: "Sukhasana Nyāna Mudrā" }
+  { src: "/images/classes/yoga-class-sukhasana-nyana-mudra-400.webp", alt: "Sukhasana Nyāna Mudrā" },
+  immersionImage,
 ];
 ---
 
 <BaseLayout lang="de" page="retreats" title="Yoga Retreats">
   <h1>Yoga Retreats</h1>
 
-  <GalleryRandom
-    imagePool={imagePool}
-    thumbnail="lg"
-    class="thumbnail-right"
-  />
-
   <section id="retreat">
     <h2>Studio Sun & Sea 7-Day Yoga Retreat</h2>
+    <GalleryRandom
+      imagePool={retreatPool}
+      thumbnail="lg"
+      class="thumbnail-right"
+    />
     <p>
       Eine Woche Praxis, Reflexion, Gemeinschaft und Erneuerung auf der dalmatinischen Insel Brač.
     </p>
@@ -40,7 +40,7 @@ const imagePool = [
     </p>
     <p>
       <strong>Programm:</strong> 7 volle Tage<br />
-      <strong>Aufenthalt:</strong> 8 Übernachtungen inklusive<br />
+      <strong>Aufenthalt:</strong> 8 Übernachtungen inklusive (Doppelzimmer mit Frühstück)<br />
       <strong>Ablauf:</strong> Anreise Samstag · Eröffnung Sonntag · Abschluss Samstag · Abreise Sonntag<br />
       <strong>Gruppengröße:</strong> 12–16 Teilnehmende<br />
       <strong>Erfahrung:</strong> Für alle Levels geeignet
@@ -49,6 +49,12 @@ const imagePool = [
 
   <section id="immersion">
     <h2>Studio Sun & Sea Advanced Immersion</h2>
+    <StudioImage
+      src={immersionImage.src}
+      alt={immersionImage.alt}
+      thumbnail="lg"
+      class="thumbnail-right"
+    />
     <p>
       Eine intensive Kleingruppenerfahrung für engagierte Praktizierende, die tiefer gehen möchten.
     </p>
@@ -69,7 +75,7 @@ const imagePool = [
     </p>
     <p>
       <strong>Programm:</strong> 5 volle Tage<br />
-      <strong>Aufenthalt:</strong> 6 Übernachtungen inklusive<br />
+      <strong>Aufenthalt:</strong> 6 Übernachtungen inklusive (Doppelzimmer mit Frühstück)<br />
       <strong>Ablauf:</strong> Anreise Samstag · Eröffnung Sonntag · Abschluss Donnerstag · Abreise Freitag<br />
       <strong>Gruppengröße:</strong> 6–8 Teilnehmende<br />
       <strong>Erfahrung:</strong> Bewerbung erforderlich

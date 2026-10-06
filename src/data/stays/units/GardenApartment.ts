@@ -2,10 +2,10 @@ import type { UnitConfig } from "../unitType.ts";
 import { unitRates } from "../rates";
 import { jadranska33 } from "../../config.ts";
 
-const GardenApt: UnitConfig = {
-  id: "SunSeaGardenApartment",
-  name: "Garden Standard Apartment",
-  title: "Sun & Sea Apartment • Separate Bedroom",
+const gardenApartment: UnitConfig = {
+  id: "gardenApartment",
+  name: "Garden Apartment",
+  title: "Garden Apartment • Separate Bedroom",
   available: new Date("2028-06-01"),
   market: false,
   rate: unitRates.Apartment,
@@ -91,4 +91,4 @@ const GardenApt: UnitConfig = {
   },
 };
 
-export default GardenApt;
+export default gardenApartment;

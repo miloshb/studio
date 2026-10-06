@@ -2,10 +2,10 @@ import type { UnitConfig } from "../unitType.ts";
 import { unitRates } from "../rates";
 import { jadranska33 } from "../../config.ts";
 
-const GardenResidence: UnitConfig = {
-  id: "SunSeaGardenResidence",
+const gardenResidence: UnitConfig = {
+  id: "gardenResidence",
   name: "Garden Wellness Residence",
-  title: "Sun & Sea Wellness Residence • Private Steam Spa",
+  title: "Garden Wellness Residence • Private Steam Spa",
   available: new Date("2028-06-01"),
   market: false,
   rate: unitRates.Residence,
@@ -124,4 +124,4 @@ Maximum occupancy 8
   },
 };
 
-export default GardenResidence;
+export default gardenResidence;

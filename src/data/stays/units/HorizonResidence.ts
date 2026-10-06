@@ -2,10 +2,10 @@ import type { UnitConfig } from "../unitType.ts";
 import { unitRates } from "../rates";
 import { jadranska33 } from "../../config.ts";
 
-const HorizonResidence: UnitConfig = {
-  id: "SunSeaHorizonResidence",
+const horizonResidence: UnitConfig = {
+  id: "horizonResidence",
   name: "Horizon Wellness Residence",
-  title: "Sun & Sea Wellness Residence • Private Steam Spa",
+  title: "Horizon Wellness Residence • Private Steam Spa",
   available: new Date("2029-06-01"),
   market: false,
   rate: unitRates.Residence,
@@ -51,7 +51,7 @@ Maximum occupancy 8
     bedrooms: 3,
     bathrooms: 2,
     guestMax: 9,
-    size: 84,
+    size: 85,
     kitchen: true,
     workspace: true,
     parking: true,
@@ -132,4 +132,4 @@ Maximum occupancy 8
   },
 };
 
-export default HorizonResidence;
+export default horizonResidence;

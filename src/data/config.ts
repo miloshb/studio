@@ -109,7 +109,7 @@ export interface DiscountInfo {
  * It includes the date when the guest became a Journey member, the total number of bookings and retreats attended, and the Journey level of the guest.
  * The Journey level can be one of the following:
  * "Journey Member" = Known Potential Customer
- * "Stay Guest" = Stay Guest
+ * "Stay Member" = Stay Member (Guest who has booked a stay or regular yoga class)
  * "Yoga Member" = Active Yoga Studio Recurring Membership
  * "Yoga Alumni" = Yoga Retreat or Advanced Immersion Alumni
  * "Blue Heron Alumni" = Blue Heron Retreat Alumni
@@ -123,7 +123,7 @@ export interface JourneyInfo {
 
 export const journeyLevel = {
   JourneyMember: "Journey Member",
-  StayGuest: "Stay Guest",
+  StayGuest: "Stay Member",
   YogaMember: "Yoga Member",
   YogaAlumni: "Yoga Alumni",
   BlueHeronAlumni: "Blue Heron Alumni",

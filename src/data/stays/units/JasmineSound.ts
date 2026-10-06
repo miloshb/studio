@@ -1,7 +1,7 @@
 import type { UnitConfig } from "../unitType.ts";
 
-const JasmineSound: UnitConfig = {
-  id: "JasmineSound",
+const jasmineSound: UnitConfig = {
+  id: "jasmineSound",
   name: "Jasmine Sound",
   title: "Convenient 4BR house w/ balcony view",
   available: new Date("2026-09-01"),
@@ -192,4 +192,4 @@ const JasmineSound: UnitConfig = {
   },
 };
 
-export default JasmineSound;
+export default jasmineSound;

@@ -2,17 +2,17 @@ import type { UnitConfig } from "../unitType.ts";
 import { unitRates } from "../rates";
 import { jadranska35 } from "../../config.ts";
 
-const SunSeaSunriseSuite: UnitConfig = {
-  id: "SunSeaSunriseSuite",
+const sunriseSuite: UnitConfig = {
+  id: "sunriseSuite",
   name: "Sunrise Wellness Suite",
-  title: "Sun & Sea Wellness Suite • Private Steam Spa",
+  title: "Sunrise Wellness Suite • Private Steam Spa",
   available: new Date("2027-06-01"),
   market: true,
   rate: unitRates.Suite,
 
   location: {
     guide: "jadranskaGuide",
-    address: {...jadranska35, unit: 151},
+    address: {...jadranska35, unit: 152},
   },
 
   internal: {
@@ -115,4 +115,4 @@ const SunSeaSunriseSuite: UnitConfig = {
   },
 };
 
-export default SunSeaSunriseSuite;
+export default sunriseSuite;
