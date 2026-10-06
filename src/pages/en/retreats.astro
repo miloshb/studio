@@ -1,0 +1,154 @@
+---
+// src/pages/en/retreats.astro
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import StudioImage from "../../components/StudioImage.astro";
+import GalleryRandom from "../../components/GalleryRandom.astro";
+import { pricing } from "../../data/pricing";
+
+const immersionImage = { src: "/images/classes/yoga-janu-sirsasana-400.webp", alt: "Janu Śirsāsana" };
+
+const retreatPool = [
+  { src: "/images/teachers/milos-natarajasana-400.webp", alt: "Naṭarājāsana" },
+  { src: "/images/classes/yoga-utthita-asva-sanchalanasana-400.webp", alt: "Utthita Aśva Sanchalanāsana" },
+  { src: "/images/classes/yoga-eka-pada-adho-mukha-svanasana-400.webp", alt: "Eka Pāda Adho Mukha Śvānāsana" },
+  { src: "/images/classes/yoga-class-sukhasana-nyana-mudra-400.webp", alt: "Sukhasana Nyāna Mudrā" },
+];
+---
+
+<BaseLayout lang="en" page="retreats" title="Yoga Retreats">
+  <h1>Yoga Retreats</h1>
+
+  <section id="retreat">
+    <h2>Studio Sun & Sea 7-Day Yoga Retreat</h2>
+    <GalleryRandom
+      imagePool={retreatPool}
+      thumbnail="lg"
+      class="thumbnail-right"
+    />
+    <p>
+      A week of practice, reflection, community, and renewal on the Dalmatian island of Brač.
+    </p>
+    <p>
+      The Studio Sun & Sea Yoga Retreat is designed to create space away from the pace and distractions of everyday life. Through daily yoga, guided practice, time for rest, community meals, and personal reflection, participants are invited to reconnect with themselves and deepen their relationship with practice.
+    </p>
+    <p>
+      The retreat includes seven days of guided programming and an eight-night stay. Optional arrival begins on Saturday, allowing time for travel and a relaxed transition into the week. Formal retreat programming begins on Sunday and concludes the following Saturday. Departure is on Sunday.
+    </p>
+    <p>
+      Shared stay and daily breakfast is included. Optional upgrades such as Wellness Suites and single-occupancy can be added based on availability.
+    </p>
+    <p>
+      <strong>Programming:</strong> 7 Full Days<br />
+      <strong>Stay:</strong> 8 Nights Included (double occupancy w/ breakfast)<br />
+      <strong>Schedule:</strong> Saturday Arrival · Sunday Opening · Saturday Closing · Sunday Departure<br />
+      <strong>Group Size:</strong> 12–16 Participants<br />
+      <strong>Experience Level:</strong> Open to All Levels
+    </p>
+  </section>
+
+  <section id="immersion">
+    <h2>Studio Sun & Sea Advanced Immersion</h2>
+    <StudioImage
+      src={immersionImage.src}
+      alt={immersionImage.alt}
+      thumbnail="lg"
+      class="thumbnail-right"
+    />
+    <p>
+      A small-group experience intended for dedicated practitioners who wish to go deeper.
+    </p>
+    <p>
+      Advanced Immersions focus on sustained practice, individual attention, thoughtful discussion, and integration. Group size is intentionally limited (six to eight participants) to preserve an intimate learning environment.
+    </p>
+    <p>
+      Including a six-night stay with arrival on Saturday, the Advanced Immersion creates space for deeper exploration and reflection through five days of guided programming beginning on Sunday.
+    </p>
+    <p>
+      Participation requires an application and may not be appropriate for every student or stage of practice.
+    </p>
+    <p>
+      The Advanced Immersion may be attended as a standalone offering or, when available, as a continuation of the Studio Sun & Sea 7-Day Yoga Retreat. Retreat participants receive priority consideration and may be eligible for continuation pricing when extending directly into the Advanced Immersion.
+    </p>
+    <p>
+      Current and former retreat participants receive priority consideration when space is limited.
+    </p>
+    <p>
+      <strong>Programming:</strong> 5 Full Days<br />
+      <strong>Stay:</strong> 6 Nights Included (double occupancy w/ breakfast)<br />
+      <strong>Schedule:</strong> Saturday Arrival · Sunday Opening · Thursday Closing · Friday Departure<br />
+      <strong>Group Size:</strong> 6–8 Participants<br />
+      <strong>Experience Level:</strong> Application Required
+    </p>
+  </section>
+
+  <section id="options">
+    <h2>Stay Enhancements and Journey Options</h2>
+    <p>
+      Retreats prioritize Stays @ Studio Sun & Sea and also incorporate, as needed, carefully selected properties within walking distance of the studio.
+    </p>
+    {Object.values(pricing.retreats.upgrades).filter((product) => (product.upgrade && product.category === "stay")).map((product) => (
+      <>
+      <h4>{product.label}</h4>
+      <p>{product.description}</p>
+      </>
+    ))}
+    <h3>Journey Options</h3>
+    {Object.values(pricing.retreats.upgrades).filter((product) => (product.upgrade && product.category === "retreat")).map((product) => (
+      <>
+      <h4>{product.label}</h4>
+      <p>{product.description}</p>
+      </>
+    ))}
+    <p>All upgrades subject to availability based on retreat capacity and must be reserved in advance.</p>
+  </section>
+
+  <section id="program">
+    <h2>Retreat Programming</h2>
+    <p>
+      Retreat programming is intentionally designed to balance structured practice, personal reflection, community connection, and unstructured time. While themes and content vary, most retreat days include the following elements:
+    </p>
+
+    <ul>
+      <li>Morning guided meditation and mindfulness practice</li>
+      <li>Breathwork (Prāṇāyāma)</li>
+      <li>Late-morning intentional yoga practice</li>
+      <li>Afternoon practice, exploration, or integration session</li>
+      <li>Targeted workshops focused on specific themes</li>
+      <li>Open practice sessions on select days</li>
+      <li>Journaling and personal reflection</li>
+      <li>Community discussions and shared learning</li>
+      <li>Time for rest, walks, beach visits, and personal practice</li>
+    </ul>
+
+    <p>
+      Open practice sessions provide opportunities to explore individual interests, ask questions, receive guidance, develop greater independence, and take personal ownership in your practice.
+    </p>
+    <p>
+      The emphasis is not on keeping busy – the goal is to create enough structure to support meaningful growth while maintaining sufficient space for rest, reflection, and integration.
+    </p>
+  </section>
+
+  <section id="approach">
+    <h2>The Sun & Sea Approach</h2>
+    <p>
+      We believe yoga is not a destination. It is the practice of being fully present along the journey.
+    </p>
+    <p>
+      Our retreats are intentionally small, relationship-focused, and community-oriented. We value depth over scale, connection over transaction, and long-term growth over short-term intensity.
+    </p>
+    <p>
+      Many participants return as Yoga Alumni and continue their relationship with the Sun & Sea community through future retreats, workshops, classes, holidays, and gatherings.
+    </p>
+  </section>
+
+  <section class="next-steps">
+    <h2>Request Information</h2>
+    <p>
+      Retreat dates, <a href="/en/pricing#retreats">pricing</a>, stay options, and availability vary throughout the year.
+    </p>
+    <p>
+      If you would like to learn more about an upcoming retreat or Advanced Immersion, we'd love to hear from you.
+    </p>
+    <p><a href="/en/contact/?interest=retreats">Request Retreat Information</a></p>
+  </section>
+</BaseLayout>

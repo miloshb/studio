@@ -4,6 +4,11 @@ import BaseLayout from "../../../layouts/BaseLayout.astro";
 import { units } from "../../../data/stays/units/index.ts";
 import type { UnitKey } from "../../../data/stays/units/index.ts";
 import type { UnitConfig } from "../../../data/stays/unitType.ts";
+import type { Language } from "../../../data/config.ts";
+
+interface Props {
+  lang: Language;
+}
 
 const { lang = "en" } = Astro.props;
 
@@ -21,14 +26,58 @@ a Supetar vs Irving grouping based on location: GuideKey
 ---
 
 <BaseLayout lang={lang} page="stays" title="Stays" description="Explore our curated stays at Studio Sun & Sea.">
-  <h1>Stay at Studio Sun & Sea</h1>
+  <h1>Stays @ Studio Sun & Sea</h1>
+
+  <section>
+    <h2>Welcome to the Sun & Sea Experience</h2>
+    <p>Discover a wellness-focused retreat in the heart of Supetar.</p>
+    <p>Guests receive complimentary espresso beverages from the on-site Sun & Sea Café.</p>
+    <p>Whether you're exploring Brač, working remotely, or simply relaxing near the waterfront, we are designed to be a peaceful base for your stay.</p>
+  </section>
+
+  <section>
+    <h2>Sustainable Design</h2>
+    <p>The building incorporates:
+      <ul>
+        <li>Solar electricity generation</li>
+        <li>Solar-thermal hot water production</li>
+        <li>Energy-efficient heating and cooling</li>
+        <li>Hydronic radiant floor heating</li>
+      </ul>
+      Providing year-round comfort while reducing environmental impact.
+    </p>
+  </section>
+
   <section class="stays-list">
-    <p>Choose from our curated selection of apartments and studios.</p>
+    <p>Choose from our curated selection of Wellness Suites and Studios featuring an onsite Café, Yoga, Massage, Spa, and Retreat Programs. Join Sun & Sea Club for preferred member pricing and retreat access.</p>
+
+    <!-- Only display units that should be marketed -->
     {unitEntries.map(([key, unit]) => (
-      <a href={`/${lang}/stays/${key}`}>
-        <h2>{unit.name}</h2>
-      </a>
-      <p>{unit.title}</p>
+      unit.market && (
+        <>
+        <a href={`/${lang}/stays/${key}`}>
+          <h2>{unit.title}</h2>
+        </a>
+        {unit.available && (
+          <h3>Available from {unit.available.toLocaleDateString(lang, { year: 'numeric', month: 'long' })}</h3>
+        )}
+        <p>{unit.description[lang].short}</p>
+        </>
+      )
     ))}
+  </section>
+
+  <section>
+    <h2>Good to Know</h2>
+    <ul>
+      <li>Entire private apartments</li>
+      <li>Self check-in</li>
+      <li>Fast Wi-Fi</li>
+      <li>Professionally managed</li>
+      <li>Newly renovated</li>
+      <li>Complimentary café espresso</li>
+      <li>Suitable for stays throughout the year</li>
+    </ul>
+    <p>Join <a href="/en/journey">Sun & Sea Journey</a> for member pricing and retreat access.</p>
   </section>
 </BaseLayout>

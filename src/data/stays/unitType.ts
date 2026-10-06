@@ -3,32 +3,43 @@
  * This file defines the structure of a unit configuration for stays.
  * Each unit has an ID, name, title, booking information, email, internal details (like WiFi), descriptions in multiple languages, details about the unit (type, bedrooms, bathrooms, etc.), bed configurations, directions, and a guide with recommendations for restaurants, beaches, cafes, groceries, transport, and hidden gems.
  * The following data elements are constructed automatically using the unit ID (lowercase) and naming conventions:
- * - Airbnb URL ("https://airbnb.com/h/<unitid>")
- * - Booking.com URL ("https://booking.com/h/<unitid>")
+ * Airbnb links can only contain lowercase letters, numbers, and dashes. Dashes are not allowed in TypeScript identifiers.
+ * - Airbnb URL ("https://airbnb.com/h/studiosunandsea<unitid>")
+ * - Booking.com URL ("https://booking.com/h/studiosunandsea<unitid>")
+ * - Vrbo URL ("https://vrbo.com/h/studiosunandsea<unitid>")
  * - Email alias ("<unitid>@StudioSunAndSea.com")
- * - WiFi SSID ("<unitid>")
+ * - WiFi SSID ("<unitid>") // Or a single comprehensive SSID "StudioSunAndSea" with repeaters all over the property - probably logistically easier to manage and more reliable for guests.
  *
  * The unit configuration is used to generate the unit's page, including descriptions, details, and guides for guests.
  */
 
-import type { UnitKey } from "./units/index.ts";
-import type { GuideKey } from "./guides/index.ts";
+import type { UnitKey } from "./units";
+import type { GuideKey } from "./guides";
+import type { RateConfig } from "./rates";
+import type { Address } from "../config.ts";
 
 export interface UnitConfig {
-  id: UnitKey;                 // "JasmineSound", "OliveGrove", "SunsetSuite"
-  name: string;               // Human-readable name
+  id: UnitKey;                // "jasmineSound", "gardenStudio", "sunsetSuite"
+  name: string;               // Internal name
   title: string;              // Marketing title for listing pages
-  location: GuideKey;
+  market: boolean;            // Whether the unit is currently being marketed for booking
+  available?: Date;           // When the unit is available for booking
+  location: {
+    guide: GuideKey;
+    address?: Address;
+  };
 
   internal: {
     wifiPassword: string;
-    lockboxCode?: string;     // Optional lockbox code for self-check-in
+    lockboxCode?: number;     // Optional lockbox code for self-check-in
     internalNotes?: string;   // Optional internal notes for staff
     accessNotes?: string;     // Optional access notes for guests
     cleaningNotes?: string;   // Optional cleaning notes for staff
   };
 
-  descriptions: {
+  rate: RateConfig;
+
+  description: {
     en: {
       short: string;
       long: string;
@@ -43,7 +54,12 @@ export interface UnitConfig {
     type: "studio" | "apartment" | "house";
     bedrooms: number;
     bathrooms: number;
-    maxGuests: number;
+    guestMax: number;
+    size: number; // Size in square meters
+    description?: {
+      en: string;
+      de: string;
+    };
 
     kitchen: boolean;
     workspace: boolean;
@@ -57,17 +73,19 @@ export interface UnitConfig {
     type: "bedroom" | "living" | "studio" | "kitchen" | "bathroom" | "dining" | "balcony";
     beds?: Array<{
       type:
-        | "king"
-        | "queen"
-        | "double"
-        | "single"
-        | "toddler"
+        | "king"    // 200×200 cm
+        | "queen"   // 180×200 cm
+        | "double"  // 160×200 cm
+        | "single"  // 100×200 cm
+        | "toddler" // 80×160 cm
         | "crib"
         | "bunk"
         | "couch"
-        | "pullout";
-      sleeps: number;       // number of people this bed accommodates
+        | "pullout" // 160×200 cm
+        ;
+      sleeps: number;       // number of people supported by this bed
     }>;
+    description?: string;    // Optional description of the room
   }>;
 
   directions: {

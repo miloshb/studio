@@ -1,6 +1,6 @@
 import type { GuideInfo } from "../guideType.ts";
 
-const Jadranska: Record<"en" | "de", GuideInfo> = {
+const jadranskaGuide: Record<"en" | "de", GuideInfo> = {
   en: {
     restaurants: [
       "Konoba Lukin — classic Dalmatian dishes and seafood",
@@ -90,4 +90,4 @@ const Jadranska: Record<"en" | "de", GuideInfo> = {
   }
 };
 
-export default Jadranska;
+export default jadranskaGuide;

@@ -1,7 +1,143 @@
 // src/data/pricing.ts
+import { journeyLevel } from "./config.ts"
+import type { DiscountInfo, ProductInfo } from "./config.ts";
+
+const products: Record<string, ProductInfo> = {
+  "suite": {
+    label: "Wellness Suite",
+    category: "stay",
+    description: "Upgrade to the Wellness Suite for a more spacious and luxurious stay. The Wellness Suite offers a private steam spa, soaking tub, a comfortable living area, a spacious king bedroom, and enhanced amenities for a truly relaxing experience.",
+    inventory: 1, // Only one Wellness Suite available in Phase 1 (then 3 total in Phase 2)
+    eur: 400,
+    usd: 500,
+    gbp: 350,
+    billingUnit: "per booking",
+    standalone: false,
+    upgrade: true,
+  },
+  "residence": {
+    label: "Wellness Residence",
+    category: "stay",
+    description: "Upgrade to the luxurious 3-bedroom Wellness Residence with three private sleeping areas. Designed for three participants traveling together who wish to share a premium stay experience.",
+    note: "Per person; 3 participants required.",
+    inventory: 2, // Wellness Residences only in Jadranska 33
+    eur: 400,
+    usd: 500,
+    gbp: 350,
+    billingUnit: "× 3 participants (each)",
+    standalone: false,
+    upgrade: false, // Wellness Residence only available after Phase 2 (change to true when available)
+  },
+  "singleOccupancy": {
+    label: "Single Occupancy",
+    category: "stay",
+    description: "Enhance the shared stay by upgrading to private occupancy for a more spacious and private retreat experience.",
+    note: "Subject to availability and retreat occupancy.",
+    capacity: 4, // Soft limit (additional upgrades may require spillover bookings)
+    inventory: 8, // Actual number of stays units available for upgrades if only 8 participants are attending the retreat
+    eur: 800,
+    usd: 1000,
+    gbp: 700,
+    billingUnit: "per participant",
+    standalone: false,
+    upgrade: true,
+  },
+  "arrivalStay": {
+    label: "Arrival Stay",
+    category: "retreat",
+    description: "Arrive early, settle into the island rhythm, and begin your retreat fully relaxed. Arrival Stay participants enjoy unlimited access to regular studio classes, beach walks, and unstructured space before beginning the retreat.",
+    note: "Per person per night (no retreat programming)",
+    eur: 100,
+    usd: 125,
+    gbp: 90,
+    billingUnit: "per day",
+    standalone: false,
+    upgrade: true,
+  },
+  "integrationStay": {
+    label: "Integration Stay",
+    category: "retreat",
+    description: "Continue your time on Brač with additional nights after the retreat concludes. Integration Stay participants enjoy unlimited access to regular studio classes, open practice time, beach walks, journaling, reflection, and unstructured space to integrate their experience before returning home.",
+    note: "Per person per night",
+    eur: 100,
+    usd: 125,
+    gbp: 90,
+    billingUnit: "per day",
+    standalone: false,
+    upgrade: true,
+  },
+  "earlyDeparture": {
+    label: "Early Departure",
+    category: "retreat",
+    description: "Provides schedule flexibility if attendance for the full week is not feasible.",
+    note: "Available for participants unable to commit to the full retreat week.",
+    eur: -100,
+    usd: -125,
+    gbp: -90,
+    billingUnit: "per day",
+    standalone: false,
+    upgrade: true,
+  },
+  "advancedImmersion": {
+    label: "Advanced Immersion",
+    category: "retreat",
+    description: "An intensive 5-day small-group experience intended for dedicated practitioners who wish to go deeper into the practice. Designed as a standalone retreat or as an extension to the 7-day retreat, Advanced Immersion is a more focused and intimate experience with additional time for practice, reflection, and personalized guidance.",
+    note: "Capped at 8 students",
+    duration: 5,
+    capacity: 6, // Target participants 4-6
+    inventory: 8, // Capped at 8 students
+    eur: 1500, // 25% discount for those attending the 7-day retreat
+    usd: 1800,
+    gbp: 1350,
+    billingUnit: "5-day program + 6-day stay · small-group intensive",
+    standalone: true,
+    upgrade: true,
+  },
+  "coreRetreat": {
+    label: "7-Day Yoga Retreat",
+    category: "retreat",
+    duration: 7,
+    capacity: 14, // Target participants 12-14
+    inventory: 16, // Capped at 16 participants
+    eur: 2000,
+    usd: 2400,
+    gbp: 1800,
+    billingUnit: "7-day program + 8-day stay",
+    standalone: true,
+    upgrade: false,
+  },
+};
+
+export type ProductKey = keyof typeof products;
+
 // Pricing data for service offerings
 // Note: These do NOT display on the website unless you choose to surface them.
-export const pricing = {
+export const pricing: {
+  intro: {
+    trialClass: number;
+    trialWeek: number;
+    trialTwoWeek: number;
+  };
+  membership: {
+    unlimitedMonthly: ProductInfo;
+    fiveClassMonthly: ProductInfo;
+    tenClassMonthly: ProductInfo;
+  };
+  class: {
+    single: ProductInfo;
+    tenPack: ProductInfo;
+    unlimitedMonth: ProductInfo;
+  };
+  private: ProductInfo[];
+  duet: ProductInfo[];
+  group: ProductInfo[];
+  workshop: ProductInfo[];
+  retreats: {
+    retreat: ProductInfo[];
+    discounts: DiscountInfo;
+    upgrades: Record<ProductKey, ProductInfo>;
+  }
+} = {
   intro: {
     trialClass: 10,
     trialWeek: 55,
@@ -72,4 +208,29 @@ export const pricing = {
     { duration: 3, eur: 75, usd: 95, gbp: 70 },
     { duration: 4, eur: 95, usd: 115, gbp: 85 },
   ],
+
+  // Retreats
+  retreats: {
+    retreat: [
+      products.coreRetreat,
+      {
+        ...products.advancedImmersion,
+        eur: 2000,
+        usd: 2400,
+        gbp: 1800,
+      },
+    ],
+    discounts: {
+      prepayment: 5,
+      earlyBird: 5,
+      journey: {
+        [journeyLevel.JourneyMember]: 0,
+        [journeyLevel.StayGuest]: 5,
+        [journeyLevel.YogaMember]: 10,
+        [journeyLevel.YogaAlumni]: 15,
+        [journeyLevel.BlueHeronAlumni]: 20,
+      },
+    },
+    upgrades: products,
+  },
 };

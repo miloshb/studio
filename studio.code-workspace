@@ -7,5 +7,7 @@
 			"path": "../studio-internal"
 		}
 	],
-	"settings": {}
+	"settings": {
+		"cSpell.enabled": false
+	}
 }
