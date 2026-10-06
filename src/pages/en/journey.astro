@@ -2,8 +2,10 @@
 // src/pages/en/journey.astro
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import StudioImage from "../../components/StudioImage.astro";
-const blueHeronTakingFlightImage = '/images/about/blue-heron-taking-flight-1600.webp';
-const blueHeronInFlightImage =     '/images/about/blue-heron-in-flight-1600.webp';
+const blueHeronTakingFlightImage = {
+  src: "/images/about/blue-heron-taking-flight-400.webp", alt: "Great Blue Heron taking flight" };
+const blueHeronInFlightImage = {
+  src: "/images/about/blue-heron-in-flight-400.webp", alt: "Great Blue Heron in flight" };
 ---
 
 <BaseLayout lang="en" page="journey" title="Sun & Sea Journey">
@@ -78,13 +80,15 @@ const blueHeronInFlightImage =     '/images/about/blue-heron-in-flight-1600.webp
   </section>
 
   <section>
+    <StudioImage
+      src={blueHeronTakingFlightImage.src}
+      alt={blueHeronTakingFlightImage.alt}
+      thumbnail="xl"
+      class="thumbnail-right"
+    />
     <h3>5. Blue Heron Alumni</h3>
     <p>
       The Blue Heron is a symbol of patience, awareness, stillness, observation, and self-reliance.
-      <StudioImage
-        src={blueHeronTakingFlightImage}
-        alt="Great Blue Heron taking flight"
-      />
     </p>
     <p>
       Blue Heron Alumni represent the deepest level of participation along the Sun & Sea Journey. Membership is limited and earned through continued participation in the Sun & Sea community. Blue Heron Alumni are invited to gatherings, experiences, and opportunities that are not publicly available.
