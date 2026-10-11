@@ -16,7 +16,7 @@
 import type { UnitKey } from "./units";
 import type { GuideKey } from "./guides";
 import type { RateConfig } from "./rates";
-import type { Address } from "../config.ts";
+import type { GeoLocation } from "../config.ts";
 
 export interface UnitConfig {
   id: UnitKey;                // "jasmineSound", "gardenStudio", "sunsetSuite"
@@ -26,7 +26,7 @@ export interface UnitConfig {
   available?: Date;           // When the unit is available for booking
   location: {
     guide: GuideKey;
-    address?: Address;
+    address?: GeoLocation;
   };
 
   internal: {
