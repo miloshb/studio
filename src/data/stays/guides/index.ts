@@ -10,8 +10,7 @@ export const guides = {
 
 export type GuideKey = keyof typeof guides;
 
-
-export interface BeachInfo {
+interface GuideInfo {
   name: string;
   location: GeoLocation;
 
@@ -21,8 +20,15 @@ export interface BeachInfo {
     bicycle: "required" |"recommended" | "possible" | "not-recommended";
     motorVehicle: "required" | "recommended" | "possible" | "not-recommended";
     ferryRequired?: boolean;
-  }
+  };
 
+  notes?: {
+    en: string;
+    de?: string;
+  };
+}
+
+export interface BeachInfo extends GuideInfo {
   surfaces: (
     | "sand"
     | "pebbles"
@@ -63,10 +69,5 @@ export interface BeachInfo {
     naturistFriendly?: boolean;
     sunset?: boolean;
     secluded?: boolean;
-  };
-
-  notes?: {
-    en: string;
-    de?: string;
   };
 }

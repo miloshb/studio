@@ -1,6 +1,6 @@
-import type { GuideInfo } from "../guideType.ts";
+import type { GuideInfoAirbnb } from "../guideType.ts";
 
-const jadranskaGuide: Record<"en" | "de", GuideInfo> = {
+const jadranskaGuide: Record<"en" | "de", GuideInfoAirbnb> = {
   en: {
     restaurants: [
       "Konoba Lukin — classic Dalmatian dishes and seafood",

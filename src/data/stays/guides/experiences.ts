@@ -1,3 +1,6 @@
+// src/data/stays/guides/experiences.ts
+// TODO: use this MD outline to build the TypeScript data structure to represent experiences.
+
 # Experiences
 
 ## Sea

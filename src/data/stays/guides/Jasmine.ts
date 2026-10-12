@@ -1,6 +1,6 @@
-import type { GuideInfo } from "../guideType";
+import type { GuideInfoAirbnb } from "../guideType";
 
-const jasmineGuide: Record<"en" | "de", GuideInfo> = {
+const jasmineGuide: Record<"en" | "de", GuideInfoAirbnb> = {
   en: {
     restaurants: [
       "The Sound at Cypress Waters — lakeside dining cluster (Flying Fish, Rodeo Goat, Ascension Coffee)",
