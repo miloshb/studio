@@ -1,72 +1,28 @@
-// src/data/stays/guides/index.ts
-import jadranskaGuide from "./Jadranska";
-import jasmineGuide from "./Jasmine";
-import type { GeoLocation } from "../../config";
+// src/data/stays/units/index.ts
 
-export const guides = {
-  jadranskaGuide,
-  jasmineGuide,
-} as const;
+// TODO: see whether this can all be dynamically built based on the files present in the "units"folder, rather than having to manually import each unit and add it to the "units" object.
+import jasmineSound from "./JasmineSound";
+import courtyardStudio from "./CourtyardStudio";
+import gardenStudio from "./GardenStudio";
+import gardenApartment from "./GardenApartment";
+import sunriseSuite from "./SunriseSuite";
+import gardenSuite from "./GardenSuite";
+import gardenResidence from "./GardenResidence";
+import horizonResidence from "./HorizonResidence";
 
-export type GuideKey = keyof typeof guides;
+export const units = {
+  gardenResidence,
+  horizonResidence,
 
+  sunriseSuite,
+  gardenSuite,
 
-export interface BeachInfo {
-  name: string;
-  location: GeoLocation;
+  gardenApartment,
 
-  access: {
-    category: "walking" | "local" | "day-trip";
-    walking: "required" | "recommended" | "possible" | "not-recommended";
-    bicycle: "required" |"recommended" | "possible" | "not-recommended";
-    motorVehicle: "required" | "recommended" | "possible" | "not-recommended";
-    ferryRequired?: boolean;
-  }
+  courtyardStudio,
+  gardenStudio,
 
-  surfaces: (
-    | "sand"
-    | "pebbles"
-    | "stone-shelves"
-    | "jagged-rocks"
-    | "concrete-terraces"
-  )[];
+  jasmineSound,
+};
 
-  waterEntry: "shallow" | "mixed" | "deep";
-
-  // Activity indicators describe destination-worthy experiences.
-  // true      = reason to visit
-  // false     = generally poor for this activity
-  // undefined = possible, but not a significant draw
-  activities: {
-    aquaPark?: boolean;
-    cliffJumping?: boolean;
-    diving?: boolean;
-    kayaking?: boolean;
-    kitesurfing?: boolean;
-    paddleboarding?: boolean;
-    sailing?: boolean;
-    snorkeling?: boolean;
-    swimming?: boolean;
-    waterPolo?: boolean;
-    windsurfing?: boolean;
-  };
-
-  amenities: {
-    shade?: boolean;
-    foodNearby?: boolean;
-    toilets?: boolean;
-    showers?: boolean;
-  };
-
-  experiences: {
-    familyFriendly?: boolean;
-    naturistFriendly?: boolean;
-    sunset?: boolean;
-    secluded?: boolean;
-  };
-
-  notes?: {
-    en: string;
-    de?: string;
-  };
-}
+export type UnitKey = keyof typeof units;

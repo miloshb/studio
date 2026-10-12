@@ -17,64 +17,26 @@ export interface SiteConfig {
   email: string;
 };
 
-
-// ADDRESS TYPES and FUNCTIONS
-export const MAP_URL_BASE =
-  "https://www.google.com/maps/search/?api=1&query=";
-
-export function getMapUrl(location: GeoLocation): string | undefined {
-  if (location.coordinates) {
-    const { latitude, longitude } = location.coordinates;
-
-    return `${MAP_URL_BASE}${latitude},${longitude}`;
-  }
-
-  const parts = [
-    location.street,
-    location.unit,
-    location.city,
-    location.province,
-    location.postalCode,
-    location.country,
-  ]
-    .filter(Boolean)
-    .join(", ");
-
-  if (!parts) {
-    return undefined;
-  }
-
-  return `${MAP_URL_BASE}${encodeURIComponent(parts)}`;
-}
-
-export interface GeoCoordinates {
-  latitude: number;
-  longitude: number;
-}
-
-export interface GeoLocation {
+export interface Address {
   street?: string;
   unit?: number;
-  postalCode?: string;
-  city?: string;
+  city: string;
   province: string;
+  postalCode: string;
   country: string;
-
-  coordinates?: GeoCoordinates;
 };
 
-export const jadranska33: GeoLocation = {
-  street: "Jadranska 33",
-  postalCode: "21400",
+export const jadranska33: Address = {
+  street: "Jadranska ulica 33",
   city: "Supetar",
   province: "Brač, Split-Dalmacija",
-  country: "Hrvatska",
+  postalCode: "21400",
+  country: "Hrvatska"
 };
 
-// Sun & Sea Yoga Studio
-export const jadranska35: GeoLocation = {
+export const jadranska35: Address = {
   ...jadranska33,
-  street: "Jadranska 35", // Updated street number for the address
+  street: "Jadranska ulica 35", // Updated street number for the address
   unit: 200,
 };
 
