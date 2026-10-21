@@ -33,15 +33,15 @@ const footerTopOffset = footerOffset ? "var(--offset-lg)" : "0px";
       All rights reserved.
 
       <div class="footer-social">
-        <a href="https://facebook.com/StudioSunAndSea">
+        <a href="https://facebook.com/StudioSunAndSea" target="_blank">
           <Facebook />
         </a>
 
-        <a href="https://instagram.com/studiosunandsea">
+        <a href="https://instagram.com/studiosunandsea" target="_blank">
           <Instagram />
         </a>
 
-        <a href="https://linkedin.com/company/studiosunandsea">
+        <a href="https://linkedin.com/company/studiosunandsea" target="_blank">
           <LinkedIn />
         </a>
       </div>
@@ -104,18 +104,20 @@ const footerTopOffset = footerOffset ? "var(--offset-lg)" : "0px";
   .footer-copy {
     order: 2;
     font-size: var(--text-sm);
+    display: flex;
+    column-gap: var(--space-xxs);
   }
 
   .footer-social {
     display: flex;
     align-items: center;
-    gap: var(--space-sm);
   }
 
   .footer-social a {
     color: var(--color-text-soft);
     display: flex;
     align-items: center;
+    padding-left: var(--space-sm);
   }
 
   .footer-social a:hover {
