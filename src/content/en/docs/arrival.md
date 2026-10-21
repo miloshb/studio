@@ -9,6 +9,7 @@ Help guests arrive smoothly and begin their stay with minimal stress.
   - [Getting to Supetar](#getting-to-supetar)
   - [Directions to Studio Sun \& Sea](#directions-to-studio-sun--sea)
   - [Check-In Process](#check-in-process)
+  - [Waste \& Recycling](#waste--recycling)
   - [Arrival Parking](#arrival-parking)
   - [Luggage \& Accessibility](#luggage--accessibility)
   - [Curiosity \& Exploration](#curiosity--exploration)
@@ -20,6 +21,14 @@ Help guests arrive smoothly and begin their stay with minimal stress.
 ## Getting to Supetar
 ## Directions to Studio Sun & Sea
 ## Check-In Process
+
+## Waste & Recycling
+One of the simplest ways we can practice *Ahimsa* (non-harm in Sanskrit) together is by considering where things go when we no longer need them.
+
+The ecosystems around us, including the soil beneath our feet, the waterways surrounding Brač, and the countless visible and invisible forms of life they support, are part of the broader community enabling life to thrive on Earth.
+
+Applying *Ahimsa* to the environment means helping keep materials in productive cycles through reuse, recycling, composting, or other pathways whenever possible rather than sending them to landfill.
+
 ## Arrival Parking
 ## Luggage & Accessibility
 ## Curiosity & Exploration

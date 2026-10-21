@@ -1,4 +1,6 @@
-// src/data/stays/guides/experiences.ts
+// src/data/stays/guides/experience.ts
+import type { ExperienceInfo } from "../guideType";
+
 // TODO: use this MD outline to build the TypeScript data structure to represent experiences.
 
 # Experiences

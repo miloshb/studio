@@ -25,12 +25,12 @@ const jadranskaGuide: Record<"en" | "de", GuideInfoAirbnb> = {
       "Local markets — fresh produce and fish"
     ],
     transport: [
-      "Supetar Ferry Port — ferries to Split (50 min)",
+      "Supetar Ferry Port — ferries to Split (20-50 min)",
       "Local buses — connections to Bol, Postira, Sutivan",
       "Scooter & bike rentals — best for exploring Brač"
     ],
     hiddenGems: [
-      "Sutivan — charming village 10 minutes away",
+      "Sutivan — charming village 10 minutes west",
       "Olive groves above Supetar — quiet walking paths",
       "Blaca Hermitage — historic monastery in the hills",
       "Lovrečina Bay — sandy beach, rare in Croatia"

@@ -14,6 +14,14 @@ Help prepare the space for the next guest.
           - [Version 2026.10](#version-202610)
 
 ## Preparing for Departure
+Before leaving, please take a moment to:
+- Remove any items you no longer need.
+- Place materials into the appropriate recycling and compost collection streams.
+- Dispose of any remaining landfill waste.
+- Check refrigerators, cupboards, and storage spaces for forgotten belongings.
+
+Thoughtful sorting helps reduce unnecessary landfill use and supports recycling and composting efforts throughout the community.
+
 ## Linens & Towels
 ## Returning Borrowed Items
 ## Leaving Shared Spaces Ready for Others
