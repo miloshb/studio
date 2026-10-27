@@ -8,11 +8,11 @@ import { getSiteConfig, company } from "../data/config.ts";
 interface Props {
   lang: "en" | "de";
   heading: string;
-  short?: boolean;
+  contact?: boolean;
   email?: string;
 }
 
-const { lang, heading, short , email} = Astro.props;
+const { lang, heading, contact, email} = Astro.props;
 
 const site = getSiteConfig();
 
@@ -30,6 +30,7 @@ const localeLabel = {
     vat: "USt-IdNr. (PDV): ",
     germanyTitle: "Weitere Betriebsstätte (Deutschland): ",
     usaTitle: "Weitere Betriebsstätte (USA): ",
+    contact: "Kontakt: ",
   },
   en: {
     brand: "Operating Brand: ",
@@ -42,6 +43,7 @@ const localeLabel = {
     vat: "VAT ID (PDV): ",
     germanyTitle: "Secondary Office (Germany): ",
     usaTitle: "Secondary Office (USA): ",
+    contact: "Contact: ",
   }
 }[lang];
 ---
@@ -49,7 +51,7 @@ const localeLabel = {
 <span class="legal-operator">
   <h2>{heading}</h2>
 
-  {short && (
+  {contact && (
     <p>
       <strong>{localeLabel.studio}</strong><br />
       {company.studioAddress1}<br />
@@ -57,11 +59,11 @@ const localeLabel = {
       <br />
       <br />
       {localeLabel.represented} {company.director}<br />
-      E-Mail: <a href={`mailto:${contactEmail}`}>{contactEmail}</a>
+      {localeLabel.contact} <a href={`mailto:${contactEmail}`}>{contactEmail}</a> | {company.telUS} | {company.telDE}
     </p>
   )}
 
-{!short && (
+{!contact && (
   <p>
     {localeLabel.brand} <strong>{company.brand}</strong><br />
     {localeLabel.legal} <strong>{company.legal}</strong>
