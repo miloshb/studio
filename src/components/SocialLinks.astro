@@ -1,0 +1,38 @@
+---
+// src/components/SocialLinks.astro
+import Facebook from "./icons/Facebook.astro";
+import Instagram from "./icons/Instagram.astro";
+import LinkedIn from "./icons/LinkedIn.astro";
+---
+
+<div class="social-links">
+  <a href="https://facebook.com/StudioSunAndSea" target="_blank">
+    <Facebook />
+  </a>
+
+  <a href="https://instagram.com/studiosunandsea" target="_blank">
+    <Instagram />
+  </a>
+
+  <a href="https://linkedin.com/company/studiosunandsea" target="_blank">
+    <LinkedIn />
+  </a>
+</div>
+
+<style>
+  .social-links {
+    display: flex;
+    align-items: center;
+  }
+
+  .social-links a {
+    color: var(--color-text-soft);
+    display: flex;
+    align-items: center;
+    padding-left: var(--space-sm);
+  }
+
+  .social-links a:hover {
+    color: var(--color-text);
+  }
+</style>

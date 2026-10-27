@@ -1,9 +1,7 @@
 ---
 import { FOOTER_ROUTE_KEYS, HEADER_ROUTE_KEYS, ROUTES } from "../data/routes.js";
 import ExaliSeal from "./ExaliSeal.astro";
-import Facebook from "./icons/Facebook.astro";
-import Instagram from "./icons/Instagram.astro";
-import LinkedIn from "./icons/LinkedIn.astro";
+import SocialLinks from "./SocialLinks.astro";
 const { lang, footerOffset } = Astro.props;
 const footerTopOffset = footerOffset ? "var(--offset-lg)" : "0px";
 ---
@@ -32,19 +30,7 @@ const footerTopOffset = footerOffset ? "var(--offset-lg)" : "0px";
       <a href="https://eireneintentiocitta.hr">Eirene Intentio Citta d.o.o.</a>
       All rights reserved.
 
-      <div class="footer-social">
-        <a href="https://facebook.com/StudioSunAndSea" target="_blank">
-          <Facebook />
-        </a>
-
-        <a href="https://instagram.com/studiosunandsea" target="_blank">
-          <Instagram />
-        </a>
-
-        <a href="https://linkedin.com/company/studiosunandsea" target="_blank">
-          <LinkedIn />
-        </a>
-      </div>
+      <SocialLinks />
     </div>
 
     <!-- Row 2: Right side -->
@@ -106,22 +92,6 @@ const footerTopOffset = footerOffset ? "var(--offset-lg)" : "0px";
     font-size: var(--text-sm);
     display: flex;
     column-gap: var(--space-xxs);
-  }
-
-  .footer-social {
-    display: flex;
-    align-items: center;
-  }
-
-  .footer-social a {
-    color: var(--color-text-soft);
-    display: flex;
-    align-items: center;
-    padding-left: var(--space-sm);
-  }
-
-  .footer-social a:hover {
-    color: var(--color-text);
   }
 
   .footer-badge {
