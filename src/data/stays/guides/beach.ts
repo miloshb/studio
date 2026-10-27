@@ -1,5 +1,5 @@
 // src/data/stays/guides/beach.ts
-import type { BeachInfo } from "./index";
+import type { BeachInfo } from "../guideType";
 
 export const beaches: BeachInfo[] = [
   {

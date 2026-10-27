@@ -10,7 +10,7 @@ Most of what follows can be summarized in four simple principles:
 3. Leave things at least as well as you found them.
 4. Help create the experience you would hope to find when arriving as a guest yourself.
 
-The spirit behind these guidelines is well aligned with the yogic principle of *Ahimsa*.
+The spirit behind these guidelines is aligned with the yogic principle of *Ahimsa*.
 
 *Ahimsa* is a Sanskrit word that is often translated as "non-harming" or "non-violence". It is a principle found throughout several dharmic traditions and yogic philosophies, and its application is simple and universal: when choices are available, seek the path that minimizes harm and supports wellbeing for yourself, others, and the broader community.
 
