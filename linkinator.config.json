@@ -2,6 +2,7 @@
   "recurse": true,
   "checkCss": true,
   "skip": [
+    "https://sudreg.pravosudje.hr",
     "https://mindbodyonline.com",
     "https://europa.eu"
   ]

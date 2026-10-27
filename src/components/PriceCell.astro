@@ -25,4 +25,14 @@ const formattedPrices = Array.isArray(prices)
       <strong>{price}</strong>
     </>
   ))}
+  {formattedPrices.length > 0 && prices?.billingUnit && (
+    <span class="billing-unit">{prices.billingUnit}</span>
+  )}
 </td>
+
+<style>
+  .billing-unit {
+    display: block;
+    font-size: var(--text-xs);
+  }
+</style>

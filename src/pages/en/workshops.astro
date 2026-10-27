@@ -2,11 +2,11 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import GalleryRandom from "../../components/GalleryRandom.astro";
 
-const imagePool = [
+const workshopPool = [
   { src: "/images/teachers/milos-natarajasana-400.webp", alt: "Naṭarājāsana" },
   { src: "/images/classes/yoga-utthita-asva-sanchalanasana-400.webp", alt: "Utthita Aśva Sanchalanāsana" },
   { src: "/images/classes/yoga-eka-pada-adho-mukha-svanasana-400.webp", alt: "Eka Pāda Adho Mukha Śvānāsana" },
-  { src: "/images/classes/yoga-class-sukhasana-nyana-mudra-400.webp", alt: "Sukhasana Nyāna Mudrā" }
+  { src: "/images/classes/yoga-class-sukhasana-nyana-mudra-400.webp", alt: "Sukhasana Nyāna Mudrā" },
 ];
 ---
 
@@ -16,7 +16,7 @@ const imagePool = [
   <section>
     <h2>Deepening Your Practice</h2>
     <GalleryRandom
-      imagePool={imagePool}
+      imagePool={workshopPool}
       thumbnail="lg"
       class="thumbnail-right"
     />

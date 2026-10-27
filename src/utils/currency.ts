@@ -25,6 +25,7 @@ export interface PriceData {
   eur: number;
   usd?: number;
   gbp?: number;
+  billingUnit?: string; // Append billing unit to price if specified (default: none)
 }
 
 // Overload 1: accept a row object
