@@ -32,16 +32,7 @@ Bodywork
 Beach Recovery
 Cold Water Swimming
 
-## Food & Drink
-Wine Tasting
 
-Olive Oil Tasting
-
-Local Konobas
-
-Farm Experiences
-
-Market Visits
 
 ## Culture
 Supetar

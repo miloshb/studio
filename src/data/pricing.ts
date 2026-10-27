@@ -78,6 +78,16 @@ const products: Record<string, ProductInfo> = {
     standalone: false,
     upgrade: true,
   },
+  "bringFriend": {
+    label: "Bring a Friend",
+    category: "retreat",
+    description: "When two or more friends book a retreat together, they each receive a free integration night.",
+    note: "Integration Stay can also be swapped for Arrival Stay.",
+    eur: 0,
+    billingUnit: "2+ participants",
+    standalone: false,
+    upgrade: true,
+  },
   "advancedImmersion": {
     label: "Advanced Immersion",
     category: "retreat",
