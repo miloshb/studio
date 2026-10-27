@@ -20,7 +20,7 @@ const products: Record<string, ProductInfo> = {
     category: "stay",
     description: "Upgrade to the luxurious 3-bedroom Wellness Residence with three private sleeping areas. Designed for three participants traveling together who wish to share a premium stay experience.",
     note: "Per person; 3 participants required.",
-    inventory: 2, // Wellness Residences only in Jadranska 33
+    inventory: 2, // Wellness Residences only in Jadranska 33; Grand Residence (Suite+2×Studio) not available for retreats
     eur: 400,
     usd: 500,
     gbp: 350,
@@ -84,7 +84,7 @@ const products: Record<string, ProductInfo> = {
     description: "When two or more friends book a retreat together, they each receive a free integration night.",
     note: "Integration Stay can also be swapped for Arrival Stay.",
     eur: 0,
-    billingUnit: "2+ participants",
+    billingUnit: "2+ participants · integration stay",
     standalone: false,
     upgrade: true,
   },
