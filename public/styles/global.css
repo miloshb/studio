@@ -78,10 +78,13 @@ li a:hover {
   --text-xxl: 2.25rem; /* 36px */
 
   /* Radius scale */
-  --radius-sm: 2px;
-  --radius-md: 4px;
-  --radius-lg: 8px;
-  --radius-xl: 16px;
+  --radius-xxs: 2px;
+  --radius-xs:  4px;
+  --radius-sm:  8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
+  --radius-xxl: 40px;
 
   /* Spacing scale (soft, airy) */
   --space-xxs: 4px;
@@ -164,7 +167,7 @@ a:hover {
   font-family: var(--font-body);
   font-size: var(--text-sm);
   text-decoration: none;
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-sm);
   white-space: nowrap;
 }
 
@@ -189,7 +192,7 @@ table th {
 
 table th,
 table td {
-  padding: 0.5rem 0;
+  padding: var(--space-xs) 0;
 }
 
 /* Default 2-column layout */
@@ -272,13 +275,13 @@ img {
 #teachers img {
   float: right;
   margin-left: var(--space-sm);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-sm);
 }
 
 .thumbnail-right {
   float: right;
   margin-left: var(--space-sm);
-  border-radius: var(--radius-xl);
+  border-radius: var(--radius-md);
 }
 
 .thumbnail-sm img {
@@ -291,6 +294,11 @@ img {
 
 .thumbnail-lg img {
   width: var(--thumbnail-width-lg);
+}
+
+.social-icon {
+  width: var(--text-lg);
+  height: var(--text-lg);
 }
 
 /* TODO: aspect does not work as expected. */
@@ -320,7 +328,7 @@ img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-xs);
 }
 
 /* ---------------------------------
@@ -341,13 +349,13 @@ img {
   background-color: #333;
   color: #fff;
   text-align: left;
-  padding: 6px 10px;
-  border-radius: 4px;
+  padding: var(--space-xxs) var(--space-xs);
+  border-radius: var(--radius-xs);
   position: absolute;
   z-index: 10;
   bottom: 125%;
   left: 0;
-  font-size: 0.85rem;
+  font-size: var(--text-sm);
   line-height: 1.3;
   transition: opacity 0.2s ease-in-out;
 }

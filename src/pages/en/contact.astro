@@ -3,6 +3,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import Operator from "../../components/Operator.astro";
 import StudioImage from "../../components/StudioImage.astro";
 import MindbodyProspectV1 from "../../components/widgets/MindbodyProspectV1.astro";
+import SocialLinks from "../../components/SocialLinks.astro";
 ---
 
 <BaseLayout lang="en" page="contact" title="Contact">
@@ -14,7 +15,7 @@ import MindbodyProspectV1 from "../../components/widgets/MindbodyProspectV1.astr
     </p>
   </section>
 
-  <section>
+  <section class="contact">
     <StudioImage
       src='/images/classes/yoga-class-sukhasana-urdhva-hastasana-400.webp'
       alt="Sukhāsana Ūrdhva Hastāsana"
@@ -22,9 +23,15 @@ import MindbodyProspectV1 from "../../components/widgets/MindbodyProspectV1.astr
       class="thumbnail-right"
     />
     <Operator lang="en" heading="Studio Sun & Sea" short email="info@studiosunandsea.com" />
+    <p><SocialLinks /></p>
   </section>
 
-  <section>
-    <MindbodyProspectV1 widgetId="986524514de" />
-  </section>
+  <MindbodyProspectV1 widgetId="986524514de" />
 </BaseLayout>
+
+<style>
+  .contact :global(svg) {
+    width: var(--text-xl);
+    height: var(--text-xl);
+  }
+</style>
