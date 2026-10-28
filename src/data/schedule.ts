@@ -1,4 +1,9 @@
-// Type definitions
+// src/data/schedule.ts
+/**
+ * Type definitions for class schedule display.
+ */
+import type { LangString } from "./i18n.ts";
+
 export interface StartTime {
   id: number;          // e.g. 830 or 1030
   label: string;       // e.g. "08:30" or "10:30"
@@ -14,7 +19,7 @@ export interface ClassEntry {
 
 export interface TimezoneOption {
   value: string;       // IANA Timezone string or 'detect'
-  label: Record<"en" | "de", string>; // Localized labels
+  label: LangString; // Localized labels
 }
 
 export interface ScheduleData {

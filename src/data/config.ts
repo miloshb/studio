@@ -1,26 +1,28 @@
 // src/data/config.ts
+/**
+ * Site configuration and addresses.
+ */
+import type { GeoLocation } from "./location.ts";
 export const LANG_STORE_KEY = "preferredLanguage";
 export const TZ_STORE_KEY = "preferredTimezone";
-
-// Supported lanugages (first listed is primary/default)
-export const LANGS = ["en", "de", "hr"] as const;
-export type Language = typeof LANGS[number];
-export type DefaultLocale = typeof LANGS[0];
-export type LocalizedString = string | (Record<DefaultLocale, string> & Partial<Record<Exclude<Language, DefaultLocale>, string>>);
 
 export const debug = false; // Set to true to show debug logs
 export const info = true; // Set to true to show info logs
 
-// Helper to resolve localized text with fallback to default locale
-function resolveLocale(
-    text: LocalizedString | undefined,
-    locale: Language
-  ): string {
-    if (!text) return "";
-    if (typeof text === "string") return text;
-    return text[locale] || text[LANGS[0]] || "";
-  };
 
+export const jadranska33: GeoLocation = {
+  street: "Jadranska 33",
+  postalCode: "21400",
+  city: "Supetar",
+  province: "Brač, Split-Dalmacija",
+  country: "Hrvatska",
+};
+// Sun & Sea Yoga Studio
+export const jadranska35: GeoLocation = {
+  ...jadranska33,
+  street: "Jadranska 35", // Updated street number for the address
+  unit: 200,
+};
 
 export interface SiteConfig {
   name: string;
@@ -34,68 +36,6 @@ export interface SiteConfig {
     hr?: string;
   }
 };
-
-
-// ADDRESS TYPES and FUNCTIONS
-export const MAP_URL_BASE =
-  "https://www.google.com/maps/search/?api=1&query=";
-
-export function getMapUrl(location: GeoLocation): string | undefined {
-  if (location.coordinates) {
-    const { latitude, longitude } = location.coordinates;
-
-    return `${MAP_URL_BASE}${latitude},${longitude}`;
-  }
-
-  const parts = [
-    location.street,
-    location.unit,
-    location.city,
-    location.province,
-    location.postalCode,
-    location.country,
-  ]
-    .filter(Boolean)
-    .join(", ");
-
-  if (!parts) {
-    return undefined;
-  }
-
-  return `${MAP_URL_BASE}${encodeURIComponent(parts)}`;
-}
-
-export interface GeoCoordinates {
-  latitude: number;
-  longitude: number;
-}
-
-export interface GeoLocation {
-  street?: string;
-  unit?: number;
-  postalCode?: string;
-  city?: string;
-  province: string;
-  country: string;
-
-  coordinates?: GeoCoordinates;
-};
-
-export const jadranska33: GeoLocation = {
-  street: "Jadranska 33",
-  postalCode: "21400",
-  city: "Supetar",
-  province: "Brač, Split-Dalmacija",
-  country: "Hrvatska",
-};
-
-// Sun & Sea Yoga Studio
-export const jadranska35: GeoLocation = {
-  ...jadranska33,
-  street: "Jadranska 35", // Updated street number for the address
-  unit: 200,
-};
-
 
 // OPERATOR COMPANY DATA
 export const company = {
@@ -161,101 +101,3 @@ export function getSiteConfig(): SiteConfig {
     }
   };
 };
-
-
-/**
- * This interface defines the structure of the products offered (studio classes, workshops, memberships, yoga retreats, retreat upgrade options, etc.).
- * Upgrades can be used to offer additional nights or special packages for guests who want to continue or enhance their experience.
- */
-export type Categories = "class" | "retreat" | "stay";
-export interface ProductInfo {
-  label?: string; // Optional label (e.g., "Single Class", "Unlimited Month", "Yoga Retreat", "Integration Stay", etc.)
-  category?: Categories; // Optional category for the product
-  description?: LocalizedString; // Description of the product
-  note?: string; // Optional note for the product - internal use (e.g. availability, restrictions, clarifications)
-  inventory?: number; // Optional actual number of units available for sale
-  capacity?: number; // Target capacity (people) for this class option (+2 for hard limit) (optional, default: unlimited)
-  duration?: number; // Duration in minutes for values >=60;  (optional, default: 60)
-  validity?: number; // Validity in months (optional, default: 18)
-  minCommit?: number; // Minimum commitment in months (optional, default: 1)
-  rollover?: boolean; // Whether unused classes roll over to the next month (optional, default: false)
-  unpublished?: boolean; // Whether this class option is unpublished (not displayed on website) (optional, default: false)
-  recurring?: boolean; // Whether this class option is recurring (optional, default: false)
-  discounts?: DiscountInfo; // Discounting rules
-  standalone?: boolean; // Whether this product can be purchased as a standalone product (optional, default: false)
-  upgrade?: boolean; // Whether this product is an upgrade option for a retreat (optional, default: false)
-  billingUnit?: LocalizedString; // "/ person" | "/ unit" | "/ booking" | "/ day" Billing unit for the product (optional, default: none)
-  eur: number; // Price in EUR
-  usd?: number; // Price in USD (optional, default: ~1.15 * EUR)
-  gbp?: number; // Price in GBP (optional, default: ~0.90 * EUR)
-};
-
-export class Product implements ProductInfo {
-  private currentLocale?: Language = LANGS[0];
-  label = "";
-  category?: Categories;
-  note? = "";
-  duration? = 0;
-  capacity? = 0;
-  inventory? = 0;
-  eur = 0;
-  usd? = 0;
-  gbp? = 0;
-//  billingUnit = "";
-  standalone = false;
-  upgrade = false;
-
-  get description(): LocalizedString {
-    if(!this.currentLocale) this.currentLocale = LANGS[0];
-    return resolveLocale(this.description, this.currentLocale);
-  }
-  get billingUnit(): LocalizedString {
-    if(!this.currentLocale) this.currentLocale = LANGS[0];
-    return resolveLocale(this.billingUnit, this.currentLocale);
-  }
-};
-
-
-/**
- * Structure used to define discounting rules for Studio Sun & Sea.
- */
-export interface DiscountInfo {
-  maxDiscount?: number; // Maximum stacked discount percentage
-  weekly?: number; // Weekly discount percentage (0%)
-  monthly?: number; // Monthly discount percentage (stays limited to 21 nights)
-  prepayment: number; // Prepayment discount percentage (10%)
-  earlyBird: number; // Early bird discount percentage (5% - 6 months in advance)
-  journey?: JourneyDiscounts; // Sun & Sea Journey member discounts
-  nonstackable?: boolean; // Whether discounts can be stacked (default: false == can be stacked)
-};
-
-/**
- * This interface defines the structure of the Journey member information for guests who are part of the Sun & Sea Journey program.
- * It includes the date when the guest became a Journey member, the total number of bookings and retreats attended, and the Journey level of the guest.
- * The Journey level can be one of the following:
- * "Journey Member" = Known Potential Customer
- * "Stay Member" = Stay Member (Guest who has booked a stay or regular yoga class)
- * "Yoga Member" = Active Yoga Studio Recurring Membership
- * "Yoga Alumni" = Yoga Retreat or Advanced Immersion Alumni
- * "Blue Heron Alumni" = Blue Heron Retreat Alumni
- */
-export interface JourneyInfo {
-  memberSince: Date; // Date when the guest became a Journey member
-  totalBookings: number; // Total number of bookings made by the Journey member
-  totalRetreats: number; // Total number of retreats attended by the Journey member
-  journeyLevel: JourneyLevel; // Journey level of the guest
-};
-
-export const journeyLevel = {
-  JourneyMember: "Journey Member",
-  StayGuest: "Stay Member",
-  YogaMember: "Yoga Member",
-  YogaAlumni: "Yoga Alumni",
-  BlueHeronAlumni: "Blue Heron Alumni",
-} as const;
-
-export type JourneyLevel = typeof journeyLevel[keyof typeof journeyLevel];
-
-export type JourneyDiscounts = Partial<
-  Record<JourneyLevel, number>
->;

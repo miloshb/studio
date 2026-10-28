@@ -1,8 +1,8 @@
 ---
-import { LANGS, ROUTES } from "../data/routes.js";
+import { defaultLocale, LANGS } from "../data/i18n.ts";
+import { ROUTES } from "../data/routes.js";
 import { LANG_STORE_KEY } from "../data/config.ts";
 
-const defaultLocale = LANGS[0];
 const defaultHref = ROUTES.thankYou.href[defaultLocale];
 const hrefs = JSON.stringify(ROUTES.thankYou.href);
 const supported = JSON.stringify(LANGS);

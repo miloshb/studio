@@ -16,7 +16,8 @@
 import type { UnitKey } from "./units/";
 import type { GuideKey } from "./guides/";
 import type { RateConfig } from "./rates/";
-import type { GeoLocation, LocalizedString } from "../config.ts";
+import type { GeoLocation } from "../location.ts";
+import type { LocalizedString } from "../i18n.ts";
 
 export interface UnitConfig {
   id: UnitKey;                // "jasmineSound", "gardenStudio", "sunsetSuite"

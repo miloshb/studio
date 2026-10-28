@@ -1,8 +1,6 @@
 ---
-import { LANGS } from "../data/routes.js";
+import { defaultLocale, LANGS } from "../data/i18n.ts";
 import { LANG_STORE_KEY } from "../data/config.ts";
-
-const defaultLocale = LANGS[0];
 ---
 
 <!DOCTYPE html>
@@ -16,7 +14,7 @@ const defaultLocale = LANGS[0];
       let targetLang = localStorage.getItem(LANG_STORE_KEY);
 
       if (!targetLang) {
-        const browserLanguages = navigator.languages || [navigator.language || LANGS[0]];
+        const browserLanguages = navigator.languages || [navigator.language || defaultLocale];
 
         for (const lang of browserLanguages) {
           const shortCode = String(lang).split('-')[0].toLowerCase();
@@ -27,7 +25,7 @@ const defaultLocale = LANGS[0];
         }
       }
 
-      targetLang = targetLang || LANGS[0];
+      targetLang = targetLang || defaultLocale;
       try {
         localStorage.setItem(LANG_STORE_KEY, targetLang);
       } catch (e) {

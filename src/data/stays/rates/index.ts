@@ -1,6 +1,6 @@
 // src/data/stays/rates/index.ts
-import jadranskaRate from "./Jadranska";
-import jasmineRate from "./Jasmine";
+import jadranskaRate from "./Jadranska.ts";
+import jasmineRate from "./Jasmine.ts";
 
 export const rateRules = {
   jadranskaRate,

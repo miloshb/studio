@@ -1,8 +1,9 @@
 ---
 import { getSiteConfig } from "../data/config.ts";
+import type { Language } from "../data/i18n";
 
 const site = getSiteConfig();
-const { lang } = Astro.props as { lang?: "en" | "de" };
+const { lang } = Astro.props as { lang?: Language };
 
 const TEXT = {
   brand: {

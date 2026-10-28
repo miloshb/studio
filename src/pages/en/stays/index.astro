@@ -1,22 +1,17 @@
 ---
 // src/pages/en/stays/index.astro
 import BaseLayout from "../../../layouts/BaseLayout.astro";
-import { units } from "../../../data/stays/units/index.ts";
-import type { UnitKey } from "../../../data/stays/units/index.ts";
+import { units, type UnitKey } from "../../../data/stays/units/";
 import type { UnitConfig } from "../../../data/stays/unitType.ts";
-import type { Language } from "../../../data/config.ts";
+import { localeString, type Language } from "../../../data/i18n.ts";
 
-interface Props {
-  lang: Language;
-}
-
-const { lang = "en" } = Astro.props;
+const { lang = "en" } = Astro.props as { lang?: Language };
 
 // Convert units object → typed array of entries
 const unitEntries = Object.entries(units) as [UnitKey, UnitConfig][];
 
 /*
-If you want, I can also generate:
+TODO: If you want, I can also generate:
 a grid layout version
 a card‑based UI
 a photo‑preview index (auto‑loading first photo of each unit)
@@ -61,7 +56,7 @@ a Supetar vs Irving grouping based on location: GuideKey
         {unit.available && (
           <h3>Available from {unit.available.toLocaleDateString(lang, { year: 'numeric', month: 'long' })}</h3>
         )}
-        <p>{unit.summary[lang]}</p>
+        <p>{localeString(unit.summary, lang)}</p>
         </>
       )
     ))}

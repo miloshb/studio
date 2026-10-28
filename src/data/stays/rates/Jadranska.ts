@@ -1,5 +1,5 @@
 import { type StayRateInfo } from "../rateType.ts";
-import { journeyLevel } from "../../config.ts"
+import { journeyLevel } from "../../types.ts"
 
 /**
  * Jadranska base rate definition to be tested for Airbnb, Booking.com, and Vrbo.

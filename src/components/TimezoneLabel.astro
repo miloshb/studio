@@ -3,14 +3,12 @@
 /**
  * Localized client-side island: CET/CEST text + UTC offsets based on lang property input.
  */
-interface Props {
-  lang?: "en" | "de";
-}
+import type { Language, LangString } from '../data/i18n';
 
-const { lang = "en" } = Astro.props;
+const { lang = "en" } = Astro.props as { lang?: Language };
 
 // Hardcoded server fallbacks to prevent a flashing layout during browser hydration
-const fallbackText = {
+const fallbackText: LangString = {
   en: "Central European Time",
   de: "Mitteleuropäische Zeit"
 };

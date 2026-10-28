@@ -4,6 +4,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import StudioImage from "../../components/StudioImage.astro";
 import GalleryRandom from "../../components/GalleryRandom.astro";
 import { pricing } from "../../data/pricing.ts";
+import { localeString, type Language } from "../../data/i18n.ts";
 
 const immersionImage = { src: "/images/classes/yoga-janu-sirsasana-400.webp", alt: "Janu Śirsāsana" };
 
@@ -13,9 +14,11 @@ const retreatPool = [
   { src: "/images/classes/yoga-eka-pada-adho-mukha-svanasana-400.webp", alt: "Eka Pāda Adho Mukha Śvānāsana" },
   { src: "/images/classes/yoga-class-sukhasana-nyana-mudra-400.webp", alt: "Sukhasana Nyāna Mudrā" },
 ];
+
+const { lang = "en" } = Astro.props as { lang?: Language };
 ---
 
-<BaseLayout lang="en" page="retreats" title="Yoga Retreats">
+<BaseLayout lang={lang} page="retreats" title="Yoga Retreats">
   <h1>Yoga Retreats</h1>
 
   <section id="retreat">
@@ -89,14 +92,14 @@ const retreatPool = [
     {Object.values(pricing.retreats.upgrades).filter((product) => (product.upgrade && product.category === "stay")).map((product) => (
       <>
       <h4>{product.label}</h4>
-      <p>{product.description}</p>
+          <p>{localeString(product.description, lang)}</p>
       </>
     ))}
     <h3>Journey Options</h3>
     {Object.values(pricing.retreats.upgrades).filter((product) => (product.upgrade && product.category === "retreat")).map((product) => (
       <>
       <h4>{product.label}</h4>
-      <p>{product.description}</p>
+          <p>{localeString(product.description, lang)}</p>
       </>
     ))}
     <p>All upgrades subject to availability based on retreat capacity and must be reserved in advance.</p>
