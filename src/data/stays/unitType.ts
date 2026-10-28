@@ -13,10 +13,10 @@
  * The unit configuration is used to generate the unit's page, including descriptions, details, and guides for guests.
  */
 
-import type { UnitKey } from "./units";
-import type { GuideKey } from "./guides";
-import type { RateConfig } from "./rates";
-import type { GeoLocation } from "../config.ts";
+import type { UnitKey } from "./units/";
+import type { GuideKey } from "./guides/";
+import type { RateConfig } from "./rates/";
+import type { GeoLocation, LocalizedString } from "../config.ts";
 
 export interface UnitConfig {
   id: UnitKey;                // "jasmineSound", "gardenStudio", "sunsetSuite"
@@ -39,16 +39,8 @@ export interface UnitConfig {
 
   rate: RateConfig;
 
-  description: {
-    en: {
-      short: string;
-      long: string;
-    };
-    de: {
-      short: string;
-      long: string;
-    };
-  };
+  summary: LocalizedString;
+  description: LocalizedString;
 
   details: {
     type: "studio" | "apartment" | "house";
@@ -56,10 +48,7 @@ export interface UnitConfig {
     bathrooms: number;
     guestMax: number;
     size: number; // Size in square meters
-    description?: {
-      en: string;
-      de: string;
-    };
+    description?: LocalizedString;
 
     kitchen: boolean;
     workspace: boolean;
@@ -85,27 +74,15 @@ export interface UnitConfig {
         ;
       sleeps: number;       // number of people supported by this bed
     }>;
-    description?: string;    // Optional description of the room
+    description?: LocalizedString;    // Optional description of the room
   }>;
 
-  directions: {
-    en: string;
-    de?: string;
-  };
+  directions: LocalizedString;
 
   arrival: {
-    lockbox: {
-      en: string;
-      de?: string;
-    };
-    checkin: {
-      en: string;
-      de?: string;
-    };
+    lockbox: LocalizedString;
+    checkin: LocalizedString;
   };
 
-  manual: {
-    en: string;
-    de?: string;
-  };
+  manual: LocalizedString;
 }

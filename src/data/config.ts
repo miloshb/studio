@@ -5,9 +5,22 @@ export const TZ_STORE_KEY = "preferredTimezone";
 // Supported lanugages (first listed is primary/default)
 export const LANGS = ["en", "de"] as const;
 export type Language = typeof LANGS[number];
+export type DefaultLocale = typeof LANGS[0];
+export type LocalizedString = string | (Record<DefaultLocale, string> & Partial<Record<Exclude<Language, DefaultLocale>, string>>);
 
 export const debug = false; // Set to true to show debug logs
 export const info = true; // Set to true to show info logs
+
+// Helper to resolve localized text with fallback to default locale
+function resolveLocale(
+    text: LocalizedString | undefined,
+    locale: Language
+  ): string {
+    if (!text) return "";
+    if (typeof text === "string") return text;
+    return text[locale] || text[LANGS[0]] || "";
+  };
+
 
 export interface SiteConfig {
   name: string;
@@ -154,10 +167,11 @@ export function getSiteConfig(): SiteConfig {
  * This interface defines the structure of the products offered (studio classes, workshops, memberships, yoga retreats, retreat upgrade options, etc.).
  * Upgrades can be used to offer additional nights or special packages for guests who want to continue or enhance their experience.
  */
+export type Categories = "class" | "retreat" | "stay";
 export interface ProductInfo {
   label?: string; // Optional label (e.g., "Single Class", "Unlimited Month", "Yoga Retreat", "Integration Stay", etc.)
-  category?: "class" | "retreat" | "stay"; // Optional category for the product
-  description?: string; // Description of the product
+  category?: Categories; // Optional category for the product
+  description?: LocalizedString; // Description of the product
   note?: string; // Optional note for the product (e.g. availability, restrictions, clarifications)
   inventory?: number; // Optional actual number of units available for sale
   capacity?: number; // target capacity (people) for this class option (+2 for hard limit) (optional, default: unlimited)
@@ -175,6 +189,28 @@ export interface ProductInfo {
   usd?: number; // Price in USD (optional, default: ~1.15 * EUR)
   gbp?: number; // Price in GBP (optional, default: ~0.90 * EUR)
 };
+
+export class Product implements ProductInfo {
+  private currentLocale?: Language = LANGS[0];
+  label = "";
+  category?: Categories;
+  note? = "";
+  duration? = 0;
+  capacity? = 0;
+  inventory? = 0;
+  eur = 0;
+  usd? = 0;
+  gbp? = 0;
+  billingUnit = "";
+  standalone = false;
+  upgrade = false;
+
+  get description(): string {
+    if(!this.currentLocale) this.currentLocale = LANGS[0];
+    return resolveLocale(this.description, this.currentLocale);
+  }
+};
+
 
 /**
  * Structure used to define discounting rules for Studio Sun & Sea.

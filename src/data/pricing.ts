@@ -1,8 +1,41 @@
 // src/data/pricing.ts
 import { journeyLevel } from "./config.ts"
-import type { DiscountInfo, ProductInfo } from "./config.ts";
+import type { DiscountInfo, ProductInfo, Product } from "./config.ts";
 
-const products: Record<string, ProductInfo> = {
+/**
+ * Calculates USD and GBP dynamically from EUR values with psychological rounding
+ * and an FX risk buffer to protect EUR accounting.
+ */
+export function currencyCalc(eurAmount: number): { eur: number; usd: number; gbp: number } {
+  if (eurAmount === 0) return { eur: 0, usd: 0, gbp: 0 };
+  const absEur = Math.abs(eurAmount);
+  const sign = Math.sign(eurAmount);
+
+  const usdRaw = absEur * 1.20;
+  const gbpRaw = absEur * 0.90;
+
+  let usd: number;
+  let gbp: number;
+
+  if (absEur < 100) {
+    usd = Math.ceil(usdRaw / 5) * 5;
+    gbp = Math.ceil(gbpRaw / 2) * 2;
+  } else if (absEur < 1000) {
+    usd = Math.ceil(usdRaw / 5) * 5;
+    gbp = Math.ceil(gbpRaw / 5) * 5;
+  } else {
+    usd = Math.ceil(usdRaw / 100) * 100;
+    gbp = Math.ceil(gbpRaw / 50) * 50;
+  }
+
+  return {
+    eur: eurAmount,
+    usd: sign * usd,
+    gbp: sign * gbp,
+  };
+};
+
+const products: Record<string, Product> = {
   "suite": {
     label: "Wellness Suite",
     category: "stay",
@@ -106,6 +139,7 @@ const products: Record<string, ProductInfo> = {
   "coreRetreat": {
     label: "7-Day Yoga Retreat",
     category: "retreat",
+    description: "The Studio Sun & Sea Yoga Retreat is designed to create space away from the pace and distractions of everyday life. Through daily yoga, guided practice, time for rest, community meals, and personal reflection, participants are invited to reconnect with themselves and deepen their relationship with practice.",
     duration: 7,
     capacity: 14, // Target participants 12-14
     inventory: 16, // Capped at 16 participants

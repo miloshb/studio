@@ -60,14 +60,14 @@ const photos = Object.fromEntries(
   <h1>{unit.name} – Stay at Studio Sun & Sea</h1>
 
   <section>
-    <p>{unit.description[lang].short}</p>
+    <p>{unit.summary[lang]}</p>
   </section>
 
   <!-- Long Description -->
-  {unit.description?.[lang]?.long && (
+  {unit.description?.[lang] && (
     <section>
       <h2>About This Stay</h2>
-      <p>{unit.description[lang].long}</p>
+      <p>{unit.description[lang]}</p>
     </section>
   )}
 

@@ -61,7 +61,7 @@ a Supetar vs Irving grouping based on location: GuideKey
         {unit.available && (
           <h3>Available from {unit.available.toLocaleDateString(lang, { year: 'numeric', month: 'long' })}</h3>
         )}
-        <p>{unit.description[lang].short}</p>
+        <p>{unit.summary[lang]}</p>
         </>
       )
     ))}

@@ -20,19 +20,16 @@ const gardenSuite: UnitConfig = {
     lockboxCode: 2214,
   },
 
+  summary: {
+    en: "Wake to the morning sun over Brač and begin your day with a complimentary espresso from Sun & Sea Café.  This wellness-focused suite combines a private steam spa, soaking tub, radiant floor heating, and a spacious king bedroom to create a relaxing retreat just minutes from the waterfront.",
+  },
+
   description: {
-    en: {
-      short: "Wake to the morning sun over Brač and begin your day with a complimentary espresso from Sun & Sea Café.  This wellness-focused suite combines a private steam spa, soaking tub, radiant floor heating, and a spacious king bedroom to create a relaxing retreat just minutes from the waterfront.",
-      long: `
-        Discover a wellness-focused retreat in the heart of Supetar.
-        This Wellness Suite is a newly renovated luxury one-bedroom apartment designed around relaxation, comfort, and the simple pleasures of island life. Enjoy a private steam spa, oversized king bed, radiant floor heating, and complimentary espresso at Sun & Sea Café.
-        Ideal for couples, wellness travelers, remote workers, or small families looking for something beyond a typical holiday rental.
-      `,
-    },
-    de: {
-      short: "",
-      long: "",
-    }
+    en: `
+      Discover a wellness-focused retreat in the heart of Supetar.
+      This Wellness Suite is a newly renovated luxury one-bedroom apartment designed around relaxation, comfort, and the simple pleasures of island life. Enjoy a private steam spa, oversized king bed, radiant floor heating, and complimentary espresso at Sun & Sea Café.
+      Ideal for couples, wellness travelers, remote workers, or small families looking for something beyond a typical holiday rental.
+    `,
   },
 
   details: {

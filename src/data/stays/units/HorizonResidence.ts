@@ -20,10 +20,12 @@ const horizonResidence: UnitConfig = {
     lockboxCode: 2214,
   },
 
+  summary: {
+    en: `Experience the ultimate island retreat in this luxurious 3-bedroom wellness residence, featuring a private steam spa, oversized king bed, and radiant floor heating. Enjoy complimentary espresso at Sun & Sea Café and take advantage of the garden access for a serene escape.`,
+  },
+
   description: {
-    en: {
-      short: `Experience the ultimate island retreat in this luxurious 3-bedroom wellness residence, featuring a private steam spa, oversized king bed, and radiant floor heating. Enjoy complimentary espresso at Sun & Sea Café and take advantage of the garden access for a serene escape.`,
-      long: `This luxurious residence offers the perfect blend of relaxation and comfort, featuring a private steam spa, oversized king bed, and radiant floor heating. Enjoy complimentary espresso at Sun & Sea Café and take advantage of the views across the Horizon looking at Split Harbor and the Velebit mountains. Ideal for families, wellness travelers, and those seeking a unique island experience.
+    en: `This luxurious residence offers the perfect blend of relaxation and comfort, featuring a private steam spa, oversized king bed, and radiant floor heating. Enjoy complimentary espresso at Sun & Sea Café and take advantage of the views across the Horizon looking at Split Harbor and the Velebit mountains. Ideal for families, wellness travelers, and those seeking a unique island experience.
       Private sleeping spaces
 Luxury:
 Bedroom 1
@@ -39,11 +41,6 @@ Market as:
 Sleeps 6 comfortably
 Maximum occupancy 8
       `,
-    },
-    de: {
-      short: "",
-      long: "",
-    }
   },
 
   details: {
