@@ -1,5 +1,5 @@
 import type { UnitConfig } from "../unitType.ts";
-import { unitRates } from "../rates";
+import { unitRates } from "../rates/";
 import { jadranska35 } from "../../config.ts";
 
 const courtyardStudio: UnitConfig = {

@@ -3,7 +3,7 @@ export const LANG_STORE_KEY = "preferredLanguage";
 export const TZ_STORE_KEY = "preferredTimezone";
 
 // Supported lanugages (first listed is primary/default)
-export const LANGS = ["en", "de"] as const;
+export const LANGS = ["en", "de", "hr"] as const;
 export type Language = typeof LANGS[number];
 export type DefaultLocale = typeof LANGS[0];
 export type LocalizedString = string | (Record<DefaultLocale, string> & Partial<Record<Exclude<Language, DefaultLocale>, string>>);
@@ -172,9 +172,9 @@ export interface ProductInfo {
   label?: string; // Optional label (e.g., "Single Class", "Unlimited Month", "Yoga Retreat", "Integration Stay", etc.)
   category?: Categories; // Optional category for the product
   description?: LocalizedString; // Description of the product
-  note?: string; // Optional note for the product (e.g. availability, restrictions, clarifications)
+  note?: string; // Optional note for the product - internal use (e.g. availability, restrictions, clarifications)
   inventory?: number; // Optional actual number of units available for sale
-  capacity?: number; // target capacity (people) for this class option (+2 for hard limit) (optional, default: unlimited)
+  capacity?: number; // Target capacity (people) for this class option (+2 for hard limit) (optional, default: unlimited)
   duration?: number; // Duration in minutes for values >=60;  (optional, default: 60)
   validity?: number; // Validity in months (optional, default: 18)
   minCommit?: number; // Minimum commitment in months (optional, default: 1)
@@ -184,7 +184,7 @@ export interface ProductInfo {
   discounts?: DiscountInfo; // Discounting rules
   standalone?: boolean; // Whether this product can be purchased as a standalone product (optional, default: false)
   upgrade?: boolean; // Whether this product is an upgrade option for a retreat (optional, default: false)
-  billingUnit?: string; // "/ person" | "/ unit" | "/ booking" | "/ day" Billing unit for the product (optional, default: none)
+  billingUnit?: LocalizedString; // "/ person" | "/ unit" | "/ booking" | "/ day" Billing unit for the product (optional, default: none)
   eur: number; // Price in EUR
   usd?: number; // Price in USD (optional, default: ~1.15 * EUR)
   gbp?: number; // Price in GBP (optional, default: ~0.90 * EUR)
@@ -201,13 +201,17 @@ export class Product implements ProductInfo {
   eur = 0;
   usd? = 0;
   gbp? = 0;
-  billingUnit = "";
+//  billingUnit = "";
   standalone = false;
   upgrade = false;
 
-  get description(): string {
+  get description(): LocalizedString {
     if(!this.currentLocale) this.currentLocale = LANGS[0];
     return resolveLocale(this.description, this.currentLocale);
+  }
+  get billingUnit(): LocalizedString {
+    if(!this.currentLocale) this.currentLocale = LANGS[0];
+    return resolveLocale(this.billingUnit, this.currentLocale);
   }
 };
 

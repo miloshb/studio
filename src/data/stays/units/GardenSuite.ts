@@ -1,5 +1,5 @@
 import type { UnitConfig } from "../unitType.ts";
-import { unitRates } from "../rates";
+import { unitRates } from "../rates/";
 import { jadranska33 } from "../../config.ts";
 
 const gardenSuite: UnitConfig = {
@@ -21,13 +21,13 @@ const gardenSuite: UnitConfig = {
   },
 
   summary: {
-    en: "Wake to the morning sun over Brač and begin your day with a complimentary espresso from Sun & Sea Café.  This wellness-focused suite combines a private steam spa, soaking tub, radiant floor heating, and a spacious king bedroom to create a relaxing retreat just minutes from the waterfront.",
+    en: "Wake to the morning sun over Brač and begin your day with a complimentary espresso from Studio Sun & Sea Café.  This wellness-focused suite combines a private steam spa, soaking tub, radiant floor heating, and a spacious king bedroom to create a relaxing retreat just minutes from the waterfront.",
   },
 
   description: {
     en: `
       Discover a wellness-focused retreat in the heart of Supetar.
-      This Wellness Suite is a newly renovated luxury one-bedroom apartment designed around relaxation, comfort, and the simple pleasures of island life. Enjoy a private steam spa, oversized king bed, radiant floor heating, and complimentary espresso at Sun & Sea Café.
+      This Wellness Suite is a newly renovated luxury one-bedroom apartment designed around relaxation, comfort, and the simple pleasures of island life. Enjoy a private steam spa, oversized king bed, radiant floor heating, and complimentary espresso at Studio Sun & Sea Café.
       Ideal for couples, wellness travelers, remote workers, or small families looking for something beyond a typical holiday rental.
     `,
   },
@@ -53,7 +53,7 @@ const gardenSuite: UnitConfig = {
         - Radiant floor heating
         - Fully equipped kitchen
           - Oven, cooktop, dishwasher, microwave, and refrigerator
-          - Espresso at Sun & Sea Café
+          - Espresso at Studio Sun & Sea Café
         - Washer/dryer combo
         - High-speed Wi-Fi
         - Smart TV
