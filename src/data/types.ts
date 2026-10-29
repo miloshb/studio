@@ -1,6 +1,6 @@
 // src/data/types.ts
 /**
- * Common data type definitions: Products, Journey Program, etc.
+ * Common data type definitions: Products, Journey Program, Discounts, etc.
  */
 import type { PriceData } from "./currency.ts";
 import type { LocalizedString } from "./i18n.ts";
@@ -8,7 +8,8 @@ import type { LocalizedString } from "./i18n.ts";
 /**
  * ProductInfo interface defines the structure of the products offered (studio classes, workshops, memberships, yoga retreats, retreat upgrade options, etc.).
  * Upgrades can be used to offer additional nights or special packages for guests who want to continue or enhance their experience.
- * billingUnit: "/ person" | "/ unit" | "/ booking" | "/ day" Billing unit for the product (optional, default: none)
+ * Inherited from currency/PriceData:
+ *   billingUnit: "per person" | "per unit" | "per booking" | "per day" Billing unit for the product (optional, default: none)
  */
 export type Categories = "class" | "retreat" | "stay";
 export interface ProductInfo extends PriceData {

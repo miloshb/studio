@@ -1,7 +1,6 @@
-// src/data/pricing.ts
+// src/data/products.ts
 import { journeyLevel } from "./types.ts"
 import type { DiscountInfo, ProductInfo } from "./types.ts";
-
 
 const products: Record<string, ProductInfo> = {
   "suite": {
