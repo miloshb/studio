@@ -2,8 +2,9 @@
 // src/components/ScheduleGrid.astro
 import { scheduleData } from "../data/schedule.ts";
 import { TZ_STORE_KEY, debug } from "../data/config.ts";
+import type { Language } from "../data/i18n.ts";
 
-const { lang = "en" } = Astro.props;
+const { lang = "en" } = Astro.props as { lang?: Language };
 
 const dayHeader = {
   en: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],

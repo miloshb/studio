@@ -1,5 +1,6 @@
 // src/data/stays/guideType.ts
-import type { GeoLocation } from "../config";
+import type { LocalizedString } from "../i18n.ts";
+import type { GeoLocation } from "../location.ts";
 
 // TODO: evolve to use references for this consolidated location-based guide to information in specific guides rather than text descriptions.
 export interface GuideInfoAirbnb {
@@ -29,10 +30,7 @@ export interface ExperienceInfo {
 
   locations?: string[];
 
-  notes?: {
-    en: string;
-    de?: string;
-  };
+  notes?: LocalizedString;
 }
 
 /**
@@ -50,10 +48,7 @@ interface GuideInfo {
     ferryRequired?: boolean;
   };
 
-  notes?: {
-    en: string;
-    de?: string;
-  };
+  notes?: LocalizedString;
 }
 
 /**

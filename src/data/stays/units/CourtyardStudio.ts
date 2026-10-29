@@ -1,5 +1,5 @@
 import type { UnitConfig } from "../unitType.ts";
-import { unitRates } from "../rates";
+import { unitRates } from "../rates/";
 import { jadranska35 } from "../../config.ts";
 
 const courtyardStudio: UnitConfig = {
@@ -20,16 +20,11 @@ const courtyardStudio: UnitConfig = {
     lockboxCode: 2214,
   },
 
-  description: {
-    en: {
-      short: "Lorem ipsum dolorem set amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      long: "",
-    },
-    de: {
-      short: "",
-      long: "",
-    }
+  summary: {
+    en: "Lorem ipsum dolorem set amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
   },
+
+  description: "",
 
   details: {
     type: "studio",

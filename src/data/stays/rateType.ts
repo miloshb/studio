@@ -1,6 +1,6 @@
 // src/data/stays/rateType.ts
-import type { SupportedCurrency } from "../../utils/currency.ts";
-import type { DiscountInfo } from "../config.ts";
+import type { SupportedCurrency } from "../currency.ts";
+import type { DiscountInfo } from "../types.ts";
 
 /**
  * This file defines the structure of the rate rules for stays at a particular location.

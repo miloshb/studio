@@ -1,5 +1,5 @@
 import type { UnitConfig } from "../unitType.ts";
-import { unitRates } from "../rates";
+import { unitRates } from "../rates/";
 import { jadranska33 } from "../../config.ts";
 
 const gardenResidence: UnitConfig = {
@@ -20,10 +20,13 @@ const gardenResidence: UnitConfig = {
     lockboxCode: 2214,
   },
 
+  summary: {
+    en: `Experience the ultimate island retreat in this luxurious Wellness Residence, featuring a private steam spa, oversized king bed, and radiant floor heating. Enjoy complimentary espresso at Studio Sun & Sea Café and take advantage of the garden access for a serene escape.`,
+    de: "Lorem ipsum dolorem set amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+  },
+
   description: {
-    en: {
-      short: `Experience the ultimate island retreat in this luxurious 3-bedroom wellness residence, featuring a private steam spa, oversized king bed, and radiant floor heating. Enjoy complimentary espresso at Sun & Sea Café and take advantage of the garden access for a serene escape.`,
-      long: `This luxurious residence offers the perfect blend of relaxation and comfort, featuring a private steam spa, oversized king bed, and radiant floor heating. Enjoy complimentary espresso at Sun & Sea Café and take advantage of the garden access for a serene escape. Ideal for families, wellness travelers, and those seeking a unique island experience.
+    en: `This luxurious residence offers the perfect blend of relaxation and comfort, featuring a private steam spa, oversized king bed, and radiant floor heating. Enjoy complimentary espresso at Studio Sun & Sea Café and take advantage of the garden access for a serene escape. Ideal for families, wellness travelers, and those seeking a unique island experience.
       Private sleeping spaces
 Luxury:
 Bedroom 1
@@ -38,12 +41,7 @@ Result:
 Market as:
 Sleeps 6 comfortably
 Maximum occupancy 8
-      `,
-    },
-    de: {
-      short: "",
-      long: "",
-    }
+    `,
   },
 
   details: {

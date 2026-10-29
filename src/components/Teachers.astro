@@ -1,7 +1,8 @@
 ---
 import StudioImage from "./StudioImage.astro";
+import type { LangString, Language } from "../data/i18n.ts";
 
-const { lang = "en" } = Astro.props;
+const { lang = "en" } = Astro.props as { lang?: Language };
 
 // Teacher data (eventually from CMS)
 const teachers = [
@@ -23,7 +24,7 @@ const teachers = [
   }
 ];
 
-const heading = {
+const heading:LangString = {
   en: "About the Teacher",
   de: "Über den Lehrer"
 };

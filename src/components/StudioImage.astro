@@ -1,14 +1,24 @@
 ---
 // src/components/StudioImage.astro
+type SizeKey = "sm" | "md" | "lg";
+type AspectKey = "square" | "portrait" | "headshot" | "landscape" | undefined;
+interface Props {
+  src: string;
+  alt: string;
+  widths?: number;
+  sizes?: string;
+  // thumbnail can be: true | "sm" | "md" | "lg"
+  thumbnail?: SizeKey;
+  aspect?: AspectKey;
+  [key: string]: any;
+}
 const {
   src,
   alt,
   // Defaults for full-width images
   widths = [400, 1080, 1600],
   sizes = "(max-width: var(--mobile-max-width)) 100vw, var(--maxwidth)",
-  // thumbnail can be: true | "sm" | "md" | "lg"
   thumbnail = false,
-  // aspect can be: "square" | "portrait" | "headshot" | "landscape" | undefined
   aspect = null,
   ...rest
 } = Astro.props;
@@ -19,16 +29,16 @@ let wrapperStyle = "";
 let thumbnailClass = "";
 
 // Thumbnail overrides
-const sizeMap = {
+const sizeMap:Record<SizeKey,string> = {
   sm: "var(--thumbnail-width-sm)",
   md: "var(--thumbnail-width-md)",
   lg: "var(--thumbnail-width-lg)",
 };
 
 if (thumbnail) {
-  const sizeKey = typeof thumbnail === "string" ? thumbnail : "md";
-  thumbnailClass = `thumbnail-${sizeKey}`
-  finalSizes = sizeMap[sizeKey] ?? sizeMap.md;
+  const size:SizeKey = typeof thumbnail === "string" ? thumbnail : "md";
+  thumbnailClass = `thumbnail-${size}`
+  finalSizes = sizeMap[size] ?? sizeMap.md;
   finalWidths = [400, 1080];
   wrapperStyle = `border-radius: var(--radius-xs)`;
 }
