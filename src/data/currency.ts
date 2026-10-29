@@ -1,6 +1,50 @@
-// src/utils/currency.ts
-import type { SupportedLocale } from "./i18n";
+// src/data/currency.ts
+/**
+ * Multi-Currency utilities and data types.
+ */
+import type { SupportedLocale, LocalizedString } from "./i18n.ts";
 export type SupportedCurrency = "EUR" | "USD" | "GBP";
+
+// Multi-Currency Pricing
+export interface PriceData {
+  eur: number;  // Price in EUR
+  usd?: number; // Price in USD (optional, default: ~1.20 * EUR)
+  gbp?: number; // Price in GBP (optional, default: ~0.90 * EUR)
+  billingUnit?: LocalizedString; // Billing unit for price (default: none)
+}
+
+/**
+ * Calculate USD and GBP dynamically from EUR values with psychological rounding
+ * and an FX risk buffer to protect EUR accounting.
+ */
+export function currencyCalc(eurAmount: number): { eur: number; usd: number; gbp: number } {
+  if (eurAmount === 0) return { eur: 0, usd: 0, gbp: 0 };
+  const absEur = Math.abs(eurAmount);
+  const sign = Math.sign(eurAmount);
+
+  const usdRaw = absEur * 1.20;
+  const gbpRaw = absEur * 0.90;
+
+  let usd: number;
+  let gbp: number;
+
+  if (absEur < 100) {
+    usd = Math.ceil(usdRaw / 5) * 5;
+    gbp = Math.ceil(gbpRaw / 2) * 2;
+  } else if (absEur < 1000) {
+    usd = Math.ceil(usdRaw / 5) * 5;
+    gbp = Math.ceil(gbpRaw / 5) * 5;
+  } else {
+    usd = Math.ceil(usdRaw / 100) * 100;
+    gbp = Math.ceil(gbpRaw / 50) * 50;
+  }
+
+  return {
+    eur: eurAmount,
+    usd: sign * usd,
+    gbp: sign * gbp,
+  };
+};
 
 // Format a number into a localized currency string
 export function formatCurrency(
@@ -18,14 +62,6 @@ export function formatCurrency(
     minimumFractionDigits: 0,
     maximumFractionDigits: 0,
   }).format(value);
-}
-
-// Multi-Currency helpers
-export interface PriceData {
-  eur: number;
-  usd?: number;
-  gbp?: number;
-  billingUnit?: string; // Append billing unit to price if specified (default: none)
 }
 
 // Overload 1: accept a row object

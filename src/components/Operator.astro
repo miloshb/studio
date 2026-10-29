@@ -4,14 +4,14 @@
  * Output consistently the Owner/Operator of the business for legal content.
  */
 import { getSiteConfig, company } from "../data/config.ts";
+import type { Language } from "../data/i18n.ts";
 
 interface Props {
-  lang: "en" | "de";
+  lang: Language;
   heading: string;
   contact?: boolean;
   email?: string;
 }
-
 const { lang, heading, contact, email} = Astro.props;
 
 const site = getSiteConfig();

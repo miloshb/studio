@@ -1,7 +1,7 @@
 ---
 // src/components/PriceTable.astro
 import PriceCell from "./PriceCell.astro";
-import { getLocaleFromUrl } from "../utils/i18n";
+import { getLocaleFromUrl } from "../data/i18n.ts";
 
 const { rows, locale: localeOverride, descLabel, priceLabel, rowLabelOverride = false } = Astro.props;
 

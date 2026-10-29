@@ -27,15 +27,14 @@ const jasmineSound: UnitConfig = {
     lockboxCode: 2214,
   },
 
+  summary: {
+    en: "Enjoy the simple things in life with this comfortable and spacious house centrally located in the DFW metroplex close to The Sound and DFW Airport. A quick drive to (easy access to multiple highways: I635, I35E, 114, 121, 161/PGBT) Las Colinas, Addison, Dallas Uptown, Park Cities, Plano Legacy, Grapevine, Richardson, Love Field Airport, etc.",
+    de: "Genieße das einfache und gemütliche Leben in dieser ruhigen und zentral gelegenen Unterkunft. In der Nähe von The Sound, DFW Airport. Kurze Distanz und einfacher Zugang nach Las Colinas, Addison, Dallas Uptown, Park Cities, Plano Legacy, Grapevine, Richardson, Love Field Airport, usw.",
+  },
+
   description: {
-    en: {
-      short: "Enjoy the simple things in life with this comfortable and spacious house centrally located in the DFW metroplex close to The Sound and DFW Airport. A quick drive to (easy access to multiple highways: I635, I35E, 114, 121, 161/PGBT) Las Colinas, Addison, Dallas Uptown, Park Cities, Plano Legacy, Grapevine, Richardson, Love Field Airport, etc.",
-      long: "This beautiful one-and-a-half story Valley Ranch home is light and bright, featuring 4 bedrooms and 3 baths and soaring ceilings. Recently upgraded kitchen opens to family room, and formal living. Game room, study area, balcony, and one bed/one bath are located upstairs. The home is located in a quiet neighborhood with easy access to highways, shopping, and dining. Enjoy the nearby walking trails and parks, or take a short drive to the lake for some outdoor fun.",
-    },
-    de: {
-      short: "Genieße das einfache und gemütliche Leben in dieser ruhigen und zentral gelegenen Unterkunft. In der Nähe von The Sound, DFW Airport. Kurze Distanz und einfacher Zugang nach Las Colinas, Addison, Dallas Uptown, Park Cities, Plano Legacy, Grapevine, Richardson, Love Field Airport, usw.",
-      long: "Dieses schöne, ein-und-a-half-stöckige Valley Ranch-Haus ist hell und hell, mit 4 Schlafzimmern und 3 Bädern und erhabenen Decken. Das kürzlich renovierte Küchen öffnet sich in den Familienraum und den formellen Wohnbereich. Spielzimmer, Studiobereich, Balkon und ein Bett/ein Bad befinden sich im Obergeschoss. Das Haus befindet sich in einem ruhigen Viertel mit leichtem Zugang zu Autobahnen, Einkaufszentren und Restaurants. Genießen Sie die nahegelegenen Wanderwege und Parks oder fahren Sie mit einer kurzen Fahrt zum See für etwas Outdoor-Freude.",
-    }
+    en: "This beautiful one-and-a-half story Valley Ranch home is light and bright, featuring 4 bedrooms and 3 baths and soaring ceilings. Recently upgraded kitchen opens to family room, and formal living. Game room, study area, balcony, and one bed/one bath are located upstairs. The home is located in a quiet neighborhood with easy access to highways, shopping, and dining. Enjoy the nearby walking trails and parks, or take a short drive to the lake for some outdoor fun.",
+    de: "Dieses schöne, ein-und-a-half-stöckige Valley Ranch-Haus ist hell und hell, mit 4 Schlafzimmern und 3 Bädern und erhabenen Decken. Das kürzlich renovierte Küchen öffnet sich in den Familienraum und den formellen Wohnbereich. Spielzimmer, Studiobereich, Balkon und ein Bett/ein Bad befinden sich im Obergeschoss. Das Haus befindet sich in einem ruhigen Viertel mit leichtem Zugang zu Autobahnen, Einkaufszentren und Restaurants. Genießen Sie die nahegelegenen Wanderwege und Parks oder fahren Sie mit einer kurzen Fahrt zum See für etwas Outdoor-Freude.",
   },
 
   details: {

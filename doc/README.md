@@ -2,6 +2,8 @@
 
 This document defines the code branching topology, active testing suites, and branch-specific Cloudflare deployment infrastructure for the Studio Sun & Sea repository.
 
+See how to [contribute](./CONTRIBUTING.md) to this repository.
+
 ## 1. Branch Topology & Environmental Lifecycles
 
 We use a structured branch strategy to catch layout regressions and broken routes before changes reach production.
@@ -32,8 +34,6 @@ We use a structured branch strategy to catch layout regressions and broken route
 * **`feat/*` or `fix/*`**: Branched off `stage` for development isolation. Deleted immediately upon successful merge back into `stage`.
 * **`hotfix/*`**: Used **rarely** and only when working off `stage` is unviable. Branched directly off `main` to address critical production issues. Must be merged into *both* `main` and `stage` immediately.
 
----
-
 ## 2. Cloudflare Deployment Mapping Matrix
 
 Cloudflare Pages compiles every single active branch in the repository into its own isolated preview environment sandbox. The target links resolve as follows:
@@ -48,8 +48,6 @@ Cloudflare Pages compiles every single active branch in the repository into its 
 | `feat/*` | `[branch-name].studio-sun-and-sea.pages.dev` | Automated Preview Link |
 
 Cloudflare hosts both [studiosunandsea.com](https://studiosunandsea.com) and [eireneintentiocitta.hr](https://eireneintentiocitta.hr) from this GitHub repo. The environment variable **SITE_MODE** is used to drive different site behaviour where needed (*brand* => Studio Sun & Sea; *corp* => Eirene Intentio Citta d.o.o.).
-
----
 
 ## 3. Automated CI/CD Testing & Production Validation
 

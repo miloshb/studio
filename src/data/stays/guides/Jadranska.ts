@@ -1,6 +1,7 @@
+import type { Language } from "../../i18n.ts";
 import type { GuideInfoAirbnb } from "../guideType.ts";
 
-const jadranskaGuide: Record<"en" | "de", GuideInfoAirbnb> = {
+const jadranskaGuide: Record<Language, GuideInfoAirbnb> = {
   en: {
     restaurants: [
       "Konoba Lukin — classic Dalmatian dishes and seafood",

@@ -1,18 +1,12 @@
 ---
 // src/pages/en/stays/[unit].astro
 import BaseLayout from "../../../layouts/BaseLayout.astro";
-import { guides } from "../../../data/stays/guides/index.ts";
-import { units } from "../../../data/stays/units/index.ts";
+import { guides } from "../../../data/stays/guides/";
+import { units, type UnitKey } from "../../../data/stays/units/";
+import type { UnitConfig } from "../../../data/stays/unitType.ts";
+import { localeString, type Language } from "../../../data/i18n.ts";
 import { info, debug } from "../../../data/config.ts";
 
-import type { UnitKey } from "../../../data/stays/units/index.ts";
-import type { UnitConfig } from "../../../data/stays/unitType.ts";
-import type { Language } from "../../../data/config.ts";
-
-export interface Props {
-  unit: UnitConfig;
-  lang: Language;
-}
 
 // Generate static paths AND pass props to the page
 export async function getStaticPaths() {
@@ -22,10 +16,14 @@ export async function getStaticPaths() {
   }));
 }
 
+export interface Props {
+  unit: UnitConfig;
+  lang: Language;
+}
 // Access props passed from getStaticPaths()
 const { unit, lang } = Astro.props;
 
-  info &&console.log("INFO: Astro.props =", Astro.props);
+  info && console.log("INFO: Astro.props =", Astro.props);
   debug && console.log("DEBUG: Astro.props.unit =", Astro.props.unit);
 
 if (!unit) {
@@ -60,16 +58,13 @@ const photos = Object.fromEntries(
   <h1>{unit.name} – Stay at Studio Sun & Sea</h1>
 
   <section>
-    <p>{unit.description[lang].short}</p>
+    <p>{localeString(unit.summary, lang)}</p>
   </section>
 
-  <!-- Long Description -->
-  {unit.description?.[lang]?.long && (
-    <section>
-      <h2>About This Stay</h2>
-      <p>{unit.description[lang].long}</p>
-    </section>
-  )}
+  <section>
+    <h2>About This Stay</h2>
+    <p>{localeString(unit.description, lang)}</p>
+  </section>
 
   <!-- Booking Links -->
   <section>
@@ -108,13 +103,10 @@ const photos = Object.fromEntries(
     ))}
   </section>
 
-  <!-- Directions -->
-  {unit.directions?.[lang] && (
-    <section>
-      <h2>Directions</h2>
-      <p>{unit.directions[lang]}</p>
-    </section>
-  )}
+  <section>
+    <h2>Directions</h2>
+    <p>{localeString(unit.directions, lang)}</p>
+  </section>
 
   <!-- Local Guide (Generic Rendering) -->
   <section>

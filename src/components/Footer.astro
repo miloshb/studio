@@ -1,7 +1,13 @@
 ---
 import { FOOTER_ROUTE_KEYS, HEADER_ROUTE_KEYS, ROUTES } from "../data/routes.js";
+import type { Language } from "../data/i18n.ts";
 import ExaliSeal from "./ExaliSeal.astro";
 import SocialLinks from "./SocialLinks.astro";
+
+interface Props {
+  lang: Language;
+  footerOffset: boolean;
+}
 const { lang, footerOffset } = Astro.props;
 const footerTopOffset = footerOffset ? "var(--offset-lg)" : "0px";
 ---

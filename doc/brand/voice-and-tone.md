@@ -1,6 +1,29 @@
 # Studio Sun & Sea — Voice & Tone Guidelines
-A warm, grounded, bilingual communication style rooted in mindfulness, clarity, and presence.
+A warm, grounded, multilingual communication style rooted in mindfulness, clarity, and presence.
 These guidelines ensure that all written content (website, emails, class descriptions, and teacher materials) feels consistent and aligned with the Studio Sun & Sea identity.
+
+## TOC
+- [Studio Sun \& Sea — Voice \& Tone Guidelines](#studio-sun--sea--voice--tone-guidelines)
+  - [TOC](#toc)
+  - [✨ Core Voice Qualities](#-core-voice-qualities)
+  - [🌿 Tone Principles](#-tone-principles)
+    - [**1. Warm \& Inviting**](#1-warm--inviting)
+    - [**2. Calm \& Grounded**](#2-calm--grounded)
+    - [**3. Clear \& Minimal**](#3-clear--minimal)
+    - [**4. Inclusive \& Accessible**](#4-inclusive--accessible)
+    - [**5. Multilingual with Ease**](#5-multilingual-with-ease)
+  - [🧘‍♂️ Writing Style Guidelines](#️-writing-style-guidelines)
+    - [**Sentence Rhythm**](#sentence-rhythm)
+    - [**Vocabulary**](#vocabulary)
+    - [**Pronouns**](#pronouns)
+    - [**Punctuation**](#punctuation)
+  - [🪷 Examples](#-examples)
+    - [**Website Hero**](#website-hero)
+    - [**Class Description**](#class-description)
+    - [**Private Sessions**](#private-sessions)
+    - [**Teach With Us**](#teach-with-us)
+  - [🗣️ What to Avoid](#️-what-to-avoid)
+  - [🔗 Related Documentation](#-related-documentation)
 
 ## ✨ Core Voice Qualities
 
@@ -70,10 +93,14 @@ Everyone should feel welcome — beginners, advanced practitioners, all bodies, 
 - assumptions about ability
 - performative spiritual language
 
-### **5. Bilingual with Ease**
-English is primary.
-German is integrated naturally.
-Sanskrit appears respectfully and with clarity.
+### **5. Multilingual with Ease**
+- English is primary.
+- German is integrated naturally.
+- Sanskrit appears respectfully and with clarity.
+- Croatian to be added once all content is stabilized and established across the business units.
+- In the future, more languages may be added if there is sufficient participant desire.
+
+Product names, retreat names, and program names remain in **English** across all languages. Descriptions, policies, schedules, and supporting content are translated.
 
 **Format:**
 **Sanskrit — English — German**
@@ -140,3 +167,6 @@ The brand is about **yoga, connection, and presence** — not about the individu
 - **[Navigation structure](ca://s?q=Generate_navigation_structure)**
 - **[Hero layout](ca://s?q=Generate_homepage_hero_spec)**
 - **[Component library](ca://s?q=Generate_component_library_spec)**
+
+---
+*Last Checked: October 2026*
