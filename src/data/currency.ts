@@ -5,6 +5,14 @@
 import type { SupportedLocale, LocalizedString } from "./i18n.ts";
 export type SupportedCurrency = "EUR" | "USD" | "GBP";
 
+// Multi-Currency Pricing
+export interface PriceData {
+  eur: number;  // Price in EUR
+  usd?: number; // Price in USD (optional, default: ~1.20 * EUR)
+  gbp?: number; // Price in GBP (optional, default: ~0.90 * EUR)
+  billingUnit?: LocalizedString; // Billing unit for price (default: none)
+}
+
 /**
  * Calculate USD and GBP dynamically from EUR values with psychological rounding
  * and an FX risk buffer to protect EUR accounting.
@@ -38,7 +46,6 @@ export function currencyCalc(eurAmount: number): { eur: number; usd: number; gbp
   };
 };
 
-
 // Format a number into a localized currency string
 export function formatCurrency(
   value: number | undefined,
@@ -55,14 +62,6 @@ export function formatCurrency(
     minimumFractionDigits: 0,
     maximumFractionDigits: 0,
   }).format(value);
-}
-
-// Multi-Currency helpers
-export interface PriceData {
-  eur: number;  // Price in EUR
-  usd?: number; // Price in USD (optional, default: ~1.20 * EUR)
-  gbp?: number; // Price in GBP (optional, default: ~0.90 * EUR)
-  billingUnit?: LocalizedString; // Billing unit for price (default: none)
 }
 
 // Overload 1: accept a row object
