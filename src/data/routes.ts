@@ -3,7 +3,7 @@
  * Multilingual site routing definitions.
  */
 import { getSiteConfig, info, debug } from "./config.ts";
-import { defaultLocale, LANGS, type LangString, type Language } from "./i18n.ts";
+import { defaultLang, LANGS, type LangString, type Language } from "./i18n.ts";
 
 const site = getSiteConfig();
 
@@ -324,7 +324,7 @@ export const HREFLANG = Object.fromEntries(
 );
 
 export function getLangRoot(lang: Language) {
-  const safeLang = LANGS.includes(lang) ? lang : defaultLocale;
+  const safeLang = LANGS.includes(lang) ? lang : defaultLang;
   return `/${safeLang}/`;
 }
 

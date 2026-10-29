@@ -1,20 +1,20 @@
 ---
-import { defaultLocale, LANGS } from "../data/i18n.ts";
+import { defaultLang, LANGS } from "../data/i18n.ts";
 import { LANG_STORE_KEY } from "../data/config.ts";
 ---
 
 <!DOCTYPE html>
-<html lang={defaultLocale}>
+<html lang={defaultLang}>
   <head>
     <meta charset="UTF-8" />
     <title>Redirecting…</title>
-    <noscript><meta http-equiv="refresh" content={`0;url=/${defaultLocale}/`} /></noscript>
+    <noscript><meta http-equiv="refresh" content={`0;url=/${defaultLang}/`} /></noscript>
 
-    <script is:inline define:vars={{ LANGS, LANG_STORE_KEY }}>
+    <script is:inline define:vars={{ defaultLang, LANGS, LANG_STORE_KEY }}>
       let targetLang = localStorage.getItem(LANG_STORE_KEY);
 
       if (!targetLang) {
-        const browserLanguages = navigator.languages || [navigator.language || defaultLocale];
+        const browserLanguages = navigator.languages || [navigator.language || defaultLang];
 
         for (const lang of browserLanguages) {
           const shortCode = String(lang).split('-')[0].toLowerCase();
@@ -25,7 +25,7 @@ import { LANG_STORE_KEY } from "../data/config.ts";
         }
       }
 
-      targetLang = targetLang || defaultLocale;
+      targetLang = targetLang || defaultLang;
       try {
         localStorage.setItem(LANG_STORE_KEY, targetLang);
       } catch (e) {

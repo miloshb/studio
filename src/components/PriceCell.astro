@@ -1,7 +1,7 @@
 ---
 // src/components/PriceCell.astro
 import { formatMultiCurrency, type PriceData } from "../data/currency.ts";
-import { getLocaleFromUrl, type SupportedLocale } from "../data/i18n.ts"
+import { getLocaleFromUrl, localeString, type SupportedLocale } from "../data/i18n.ts"
 
 interface Props {
   // Accept either an array of pre-formatted strings OR the raw data object
@@ -10,7 +10,6 @@ interface Props {
 }
 const { prices, locale: localeOverride } = Astro.props;
 const currentLocale = localeOverride || getLocaleFromUrl(Astro.url);
-
 
 const formattedPrices = Array.isArray(prices)
   ? prices
@@ -25,7 +24,7 @@ const formattedPrices = Array.isArray(prices)
     </>
   ))}
   {formattedPrices.length > 0 && !Array.isArray(prices) && prices.billingUnit && (
-    <span class="billing-unit">{prices.billingUnit}</span>
+    <span class="billing-unit">{localeString(prices.billingUnit, currentLocale)}</span>
   )}
 </td>
 
