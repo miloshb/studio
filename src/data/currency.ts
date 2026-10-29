@@ -16,8 +16,7 @@ export interface PriceData {
 }
 
 /**
- * Calculate USD and GBP dynamically from EUR values with psychological rounding
- * and an FX risk buffer to protect EUR accounting.
+ * Calculate USD and GBP dynamically from EUR with psychological rounding and an FX risk buffer to protect EUR accounting.
  */
 export function currencyCalc(eurAmount: number): { eur: number; usd: number; gbp: number } {
   if (eurAmount === 0) return { eur: 0, usd: 0, gbp: 0 };
@@ -36,9 +35,12 @@ export function currencyCalc(eurAmount: number): { eur: number; usd: number; gbp
   } else if (absEur < 400) {
     usd = Math.ceil(usdRaw / 5) * 5;
     gbp = Math.ceil(gbpRaw / 5) * 5;
-  } else {
+  } else if (absEur < 1600) {
     usd = Math.ceil(usdRaw / 100) * 100;
     gbp = Math.ceil(gbpRaw / 50) * 50;
+  } else {
+    usd = Math.ceil(usdRaw / 100) * 100;
+    gbp = Math.ceil(gbpRaw / 100) * 100;
   }
 
   return {
@@ -53,7 +55,6 @@ export function formatCurrency(
   value: number | undefined,
   currency: SupportedCurrency,
   locale: SupportedLocale = "en-US",
-  factor: number = 1,
 ) {
   if (value === undefined || isNaN(value)) {
     return undefined;
@@ -64,7 +65,7 @@ export function formatCurrency(
     currency,
     minimumFractionDigits: 0,
     maximumFractionDigits: 0,
-  }).format(value * factor);
+  }).format(value);
 }
 
 // Overload 1: accept a row object
@@ -81,29 +82,29 @@ export function formatMultiCurrency(
   locale: SupportedLocale
 ): string[];
 
-// Implementation
+// Implementation for multicurrency formatting
 export function formatMultiCurrency(
   a: PriceData | number,
   b: number | SupportedLocale,
   c?: number,
   d?: SupportedLocale
 ) {
-  let eur: number | undefined;
+  let eur: number;
   let usd: number | undefined;
   let gbp: number | undefined;
   let locale: SupportedLocale;
-  let factor: number = 1;
 
   if (typeof a === "object" && a !== null) {
     // Case 1: (row, locale)
     const row = a as PriceData;
-    factor = 1 - (row.discountApply || 0)/100;
+    let factor = 1 - (row.discountApply || 0)/100;
     if (row.calculate) {
-      ({eur, usd, gbp} = currencyCalc(row.eur));
+      ({eur, usd, gbp} = currencyCalc(row.eur * factor));
     } else {
-      eur = row.eur;
-      usd = row.usd;
-      gbp = row.gbp;
+      const scale = (val?: number) => (val === undefined ? undefined : val * factor);
+      eur = row.eur * factor;
+      usd = scale(row.usd);
+      gbp = scale(row.gbp);
     }
     locale = b as SupportedLocale;
   } else {
@@ -115,8 +116,8 @@ export function formatMultiCurrency(
   }
 
   return [
-    formatCurrency(eur, "EUR", locale, factor),
-    formatCurrency(usd, "USD", locale, factor),
-    formatCurrency(gbp, "GBP", locale, factor),
+    formatCurrency(eur, "EUR", locale),
+    formatCurrency(usd, "USD", locale),
+    formatCurrency(gbp, "GBP", locale),
   ].filter(Boolean) as string[];
 }
