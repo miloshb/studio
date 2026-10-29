@@ -10,7 +10,9 @@ export interface PriceData {
   eur: number;  // Price in EUR
   usd?: number; // Price in USD (optional, default: ~1.20 * EUR)
   gbp?: number; // Price in GBP (optional, default: ~0.90 * EUR)
+  calculate?: boolean; // Calculate USD and GBP values from EUR when set to true
   billingUnit?: LocalizedString; // Billing unit for price (default: none)
+  discountApply?: number; // Discount to apply before displaying the price
 }
 
 /**
@@ -50,7 +52,8 @@ export function currencyCalc(eurAmount: number): { eur: number; usd: number; gbp
 export function formatCurrency(
   value: number | undefined,
   currency: SupportedCurrency,
-  locale: SupportedLocale = "en-US"
+  locale: SupportedLocale = "en-US",
+  factor: number = 1,
 ) {
   if (value === undefined || isNaN(value)) {
     return undefined;
@@ -61,7 +64,7 @@ export function formatCurrency(
     currency,
     minimumFractionDigits: 0,
     maximumFractionDigits: 0,
-  }).format(value);
+  }).format(value * factor);
 }
 
 // Overload 1: accept a row object
@@ -89,13 +92,19 @@ export function formatMultiCurrency(
   let usd: number | undefined;
   let gbp: number | undefined;
   let locale: SupportedLocale;
+  let factor: number = 1;
 
   if (typeof a === "object" && a !== null) {
     // Case 1: (row, locale)
     const row = a as PriceData;
-    eur = row.eur;
-    usd = row.usd;
-    gbp = row.gbp;
+    factor = 1 - (row.discountApply || 0);
+    if (row.calculate) {
+      ({eur, usd, gbp} = currencyCalc(row.eur));
+    } else {
+      eur = row.eur;
+      usd = row.usd;
+      gbp = row.gbp;
+    }
     locale = b as SupportedLocale;
   } else {
     // Case 2: (eur, usd, gbp, locale)
@@ -106,8 +115,8 @@ export function formatMultiCurrency(
   }
 
   return [
-    formatCurrency(eur, "EUR", locale),
-    formatCurrency(usd, "USD", locale),
-    formatCurrency(gbp, "GBP", locale),
+    formatCurrency(eur, "EUR", locale, factor),
+    formatCurrency(usd, "USD", locale, factor),
+    formatCurrency(gbp, "GBP", locale, factor),
   ].filter(Boolean) as string[];
 }

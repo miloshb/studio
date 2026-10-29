@@ -130,9 +130,9 @@ const products: Record<string, ProductInfo> = {
     duration: 5,
     capacity: 6, // Target participants 4-6
     inventory: 8, // Capped at 8 students
-    eur: 1500, // 25% discount for those already attending the 7-day retreat
-    usd: 1800,
-    gbp: 1350,
+    discountApply: 25, // 25% discount for those already attending the 7-day retreat
+    eur: 2000,
+    calculate: true,
     billingUnit: "5-day program + 6-day stay · small-group intensive",
     standalone: true,
     upgrade: true,
@@ -146,8 +146,7 @@ const products: Record<string, ProductInfo> = {
     capacity: 14, // Target participants 12-14
     inventory: 16, // Capped at 16 participants
     eur: 2000,
-    usd: 2400,
-    gbp: 1800,
+    calculate: true,
     billingUnit: "7-day program + 8-day stay",
     standalone: true,
     upgrade: false,
@@ -179,7 +178,7 @@ export const pricing: {
   group: ProductInfo[];
   workshop: ProductInfo[];
   retreats: {
-    retreat: ProductInfo[];
+    retreats: ProductInfo[];
     discounts: DiscountInfo;
     upgrades: Record<ProductKey, ProductInfo>;
   }
@@ -257,13 +256,11 @@ export const pricing: {
 
   // Retreats
   retreats: {
-    retreat: [
+    retreats: [
       products.coreRetreat,
       {
         ...products.advancedImmersion,
-        eur: 2000,
-        usd: 2400,
-        gbp: 1800,
+        discountApply: 0,
       },
     ],
     discounts: {
