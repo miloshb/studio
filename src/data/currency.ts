@@ -12,7 +12,7 @@ export interface PriceData {
   gbp?: number; // Price in GBP (optional, default: ~0.90 * EUR)
   calculate?: boolean; // Calculate USD and GBP values from EUR when set to true
   billingUnit?: LocalizedString; // Billing unit for price (default: none)
-  discountApply?: number; // Discount to apply before displaying the price
+  discountApply?: number; // Discount (as %) to apply before displaying the price
 }
 
 /**
@@ -97,7 +97,7 @@ export function formatMultiCurrency(
   if (typeof a === "object" && a !== null) {
     // Case 1: (row, locale)
     const row = a as PriceData;
-    factor = 1 - (row.discountApply || 0);
+    factor = 1 - (row.discountApply || 0)/100;
     if (row.calculate) {
       ({eur, usd, gbp} = currencyCalc(row.eur));
     } else {
