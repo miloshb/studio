@@ -10,12 +10,13 @@ export interface PriceData {
   eur: number;  // Price in EUR
   usd?: number; // Price in USD (optional, default: ~1.20 * EUR)
   gbp?: number; // Price in GBP (optional, default: ~0.90 * EUR)
+  calculate?: boolean; // Calculate USD and GBP values from EUR when set to true
   billingUnit?: LocalizedString; // Billing unit for price (default: none)
+  discountApply?: number; // Discount (as %) to apply before displaying the price
 }
 
 /**
- * Calculate USD and GBP dynamically from EUR values with psychological rounding
- * and an FX risk buffer to protect EUR accounting.
+ * Calculate USD and GBP dynamically from EUR with psychological rounding and an FX risk buffer to protect EUR accounting.
  */
 export function currencyCalc(eurAmount: number): { eur: number; usd: number; gbp: number } {
   if (eurAmount === 0) return { eur: 0, usd: 0, gbp: 0 };
@@ -23,20 +24,23 @@ export function currencyCalc(eurAmount: number): { eur: number; usd: number; gbp
   const sign = Math.sign(eurAmount);
 
   const usdRaw = absEur * 1.20;
-  const gbpRaw = absEur * 0.90;
+  const gbpRaw = absEur * 0.875;
 
   let usd: number;
   let gbp: number;
 
-  if (absEur < 100) {
+  if (absEur < 50) {
     usd = Math.ceil(usdRaw / 5) * 5;
     gbp = Math.ceil(gbpRaw / 2) * 2;
-  } else if (absEur < 1000) {
+  } else if (absEur < 400) {
     usd = Math.ceil(usdRaw / 5) * 5;
     gbp = Math.ceil(gbpRaw / 5) * 5;
-  } else {
+  } else if (absEur < 1600) {
     usd = Math.ceil(usdRaw / 100) * 100;
     gbp = Math.ceil(gbpRaw / 50) * 50;
+  } else {
+    usd = Math.ceil(usdRaw / 100) * 100;
+    gbp = Math.ceil(gbpRaw / 100) * 100;
   }
 
   return {
@@ -50,7 +54,7 @@ export function currencyCalc(eurAmount: number): { eur: number; usd: number; gbp
 export function formatCurrency(
   value: number | undefined,
   currency: SupportedCurrency,
-  locale: SupportedLocale = "en-US"
+  locale: SupportedLocale = "en-US",
 ) {
   if (value === undefined || isNaN(value)) {
     return undefined;
@@ -78,14 +82,14 @@ export function formatMultiCurrency(
   locale: SupportedLocale
 ): string[];
 
-// Implementation
+// Implementation for multicurrency formatting
 export function formatMultiCurrency(
   a: PriceData | number,
   b: number | SupportedLocale,
   c?: number,
   d?: SupportedLocale
 ) {
-  let eur: number | undefined;
+  let eur: number;
   let usd: number | undefined;
   let gbp: number | undefined;
   let locale: SupportedLocale;
@@ -93,9 +97,15 @@ export function formatMultiCurrency(
   if (typeof a === "object" && a !== null) {
     // Case 1: (row, locale)
     const row = a as PriceData;
-    eur = row.eur;
-    usd = row.usd;
-    gbp = row.gbp;
+    let factor = 1 - (row.discountApply || 0)/100;
+    if (row.calculate) {
+      ({eur, usd, gbp} = currencyCalc(row.eur * factor));
+    } else {
+      const scale = (val?: number) => (val === undefined ? undefined : val * factor);
+      eur = row.eur * factor;
+      usd = scale(row.usd);
+      gbp = scale(row.gbp);
+    }
     locale = b as SupportedLocale;
   } else {
     // Case 2: (eur, usd, gbp, locale)

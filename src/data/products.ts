@@ -1,7 +1,6 @@
-// src/data/pricing.ts
+// src/data/products.ts
 import { journeyLevel } from "./types.ts"
 import type { DiscountInfo, ProductInfo } from "./types.ts";
-
 
 const products: Record<string, ProductInfo> = {
   "suite": {
@@ -15,9 +14,12 @@ const products: Record<string, ProductInfo> = {
     note: "Subject to availability and retreat occupancy.",
     inventory: 1, // Only one Wellness Suite available in Phase 1 (then 3 total after Phase 2)
     eur: 400,
-    usd: 500,
-    gbp: 350,
-    billingUnit: "per booking",
+    calculate: true,
+    billingUnit: {
+      en: "per booking",
+      de: "pro Buchung",
+//      hr: "po rezervaciji",
+    },
     standalone: false,
     upgrade: true,
   },
@@ -32,9 +34,12 @@ const products: Record<string, ProductInfo> = {
     note: "Per person; 3 participants required.",
     inventory: 2, // Wellness Residences only in Jadranska 33; Grand Residence (Suite+2×Studio = 6 double occ.) not available for retreats
     eur: 400,
-    usd: 500,
-    gbp: 350,
-    billingUnit: "×3 participants (each)",
+    calculate: true,
+    billingUnit: {
+      en: "×3 participants (each)",
+      de: "×3 Teilnehmer (jeweils)",
+//      hr: "×3 sudionika (svaki)",
+    },
     standalone: false,
     upgrade: false, // Wellness Residence only available after Phase 2 (change to true when available)
   },
@@ -50,9 +55,12 @@ const products: Record<string, ProductInfo> = {
     capacity: 4, // Soft limit (additional upgrades may require spillover bookings)
     inventory: 8, // Actual number of stays units available for upgrades if only 8 participants are attending the retreat
     eur: 800,
-    usd: 1000,
-    gbp: 700,
-    billingUnit: "per participant",
+    calculate: true,
+    billingUnit: {
+      en: "per participant",
+      de: "pro Teilnehmer",
+//      hr: "po sudioniku",
+    },
     standalone: false,
     upgrade: true,
   },
@@ -66,9 +74,12 @@ const products: Record<string, ProductInfo> = {
     },
     note: "Per person per night (no retreat programming)",
     eur: 100,
-    usd: 125,
-    gbp: 90,
-    billingUnit: "per day",
+    calculate: true,
+    billingUnit: {
+      en: "per night",
+      de: "pro Nacht",
+//      hr: "po noćenju",
+    },
     standalone: false,
     upgrade: true,
   },
@@ -82,9 +93,11 @@ const products: Record<string, ProductInfo> = {
     },
     note: "Per person per night",
     eur: 100,
-    usd: 125,
-    gbp: 90,
-    billingUnit: "per day",
+    calculate: true,
+    billingUnit: {
+      en: "per night",
+      de: "pro Nacht",
+    },
     standalone: false,
     upgrade: true,
   },
@@ -98,9 +111,11 @@ const products: Record<string, ProductInfo> = {
     },
     note: "Available for participants unable to commit to the full retreat week.",
     eur: -100,
-    usd: -125,
-    gbp: -90,
-    billingUnit: "per day",
+    calculate: true,
+    billingUnit: {
+      en: "per day",
+      de: "pro Tag",
+    },
     standalone: false,
     upgrade: true,
   },
@@ -114,7 +129,11 @@ const products: Record<string, ProductInfo> = {
     },
     note: "Integration Stay can also be swapped for Arrival Stay.",
     eur: 0,
-    billingUnit: "2+ participants · Integration Stay",
+    billingUnit: {
+      en: "2+ participants · Integration Stay",
+      de: "2+ Teilnehmer · Integration Stay",
+//      hr: "2+ sudionika · Integration Stay",
+    },
     standalone: false,
     upgrade: true,
   },
@@ -126,14 +145,18 @@ const products: Record<string, ProductInfo> = {
       de: "Ein intensives fünftägiges Kleingruppenprogramm für Fortgeschrittene, die ihre Praxis vertiefen möchten. Advanced Immersion kann eigenständig gebucht oder als Erweiterung des 7-Tage-Retreat ergänzt werden und bietet zusätzliche Zeit für Praxis, Reflexion und individuelle Begleitung in einem besonders fokussierten Rahmen.",
 //      hr: "Intenzivan petodnevni program u maloj grupi namijenjen posvećenim praktičarima koji žele produbiti svoju praksu. Advanced Immersion može se pohađati kao samostalni retreat ili kao produžetak 7-dnevnog retreata te pruža dodatno vrijeme za praksu, refleksiju i individualno vodstvo u usmjerenijem i intimnijem okruženju.",
     },
-    note: "Maximum 8 students",
+    note: "Maximum 8 students; target 5-7; minimum 4",
     duration: 5,
-    capacity: 6, // Target participants 4-6
+    capacity: 7, // Target participants 5-7
     inventory: 8, // Capped at 8 students
-    eur: 1500, // 25% discount for those already attending the 7-day retreat
-    usd: 1800,
-    gbp: 1350,
-    billingUnit: "5-day program + 6-day stay · small-group intensive",
+    discountApply: 25, // 25% discount as an upgrade for those already attending the 7-day retreat
+    eur: 2000,
+    calculate: true,
+    billingUnit: {
+      en: "5-day program + 6-day stay · small-group intensive",
+      de: "5-Tage-Programm + 6 Tage Aufenthalt · Kleingruppen-Intensivkurs",
+//      hr: "petodnevni program + 6 dana boravka · intenziv u maloj grupi",
+    },
     standalone: true,
     upgrade: true,
   },
@@ -141,14 +164,17 @@ const products: Record<string, ProductInfo> = {
     label: "7-Day Yoga Retreat",
     category: "retreat",
     description: "The Studio Sun & Sea Yoga Retreat is designed to create space away from the pace and distractions of everyday life. Through daily yoga, guided practice, time for rest, community meals, and personal reflection, participants are invited to reconnect with themselves and deepen their relationship with practice.",
-    note: "Maximum 16 students",
+    note: "Maximum 16 students; target 12-14; minimum 5-6",
     duration: 7,
     capacity: 14, // Target participants 12-14
     inventory: 16, // Capped at 16 participants
     eur: 2000,
-    usd: 2400,
-    gbp: 1800,
-    billingUnit: "7-day program + 8-day stay",
+    calculate: true,
+    billingUnit: {
+      en: "7-day program + 8-day stay",
+      de: "7-Tage-Programm + 8 Tage Aufenthalt",
+//      hr: "sedmodnevni program + 8 dana boravka",
+    },
     standalone: true,
     upgrade: false,
   },
@@ -179,7 +205,7 @@ export const pricing: {
   group: ProductInfo[];
   workshop: ProductInfo[];
   retreats: {
-    retreat: ProductInfo[];
+    retreats: ProductInfo[];
     discounts: DiscountInfo;
     upgrades: Record<ProductKey, ProductInfo>;
   }
@@ -212,13 +238,11 @@ export const pricing: {
   class: {
     single: {
       eur: 20,
-      usd: 25,
-      gbp: 18,
+      calculate: true,
     },
     tenPack: {
       eur: 180,
-      usd: 220,
-      gbp: 160,
+      calculate: true,
       validity: 18, // months
     },
     // Mindbody-only (not displayed on website)
@@ -230,40 +254,38 @@ export const pricing: {
 
   // Private yoga classes (one-to-one, duet, and small-group)
   private: [
-    { duration: 60, eur: 70, usd: 90, gbp: 65 },
-    { duration: 75, eur: 85, usd: 105, gbp: 75 },
-    { duration: 90, eur: 100, usd: 120, gbp: 90 },
-    { duration: 120, eur: 130, usd: 155, gbp: 115 },
+    { duration: 60, eur: 70, calculate: true },
+    { duration: 75, eur: 85, calculate: true },
+    { duration: 90, eur: 100, calculate: true },
+    { duration: 120, eur: 130, calculate: true },
   ],
   duet: [
-    { duration: 60, eur: 100, usd: 120, gbp: 90 },
-    { duration: 75, eur: 120, usd: 145, gbp: 105 },
-    { duration: 90, eur: 140, usd: 170, gbp: 125 },
-    { duration: 120, eur: 180, usd: 220, gbp: 160 },
+    { duration: 60, eur: 100, calculate: true },
+    { duration: 75, eur: 120, calculate: true },
+    { duration: 90, eur: 140, calculate: true },
+    { duration: 120, eur: 180, calculate: true },
   ],
   group: [
-    { duration: 60, eur: 140, usd: 170, gbp: 125 },
-    { duration: 75, eur: 165, usd: 200, gbp: 145 },
-    { duration: 90, eur: 190, usd: 230, gbp: 170 },
-    { duration: 120, eur: 240, usd: 290, gbp: 215 },
+    { duration: 60, eur: 140, calculate: true },
+    { duration: 75, eur: 165, calculate: true },
+    { duration: 90, eur: 190, calculate: true },
+    { duration: 120, eur: 240, calculate: true },
   ],
 
   // Workshops
   workshop: [
-    { duration: 2, eur: 55, usd: 70, gbp: 50 },
-    { duration: 3, eur: 75, usd: 95, gbp: 70 },
-    { duration: 4, eur: 95, usd: 115, gbp: 85 },
+    { duration: 2, eur: 55, calculate: true },
+    { duration: 3, eur: 75, calculate: true },
+    { duration: 4, eur: 95, calculate: true },
   ],
 
   // Retreats
   retreats: {
-    retreat: [
+    retreats: [
       products.coreRetreat,
       {
         ...products.advancedImmersion,
-        eur: 2000,
-        usd: 2400,
-        gbp: 1800,
+        discountApply: 0,
       },
     ],
     discounts: {

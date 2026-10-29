@@ -3,7 +3,7 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import PriceTable from "../../components/PriceTable.astro";
 import PriceCell from "../../components/PriceCell.astro";
-import { pricing } from "../../data/pricing.ts";
+import { pricing } from "../../data/products.ts";
 
 const angebote = [
   { label: "Schnupperstunde (einmalig)", eur: pricing.intro.trialClass },
@@ -129,12 +129,11 @@ const geplanteKurse = [
     <p>
       Der Yoga Retreat von Studio Sun & Sea ist darauf ausgelegt, Raum fernab des Alltags zu schaffen. Durch tägliche Yoga-Praxis, geführte Übungen, Zeit für Ruhe, gemeinschaftliche Mahlzeiten und persönliche Reflexion werden die Teilnehmer eingeladen, sich wieder mit sich selbst zu verbinden und ihre Beziehung zur Praxis zu vertiefen.
     </p>
-    <PriceTable rows={pricing.retreats.retreat} rowLabelOverride descLabel="Retreat"/>
+    <PriceTable rows={pricing.retreats.retreats} rowLabelOverride descLabel="Retreat"/>
     <PriceTable rows={Object.values(pricing.retreats.upgrades).filter((product) => (product.upgrade && product.category === "stay"))} rowLabelOverride descLabel="Stay Enhancement"/>
     <PriceTable rows={Object.values(pricing.retreats.upgrades).filter((product) => (product.upgrade && product.category === "retreat"))} rowLabelOverride descLabel="Retreat Extension"/>
     <p>
-      Mehr über den Retreat Programm, Yoga-Praxis, und Weg findest du auf der Seite
-      <a href="/de/retreats">Yoga Retreats</a>.
+      Entdecke den Raum, deine Yoga-Praxis zu vertiefen und wieder in Verbindung mit dir selbst zu kommen bei einem unserer <a href="/de/retreats">Yoga Retreats</a>.
     </p>
   </section>
 
