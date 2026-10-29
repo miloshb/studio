@@ -25,15 +25,15 @@ export function currencyCalc(eurAmount: number): { eur: number; usd: number; gbp
   const sign = Math.sign(eurAmount);
 
   const usdRaw = absEur * 1.20;
-  const gbpRaw = absEur * 0.90;
+  const gbpRaw = absEur * 0.875;
 
   let usd: number;
   let gbp: number;
 
-  if (absEur < 100) {
+  if (absEur < 50) {
     usd = Math.ceil(usdRaw / 5) * 5;
     gbp = Math.ceil(gbpRaw / 2) * 2;
-  } else if (absEur < 1000) {
+  } else if (absEur < 400) {
     usd = Math.ceil(usdRaw / 5) * 5;
     gbp = Math.ceil(gbpRaw / 5) * 5;
   } else {
