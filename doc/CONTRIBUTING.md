@@ -7,25 +7,36 @@ Please follow the guidelines below to maintain consistency and quality.
 ---
 
 ## 1. Project Structure
+Source code in `src/` is primarily processed by Astro, or also by `tools/Makefile` and stored in `public/`. Unprocessed source code is stored directly in `public/`. All documentation (MarkDown) is in `doc/`.
 
 ```text
 src/
   components/
+  content/
   data/
+  images/
   layouts/
   pages/
-  styles/
+  scripts/
+public/
+  favicon/ - Makefile autogen
+  images/ - Makefile autogen + source images (hero/ + qrcode/)
+  styles/ - Source CSS
+doc/
 ```
 
-### Key Directories
+### Key Directories for managed source code
 
-- `components/` — Reusable UI components
-- `data/` — Structured data (pricing, schedules)
-- `layouts/` — Page‑level wrappers
-- `pages/` — English + German routes
-- `styles/` — Global and component CSS
-
----
+- `components/` — Reusable Astro UI components
+- `content/` — MarkDown (MD) raw content to be embedded within web pages
+- `data/` — Structured data (pricing, schedules, routing, etc.) - exclusively TypeScript
+- `images/` — Source images converted via Makefile to WebP format and stored in public/images/*
+- `layouts/` — Astro: Page‑level wrappers (BaseLayout.astro)
+- `pages/` — Astro: English + German routes
+- `scripts/` — JavaScript files
+- `public/images/hero` — Hero page source images
+- `public/images/qrcode` — QR Code source images
+- `public/styles/` — Global and component CSS
 
 ## 2. Coding Standards
 
@@ -44,8 +55,6 @@ src/
 - Use global variables for spacing, colors, typography
 - Prefer `inline-flex` for small UI elements
 - Maintain consistent layout patterns
-
----
 
 ## 3. Mindbody Integration Guidelines
 
@@ -66,8 +75,6 @@ Wrap all widgets in components:
 - `MindbodyAccount.astro`
 
 Never embed raw `<healcode-widget>` tags directly in pages.
-
----
 
 ## 4. Pricing System
 
@@ -98,8 +105,6 @@ Use:
 
 Never hardcode currency formatting in pages.
 
----
-
 ## 5. Multilingual Routing
 
 ### Folder Structure
@@ -107,6 +112,7 @@ Never hardcode currency formatting in pages.
 ```text
 /en/... → English
 /de/... → German
+/hr/... → Croatian (future)
 ```
 
 ### Language Switcher
@@ -117,15 +123,13 @@ Never hardcode currency formatting in pages.
 ### Content Parity
 Every English page must have a German counterpart.
 
----
-
 ## 6. Commit Standards
 
 ### Commit Message Format
 Use conventional commits:
 
 ```text
-feat: add new pricing table component
+feat: add new pricing table component [minor]
 fix: correct Mindbody login widget alignment
 docs: update README for pricing structure
 refactor: clean up BaseLayout header logic
@@ -133,12 +137,13 @@ style: adjust spacing in footer
 ```
 
 ### Branching
-- `main` — production
-- `dev` — staging
+- `main` — production (merge via pull request exclusively from `stage`)
+- `stage` — staging (**base** branch)
+- `content` — content - development
+- `cm` — configuration management - development
+- `mindbody` — MindBody widgets - development
 - `feature/<name>`
 - `fix/<name>`
-
----
 
 ## 7. Pull Request Guidelines
 
@@ -157,8 +162,6 @@ style: adjust spacing in footer
 - Preserves accessibility
 - Avoids inline styles
 
----
-
 ## 8. Deployment
 
 ### Cloudflare Pages
@@ -175,4 +178,4 @@ Production deployment is automatic on push to `main`.
 - Missing `data-lang` → language switcher fails
 
 ---
-*Last Checked: June 2026*
+*Last Checked: October 2026*

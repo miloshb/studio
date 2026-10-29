@@ -18,17 +18,22 @@ $(info --------------------------------------------------)
 BUILD_DIR := ../build
 $(shell mkdir -p $(BUILD_DIR))
 
+# Source and destinations
+SRC_IMG_DIR = ../src/images
+PUB_IMG_DIR = ../public/images
+LOGO_DEST = ../public/favicon
+
 
 
 # --------------------------------------------
 # Schedule-Grid image pipeline
 # --------------------------------------------
 
-INPUT_XPS = ../src/images/classes/Schedule.xps
+INPUT_XPS = $(SRC_IMG_DIR)/classes/Schedule.xps
 BASE = $(BUILD_DIR)/Schedule
 TRIM = $(BASE)-trim.png
 SCALED = $(BASE)-1080.png
-DEST = ../public/images/classes/studio-sun-and-sea-weekly-schedule
+DEST = $(PUB_IMG_DIR)/classes/studio-sun-and-sea-weekly-schedule
 FINAL = $(DEST).png
 A5 = $(DEST)-A5.png
 CHECKSUM = $(BUILD_DIR)/.schedule.sha256
@@ -71,9 +76,6 @@ schedule: $(FINAL) $(A5)
 # General JPEG optimization pipeline
 # --------------------------------------------
 
-SRC_IMG_DIR = ../src/images
-PUB_IMG_DIR = ../public/images
-
 # Find all JPGs under src/images
 SRC_JPGS := $(shell find $(SRC_IMG_DIR) -type f -iname '*.jpg')
 
@@ -114,8 +116,7 @@ $(PUB_IMG_DIR)/%-400.webp: $(SRC_IMG_DIR)/%.jpg
 # Font settings global css (1.5rem = 24px)
 # Point = Pixel * 0,75
 
-LOGO_SRC := ../src/assets/studio-sun-and-sea-natarajasana.png
-LOGO_DEST := ../public/favicon
+LOGO_SRC := $(SRC_IMG_DIR)/studio-sun-and-sea-natarajasana.png
 LOCKUP=$(LOGO_DEST)/studio-sun-and-sea-logo
 FILTER := -filter Lanczos -define filter:blur=0.8
 
