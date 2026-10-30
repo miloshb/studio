@@ -1,8 +1,40 @@
 // Google Apps Script
 // Mindbody Registrations
+// Script hosted at: https://script.google.com/home
 // https://script.google.com/home/projects/1jG3VBh6h_Id3iAQrgybwUE0ETYmCcLvI3pxSzgfnn-3AbY7pEzjlS6KG
 // Automation script to create Google Meet event on the calendar for a new student registration.
 
+// --- CLASS DESCRIPTIONS DICTIONARY ---
+// Add or adjust specific class descriptions here as you introduce more offerings
+var CLASS_DESCRIPTIONS = {
+  "Kunga Yoga Flow":
+    "Kunga Yoga Flow classes link breath and movement in creative sequences that work all of the major joints and muscles of the body and incorporate extended holds. This class is open to all levels and accessible to any and all body types. Posture (Āsana) alignment, meditation, breathing techniques (Prāṇāyāma), movement, and mindfulness are introduced. Use props to support your poses. Feel comfortable in the foundational postures that are offered.\n\n" +
+    "Kunga Yoga is a service-oriented non-lineage style of yoga for all people of all backgrounds, shapes, sizes, and abilities. „Kunga“ is a Rwandan word meaning „to help or to serve“. Please take personal responsibility for your safety and your needs, honoring your practice in the way that suits you.\n\n" +
+    "This is an online-only yoga class taught in English.\n\n" +
+    "Studio Sun & Sea - Schedule Overview: https://studiosunandsea.com/en/schedule-overview/",
+
+  // Default fallback description used for any class not explicitly mapped above
+  "default":
+    "Kunga Yoga Flow classes link breath and movement in creative sequences that work all of the major joints and muscles of the body and incorporate extended holds. This class is open to all levels and accessible to any and all body types. Posture (Āsana) alignment, meditation, breathing techniques (Prāṇāyāma), movement, and mindfulness are introduced. Use props to support your poses. Feel comfortable in the foundational postures that are offered.\n\n" +
+    "Kunga Yoga is a service-oriented non-lineage style of yoga for all people of all backgrounds, shapes, sizes, and abilities. „Kunga“ is a Rwandan word meaning „to help or to serve“. Please take personal responsibility for your safety and your needs, honoring your practice in the way that suits you.\n\n" +
+    "This is an online-only yoga class taught in English.\n\n" +
+    "Studio Sun & Sea - Schedule Overview: https://studiosunandsea.com/en/schedule-overview/"
+};
+
+// Function to resolve description based on className
+function getClassDescription(className) {
+  if (!className) return CLASS_DESCRIPTIONS["default"];
+
+  for (var key in CLASS_DESCRIPTIONS) {
+    if (key !== "default" && className.toLowerCase().includes(key.toLowerCase())) {
+      return CLASS_DESCRIPTIONS[key];
+    }
+  }
+  return CLASS_DESCRIPTIONS["default"];
+}
+
+
+// --- PROCESS MINDBODY REGISTRATION EMAILS ---
 function processMindbodyRegistrations() {
   var LABEL_CONST = "01-Bookings/Clients";
   var PROCESSED_LABEL_CONST = "01-Bookings/Clients/Processed";
@@ -32,14 +64,14 @@ function processMindbodyRegistrations() {
 
     // --- CONVERSATIONAL TEXT PARSING ---
 
-    // 1. Extract Class Name (Extracts text between "reservation for " and " with Milos")
+// 1. Extract Class Name (Extracts text between "reservation for " and " with Milos")
     var className = null;
     var classMatch = body.match(/reservation for\s+(.*?)\s+with\s+Milos/i);
     if (classMatch && classMatch[1]) {
       className = classMatch[1].trim();
     }
 
-    // 2. Extract Date (Matches "DD/MM/YYYY" format)
+// 2. Extract Date (Matches "DD/MM/YYYY" format)
     var classDateStr = null;
     var dateMatch = body.match(/(\d{2})\/(\d{2})\/(\d{4})/);
     if (dateMatch) {
@@ -47,33 +79,49 @@ function processMindbodyRegistrations() {
       classDateStr = dateMatch[3] + "-" + dateMatch[2] + "-" + dateMatch[1];
     }
 
-    // 3. Extract Time (Matches digits after "start at ")
+// 3. Extract Time (Matches digits after "start at ")
     var classTimeStr = null;
     var timeMatch = body.match(/start at\s+(\d{2}:\d{2})/i);
     if (timeMatch && timeMatch[1]) {
       classTimeStr = timeMatch[1].trim();
     }
 
-    // 4. Extract Student Email (Checks body first, falls back to reply-to address if missing)
+// --- 4. EXTRACT STUDENT EMAIL (ROBUST HEADER & BODY PARSING) ---
     var studentEmail = null;
-    var emailMatch = body.match(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/);
-    if (emailMatch && !emailMatch[0].includes("business") && !emailMatch[0].includes("mindbodyonline")) {
-      studentEmail = emailMatch[0];
-    } else {
-      // Fallback: If Mindbody puts the student in the Reply-To field
-      var replyTo = latestMessage.getReplyTo();
-      var replyMatch = replyTo.match(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/);
-      if (replyMatch && !replyMatch[0].includes("business") && !replyMatch[0].includes("mindbodyonline")) {
-        studentEmail = replyMatch[0];
-      } else {
-        // Fallback: If Mindbody puts the student in the To field
-        var to = latestMessage.getTo();
-        replyMatch = to.match(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/);
-        if (replyMatch && !replyMatch[0].includes("business") && !replyMatch[0].includes("mindbodyonline")) {
-          studentEmail = replyMatch[0];
+
+    // Helper function to extract email from raw string and filter out business/system emails
+    function extractValidStudentEmail(rawString) {
+      if (!rawString) return null;
+      var matches = rawString.match(/\b[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}\b/g);
+      if (!matches) return null;
+
+      for (var k = 0; k < matches.length; k++) {
+        var email = matches[k].toLowerCase();
+        // Ignore internal studio, business, and platform automated addresses
+        if (
+          !email.includes("studiosunandsea.com") &&
+          !email.includes("mindbodyonline.com") &&
+          !email.includes("mndbdy.ly")
+        ) {
+          return matches[k]; // Return exact original casing valid student match
         }
       }
+      return null;
     }
+
+    // Step A: Check the 'To' header (Mindbody sends client confirmations to the student's email)
+    studentEmail = extractValidStudentEmail(latestMessage.getTo());
+
+    // Step B: If not in 'To', check the 'Reply-To' header
+    if (!studentEmail) {
+      studentEmail = extractValidStudentEmail(latestMessage.getReplyTo());
+    }
+
+    // Step C: Fallback to searching the message body with word boundary protection
+    if (!studentEmail) {
+      studentEmail = extractValidStudentEmail(body);
+    }
+
 
     // --- DYNAMIC DURATION CALCULATION ---
     var durationMinutes = 60; // Standard fallback duration if not found
@@ -117,8 +165,11 @@ function processMindbodyRegistrations() {
       var endRFC = endDateTime.toISOString();
 
       // Build a unified schema resource layout to push the event structure and Meet link simultaneously
+      var classDescription = getClassDescription(className);
+
       var newEventResource = {
         summary: className,
+        description: classDescription,
         start: { dateTime: startRFC },
         end: { dateTime: endRFC },
         attendees: [{ email: studentEmail }],
