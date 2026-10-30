@@ -1,13 +1,12 @@
 ---
 // src/components/StudioImage.astro
-type SizeKey = "sm" | "md" | "lg";
+type SizeKey = "sm" | "md" | "lg" | "xl";
 type AspectKey = "square" | "portrait" | "headshot" | "landscape" | undefined;
 interface Props {
   src: string;
   alt: string;
   widths?: number;
   sizes?: string;
-  // thumbnail can be: true | "sm" | "md" | "lg"
   thumbnail?: SizeKey;
   aspect?: AspectKey;
   [key: string]: any;
@@ -33,6 +32,7 @@ const sizeMap:Record<SizeKey,string> = {
   sm: "var(--thumbnail-width-sm)",
   md: "var(--thumbnail-width-md)",
   lg: "var(--thumbnail-width-lg)",
+  xl: "var(--thumbnail-width-xl)",
 };
 
 if (thumbnail) {

@@ -45,7 +45,7 @@ const { lang = "en" } = Astro.props as { lang?: Language };
       <strong>Stay:</strong> 8 Nights Included (double occupancy w/ breakfast)<br />
       <strong>Schedule:</strong> Saturday Arrival · Sunday Opening · Saturday Closing · Sunday Departure<br />
       <strong>Group Size:</strong> 12–16 Participants<br />
-      <strong>Experience Level:</strong> Open to All Levels
+      <strong>Experience Level:</strong> Open to All Levels<br />
     </p>
   </section>
 
@@ -61,33 +61,30 @@ const { lang = "en" } = Astro.props as { lang?: Language };
       A small-group experience intended for dedicated practitioners who wish to go deeper.
     </p>
     <p>
-      Advanced Immersions focus on sustained practice, individual attention, thoughtful discussion, and integration. Group size is intentionally limited (six to eight participants) to preserve an intimate learning environment.
+      Advanced Immersion focuses on sustained practice, individual attention, thoughtful discussion, and integration. Group size is intentionally limited (six to eight participants) to preserve an intimate learning environment.
     </p>
     <p>
-      Including a six-night stay with arrival on Saturday, the Advanced Immersion creates space for deeper exploration and reflection through five days of guided programming beginning on Sunday.
+      Including a six-night stay with arrival on Saturday, Advanced Immersion creates space for deeper exploration and reflection through five days of guided programming beginning on Sunday.
     </p>
     <p>
       Participation requires an application and may not be appropriate for every student or stage of practice.
     </p>
     <p>
-      The Advanced Immersion may be attended as a standalone offering or, when available, as a continuation of the Studio Sun & Sea 7-Day Yoga Retreat. Retreat participants receive priority consideration and may be eligible for continuation pricing when extending directly into the Advanced Immersion.
-    </p>
-    <p>
-      Current and former retreat participants receive priority consideration when space is limited.
+      The Advanced Immersion may be attended as a standalone offering or, when available, as a continuation of the Studio Sun & Sea 7-Day Yoga Retreat. Retreat participants receive priority consideration and are eligible for continuation pricing when extending directly into the Advanced Immersion.
     </p>
     <p>
       <strong>Programming:</strong> 5 Full Days<br />
       <strong>Stay:</strong> 6 Nights Included (double occupancy w/ breakfast)<br />
       <strong>Schedule:</strong> Saturday Arrival · Sunday Opening · Thursday Closing · Friday Departure<br />
       <strong>Group Size:</strong> 6–8 Participants<br />
-      <strong>Experience Level:</strong> Application Required
+      <strong>Experience Level:</strong> Application Required<br />
     </p>
   </section>
 
   <section id="options">
     <h2>Stay Enhancements and Journey Options</h2>
     <p>
-      Retreats prioritize Stays @ Studio Sun & Sea and also incorporate, as needed, carefully selected properties within walking distance of the studio.
+      Stays @ Studio Sun & Sea form the foundation of the retreat experience. When needed, carefully selected properties within walking distance of the studio provide additional accommodation options.
     </p>
     {Object.values(pricing.retreats.upgrades).filter((product) => (product.upgrade && product.category === "stay")).map((product) => (
       <>
