@@ -1,9 +1,10 @@
 /**
- * Welcome to Cloudflare Workers!
+ * This Cloudflare Worker (mta-sts-proxy) is used to serve specifically files in the URL: ./.well-known/**
+ * It exists for the purpose of enabling MTA-STS (Mail Transfer Agent Strict Transport Security).
+ * https://www.rfc-editor.org/rfc/rfc8461.txt
+ * https://knowledge.workspace.google.com/admin/gmail/advanced/about-mta-sts-and-tls-reporting
  *
- * - Run "npm run dev" in your terminal to start a development server
- * - Open a browser tab at http://localhost:8787/ to see your worker in action
- * - Run "npm run deploy" to publish your worker
+ * Validate the MTA-STS configuration: https://admin.google.com/ac/apps/cs/diagnostic
  *
  * Learn more at https://developers.cloudflare.com/workers/
  */
