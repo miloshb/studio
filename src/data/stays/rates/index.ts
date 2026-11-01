@@ -48,7 +48,7 @@ export const unitRates = {
   // Grand Residence = 1 Suite + 2 Studios
   GrandResidence: {
     rateRule: "jadranskaRate",
-    //base: 500, // 0€ off combined rate - premium and unique (sleeps 12)
+    //base: 500, // 0€ off combined rate - premium and unique
     base: 450, // Intro pricing until Residence is available
     nightsOffset: 2, // Higher minimum nights (+2) for combination units
     extraGuestFee: 0, // Eliminated extra guest fee
