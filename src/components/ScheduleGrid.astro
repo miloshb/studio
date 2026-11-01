@@ -2,8 +2,9 @@
 // src/components/ScheduleGrid.astro
 import { scheduleData } from "../data/schedule.ts";
 import { TZ_STORE_KEY, debug } from "../data/config.ts";
+import type { Language } from "../data/i18n.ts";
 
-const { lang = "en" } = Astro.props;
+const { lang = "en" } = Astro.props as { lang?: Language };
 
 const dayHeader = {
   en: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
@@ -286,7 +287,7 @@ const getStartMinutes = (id) => START_TIMES.find((t) => t.id === id).minutes;
     justify-content: center;
     text-align: center;
     white-space: nowrap;
-    border-radius: var(--radius-md);
+    border-radius: var(--radius-xs);
     text-decoration: none;
     color: var(--color-text);
     padding: var(--space-xxs);
@@ -302,7 +303,7 @@ const getStartMinutes = (id) => START_TIMES.find((t) => t.id === id).minutes;
   .tz-dropdown {
     background-color: transparent;
     color: var(--color-text-soft);
-    border-radius: var(--radius-md);
+    border-radius: var(--radius-xs);
     cursor: pointer;
     text-align-last: right; /* Forces text selection alignment to the right */
     direction: ltr; /* Assures punctuation layout behaves properly when right aligned */

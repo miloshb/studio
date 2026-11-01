@@ -2,7 +2,9 @@
   "recurse": true,
   "checkCss": true,
   "skip": [
+    "https://sudreg.pravosudje.hr",
     "https://mindbodyonline.com",
+    "https://instagram.com",
     "https://europa.eu"
   ]
 }

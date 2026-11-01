@@ -12,6 +12,7 @@
 dist/
 build/
 test-results/
+tmp/
 
 # generated types
 .astro/

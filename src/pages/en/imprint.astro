@@ -3,18 +3,42 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Operator from "../../components/Operator.astro";
 import ExaliSeal from "../../components/ExaliSeal.astro";
+import { company } from "../../data/config.ts";
 ---
 
 <BaseLayout lang="en" page="imprint" title="Legal Notice">
   <h1>Legal Notice (Imprint)</h1>
 
-  <Operator lang="en" heading="Information pursuant to § 5 TMG" />
+  <section>
+    <Operator lang="en" heading="Information pursuant to EU / German / Croatian Law" />
+
+    <h3>German Operations (Classes & Local Services in Germany)</h3>
+    <p>
+      <strong>Provider / Operator:</strong> Studio Sun & Sea (Germany) - Sole Proprietorship / Einzelunternehmen<br />
+      <strong>Owner & Operator:</strong> {company.director}<br />
+      <strong>Address:</strong> {company.germanyAddress1}, {company.germanyAddress2}<br />
+      <strong>Contact:</strong> {company.email} | {company.telDE}
+    </p>
+  </section>
+
+  <section>
+    <h2>Value Added Tax (VAT / USt / PDV)</h2>
+    <h3>Studio Sun & Sea (Germany)</h3>
+    <p>
+      Studio Sun & Sea (Germany) / Studio Sonne und Meer is subject to the small business regulation pursuant to § 19 UStG (German VAT Act). No value added tax is charged or displayed for services rendered directly under the German sole proprietorship (Einzelunternehmen).
+    </p>
+    <h3>Eirene Intentio Citta d.o.o. (Croatia)</h3>
+    <p>
+      Eirene Intentio Citta d.o.o. is registered in the Croatian VAT system (PDV ID / EU VAT Identification Number).<br />
+      <strong>VAT ID (PDV):</strong> {company.vat}
+    </p>
+  </section>
 
   <section>
     <h2>Professional Liability Insurance</h2>
     <ExaliSeal />
     <p>
-      Studio Sun & Sea maintains professional liability insurance with Markel Insurance SE, concluded via Exali AG.
+      Professional liability insurance is maintained with Markel Insurance SE, concluded via Exali AG.<br />
       <strong>Policy Number:</strong> EX.MDL.93787
     </p>
 
@@ -33,7 +57,7 @@ import ExaliSeal from "../../components/ExaliSeal.astro";
     </ul>
 
     <h3>Territorial Scope</h3>
-    <p>The professional liability insurance offers coverage for insured activities worldwide, subject to the conditions and exclusions of the policy. Only the German-language policy document is legally binding.</p>
+    <p>The professional liability insurance offers coverage for insured activities worldwide, subject to the conditions and exclusions of the policy. Only the primary (German-language) policy document is legally binding.</p>
 
     <h3>Claims Reporting Address</h3>
     <p>
@@ -45,13 +69,8 @@ import ExaliSeal from "../../components/ExaliSeal.astro";
   </section>
 
   <section>
-    <h2>Value Added Tax (VAT)</h2>
-    <p>Studio Sun & Sea is subject to the small business regulation pursuant to § 19 UStG (German VAT Act). No value added tax is charged or displayed.</p>
-  </section>
-
-  <section>
-    <h2>Legal Disclaimers (Germany / EU)</h2>
-    <p>As a service provider, Studio Sun & Sea is responsible for its own content on these pages pursuant to § 7 Abs. 1 TMG under general statutory laws. According to §§ 8-10 TMG, service providers are not obligated to monitor transmitted or stored third-party information or to investigate circumstances indicating illegal activity.</p>
+    <h2>Legal Disclaimers (EU / Croatia / Germany)</h2>
+    <p>As service providers, Studio Sun & Sea and Eirene Intentio Citta d.o.o. are responsible for their own content on these web pages under general statutory laws. Service providers are not obligated to monitor transmitted or stored third-party information or to investigate circumstances indicating illegal activity.</p>
   </section>
 
   <section>
@@ -61,12 +80,12 @@ import ExaliSeal from "../../components/ExaliSeal.astro";
 
   <section>
     <h2>Copyright</h2>
-    <p>The content and works created by the site operator on these pages are subject to German copyright law. Duplication, processing, distribution, or any form of utilization outside the limits of copyright law require the prior written consent of the respective author or creator.</p>
+    <p>The content and works created by the site operator on these pages are subject to applicable copyright laws. Duplication, processing, distribution, or any form of utilization outside the limits of copyright law require the prior written consent of the respective author or creator.</p>
   </section>
 
   <section>
     <h2>Online Dispute Resolution (EU)</h2>
-    <p>The European Commission provides a platform for consumer dispute resolutions (Consumer Redress Hub) accessible at: <a href="https://europa.eu" target="_blank" rel="noopener noreferrer">https://europa.eu</a>. Studio Sun & Sea is neither obligated nor willing to participate in dispute resolution proceedings before a consumer arbitration board.</p>
+    <p>The European Commission provides a platform for online dispute resolution (ODR), accessible at: <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener noreferrer">https://ec.europa.eu/consumers/odr</a>. Studio Sun & Sea / Eirene Intentio Citta d.o.o. is neither obligated nor willing to participate in dispute resolution proceedings before a consumer arbitration board.</p>
   </section>
 
   <section>
@@ -79,7 +98,7 @@ import ExaliSeal from "../../components/ExaliSeal.astro";
     <p>Yoga and physical movement involve inherent physical risks, including muscle strains, physical exertion, slips, and falls. By participating in our services, you explicitly acknowledge these risks and assume full personal responsibility for your safety.</p>
 
     <h3>Limitation of Liability</h3>
-    <p>Studio Sun & Sea is not liable for injuries, damages, or losses arising from participation in courses, workshops, or online sessions, to the maximum extent permitted by applicable local laws.</p>
+    <p>Neither Studio Sun & Sea nor Eirene Intentio Citta d.o.o. shall be liable for injuries, damages, or losses arising from participation in courses, workshops, or online sessions, to the maximum extent permitted by applicable local laws.</p>
 
     <h3>Participant Responsibility</h3>
     <p>Participants are solely responsible for monitoring their physical condition during practice and ensuring a safe training environment.</p>

@@ -1,6 +1,13 @@
 ---
 import { FOOTER_ROUTE_KEYS, HEADER_ROUTE_KEYS, ROUTES } from "../data/routes.js";
+import type { Language } from "../data/i18n.ts";
 import ExaliSeal from "./ExaliSeal.astro";
+import SocialLinks from "./SocialLinks.astro";
+
+interface Props {
+  lang: Language;
+  footerOffset: boolean;
+}
 const { lang, footerOffset } = Astro.props;
 const footerTopOffset = footerOffset ? "var(--offset-lg)" : "0px";
 ---
@@ -28,6 +35,8 @@ const footerTopOffset = footerOffset ? "var(--offset-lg)" : "0px";
       © {new Date().getFullYear()}
       <a href="https://eireneintentiocitta.hr">Eirene Intentio Citta d.o.o.</a>
       All rights reserved.
+
+      <SocialLinks />
     </div>
 
     <!-- Row 2: Right side -->
@@ -87,6 +96,8 @@ const footerTopOffset = footerOffset ? "var(--offset-lg)" : "0px";
   .footer-copy {
     order: 2;
     font-size: var(--text-sm);
+    display: flex;
+    column-gap: var(--space-xs);
   }
 
   .footer-badge {

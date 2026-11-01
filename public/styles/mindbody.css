@@ -6,7 +6,7 @@
 
 /* Buttons */
 .healcode-widget .hc-button {
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-sm);
   font-weight: 500;
 }
 

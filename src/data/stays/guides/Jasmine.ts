@@ -1,6 +1,7 @@
-import type { GuideInfo } from "../guideType";
+import type { Language } from "../../i18n.ts";
+import type { GuideInfoAirbnb } from "../guideType";
 
-const Jasmine: Record<"en" | "de", GuideInfo> = {
+const jasmineGuide: Record<Language, GuideInfoAirbnb> = {
   en: {
     restaurants: [
       "The Sound at Cypress Waters — lakeside dining cluster (Flying Fish, Rodeo Goat, Ascension Coffee)",
@@ -86,4 +87,4 @@ const Jasmine: Record<"en" | "de", GuideInfo> = {
   }
 };
 
-export default Jasmine;
+export default jasmineGuide;

@@ -1,0 +1,101 @@
+---
+// src/pages/de/journey.astro
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import StudioImage from "../../components/StudioImage.astro";
+
+const blueHeronTakingFlightImage = {
+  src: "/images/about/blue-heron-taking-flight-400.webp", alt: "Great Blue Heron taking flight" };
+const blueHeronInFlightImage = {
+  src: "/images/about/blue-heron-in-flight-400.webp", alt: "Great Blue Heron in flight" };
+---
+
+<BaseLayout lang="de" page="journey" title="Sun & Sea Journey">
+  <h1>Werde Teil der Sun & Sea Journey</h1>
+
+  <section>
+    <h2>Die Philosophie der Sun & Sea Journey</h2>
+    <h3>Yoga ist kein Ziel. Yoga ist die Praxis, auf dem Weg vollständig präsent zu sein.</h3>
+    <p>
+      Die Sun & Sea Journey ist kein Punktesystem.
+      Sie spiegelt die Beziehungen wider, die durch Praxis, Retreats, Aufenthalte und Gemeinschaft entstehen.
+    </p>
+    <p>
+      Jede Stufe steht für eine tiefere Verbindung mit Sun & Sea.
+      Die Journey belohnt Teilnahme statt Transaktionen und würdigt Menschen, die sich entscheiden, den Weg gemeinsam mit uns weiterzugehen.
+    </p>
+    <p>
+      Die wertvollsten Belohnungen sind nicht Rabatte, sondern Erfahrungen, Freundschaften und Möglichkeiten, die aus fortgesetzter Teilnahme entstehen.
+    </p>
+    <p>
+      Jede Reise beginnt mit einem ersten Schritt. Ob als Gast, Teilnehmer einer Yogaklasse, Retreat-Besucher oder Teilnehmer eines Blue Heron Gatherings – jede Station der Journey bietet eine Möglichkeit, die Verbindung zu Praxis, Ort und Gemeinschaft zu vertiefen.
+    </p>
+    <p>
+      Jeder Mensch entwickelt sich im eigenen Tempo.
+      Die Vorteile richten sich nach der höchsten erreichten Journey-Stufe.
+    </p>
+  </section>
+
+  <section>
+    <h2>Die Sun & Sea Journey</h2>
+    <ol>
+      <li>Journey Member</li>
+      <li>Stay Member</li>
+      <li>Yoga Member</li>
+      <li>Yoga Alumni</li>
+      <li>Blue Heron Alumni</li>
+    </ol>
+  </section>
+
+  <section>
+    <h3>1. Journey Member</h3>
+    <p>
+      Journey Members sind Teil der Sun & Sea Gemeinschaft und erhalten Neuigkeiten, Einblicke und frühzeitigen Zugang zu kommenden Angeboten.
+    </p>
+    <p>
+      Ob du neugierig auf Yoga bist, ein zukünftiges Retreat planst oder einfach erkunden möchtest, was Studio Sun & Sea zu bieten hat – hier beginnt die Journey.
+    </p>
+
+    <h3>2. Stay Member</h3>
+    <p>
+      Stay Guests haben Studio Sun & Sea bereits durch einen Aufenthalt kennengelernt. Sie haben uns ihre Zeit, ihre Erholung und einen Teil ihrer Reise anvertraut.
+    </p>
+    <p>
+      Viele Journeys beginnen mit einem Aufenthalt am Meer. Für manche wird daraus der erste Schritt zu einer tieferen Verbindung mit der Gemeinschaft.
+    </p>
+
+    <h3>3. Yoga Member</h3>
+    <p>
+      Yoga Members haben sich entschieden, Yoga zu einem festen Bestandteil ihres Lebens zu machen.
+    </p>
+    <p>
+      Durch ihre regelmäßige Praxis tragen sie zur lebendigen Gemeinschaft rund um das Studio bei und helfen dabei, einen Raum zu schaffen, in dem andere ihre eigene Journey beginnen können.
+    </p>
+
+    <h3>4. Yoga Alumni</h3>
+    <p>
+      Yoga Alumni haben ein Retreat oder eine Advanced Immersion bei Studio Sun & Sea abgeschlossen.
+    </p>
+    <p>
+      Sie haben bewusst Abstand vom Alltag genommen, um in persönliches Wachstum, Reflexion und Veränderung zu investieren. Ihre Journey ist über einzelne Klassen hinausgewachsen und zu einer tieferen Erfahrung von Praxis und Gemeinschaft geworden.
+    </p>
+  </section>
+
+  <section>
+    <StudioImage
+      src={blueHeronTakingFlightImage.src}
+      alt={blueHeronTakingFlightImage.alt}
+      thumbnail="xl"
+      class="thumbnail-right"
+    />
+    <h3>5. Blue Heron Alumni</h3>
+    <p>
+      Der Blue Heron steht für Geduld, Aufmerksamkeit, Stille, Beobachtung und Eigenverantwortung.
+    </p>
+    <p>
+      Blue Heron Alumni verkörpern die tiefste Form der Teilnahme an der Sun & Sea Journey. Die Mitgliedschaft ist begrenzt und wird durch langfristige Verbundenheit zur Gemeinschaft verdient. Blue Heron Alumni erhalten Einladungen zu besonderen Gatherings, Erlebnissen und Möglichkeiten, die nicht öffentlich zugänglich sind.
+    </p>
+    <p>
+      Der Blue Heron erinnert uns daran, dass nachhaltiges Wachstum durch Praxis, Reflexion und Präsenz entlang des Weges entsteht.
+    </p>
+  </section>
+</BaseLayout>

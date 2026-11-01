@@ -1,29 +1,29 @@
 ---
 // src/pages/en/stays/[unit].astro
 import BaseLayout from "../../../layouts/BaseLayout.astro";
-import { guides } from "../../../data/stays/guides/index.ts";
-import { units } from "../../../data/stays/units/index.ts";
+import { guides } from "../../../data/stays/guides/";
+import { units, type UnitKey } from "../../../data/stays/units/";
+import type { UnitConfig } from "../../../data/stays/unitType.ts";
+import { localeString, type Language } from "../../../data/i18n.ts";
 import { info, debug } from "../../../data/config.ts";
 
-import type { UnitKey } from "../../../data/stays/units/index.ts";
-import type { UnitConfig } from "../../../data/stays/unitType.ts";
-
-export interface Props {
-  unit: UnitConfig;
-}
 
 // Generate static paths AND pass props to the page
 export async function getStaticPaths() {
   return (Object.keys(units) as UnitKey[]).map((id) => ({
     params: { unit: id },
-    props: { unit: units[id] },
+    props: { unit: units[id], lang: "en" },
   }));
 }
 
+export interface Props {
+  unit: UnitConfig;
+  lang: Language;
+}
 // Access props passed from getStaticPaths()
-const { unit } = Astro.props;
+const { unit, lang } = Astro.props;
 
-  info &&console.log("INFO: Astro.props =", Astro.props);
+  info && console.log("INFO: Astro.props =", Astro.props);
   debug && console.log("DEBUG: Astro.props.unit =", Astro.props.unit);
 
 if (!unit) {
@@ -37,15 +37,13 @@ if (info) {
 }
 
 const booking = {
-  airbnb: "https://airbnb.com/h/" + unit.id,
+  airbnb: "https://airbnb.com/h/studiosunandsea" + unit.id,
   booking: "",
+  vrbo: "",
 };
 const email = unit.id + "@StudioSunAndSea.com";
 // Load correct guide based on unit.location
-const guide = guides[unit.location];
-
-// Language selection (later: dynamic detect)
-const lang = "en";
+const guide = guides[unit.location.guide];
 
 // Auto-load photos from public/images/stays/<UnitID>/
 const allPhotos = import.meta.glob("/public/images/stays/**/*.jpg", { eager: true });
@@ -56,21 +54,17 @@ const photos = Object.fromEntries(
 );
 ---
 
-<BaseLayout lang={lang} page="stays" title={`${unit.name} – Stay at Studio Sun & Sea`}>
+<BaseLayout lang={lang} page="stays" title={unit.name}>
   <h1>{unit.name} – Stay at Studio Sun & Sea</h1>
 
   <section>
-    <h1>{unit.title}</h1>
-    <p>{unit.descriptions[lang].short}</p>
+    <p>{localeString(unit.summary, lang)}</p>
   </section>
 
-  <!-- Long Description -->
-  {unit.descriptions?.[lang]?.long && (
-    <section>
-      <h2>About This Stay</h2>
-      <p>{unit.descriptions[lang].long}</p>
-    </section>
-  )}
+  <section>
+    <h2>About This Stay</h2>
+    <p>{localeString(unit.description, lang)}</p>
+  </section>
 
   <!-- Booking Links -->
   <section>
@@ -81,6 +75,9 @@ const photos = Object.fromEntries(
       )}
       {booking.booking && (
         <li><a href={booking.booking}>Booking.com</a></li>
+      )}
+      {booking.vrbo && (
+        <li><a href={booking.vrbo}>VRBO</a></li>
       )}
     </ul>
   </section>
@@ -93,7 +90,7 @@ const photos = Object.fromEntries(
       <div class="room-block">
         <h3>{room.name}</h3>
 
-        {room.beds ? (
+        {room.beds && (
           <ul>
             {room.beds.map((bed) => (
               <li>
@@ -101,20 +98,15 @@ const photos = Object.fromEntries(
               </li>
             ))}
           </ul>
-        ) : (
-          <p>No sleeping arrangements in this room.</p>
         )}
       </div>
     ))}
   </section>
 
-  <!-- Directions -->
-  {unit.directions?.[lang] && (
-    <section>
-      <h2>Directions</h2>
-      <p>{unit.directions[lang]}</p>
-    </section>
-  )}
+  <section>
+    <h2>Directions</h2>
+    <p>{localeString(unit.directions, lang)}</p>
+  </section>
 
   <!-- Local Guide (Generic Rendering) -->
   <section>
