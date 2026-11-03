@@ -11,7 +11,7 @@ import type { LocalizedString } from "./i18n.ts";
  * Inherited from currency/PriceData:
  *   billingUnit: "per person" | "per unit" | "per booking" | "per day" Billing unit for the product (optional, default: none)
  */
-export type Categories = "class" | "retreat" | "stay";
+export type Categories = "class" | "retreat" | "stay" | "reservation";
 export interface ProductInfo extends PriceData {
   label?: string; // Optional label (e.g., "Single Class", "Unlimited Month", "Yoga Retreat", "Integration Stay", etc.)
   category?: Categories; // Optional category for the product

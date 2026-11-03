@@ -3,6 +3,7 @@ import { journeyLevel } from "./types.ts"
 import type { DiscountInfo, ProductInfo } from "./types.ts";
 
 const products: Record<string, ProductInfo> = {
+  // STAY products
   "suite": {
     label: "Wellness Suite",
     category: "stay",
@@ -64,6 +65,8 @@ const products: Record<string, ProductInfo> = {
     standalone: false,
     upgrade: true,
   },
+
+  // RETREAT products
   "arrivalStay": {
     label: "Arrival Stay",
     category: "retreat",
@@ -177,6 +180,59 @@ const products: Record<string, ProductInfo> = {
     },
     standalone: true,
     upgrade: false,
+  },
+
+  // RESERVATION products
+  "bicycle": {
+    label: "Bicycle Reservation",
+    category: "reservation",
+    description: {
+      en: "Reserve a bicycle for the day to explore the island at your own pace.",
+      de: "Reserviere ein Fahrrad für den Tag, um die Insel in deinem eigenen Tempo zu erkunden.",
+//      hr: "Rezervirajte bicikl za dan i istražite otok vlastitim tempom.",
+    },
+    note: "Reservation optional; free when available on a first-come, first-served basis.",
+    inventory: 5,
+    eur: 5,
+    billingUnit: {
+      en: "per day",
+      de: "pro Tag",
+    },
+    standalone: true,
+  },
+  "eMobility": {
+    label: "E-Mobility Reservation",
+    category: "reservation",
+    description: {
+      en: "Reserve an electric mobility option for the day to explore the island at your own pace.",
+      de: "Reserviere ein Elektrofahrzeug für einen Tag, um die Insel in deinem eigenen Tempo zu erkunden.",
+//      hr: "Rezervirajte e-bicikl za dan i istražite otok vlastitim tempom.",
+    },
+    note: "Reservation optional; free when available on a first-come, first-served basis.",
+    inventory: 2,
+    eur: 10,
+    billingUnit: {
+      en: "per day",
+      de: "pro Tag",
+    },
+    standalone: true,
+  },
+  "parking": {
+    label: "On-Site Parking Reservation",
+    category: "reservation",
+    description: {
+      en: "Reserve a parking space for your automobile during your stay.",
+      de: "Reserviere einen Parkplatz für dein Auto während deines Aufenthalts.",
+//      hr: "Rezervirajte parking mjesto za vaše auto tijekom boravka.",
+    },
+    note: "Advance reservation required.",
+    inventory: 3,
+    eur: 5,
+    billingUnit: {
+      en: "per day",
+      de: "pro Tag",
+    },
+    standalone: true,
   },
 };
 

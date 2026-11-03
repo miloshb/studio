@@ -8,7 +8,7 @@ This guide will help you settle in comfortably and make the most of your time on
 ## TOC
 - [Arrival](#arrival)
   - [TOC](#toc)
-  - [Before Travel](#before-travel)
+  - [Before Arrival](#before-arrival)
   - [Arriving on Brač](#arriving-on-brač)
     - [Split Airport (SPU)](#split-airport-spu)
       - [Airport Transfer - Bus](#airport-transfer---bus)
@@ -21,17 +21,19 @@ This guide will help you settle in comfortably and make the most of your time on
   - [Studio Sun \& Sea](#studio-sun--sea)
     - [Directions \& Address](#directions--address)
     - [The Café](#the-café)
-    - [Check-In Process](#check-in-process)
+    - [Check-In](#check-in)
     - [Arrival Parking](#arrival-parking)
-    - [Luggage Storage](#luggage-storage)
+      - [Transport around Brač](#transport-around-brač)
+    - [Luggage \& Accessibility](#luggage--accessibility)
     - [Shared Amenities](#shared-amenities)
     - [Waste \& Recycling](#waste--recycling)
+      - [Collection Streams](#collection-streams)
   - [Curiosity \& Exploration](#curiosity--exploration)
   - [Questions \& Support](#questions--support)
   - [Living Well Together](#living-well-together)
           - [Version 2026.10](#version-202610)
 
-## Before Travel
+## Before Arrival
 Croatia uses the Euro (€).
 
 Credit and debit cards are widely accepted throughout Supetar, Split, and most of Brač. For most visitors, it is entirely practical to arrive without cash.
@@ -46,16 +48,21 @@ We encourage everyone to allow a little extra time for travel, especially during
 Sometimes the most enjoyable arrival is the one that allows enough time to begin slowing down before reaching the destination.
 
 ### Split Airport (SPU)
-There are numerous airlines flying in and out of Split international airport. If arriving outside of the summer season please note that most carriers reduce their schedules to a few times per week, though daily flights in and out are always available. [Schedule direct flights from Split (SPU) ↗](https://www.flightsfrom.com/SPU).
+Split International Airport (SPU) is served by numerous airlines throughout the year.
+
+If arriving outside the summer season, please note that many carriers reduce their schedules, though daily connections remain available.
+
+- [Schedule of direct flights from Split (SPU) ↗](https://www.flightsfrom.com/SPU).
 
 #### Airport Transfer - Bus
-The airport bus is usually the simplest option for getting to Split (harbour) and takes about 30 minutes (longer - typically 45 mintes - during peak season due to heavier traffic).
+The airport bus is usually the simplest option for getting to Split (harbour) and takes about 30 minutes (typically longer during peak season due to heavier traffic: ~45 minutes).
 
 #### Airport Transfer - Rental Car
-Auto rentals are available at the airport.
-Please make sure to let them know you will be taking the vehicle on a ferry when renting - there is normally a flat fee for the entire duration to enable taking the vehicle over water.
+Auto rentals are available at Split Airport.
 
-If renting a vehicle, please verify that your rental agreement allows travel to islands. Most providers require advance notification before vehicles are transported by ferry.
+If you intend to take a vehicle to Brač, please inform the rental provider in advance. Most providers require notification before vehicles are transported by ferry and may apply an additional fee.
+
+Vehicle ferry reservations are strongly recommended during the summer season.
 
 #### Airport Transfer - Taxi
 Taxi is also available and costs may vary.
@@ -64,10 +71,13 @@ Taxi is also available and costs may vary.
 The main harbour, train station, and bus station in Split are all colocated and within a few hundred metres walking distance between them.
 
 ### Ferry to Brač
-Most visitors arrive to Brač via ferry from Split, though Brač itself has an airport with commercial flights to Zagreb, flying into Split (SPU) is typically easier and faster.
+Most visitors arrive to Brač via ferry from Split, though Brač itself has an airport with seasonal commercial flights to and connections via Zagreb, flying into Split (SPU) is typically easier and faster.
 
-Two ferry operators cover the distance between Split and Supetar on Brač. Ferries run direct throughout the day between the hours of 6 and 23.
-Advance vehicle ferry reservations are strongly encouraged during peak season. Passenger travel is reservationless.
+Two ferry operators connect Split and Supetar on Brač.
+
+Direct ferries run daily throughout the year between the hours of 6 and 23.
+
+Advance vehicle ferry reservations are strongly encouraged during peak season. Passenger travel is generally reservationless.
 
 #### Krilo - Fast Passenger Catamaran
 - Approximately 25 minutes
@@ -87,11 +97,13 @@ Advance vehicle ferry reservations are strongly encouraged during peak season. P
 ## Studio Sun & Sea
 
 ### Directions & Address
-If arriving by automobile, take the main road (Ulica Hrvatskih Velikana) up the hill from the harbour, and take the first right in the traffic circle. Studio Sun & Sea is immediately on the right. Studio Sun & Sea is also walkable from the ferry with rolling suitcases. The automobile route is an option as is walking through the narrower paths through the old city. Taxi is also an option and waiting at the ferry loading/unloading area.
+If arriving by automobile, take the main road (Ulica Hrvatskih Velikana) up the hill from the harbour, and take the first right in the traffic circle. Studio Sun & Sea is immediately on the right. Studio Sun & Sea is also walkable from the ferry with rolling suitcases. The automobile route is an option as is walking through the narrower paths through the old city. Taxis are generally available near the ferry terminal for those who prefer not to walk.
 
 Our address is:
 - Jadranska Ulica 33/35
 - 21400 Supetar
+- WhatsApp is the easiest way to reach us.
+- <stay@StudioSunAndSea.com>
 
 ### The Café
 The Studio Sun & Sea Café serves as more than a place for coffee and refreshments.
@@ -100,13 +112,26 @@ For many people it becomes a gathering place, meeting point, workspace, reading 
 
 The Café, patio, and rooftop terrace are intended to support connection, conversation, creativity, and quiet moments of reflection alike.
 
-### Check-In Process
-Checkin is at the Café during regular hours. After-hours self-checkin is available via keybox.
+### Check-In
+Self check-in is the default experience and is available 24x7.
+
+When staff are available at the Café, we are also happy to welcome people personally and offer an introduction to the property and its facilities.
+
+Depending on arrival timing, the property tour may occur at check-in or as part of a scheduled orientation later in the day.
 
 ### Arrival Parking
-Parking onsite (in the back of the building) is available for up to one regular sized automobile per booking.
+Limited on-site parking is available by advance reservation.
 
-### Luggage Storage
+If arriving with a vehicle, please arrange parking before travel. On-site parking is limited and may not be available without a reservation.
+
+It may be possible to arrange additional parking options nearby when on-site parking is full.
+
+#### Transport around Brač
+Most destinations in Supetar can be reached comfortably on foot, and many locations elsewhere on Brač are accessible by bicycle, scooter, taxi, bus, or organized transport.
+
+Most guests find that a vehicle is optional rather than necessary for an enjoyable stay.
+
+### Luggage & Accessibility
 Early arrivals and late departures are often possible.
 
 When your accommodation is not yet ready, or your departure occurs later in the day, luggage storage is generally available through the Café.
@@ -124,6 +149,14 @@ One of the simplest ways we can practice *Ahimsa* (non-harm in Sanskrit) togethe
 The ecosystems around us, including the soil beneath our feet, the waterways surrounding Brač, and the countless visible and invisible forms of life they support, are part of the broader community enabling life to thrive on Earth.
 
 Applying *Ahimsa* to the environment means helping keep materials in productive cycles through reuse, recycling, composting, or other pathways whenever possible rather than sending them to landfill.
+
+#### Collection Streams
+Some beverage containers include a refundable deposit and can be returned to Tommy, Lidl, and other participating retailers for reuse.
+- Blue: Paper & Cardboard (clean)
+- Yellow: Packaging including Plastic (containers and bags), Metal, and Beverage Cartons (including Tetra Pak containers)
+- Brown: Bio Waste & Compostables
+- Black: Landfill (General Waste)
+- Glass: Glass Containers
 
 ## Curiosity & Exploration
 Brač offers beaches, hiking, cycling, sailing, historic towns, olive groves, local food, and countless opportunities for exploration.
