@@ -4,7 +4,7 @@ import BaseLayout from "../../../layouts/BaseLayout.astro";
 import { guides } from "../../../data/stays/guides/";
 import { units, type UnitKey } from "../../../data/stays/units/";
 import type { UnitConfig } from "../../../data/stays/unitType.ts";
-import { localeString, type Language } from "../../../data/i18n.ts";
+import { localeString, type PublicLanguage } from "../../../data/i18n.ts";
 import { info, debug } from "../../../data/config.ts";
 
 
@@ -18,7 +18,7 @@ export async function getStaticPaths() {
 
 export interface Props {
   unit: UnitConfig;
-  lang: Language;
+  lang: PublicLanguage;
 }
 // Access props passed from getStaticPaths()
 const { unit, lang } = Astro.props;

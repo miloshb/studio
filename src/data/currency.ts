@@ -82,6 +82,12 @@ export function formatMultiCurrency(
   locale: SupportedLocale
 ): string[];
 
+// Overload 3: accept eur and locale only, with usd and gbp undefined
+export function formatMultiCurrency(
+  eur: number,
+  locale: SupportedLocale
+): string[];
+
 // Implementation for multicurrency formatting
 export function formatMultiCurrency(
   a: PriceData | number,
@@ -94,17 +100,22 @@ export function formatMultiCurrency(
   let gbp: number | undefined;
   let locale: SupportedLocale;
 
-  if (typeof a === "object" && a !== null) {
-    // Case 1: (row, locale)
-    const row = a as PriceData;
-    let factor = 1 - (row.discountApply || 0)/100;
-    if (row.calculate) {
-      ({eur, usd, gbp} = currencyCalc(row.eur * factor));
-    } else {
-      const scale = (val?: number) => (val === undefined ? undefined : val * factor);
-      eur = row.eur * factor;
-      usd = scale(row.usd);
-      gbp = scale(row.gbp);
+  if (typeof b === "object" && a !== null) {
+    if (typeof a === "number") {
+      // Case 3: (eur, locale)
+      eur = a as number;
+    } else { // a is PriceData
+      // Case 1: (row, locale)
+      const row = a as PriceData;
+      let factor = 1 - (row.discountApply || 0)/100;
+      if (row.calculate) {
+        ({eur, usd, gbp} = currencyCalc(row.eur * factor));
+      } else {
+        const scale = (val?: number) => (val === undefined ? undefined : val * factor);
+        eur = row.eur * factor;
+        usd = scale(row.usd);
+        gbp = scale(row.gbp);
+      }
     }
     locale = b as SupportedLocale;
   } else {

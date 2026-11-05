@@ -6,18 +6,21 @@
 
 // Supported website lanugages (first listed is primary/default)
 export const LANGS = ["en", "de"] as const;
-export type Language = typeof LANGS[number];
 export const defaultLang = LANGS[0];
 type DefaultLang = typeof defaultLang;
+export type PublicLanguage = typeof LANGS[number];
+type Language = PublicLanguage | "hr"; // Additional languages can be added here for internal use without publishing
 // Supported locales for content formatting
 export type SupportedLocale = "en-US" | "de-DE" | "en-GB" | "hr-HR";
 
 // Must be a simple string or have the default locale string specified with other locales optional
-export type LocalizedString = string | (Record<DefaultLang, string> & Partial<Record<Exclude<Language, DefaultLang>, string>>);
+export type LocalizedString = string |
+  (Record<DefaultLang, string>
+    & Partial<Record<Exclude<Language, DefaultLang>, string>>);
 // Unlike LocalizedString, LangString requires all supported languages to be defined
-export type LangString = Record<Language, string>;
+export type LangString = Record<PublicLanguage, string>;
 
-export const LocaleToLang: Record<SupportedLocale, Language> = {
+export const LocaleToLang: Record<SupportedLocale, PublicLanguage> = {
   "en-US": "en",
   "de-DE": "de",
   "en-GB": "en",
@@ -26,8 +29,8 @@ export const LocaleToLang: Record<SupportedLocale, Language> = {
 
 // Helper to resolve localized text with fallback to default locale
 export function localeString(
-    text: LocalizedString | LangString | undefined,
-    locale: Language | SupportedLocale
+    text: LocalizedString | undefined,
+    locale: PublicLanguage | SupportedLocale
   ): string
 {
   if (!text) return "";

@@ -3,9 +3,9 @@
 /**
  * Localized client-side island: CET/CEST text + UTC offsets based on lang property input.
  */
-import type { Language, LangString } from '../data/i18n';
+import type { PublicLanguage, LangString } from '../data/i18n';
 
-const { lang = "en" } = Astro.props as { lang?: Language };
+const { lang = "en" } = Astro.props as { lang?: PublicLanguage };
 
 // Hardcoded server fallbacks to prevent a flashing layout during browser hydration
 const fallbackText: LangString = {
