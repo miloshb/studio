@@ -3,6 +3,8 @@
  * Multi-Currency utilities and data types.
  */
 import type { SupportedLocale, LocalizedString } from "./i18n.ts";
+import { debug } from "./config.ts"
+
 export type SupportedCurrency = "EUR" | "USD" | "GBP";
 
 // Multi-Currency Pricing
@@ -100,6 +102,12 @@ export function formatMultiCurrency(
   let gbp: number | undefined;
   let locale: SupportedLocale;
 
+  if(debug) {
+    console.log("DEBUG: a =", a);
+    console.log("DEBUG: b =", b);
+    console.log("DEBUG: c =", c);
+    console.log("DEBUG: d =", d);
+  }
   if (typeof b === "object" && a !== null) {
     if (typeof a === "number") {
       // Case 3: (eur, locale)

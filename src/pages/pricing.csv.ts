@@ -15,6 +15,17 @@ import { formatMultiCurrency } from "../data/currency.ts";
  * - UTF-8 encoding with BOM for MS Excel / Inspector compatibility
  */
 
+// naziv;maloprodajna_cijena_eur;posebni_oblik_prodaje;sidrena_cijena_eur
+// 7-Dnevni Yoga Retreat;2000,00;;
+// 7-Dnevni Yoga Retreat (Rana prijava - 5%);1900,00;Rana prijava;2000,00
+// 7-Dnevni Yoga Retreat (Plaćanje u cijelosti - 5%);1900,00;Popust na jednokratno plaćanje;2000,00
+// 7-Dnevni Yoga Retreat (Članski popust - Stay Member 5%);1900,00;Članski popust;2000,00
+// 7-Dnevni Yoga Retreat (Članski popust - Yoga Member 10%);1800,00;Članski popust;2000,00
+// 7-Dnevni Yoga Retreat (Članski popust - Yoga Alumni 15%);1700,00;Članski popust;2000,00
+// 7-Dnevni Yoga Retreat (Članski popust - Blue Heron Alumni 20%);1600,00;Članski popust;2000,00
+// Intensiv-Immersion (Samostalno);2000,00;;
+// Intensiv-Immersion (Uz 7-Dnevni Retreat);1500,00;Paket / Popust uz retreat;2000,00
+
 interface CsvRow {
   naziv: string;
   maloprodajna_cijena_eur: string;
@@ -56,7 +67,7 @@ function extractRows(): CsvRow[] {
   // 3. Intro / Trial Passes
   addProduct("Probni sat (Trial Class)", pricing.intro.trialClass);
   addProduct("Probni tjedan (Trial Week)", pricing.intro.trialWeek);
-  addProduct("2-tjedni probni paket (2-Week Trial)", pricing.intro.trialTwoWeek);
+  addProduct("Dvotjedni probni paket (2-Week Trial)", pricing.intro.trialTwoWeek);
 
   // 4. Private Sessions
   pricing.private.forEach((p: ProductInfo) => {
@@ -70,7 +81,7 @@ function extractRows(): CsvRow[] {
 
   // 6. Group Sessions
   pricing.group.forEach((p: ProductInfo) => {
-    addProduct(`Privatni grupi sat joge (Group) - ${p.duration} min`, p.eur);
+    addProduct(`Privatni grupi sat joge (Small-Group) - ${p.duration} min`, p.eur);
   });
 
   // 7. Workshops
@@ -84,27 +95,35 @@ function extractRows(): CsvRow[] {
   });
 
   // 9. Retreat Add-ons
-  const retreats = pricing.retreats.upgrades;
+  const retreatUpgrades = pricing.retreats.upgrades;
+  Object.values(retreatUpgrades).filter((product) => (product.upgrade)).forEach((p: ProductInfo) => {
+    if(p.discountApply) {
+      addProduct(`${p.label} (Paket popust - ${p.discountApply}%)`, p.eur / (1 - p.discountApply / 100), "Paket / Popust uz Retreat", p.eur);
+    } else {
+      addProduct(`${p.label}`, p.eur);
+    }
+  });
+
   // if (retreats.coreRetreat) {
   //   addProduct("7-Dnevni Yoga Retreat (Brač)", retreats.coreRetreat.eur);
   // }
   // if (retreats.advancedImmersion) {
   //   addProduct("Intenziv-Immersion 5-Dnevni Program (Advanced Immersion)", retreats.advancedImmersion.eur);
   // }
-  if (retreats.suite) {
-    addProduct("Nadogradnja: Wellness Suite (Per booking)", retreats.suite.eur);
+  if (retreatUpgrades.suite) {
+    addProduct("Nadogradnja: Wellness Suite (Per booking)", retreatUpgrades.suite.eur);
   }
   // if (retreats.residence) {
   //   addProduct("Nadogradnja: Wellness Residence (Po osobi, min 3)", retreats.residence.eur);
   // }
-  if (retreats.singleOccupancy) {
-    addProduct("Nadogradnja: Jednokrevetna soba (Single Occupancy)", retreats.singleOccupancy.eur);
+  if (retreatUpgrades.singleOccupancy) {
+    addProduct("Nadogradnja: Jednokrevetna soba (Single Occupancy)", retreatUpgrades.singleOccupancy.eur);
   }
-  if (retreats.arrivalStay) {
-    addProduct("Dodatna noć: Raniji dolazak (Arrival Stay - per night)", retreats.arrivalStay.eur);
+  if (retreatUpgrades.arrivalStay) {
+    addProduct("Dodatna noć: Raniji dolazak (Arrival Stay - per night)", retreatUpgrades.arrivalStay.eur);
   }
-  if (retreats.integrationStay) {
-    addProduct("Dodatna noć: Integracijski boravak (Integration Stay - per night)", retreats.integrationStay.eur);
+  if (retreatUpgrades.integrationStay) {
+    addProduct("Dodatna noć: Integracijski boravak (Integration Stay - per night)", retreatUpgrades.integrationStay.eur);
   }
 
   return rows;
