@@ -5,7 +5,7 @@ import type { DiscountInfo, ProductInfo } from "./types.ts";
 const products: Record<string, ProductInfo> = {
   // STAY products
   "suite": {
-    label: "Wellness Suite",
+    name: "Wellness Suite",
     category: "stay",
     description: {
       en: "Upgrade to the Wellness Suite for a more spacious and luxurious stay. The Wellness Suite features a private steam spa, soaking tub, comfortable living area, spacious king bedroom, and enhanced amenities designed for deep rest and relaxation.",
@@ -25,7 +25,7 @@ const products: Record<string, ProductInfo> = {
     upgrade: true,
   },
   "residence": {
-    label: "Wellness Residence",
+    name: "Wellness Residence",
     category: "stay",
     description: {
       en: "Upgrade to the luxurious Wellness Residence featuring three private sleeping areas and a private steam spa. Designed for three participants traveling together who wish to share a premium retreat stay experience while enjoying their own private space.",
@@ -45,7 +45,7 @@ const products: Record<string, ProductInfo> = {
     upgrade: false, // Wellness Residence only available after Phase 2 (change to true when available)
   },
   "singleOccupancy": {
-    label: "Single Occupancy",
+    name: "Single Occupancy",
     category: "stay",
       description: {
       en: "Enhance your stay with private occupancy for a more spacious, comfortable, and personalized retreat experience.",
@@ -68,7 +68,7 @@ const products: Record<string, ProductInfo> = {
 
   // RETREAT products
   "arrivalStay": {
-    label: "Arrival Stay",
+    name: "Arrival Stay",
     category: "retreat",
     description: {
       en: "Arrive early, settle into the island rhythm, and begin your retreat fully relaxed. Arrival Stay participants enjoy unlimited access to regular studio classes, beach walks, and unstructured space before beginning the retreat.",
@@ -87,7 +87,7 @@ const products: Record<string, ProductInfo> = {
     upgrade: true,
   },
   "integrationStay": {
-    label: "Integration Stay",
+    name: "Integration Stay",
     category: "retreat",
     description: {
       en: "Continue your time on Brač with additional nights after the retreat concludes. Integration Stay participants enjoy unlimited access to regular studio classes, open practice time, beach walks, journaling, reflection, and unstructured space to integrate their experience before returning home.",
@@ -105,7 +105,7 @@ const products: Record<string, ProductInfo> = {
     upgrade: true,
   },
   "earlyDeparture": {
-    label: "Early Departure",
+    name: "Early Departure",
     category: "retreat",
     description: {
       en: "Provides schedule flexibility if attendance for the full week is not feasible.",
@@ -123,7 +123,7 @@ const products: Record<string, ProductInfo> = {
     upgrade: true,
   },
   "bringFriend": {
-    label: "Bring a Friend",
+    name: "Bring a Friend",
     category: "retreat",
     description: {
       en: "When two or more friends book a retreat together, each participant receives a complimentary Integration Stay night.",
@@ -143,7 +143,7 @@ const products: Record<string, ProductInfo> = {
 
   // RETREAT products (core retreat and advanced immersion)
   "advancedImmersion": {
-    label: "Advanced Immersion",
+    name: "Advanced Immersion",
     category: "retreat",
     description: {
       en: "An intensive 5-day small-group experience intended for dedicated practitioners who wish to go deeper into the practice. Designed as a standalone retreat or as an extension to the 7-day retreat, Advanced Immersion is a more focused and intimate experience with additional time for practice, reflection, and personalized guidance.",
@@ -166,7 +166,7 @@ const products: Record<string, ProductInfo> = {
     upgrade: true,
   },
   "coreRetreat": {
-    label: "7-Day Yoga Retreat",
+    name: "7-Day Yoga Retreat",
     category: "retreat",
     description: "The Studio Sun & Sea Yoga Retreat is designed to create space away from the pace and distractions of everyday life. Through daily yoga, guided practice, time for rest, community meals, and personal reflection, participants are invited to reconnect with themselves and deepen their relationship with practice.",
     note: "Maximum 16 students; target 12-14; minimum 5-6",
@@ -186,7 +186,7 @@ const products: Record<string, ProductInfo> = {
 
   // RESERVATION products
   "bicycle": {
-    label: "Bicycle Reservation",
+    name: "Bicycle Reservation",
     category: "reservation",
     description: {
       en: "Reserve a bicycle for the day to explore the island at your own pace.",
@@ -203,7 +203,7 @@ const products: Record<string, ProductInfo> = {
     standalone: true,
   },
   "eMobility": {
-    label: "E-Mobility Reservation",
+    name: "E-Mobility Reservation",
     category: "reservation",
     description: {
       en: "Reserve an electric mobility option for the day to explore the island at your own pace.",
@@ -220,7 +220,7 @@ const products: Record<string, ProductInfo> = {
     standalone: true,
   },
   "parking": {
-    label: "On-Site Parking Reservation",
+    name: "On-Site Parking Reservation",
     category: "reservation",
     description: {
       en: "Reserve a parking space for your automobile during your stay.",

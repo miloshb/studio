@@ -3,7 +3,9 @@ import type { APIRoute } from "astro";
 import type { ProductInfo } from "../data/types.ts";
 import { pricing } from "../data/products.ts";
 import { formatMultiCurrency, discountedPrice } from "../data/currency.ts";
+import { localeString, type SupportedLocale } from "../data/i18n.ts";
 
+const locale: SupportedLocale = "hr-HR";
 /**
  * Endpoint generating a machine-readable CSV price list compliant with
  * Croatian consumer price publication regulations (NN 101/2026 & NN 110/2026).
@@ -33,10 +35,6 @@ interface CsvRow {
   sidrena_cijena_eur: string;
 }
 
-// function formatMultiCurrency(eur: number): string {
-//   return eur.toFixed(2).replace(".", ",");
-// }
-
 function extractRows(): CsvRow[] {
   const rows: CsvRow[] = [];
 
@@ -48,9 +46,9 @@ function extractRows(): CsvRow[] {
   ) => {
     rows.push({
       naziv: title,
-      maloprodajna_cijena_eur: formatMultiCurrency(eur, "hr-HR")[0],
+      maloprodajna_cijena_eur: formatMultiCurrency(eur, locale)[0],
       posebni_oblik_prodaje: specialSale,
-      sidrena_cijena_eur: anchorPriceEur !== undefined ? formatMultiCurrency(anchorPriceEur, "hr-HR")[0] : "",
+      sidrena_cijena_eur: anchorPriceEur !== undefined ? formatMultiCurrency(anchorPriceEur, locale)[0] : "",
     });
   };
 
@@ -81,7 +79,7 @@ function extractRows(): CsvRow[] {
 
   // 6. Group Sessions
   pricing.group.forEach((p: ProductInfo) => {
-    addProduct(`Privatni grupi sat joge (Small-Group) - ${p.duration} min`, p.eur);
+    addProduct(`Privatni grupni sat joge (Small-Group) - ${p.duration} min`, p.eur);
   });
 
   // 7. Workshops
@@ -91,16 +89,17 @@ function extractRows(): CsvRow[] {
 
   // 8. Retreats
   pricing.retreats.retreats.forEach((p: ProductInfo) => {
-    addProduct(`${p.label}`, p.eur);
+    addProduct(`${localeString(p.name, locale)}`, p.eur);
   });
 
   // 9. Retreat Add-ons
   const retreatUpgrades = pricing.retreats.upgrades;
   Object.values(retreatUpgrades).filter((product) => (product.upgrade)).forEach((p: ProductInfo) => {
+    if (p.eur <= 0) return;
     if(p.discountApply) {
-      addProduct(`${p.label} (Paket popust - ${p.discountApply}%)`, discountedPrice(p).eur, "Paket / Popust uz Retreat", p.eur);
+      addProduct(`Retreat dodatak: ${p.name} (Paket popust - ${p.discountApply}%)`, discountedPrice(p).eur, "Paket / Popust uz Retreat", p.eur);
     } else {
-      addProduct(`${p.label}`, p.eur);
+      addProduct(`Retreat dodatak: ${p.name} (${localeString(p.billingUnit, locale)})`, p.eur);
     }
   });
 
@@ -110,21 +109,21 @@ function extractRows(): CsvRow[] {
   // if (retreats.advancedImmersion) {
   //   addProduct("Intenziv-Immersion 5-Dnevni Program (Advanced Immersion)", retreats.advancedImmersion.eur);
   // }
-  if (retreatUpgrades.suite) {
-    addProduct("Nadogradnja: Wellness Suite (Per booking)", retreatUpgrades.suite.eur);
-  }
+  // if (retreatUpgrades.suite) {
+  //   addProduct("Nadogradnja: Wellness Suite (Per booking)", retreatUpgrades.suite.eur);
+  // }
   // if (retreats.residence) {
   //   addProduct("Nadogradnja: Wellness Residence (Po osobi, min 3)", retreats.residence.eur);
   // }
-  if (retreatUpgrades.singleOccupancy) {
-    addProduct("Nadogradnja: Jednokrevetna soba (Single Occupancy)", retreatUpgrades.singleOccupancy.eur);
-  }
-  if (retreatUpgrades.arrivalStay) {
-    addProduct("Dodatna noć: Raniji dolazak (Arrival Stay - per night)", retreatUpgrades.arrivalStay.eur);
-  }
-  if (retreatUpgrades.integrationStay) {
-    addProduct("Dodatna noć: Integracijski boravak (Integration Stay - per night)", retreatUpgrades.integrationStay.eur);
-  }
+  // if (retreatUpgrades.singleOccupancy) {
+  //   addProduct("Nadogradnja: Jednokrevetna (Single Occupancy)", retreatUpgrades.singleOccupancy.eur);
+  // }
+  // if (retreatUpgrades.arrivalStay) {
+  //   addProduct("Dodatna noć: Raniji dolazak (Arrival Stay - per night)", retreatUpgrades.arrivalStay.eur);
+  // }
+  // if (retreatUpgrades.integrationStay) {
+  //   addProduct("Dodatna noć: Integracijski boravak (Integration Stay - per night)", retreatUpgrades.integrationStay.eur);
+  // }
 
   return rows;
 }

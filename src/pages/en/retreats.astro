@@ -88,14 +88,14 @@ const { lang = "en" } = Astro.props as { lang?: PublicLanguage };
     </p>
     {Object.values(pricing.retreats.upgrades).filter((product) => (product.upgrade && product.category === "stay")).map((product) => (
       <>
-      <h4>{product.label}</h4>
+      <h4>{product.name}</h4>
           <p>{localeString(product.description, lang)}</p>
       </>
     ))}
     <h3>Journey Options</h3>
     {Object.values(pricing.retreats.upgrades).filter((product) => (product.upgrade && product.category === "retreat")).map((product) => (
       <>
-      <h4>{product.label}</h4>
+      <h4>{product.name}</h4>
           <p>{localeString(product.description, lang)}</p>
       </>
     ))}

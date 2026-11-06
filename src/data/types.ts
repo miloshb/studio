@@ -13,7 +13,8 @@ import type { LocalizedString } from "./i18n.ts";
  */
 export type Categories = "class" | "retreat" | "stay" | "reservation";
 export interface ProductInfo extends PriceData {
-  label?: string; // Optional label (e.g., "Single Class", "Unlimited Month", "Yoga Retreat", "Integration Stay", etc.)
+  name?: string; // Optional product name (always English: "Single Class", "Unlimited Month", "Yoga Retreat", "Integration Stay", etc.)
+  label?: LocalizedString; // Optional product label
   category?: Categories; // Optional category for the product
   description?: LocalizedString; // Description of the product
   note?: string; // Optional note for the product - internal use (e.g. availability, restrictions, clarifications)

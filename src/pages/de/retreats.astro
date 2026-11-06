@@ -91,7 +91,7 @@ const { lang = "de" } = Astro.props as { lang?: PublicLanguage };
       .filter((product) => (product.upgrade && product.category === "stay"))
       .map((product) => (
         <>
-          <h4>{product.label}</h4>
+          <h4>{product.name}</h4>
           <p>{localeString(product.description, lang)}</p>
         </>
     ))}
@@ -101,7 +101,7 @@ const { lang = "de" } = Astro.props as { lang?: PublicLanguage };
       .filter((product) => (product.upgrade && product.category === "retreat"))
       .map((product) => (
         <>
-          <h4>{product.label}</h4>
+          <h4>{product.name}</h4>
           <p>{localeString(product.description, lang)}</p>
         </>
     ))}
