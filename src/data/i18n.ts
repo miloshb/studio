@@ -20,11 +20,11 @@ export type LocalizedString = string |
 // Unlike LocalizedString, LangString requires all supported languages to be defined
 export type LangString = Record<PublicLanguage, string>;
 
-export const LocaleToLang: Record<SupportedLocale, PublicLanguage> = {
+export const LocaleToLang: Record<SupportedLocale, Language> = {
   "en-US": "en",
   "de-DE": "de",
   "en-GB": "en",
-  "hr-HR": defaultLang, // defaultLang until 'hr' is implemented
+  "hr-HR": "hr",
 }
 
 // Helper to resolve localized text with fallback to default locale
