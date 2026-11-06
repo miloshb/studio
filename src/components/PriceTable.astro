@@ -36,7 +36,7 @@ function formatDuration(value: number, locale: string) {
   </thead>
   <tbody>
     {rows.map((row) => {
-      const rowLabel = rowLabelOverride ? row.label : formatDuration(row.duration, currentLocale);
+      const rowLabel = rowLabelOverride ? (row.label || row.name) : formatDuration(row.duration, currentLocale);
       return (
         <tr>
           <td>{rowLabel}</td>
