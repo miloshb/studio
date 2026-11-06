@@ -6,7 +6,7 @@ import type { GeoLocation } from "./location.ts";
 export const LANG_STORE_KEY = "preferredLanguage";
 export const TZ_STORE_KEY = "preferredTimezone";
 
-export const debug = true; // Set to true to show debug logs
+export const debug = false; // Set to true to show debug logs
 export const info = true; // Set to true to show info logs
 
 

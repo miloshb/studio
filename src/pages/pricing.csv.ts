@@ -1,8 +1,8 @@
 // src/pages/pricing.csv.ts
 import type { APIRoute } from "astro";
+import type { ProductInfo } from "../data/types.ts";
 import { pricing } from "../data/products.ts";
-import { type ProductInfo } from "../data/types.ts";
-import { formatMultiCurrency } from "../data/currency.ts";
+import { formatMultiCurrency, discountedPrice } from "../data/currency.ts";
 
 /**
  * Endpoint generating a machine-readable CSV price list compliant with
@@ -98,7 +98,7 @@ function extractRows(): CsvRow[] {
   const retreatUpgrades = pricing.retreats.upgrades;
   Object.values(retreatUpgrades).filter((product) => (product.upgrade)).forEach((p: ProductInfo) => {
     if(p.discountApply) {
-      addProduct(`${p.label} (Paket popust - ${p.discountApply}%)`, p.eur / (1 - p.discountApply / 100), "Paket / Popust uz Retreat", p.eur);
+      addProduct(`${p.label} (Paket popust - ${p.discountApply}%)`, discountedPrice(p).eur, "Paket / Popust uz Retreat", p.eur);
     } else {
       addProduct(`${p.label}`, p.eur);
     }

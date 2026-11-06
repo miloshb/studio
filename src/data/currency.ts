@@ -19,6 +19,8 @@ export interface PriceData {
 
 /**
  * Calculate USD and GBP dynamically from EUR with psychological rounding and an FX risk buffer to protect EUR accounting.
+ * @param eurAmount EUR amount to convert
+ * @returns EUR, USD, and GBP amounts
  */
 export function currencyCalc(eurAmount: number): { eur: number; usd: number; gbp: number } {
   if (eurAmount === 0) return { eur: 0, usd: 0, gbp: 0 };
@@ -52,31 +54,25 @@ export function currencyCalc(eurAmount: number): { eur: number; usd: number; gbp
   };
 };
 
-// Format a number into a localized currency string
-export function formatCurrency(
-  value: number | undefined,
-  currency: SupportedCurrency,
-  locale: SupportedLocale = "en-US",
-) {
-  if (value === undefined || isNaN(value)) {
-    return undefined;
-  }
-
-  return new Intl.NumberFormat(locale, {
-    style: "currency",
-    currency,
-    minimumFractionDigits: 0,
-    maximumFractionDigits: 0,
-  }).format(value);
-}
-
-// Overload 1: accept a row object
+// Overload 1: accept a price data object
+/**
+ * Format a price data object for multicurrency display.
+ * @param priceData Price data to format
+ * @param locale Locale to use for formatting
+ */
 export function formatMultiCurrency(
-  row: PriceData,
+  priceData: PriceData,
   locale: SupportedLocale
 ): string[];
 
 // Overload 2: accept individual numbers
+/**
+ * Format individual currency amounts for multicurrency display.
+ * @param eur EUR amount to format
+ * @param usd USD amount to format
+ * @param gbp GBP amount to format
+ * @param locale Locale to use for formatting
+ */
 export function formatMultiCurrency(
   eur: number,
   usd: number,
@@ -85,12 +81,25 @@ export function formatMultiCurrency(
 ): string[];
 
 // Overload 3: accept eur and locale only, with usd and gbp undefined
+/**
+ * Format EUR amount for multicurrency display.
+ * @param eur EUR amount to format
+ * @param locale Locale to use for formatting
+ */
 export function formatMultiCurrency(
   eur: number,
   locale: SupportedLocale
 ): string[];
 
 // Implementation for multicurrency formatting
+/**
+ * Format currency amounts for multicurrency display. Locale is required (either 2nd or 4th argument).
+ * @param a Price data or EUR amount
+ * @param b Locale or USD amount
+ * @param c GBP amount
+ * @param d Locale
+ * @returns Formatted currency strings
+ */
 export function formatMultiCurrency(
   a: PriceData | number,
   b: number | SupportedLocale,
@@ -114,18 +123,10 @@ export function formatMultiCurrency(
       console.log("DEBUG: Case 3: (eur, locale)");
       eur = a as number;
     } else { // a is PriceData
-      // Case 1: (row, locale)
-      console.log("DEBUG: Case 1: (row, locale)");
-      const row = a as PriceData;
-      let factor = 1 - (row.discountApply || 0)/100;
-      if (row.calculate) {
-        ({eur, usd, gbp} = currencyCalc(row.eur * factor));
-      } else {
-        const scale = (val?: number) => (val === undefined ? undefined : val * factor);
-        eur = row.eur * factor;
-        usd = scale(row.usd);
-        gbp = scale(row.gbp);
-      }
+      // Case 1: (p, locale)
+      console.log("DEBUG: Case 1: (p, locale)");
+      const p = a as PriceData;
+      ({ eur, usd, gbp } = discountedPrice(p));
     }
     locale = b as SupportedLocale;
   } else {
@@ -143,10 +144,47 @@ export function formatMultiCurrency(
     console.log("INFO: gbp =", gbp);
     console.log("INFO: locale =", locale);
   }
-
   return [
     formatCurrency(eur, "EUR", locale),
     formatCurrency(usd, "USD", locale),
     formatCurrency(gbp, "GBP", locale),
   ].filter(Boolean) as string[];
+}
+
+/**
+ * Calculate the discounted EUR price for PriceData if discountApply is set, otherwise calculate the EUR price.
+ * @param p Price data for which to calculate the discounted price
+ * @returns Discounted price(s)
+ */
+export function discountedPrice(p: PriceData): { eur: number; usd?: number; gbp?: number } {
+  let eur: number;
+  let usd: number | undefined;
+  let gbp: number | undefined;
+  const factor = 1 - (p.discountApply || 0) / 100;
+  if (p.calculate) {
+    return currencyCalc(p.eur * factor);
+  }
+  const scale = (val?: number) => (val === undefined ? undefined : val * factor);
+  eur = p.eur * factor;
+  usd = scale(p.usd);
+  gbp = scale(p.gbp);
+  return { eur, usd, gbp };
+}
+
+// Format a number into a localized currency string
+function formatCurrency(
+  value: number | undefined,
+  currency: SupportedCurrency,
+  locale: SupportedLocale = "en-US",
+) {
+  if (value === undefined || isNaN(value)) {
+    return undefined;
+  }
+
+  return new Intl.NumberFormat(locale, {
+    style: "currency",
+    currency,
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
+  }).format(value);
 }
