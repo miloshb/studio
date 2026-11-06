@@ -100,6 +100,7 @@ const products: Record<string, ProductInfo> = {
     billingUnit: {
       en: "per night",
       de: "pro Nacht",
+      hr: "po noćenju",
     },
     standalone: false,
     upgrade: true,
@@ -118,6 +119,7 @@ const products: Record<string, ProductInfo> = {
     billingUnit: {
       en: "per day",
       de: "pro Tag",
+      hr: "po danu",
     },
     standalone: false,
     upgrade: true,
@@ -144,6 +146,10 @@ const products: Record<string, ProductInfo> = {
   // RETREAT products (core retreat and advanced immersion)
   "advancedImmersion": {
     name: "Advanced Immersion",
+    label: {
+      en: "5-day program",
+      hr: "Petoodnevni Yoga Retreat - Brač",
+    },
     category: "retreat",
     description: {
       en: "An intensive 5-day small-group experience intended for dedicated practitioners who wish to go deeper into the practice. Designed as a standalone retreat or as an extension to the 7-day retreat, Advanced Immersion is a more focused and intimate experience with additional time for practice, reflection, and personalized guidance.",
@@ -167,6 +173,10 @@ const products: Record<string, ProductInfo> = {
   },
   "coreRetreat": {
     name: "7-Day Yoga Retreat",
+    label: {
+      en: "7-day program",
+      hr: "Sedmodnevni Yoga Retreat - Brač",
+    },
     category: "retreat",
     description: "The Studio Sun & Sea Yoga Retreat is designed to create space away from the pace and distractions of everyday life. Through daily yoga, guided practice, time for rest, community meals, and personal reflection, participants are invited to reconnect with themselves and deepen their relationship with practice.",
     note: "Maximum 16 students; target 12-14; minimum 5-6",

@@ -89,7 +89,7 @@ function extractRows(): CsvRow[] {
 
   // 8. Retreats
   pricing.retreats.retreats.forEach((p: ProductInfo) => {
-    addProduct(`${localeString(p.name, locale)}`, p.eur);
+    addProduct(`${localeString(p.label, locale)}: ${p.name}`, p.eur);
   });
 
   // 9. Retreat Add-ons

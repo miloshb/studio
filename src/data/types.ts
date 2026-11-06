@@ -20,7 +20,7 @@ export interface ProductInfo extends PriceData {
   note?: string; // Optional note for the product - internal use (e.g. availability, restrictions, clarifications)
   inventory?: number; // Optional actual number of units available for sale
   capacity?: number; // Target capacity (people) for this class option (+2 for hard limit) (optional, default: unlimited)
-  duration?: number; // Duration in minutes for values >=60;  (optional, default: 60)
+  duration?: number; // Duration: hours when <45; minutes when >=45 (optional, default: 60)
   validity?: number; // Validity in months (optional, default: 18)
   minCommit?: number; // Minimum commitment in months (optional, default: 1)
   rollover?: boolean; // Whether unused classes roll over to the next month (optional, default: false)

@@ -28,6 +28,12 @@ export const LocaleToLang: Record<SupportedLocale, Language> = {
 }
 
 // Helper to resolve localized text with fallback to default locale
+/**
+ * Resolves localized text with fallback to the default locale.
+ * @param text Localized text or string to resolve
+ * @param locale Language or supported locale to use
+ * @returns Localized string, or an empty string if no text is provided.
+ */
 export function localeString(
     text: LocalizedString | undefined,
     locale: PublicLanguage | SupportedLocale
@@ -42,6 +48,11 @@ export function localeString(
   return text[lang] || text[defaultLang] || "";
 };
 
+/**
+ * Detects the supported locale from an Astro URL pathname.
+ * @param url URL to inspect
+ * @returns Supported locale for the URL
+ */
 export function getLocaleFromUrl(url: URL): SupportedLocale {
   const pathname = url.pathname;
 
@@ -58,4 +69,27 @@ export function getLocaleFromUrl(url: URL): SupportedLocale {
     return "en-GB";
   }
   return "en-US"; // Default fallback
+}
+
+// Duration helper
+// < 45 → treat as hours
+// >= 45 → treat as minutes
+/**
+ * Format duration as hours or minutes based on the value and locale.
+ * @param value Duration in hours for values below 45, otherwise in minutes
+ * @param locale Supported locale to use for formatting
+ * @returns Formatted duration string
+ */
+export function formatDuration(value: number, locale: SupportedLocale) {
+  const isHours = value < 45;
+
+  if (locale === "de-DE") {
+    return isHours
+      ? `${value} Stunden`
+      : `${value} Minuten`;
+  }
+
+  return isHours
+    ? `${value} hours`
+    : `${value} minutes`;
 }
