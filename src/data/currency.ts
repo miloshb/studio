@@ -108,12 +108,14 @@ export function formatMultiCurrency(
     console.log("DEBUG: c =", c);
     console.log("DEBUG: d =", d);
   }
-  if (typeof b === "object" && a !== null) {
+  if (typeof b !== "number" && a !== null) {
     if (typeof a === "number") {
       // Case 3: (eur, locale)
+      console.log("DEBUG: Case 3: (eur, locale)");
       eur = a as number;
     } else { // a is PriceData
       // Case 1: (row, locale)
+      console.log("DEBUG: Case 1: (row, locale)");
       const row = a as PriceData;
       let factor = 1 - (row.discountApply || 0)/100;
       if (row.calculate) {
@@ -128,6 +130,7 @@ export function formatMultiCurrency(
     locale = b as SupportedLocale;
   } else {
     // Case 2: (eur, usd, gbp, locale)
+    console.log("DEBUG: Case 2: (eur, usd, gbp, locale)");
     eur = a as number;
     usd = b as number;
     gbp = c as number;
