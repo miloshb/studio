@@ -3,7 +3,7 @@
  * Multilingual site routing definitions.
  */
 import { getSiteConfig, info, debug } from "./config.ts";
-import { defaultLang, LANGS, type LangString, type Language } from "./i18n.ts";
+import { defaultLang, LANGS, type LangString, type PublicLanguage } from "./i18n.ts";
 
 const site = getSiteConfig();
 
@@ -323,13 +323,13 @@ export const HREFLANG = Object.fromEntries(
   ])
 );
 
-export function getLangRoot(lang: Language) {
+export function getLangRoot(lang: PublicLanguage) {
   const safeLang = LANGS.includes(lang) ? lang : defaultLang;
   return `/${safeLang}/`;
 }
 
 // Language switcher URL helper
-export function getLangUrl(pageKey: RouteKeys, targetLang: Language) {
+export function getLangUrl(pageKey: RouteKeys, targetLang: PublicLanguage) {
   const route = ROUTES[pageKey];
 
   // If the page doesn't exist in ROUTES, fall back to language root

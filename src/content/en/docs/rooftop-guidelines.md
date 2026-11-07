@@ -1,6 +1,8 @@
 # Rooftop Guidelines
 this document is primarily about sharing a space. This is one of the places where Ahimsa philosophy will matter most.
 
+TODO: ALL
+
 ## TOC
 - [Rooftop Guidelines](#rooftop-guidelines)
   - [TOC](#toc)
@@ -23,7 +25,6 @@ this document is primarily about sharing a space. This is one of the places wher
 ## Cleaning & Stewardship
 
 ## Living Well Together
-
 No document can anticipate every situation.
 
 When questions arise, we encourage everyone to return to the principles found throughout Studio Sun & Sea:

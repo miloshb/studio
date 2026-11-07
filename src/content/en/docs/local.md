@@ -1,6 +1,8 @@
 # Local Customs and Culture
 Understanding Supetar and Brač.
 
+TODO: ALL
+
 ## TOC
 - [Local Customs and Culture](#local-customs-and-culture)
   - [TOC](#toc)
@@ -34,7 +36,6 @@ Brač is not merely a destination. It is home to people, families, traditions, c
 As you explore beaches, paths, towns, restaurants, forests, coves, and public spaces, we encourage you to bring the same principles of living well together into the broader human ecosystem.
 
 ## Living Well Together
-
 No document can anticipate every situation.
 
 When questions arise, we encourage everyone to return to the principles found throughout Studio Sun & Sea:
