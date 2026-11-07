@@ -19,7 +19,9 @@ const priceHeading = priceLabel || (currentLocale === "de-DE" ? "Preis" : "Price
   </thead>
   <tbody>
     {rows.map((row) => {
-      const rowLabel = rowLabelOverride ? (localeString(row.label, currentLocale) || row.name) : formatDuration(row.duration, currentLocale);
+      const rowLabel = rowLabelOverride ?
+        (row.name ? row.name : localeString(row.label, currentLocale)) :
+        formatDuration(row.duration, currentLocale);
       return (
         <tr>
           <td>{rowLabel}</td>
