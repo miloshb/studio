@@ -1,7 +1,7 @@
 ---
 // src/components/PriceTable.astro
 import PriceCell from "./PriceCell.astro";
-import { formatDuration, getLocaleFromUrl } from "../data/i18n.ts";
+import { getLocaleFromUrl, formatDuration, localeString } from "../data/i18n.ts";
 
 const { rows, locale: localeOverride, descLabel, priceLabel, rowLabelOverride = false } = Astro.props;
 
@@ -19,7 +19,7 @@ const priceHeading = priceLabel || (currentLocale === "de-DE" ? "Preis" : "Price
   </thead>
   <tbody>
     {rows.map((row) => {
-      const rowLabel = rowLabelOverride ? (row.label || row.name) : formatDuration(row.duration, currentLocale);
+      const rowLabel = rowLabelOverride ? (localeString(row.label, currentLocale) || row.name) : formatDuration(row.duration, currentLocale);
       return (
         <tr>
           <td>{rowLabel}</td>

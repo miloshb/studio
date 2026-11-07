@@ -148,7 +148,7 @@ const products: Record<string, ProductInfo> = {
     name: "Advanced Immersion",
     label: {
       en: "5-day program",
-      hr: "Petoodnevni Yoga Retreat - Brač",
+      hr: "Petoodnevni Yoga Retreat (Brač)",
     },
     category: "retreat",
     description: {
@@ -175,7 +175,7 @@ const products: Record<string, ProductInfo> = {
     name: "7-Day Yoga Retreat",
     label: {
       en: "7-day program",
-      hr: "Sedmodnevni Yoga Retreat - Brač",
+      hr: "Sedmodnevni Yoga Retreat (Brač)",
     },
     category: "retreat",
     description: "The Studio Sun & Sea Yoga Retreat is designed to create space away from the pace and distractions of everyday life. Through daily yoga, guided practice, time for rest, community meals, and personal reflection, participants are invited to reconnect with themselves and deepen their relationship with practice.",
