@@ -148,7 +148,7 @@ const products: Record<string, ProductInfo> = {
     name: "Advanced Immersion",
     label: {
       en: "5-day program",
-      hr: "Petoodnevni Yoga Retreat (Brač)",
+      hr: "Petodnevni Yoga Retreat (Brač)",
     },
     category: "retreat",
     description: {
@@ -278,12 +278,14 @@ export const pricing: {
     upgrades: Record<ProductKey, ProductInfo>;
   }
 } = {
+  // Intro options (available for purchase once per person)
   intro: {
     trialClass: 10,
     trialWeek: 55,
     trialTwoWeek: 95,
   },
 
+  // Recurring billing options
   membership: {
     unlimitedMonthly: {
       eur: 120,
@@ -303,6 +305,7 @@ export const pricing: {
     },
   },
 
+  // One-time purchase options
   class: {
     single: {
       eur: 20,
