@@ -98,11 +98,11 @@ export function formatMultiCurrency(
  * @param b Locale or USD amount
  * @param c GBP amount
  * @param d Locale
- * @returns Formatted currency strings
+ * @returns Formatted currency strings [EUR, USD?, GBP?]
  */
 export function formatMultiCurrency(
   a: PriceData | number,
-  b: number | SupportedLocale,
+  b: SupportedLocale | number,
   c?: number,
   d?: SupportedLocale
 ) {
