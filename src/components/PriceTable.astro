@@ -2,7 +2,16 @@
 // src/components/PriceTable.astro
 import PriceCell from "./PriceCell.astro";
 import { getLocaleFromUrl, formatDuration, localeString } from "../data/i18n.ts";
+import type { SupportedLocale } from "../data/i18n.ts";
+import type { ProductInfo } from "../data/types.ts";
 
+interface Props {
+  rows: ProductInfo[];
+  locale?: SupportedLocale;
+  descLabel?: string;
+  priceLabel?: string;
+  rowLabelOverride?: boolean;
+}
 const { rows, locale: localeOverride, descLabel, priceLabel, rowLabelOverride = false } = Astro.props;
 
 const currentLocale = localeOverride || getLocaleFromUrl(Astro.url);

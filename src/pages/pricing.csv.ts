@@ -1,9 +1,11 @@
 // src/pages/pricing.csv.ts
 import type { APIRoute } from "astro";
 import type { ProductInfo } from "../data/types.ts";
-import { pricing } from "../data/products.ts";
+import type { SupportedLocale } from "../data/i18n.ts";
+import { formatDuration, localeString } from "../data/i18n.ts";
 import { formatMultiCurrency, discountedPrice } from "../data/currency.ts";
-import { localeString, type SupportedLocale } from "../data/i18n.ts";
+import { company } from "../data/config.ts";
+import { pricing } from "../data/products.ts";
 
 const locale: SupportedLocale = "hr-HR";
 /**
@@ -13,7 +15,7 @@ const locale: SupportedLocale = "hr-HR";
  * Requirements:
  * - Semicolon (;) separated fields
  * - Format: naziv;maloprodajna_cijena_eur;posebni_oblik_prodaje;sidrena_cijena_eur
- * - European decimal formatting (e.g. 70,00)
+ * - European decimal formatting (e.g. 70,00): "hr-HR"
  * - UTF-8 encoding with BOM for MS Excel / Inspector compatibility
  */
 
@@ -28,12 +30,15 @@ const locale: SupportedLocale = "hr-HR";
 // Intensiv-Immersion (Samostalno);2000,00;;
 // Intensiv-Immersion (Uz 7-Dnevni Retreat);1500,00;Paket / Popust uz retreat;2000,00
 
-interface CsvRow {
-  naziv: string;
-  maloprodajna_cijena_eur: string;
-  posebni_oblik_prodaje: string;
-  sidrena_cijena_eur: string;
-}
+const csvHeaders = [
+  "naziv",
+  "maloprodajna_cijena_eur",
+  "posebni_oblik_prodaje",
+  "sidrena_cijena_eur",
+] as const;
+type CsvRow = {
+  [K in (typeof csvHeaders)[number]]: string;
+};
 
 function extractRows(): CsvRow[] {
   const rows: CsvRow[] = [];
@@ -69,22 +74,22 @@ function extractRows(): CsvRow[] {
 
   // 4. Private Sessions
   pricing.private.forEach((p: ProductInfo) => {
-    addProduct(`Privatni sat joge (1 osoba) - ${p.duration} min`, p.eur);
+    addProduct(`Privatni sat joge (1 osoba) - ${formatDuration(p.duration, locale)}`, p.eur);
   });
 
   // 5. Duet Sessions
   pricing.duet.forEach((p: ProductInfo) => {
-    addProduct(`Privatni sat joge za dvoje (Duet) - ${p.duration} min`, p.eur);
+    addProduct(`Privatni sat joge za dvoje (Duet) - ${formatDuration(p.duration, locale)}`, p.eur);
   });
 
   // 6. Group Sessions
   pricing.group.forEach((p: ProductInfo) => {
-    addProduct(`Privatni grupni sat joge (Small-Group) - ${p.duration} min`, p.eur);
+    addProduct(`Privatni grupni sat joge (Small-Group) - ${formatDuration(p.duration, locale)}`, p.eur);
   });
 
   // 7. Workshops
   pricing.workshop.forEach((p: ProductInfo) => {
-    addProduct(`Radionica (Workshop) - ${p.duration}h`, p.eur);
+    addProduct(`Radionica (Workshop) - ${formatDuration(p.duration, locale)}`, p.eur);
   });
 
   // 8. Retreats
@@ -129,17 +134,10 @@ function extractRows(): CsvRow[] {
 }
 
 export const GET: APIRoute = async () => {
-  const headers = [
-    "naziv",
-    "maloprodajna_cijena_eur",
-    "posebni_oblik_prodaje",
-    "sidrena_cijena_eur",
-  ];
-
   const rows = extractRows();
 
   const csvLines = [
-    headers.join(";"),
+    csvHeaders.join(";"),
     ...rows.map((r) =>
       [
         `"${r.naziv.replace(/"/g, '""')}"`,
@@ -157,7 +155,7 @@ export const GET: APIRoute = async () => {
     status: 200,
     headers: {
       "Content-Type": "text/csv; charset=utf-8",
-      "Content-Disposition": 'inline; filename="cjenik-eirene-intentio-citta.csv"',
+      "Content-Disposition": `inline; filename="cjenik-${company.kebabCase}.csv"`,
       "Cache-Control": "public, max-age=3600",
     },
   });

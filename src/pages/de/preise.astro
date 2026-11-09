@@ -4,6 +4,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import PriceTable from "../../components/PriceTable.astro";
 import PriceCell from "../../components/PriceCell.astro";
 import { pricing } from "../../data/products.ts";
+import { company } from "../../data/config.ts";
 
 const angebote = [
   { label: "Schnupperstunde (einmalig)", eur: pricing.intro.trialClass },
@@ -151,7 +152,7 @@ const geplanteKurse = [
     <h2>Offizielles Preisverzeichnis (CSV-Format)</h2>
     <p>
       Das offizielle Preisverzeichnis ist im CSV-Format verfügbar und entspricht den Vorschriften zur Veröffentlichung von Verbraucherpreisen in Kroatien (NN 101/2026 & NN 110/2026).<br />
-      <a href="/pricing.csv" download="cjenik-eirene-intentio-citta.csv">Lade das offizielle Preisverzeichnis herunter (CSV-Format / NN 101/2026)</a> für persönliche Unterlagen oder zur Verwendung in Finanz- und Verwaltungsprozessen.
+      <a href="/pricing.csv" download={`cjenik-${company.kebabCase}.csv`}>Lade das offizielle Preisverzeichnis herunter (CSV-Format / NN 101/2026)</a> für persönliche Unterlagen oder zur Verwendung in Finanz- und Verwaltungsprozessen.
     </p>
   </section>
 </BaseLayout>
