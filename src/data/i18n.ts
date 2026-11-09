@@ -84,7 +84,7 @@ export function formatDuration(value: number = 0, locale: Language | SupportedLo
   if (value <= 0) return "";
   const isHours = value < 45;
   const label = DurationLabel[toLang(locale)];
-  return `${value} ${isHours ? label.h : label.m}`;
+  return `${value}${isHours ? label.h : label.m}`;
 };
 
 const DurationLabel: Record<Language, { h: string; m: string }> = {

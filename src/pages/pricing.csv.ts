@@ -30,13 +30,15 @@ const locale: SupportedLocale = "hr-HR";
 // Intensiv-Immersion (Samostalno);2000,00;;
 // Intensiv-Immersion (Uz 7-Dnevni Retreat);1500,00;Paket / Popust uz retreat;2000,00
 
-interface CsvRow {
-  naziv: string;
-  maloprodajna_cijena_eur: string;
-  posebni_oblik_prodaje: string;
-  sidrena_cijena_eur: string;
-}
-const csvHeaders = Object.keys({} as CsvRow);
+const csvHeaders = [
+  "naziv",
+  "maloprodajna_cijena_eur",
+  "posebni_oblik_prodaje",
+  "sidrena_cijena_eur",
+] as const;
+type CsvRow = {
+  [K in (typeof csvHeaders)[number]]: string;
+};
 
 function extractRows(): CsvRow[] {
   const rows: CsvRow[] = [];
@@ -132,7 +134,6 @@ function extractRows(): CsvRow[] {
 }
 
 export const GET: APIRoute = async () => {
-
   const rows = extractRows();
 
   const csvLines = [
