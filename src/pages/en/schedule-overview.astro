@@ -1,6 +1,8 @@
 ---
+// src/pages/en/schedule-overview.astro
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import ScheduleGrid from "../../components/ScheduleGrid.astro";
+import { company } from "../../data/config.ts";
 ---
 
 <BaseLayout lang="en" page="scheduleOverview" title="Schedule Overview">
@@ -39,6 +41,6 @@ import ScheduleGrid from "../../components/ScheduleGrid.astro";
   </section>
 
   <p>
-    <a href="/images/classes/studio-sun-and-sea-weekly-schedule.png" download>Download Weekly Schedule (PNG 1080×680)</a>
+    <a href={`/images/classes/${company.kebabCaseBrand}-weekly-schedule.png`} download>Download Weekly Schedule (PNG 1080×680)</a>
   </p>
 </BaseLayout>

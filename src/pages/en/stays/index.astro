@@ -3,9 +3,9 @@
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 import { units, type UnitKey } from "../../../data/stays/units/";
 import type { UnitConfig } from "../../../data/stays/unitType.ts";
-import { localeString, type Language } from "../../../data/i18n.ts";
+import { localeString, type PublicLanguage } from "../../../data/i18n.ts";
 
-const { lang = "en" } = Astro.props as { lang?: Language };
+const { lang = "en" } = Astro.props as { lang?: PublicLanguage };
 
 // Convert units object → typed array of entries
 const unitEntries = Object.entries(units) as [UnitKey, UnitConfig][];

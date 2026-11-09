@@ -3,13 +3,14 @@ import { journeyLevel } from "./types.ts"
 import type { DiscountInfo, ProductInfo } from "./types.ts";
 
 const products: Record<string, ProductInfo> = {
+  // STAY products
   "suite": {
-    label: "Wellness Suite",
+    name: "Wellness Suite",
     category: "stay",
     description: {
       en: "Upgrade to the Wellness Suite for a more spacious and luxurious stay. The Wellness Suite features a private steam spa, soaking tub, comfortable living area, spacious king bedroom, and enhanced amenities designed for deep rest and relaxation.",
       de: "Upgrade auf die Wellness Suite für einen besonders großzügigen und komfortablen Aufenthalt. Die Wellness Suite bietet ein privates Dampfbad, eine Badewanne, einen gemütlichen Wohnbereich, ein großzügiges Schlafzimmer sowie zusätzliche Annehmlichkeiten für tiefe Erholung und Entspannung.",
-//      hr: "Nadogradite svoj boravak uz Wellness Suite za više prostora, udobnosti i privatnosti. Wellness Suite uključuje privatnu parnu kupelj, kadu za opuštanje, udoban dnevni boravak, prostranu spavaću sobu te dodatne sadržaje osmišljene za duboki odmor i opuštanje.",
+      hr: "Nadogradite svoj boravak uz Wellness Suite za više prostora, udobnosti i privatnosti. Wellness Suite uključuje privatnu parnu kupelj, kadu za opuštanje, udoban dnevni boravak, prostranu spavaću sobu te dodatne sadržaje osmišljene za duboki odmor i opuštanje.",
     },
     note: "Subject to availability and retreat occupancy.",
     inventory: 1, // Only one Wellness Suite available in Phase 1 (then 3 total after Phase 2)
@@ -18,18 +19,18 @@ const products: Record<string, ProductInfo> = {
     billingUnit: {
       en: "per booking",
       de: "pro Buchung",
-//      hr: "po rezervaciji",
+      hr: "po rezervaciji",
     },
     standalone: false,
     upgrade: true,
   },
   "residence": {
-    label: "Wellness Residence",
+    name: "Wellness Residence",
     category: "stay",
     description: {
       en: "Upgrade to the luxurious Wellness Residence featuring three private sleeping areas and a private steam spa. Designed for three participants traveling together who wish to share a premium retreat stay experience while enjoying their own private space.",
       de: "Upgrade auf die luxuriöse Wellness Residence mit drei privaten Schlafbereichen. Ideal für drei gemeinsam reisende Teilnehmer, die ein hochwertiges Retreat-Erlebnis teilen und gleichzeitig ihren eigenen Rückzugsraum genießen möchten.",
-//      hr: "Nadogradite svoj boravak uz luksuznu Wellness Residence s tri privatna prostora za spavanje. Idealno za troje sudionika koji putuju zajedno i žele dijeliti vrhunsko retreat iskustvo uz vlastiti prostor za odmor i privatnost.",
+      hr: "Nadogradite svoj boravak uz luksuznu Wellness Residence s tri privatna prostora za spavanje. Idealno za troje sudionika koji putuju zajedno i žele dijeliti vrhunsko retreat iskustvo uz vlastiti prostor za odmor i privatnost.",
     },
     note: "Per person; 3 participants required.",
     inventory: 2, // Wellness Residences only in Jadranska 33; Grand Residence (Suite+2×Studio = 6 double occ.) not available for retreats
@@ -38,18 +39,18 @@ const products: Record<string, ProductInfo> = {
     billingUnit: {
       en: "×3 participants (each)",
       de: "×3 Teilnehmer (jeweils)",
-//      hr: "×3 sudionika (svaki)",
+      hr: "×3 sudionika (svaki)",
     },
     standalone: false,
     upgrade: false, // Wellness Residence only available after Phase 2 (change to true when available)
   },
   "singleOccupancy": {
-    label: "Single Occupancy",
+    name: "Single Occupancy",
     category: "stay",
       description: {
       en: "Enhance your stay with private occupancy for a more spacious, comfortable, and personalized retreat experience.",
       de: "Gestalte deinen Aufenthalt mit einer Einzelbelegung noch persönlicher und genieße mehr Raum, Komfort und Privatsphäre.",
-//      hr: "Učinite svoj boravak još ugodnijim uz jednokrevetni smještaj te uživajte u više prostora, privatnosti i osobne udobnosti.",
+      hr: "Učinite svoj boravak još ugodnijim uz jednokrevetni smještaj te uživajte u više prostora, privatnosti i osobne udobnosti.",
     },
     note: "Subject to availability and retreat occupancy. Assign Studios first, then Apartments.",
     capacity: 4, // Soft limit (additional upgrades may require spillover bookings)
@@ -59,18 +60,20 @@ const products: Record<string, ProductInfo> = {
     billingUnit: {
       en: "per participant",
       de: "pro Teilnehmer",
-//      hr: "po sudioniku",
+      hr: "po sudioniku",
     },
     standalone: false,
     upgrade: true,
   },
+
+  // RETREAT products
   "arrivalStay": {
-    label: "Arrival Stay",
+    name: "Arrival Stay",
     category: "retreat",
     description: {
       en: "Arrive early, settle into the island rhythm, and begin your retreat fully relaxed. Arrival Stay participants enjoy unlimited access to regular studio classes, beach walks, and unstructured space before beginning the retreat.",
       de: "Reise einige Tage früher an, finde deinen Platz im Rhythmus der Insel und beginne dein Retreat vollkommen entspannt. Teilnehmer des Arrival Stay genießen unbegrenzten Zugang zu den regulären Studiokursen, Spaziergängen am Meer und freier Zeit, bevor das Retreat beginnt.",
-//      hr: "Dođite nekoliko dana ranije, prepustite se ritmu otoka i započnite svoj retreat potpuno opušteni. Sudionici programa Arrival Stay imaju neograničen pristup redovitim studijskim satovima, šetnjama uz more i slobodnom vremenu prije početka retreata.",
+      hr: "Dođite nekoliko dana ranije, prepustite se ritmu otoka i započnite svoj retreat potpuno opušteni. Sudionici programa Arrival Stay imaju neograničen pristup redovitim studijskim satovima, šetnjama uz more i slobodnom vremenu prije početka retreata.",
     },
     note: "Per person per night (no retreat programming)",
     eur: 100,
@@ -78,18 +81,18 @@ const products: Record<string, ProductInfo> = {
     billingUnit: {
       en: "per night",
       de: "pro Nacht",
-//      hr: "po noćenju",
+      hr: "po noćenju",
     },
     standalone: false,
     upgrade: true,
   },
   "integrationStay": {
-    label: "Integration Stay",
+    name: "Integration Stay",
     category: "retreat",
     description: {
       en: "Continue your time on Brač with additional nights after the retreat concludes. Integration Stay participants enjoy unlimited access to regular studio classes, open practice time, beach walks, journaling, reflection, and unstructured space to integrate their experience before returning home.",
       de: "Verlängere deinen Aufenthalt auf Brač um einige zusätzliche Nächte nach dem Ende des Retreats. Teilnehmer des Integration Stay genießen unbegrenzten Zugang zu regulären Studiokursen, freier Übungszeit, Spaziergängen am Meer, Journaling, Reflexion und ausreichend Raum, um ihre Erfahrungen zu integrieren, bevor sie nach Hause zurückkehren.",
-//      hr: "Produžite svoj boravak na Braču dodatnim noćenjima nakon završetka retreata. Sudionici programa Integration Stay imaju neograničen pristup redovitim studijskim satovima, vremenu za samostalnu praksu, šetnjama uz more, vođenju dnevnika, refleksiji i slobodnom prostoru za integraciju iskustva prije povratka kući.",
+      hr: "Produžite svoj boravak na Braču dodatnim noćenjima nakon završetka retreata. Sudionici programa Integration Stay imaju neograničen pristup redovitim studijskim satovima, vremenu za samostalnu praksu, šetnjama uz more, vođenju dnevnika, refleksiji i slobodnom prostoru za integraciju iskustva prije povratka kući.",
     },
     note: "Per person per night",
     eur: 100,
@@ -97,17 +100,18 @@ const products: Record<string, ProductInfo> = {
     billingUnit: {
       en: "per night",
       de: "pro Nacht",
+      hr: "po noćenju",
     },
     standalone: false,
     upgrade: true,
   },
   "earlyDeparture": {
-    label: "Early Departure",
+    name: "Early Departure",
     category: "retreat",
     description: {
       en: "Provides schedule flexibility if attendance for the full week is not feasible.",
       de: "Bietet zeitliche Flexibilität, falls die Teilnahme an der gesamten Woche nicht möglich ist.",
-//      hr: "Pruža fleksibilnost u rasporedu ako sudjelovanje tijekom cijelog tjedna nije moguće.",
+      hr: "Pruža fleksibilnost u rasporedu ako sudjelovanje tijekom cijelog tjedna nije moguće.",
     },
     note: "Available for participants unable to commit to the full retreat week.",
     eur: -100,
@@ -115,35 +119,42 @@ const products: Record<string, ProductInfo> = {
     billingUnit: {
       en: "per day",
       de: "pro Tag",
+      hr: "po danu",
     },
     standalone: false,
     upgrade: true,
   },
   "bringFriend": {
-    label: "Bring a Friend",
+    name: "Bring a Friend",
     category: "retreat",
     description: {
       en: "When two or more friends book a retreat together, each participant receives a complimentary Integration Stay night.",
       de: "Wenn zwei oder mehr Freunde gemeinsam ein Retreat buchen, erhält jede teilnehmende Person eine kostenlose Integration Stay Nacht.",
-//      hr: "Kada dvoje ili više prijatelja zajedno rezerviraju retreat, svaki sudionik dobiva besplatnu noć u programu Integration Stay.",
+      hr: "Kada dvoje ili više prijatelja zajedno rezerviraju retreat, svaki sudionik dobiva besplatnu noć u programu Integration Stay.",
     },
     note: "Integration Stay can also be swapped for Arrival Stay.",
     eur: 0,
     billingUnit: {
       en: "2+ participants · Integration Stay",
       de: "2+ Teilnehmer · Integration Stay",
-//      hr: "2+ sudionika · Integration Stay",
+      hr: "2+ sudionika · Integration Stay",
     },
     standalone: false,
     upgrade: true,
   },
+
+  // RETREAT products (core retreat and advanced immersion)
   "advancedImmersion": {
-    label: "Advanced Immersion",
+    name: "Advanced Immersion",
+    label: {
+      en: "5-day program",
+      hr: "Petodnevni Yoga Retreat (Brač)",
+    },
     category: "retreat",
     description: {
       en: "An intensive 5-day small-group experience intended for dedicated practitioners who wish to go deeper into the practice. Designed as a standalone retreat or as an extension to the 7-day retreat, Advanced Immersion is a more focused and intimate experience with additional time for practice, reflection, and personalized guidance.",
       de: "Ein intensives fünftägiges Kleingruppenprogramm für Fortgeschrittene, die ihre Praxis vertiefen möchten. Advanced Immersion kann eigenständig gebucht oder als Erweiterung des 7-Tage-Retreat ergänzt werden und bietet zusätzliche Zeit für Praxis, Reflexion und individuelle Begleitung in einem besonders fokussierten Rahmen.",
-//      hr: "Intenzivan petodnevni program u maloj grupi namijenjen posvećenim praktičarima koji žele produbiti svoju praksu. Advanced Immersion može se pohađati kao samostalni retreat ili kao produžetak 7-dnevnog retreata te pruža dodatno vrijeme za praksu, refleksiju i individualno vodstvo u usmjerenijem i intimnijem okruženju.",
+      hr: "Intenzivan petodnevni program u maloj grupi namijenjen posvećenim praktičarima koji žele produbiti svoju praksu. Advanced Immersion može se pohađati kao samostalni retreat ili kao produžetak 7-dnevnog retreata te pruža dodatno vrijeme za praksu, refleksiju i individualno vodstvo u usmjerenijem i intimnijem okruženju.",
     },
     note: "Maximum 8 students; target 5-7; minimum 4",
     duration: 5,
@@ -155,13 +166,17 @@ const products: Record<string, ProductInfo> = {
     billingUnit: {
       en: "5-day program + 6-day stay · small-group intensive",
       de: "5-Tage-Programm + 6 Tage Aufenthalt · Kleingruppen-Intensivkurs",
-//      hr: "petodnevni program + 6 dana boravka · intenziv u maloj grupi",
+      hr: "petodnevni program + 6 dana boravka · intenziv u maloj grupi",
     },
     standalone: true,
     upgrade: true,
   },
   "coreRetreat": {
-    label: "7-Day Yoga Retreat",
+    name: "7-Day Yoga Retreat",
+    label: {
+      en: "7-day program",
+      hr: "Sedmodnevni Yoga Retreat (Brač)",
+    },
     category: "retreat",
     description: "The Studio Sun & Sea Yoga Retreat is designed to create space away from the pace and distractions of everyday life. Through daily yoga, guided practice, time for rest, community meals, and personal reflection, participants are invited to reconnect with themselves and deepen their relationship with practice.",
     note: "Maximum 16 students; target 12-14; minimum 5-6",
@@ -173,10 +188,63 @@ const products: Record<string, ProductInfo> = {
     billingUnit: {
       en: "7-day program + 8-day stay",
       de: "7-Tage-Programm + 8 Tage Aufenthalt",
-//      hr: "sedmodnevni program + 8 dana boravka",
+      hr: "sedmodnevni program + 8 dana boravka",
     },
     standalone: true,
     upgrade: false,
+  },
+
+  // RESERVATION products
+  "bicycle": {
+    name: "Bicycle Reservation",
+    category: "reservation",
+    description: {
+      en: "Reserve a bicycle for the day to explore the island at your own pace.",
+      de: "Reserviere ein Fahrrad für den Tag, um die Insel in deinem eigenen Tempo zu erkunden.",
+      hr: "Rezervirajte bicikl za dan i istražite otok vlastitim tempom.",
+    },
+    note: "Reservation optional; free when available on a first-come, first-served basis.",
+    inventory: 5,
+    eur: 5,
+    billingUnit: {
+      en: "per day",
+      de: "pro Tag",
+    },
+    standalone: true,
+  },
+  "eMobility": {
+    name: "E-Mobility Reservation",
+    category: "reservation",
+    description: {
+      en: "Reserve an electric mobility option for the day to explore the island at your own pace.",
+      de: "Reserviere ein Elektrofahrzeug für einen Tag, um die Insel in deinem eigenen Tempo zu erkunden.",
+      hr: "Rezervirajte e-bicikl za dan i istražite otok vlastitim tempom.",
+    },
+    note: "Reservation optional; free when available on a first-come, first-served basis.",
+    inventory: 2,
+    eur: 10,
+    billingUnit: {
+      en: "per day",
+      de: "pro Tag",
+    },
+    standalone: true,
+  },
+  "parking": {
+    name: "On-Site Parking Reservation",
+    category: "reservation",
+    description: {
+      en: "Reserve a parking space for your automobile during your stay.",
+      de: "Reserviere einen Parkplatz für dein Auto während deines Aufenthalts.",
+      hr: "Rezervirajte parking mjesto za vaše auto tijekom boravka.",
+    },
+    note: "Advance reservation required.",
+    inventory: 3,
+    eur: 5,
+    billingUnit: {
+      en: "per day",
+      de: "pro Tag",
+    },
+    standalone: true,
   },
 };
 
@@ -210,12 +278,14 @@ export const pricing: {
     upgrades: Record<ProductKey, ProductInfo>;
   }
 } = {
+  // Intro options (available for purchase once per person)
   intro: {
     trialClass: 10,
     trialWeek: 55,
     trialTwoWeek: 95,
   },
 
+  // Recurring billing options
   membership: {
     unlimitedMonthly: {
       eur: 120,
@@ -235,6 +305,7 @@ export const pricing: {
     },
   },
 
+  // One-time purchase options
   class: {
     single: {
       eur: 20,

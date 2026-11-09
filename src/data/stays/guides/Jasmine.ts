@@ -1,7 +1,7 @@
-import type { Language } from "../../i18n.ts";
+import type { PublicLanguage } from "../../i18n.ts";
 import type { GuideInfoAirbnb } from "../guideType";
 
-const jasmineGuide: Record<Language, GuideInfoAirbnb> = {
+const jasmineGuide: Record<PublicLanguage, GuideInfoAirbnb> = {
   en: {
     restaurants: [
       "The Sound at Cypress Waters — lakeside dining cluster (Flying Fish, Rodeo Goat, Ascension Coffee)",
