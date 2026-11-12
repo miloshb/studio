@@ -2,6 +2,9 @@
 import { journeyLevel } from "./types.ts"
 import type { DiscountInfo, ProductInfo } from "./types.ts";
 
+/**
+ * Product catalogue for Studio Sun & Sea.
+ */
 const products: Record<string, ProductInfo> = {
   // STAY products
   "suite": {

@@ -1,4 +1,4 @@
-import type { StayRateInfo } from "../rateType.ts";
+import { type StayRateInfo } from "../unitTypes.ts";
 
 const jasmineRate: StayRateInfo = {
   currency: "USD",

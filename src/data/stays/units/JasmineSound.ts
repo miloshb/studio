@@ -1,11 +1,11 @@
-import type { UnitConfig } from "../unitType.ts";
+import type { UnitConfig } from "../unitTypes.ts";
 
 const jasmineSound: UnitConfig = {
   id: "jasmineSound",
   name: "Jasmine Sound",
-  title: "Convenient 4BR house w/ balcony view",
+  label: "Convenient 4BR house w/ balcony view",
   available: new Date("2026-09-01"),
-  market: false,
+  publish: false,
   rate: {
     rateRule: "jasmineRate",
     base: 188,

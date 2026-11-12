@@ -1,13 +1,13 @@
-import type { UnitConfig } from "../unitType.ts";
-import { unitRates } from "../rates/";
+import type { UnitConfig } from "../unitTypes.ts";
+import { unitRates } from "../rates.ts";
 import { jadranska33 } from "../../config.ts";
 
 const horizonResidence: UnitConfig = {
   id: "horizonResidence",
   name: "Horizon Wellness Residence",
-  title: "Horizon Wellness Residence • Private Steam Spa",
+  label: "Horizon Wellness Residence • Private Steam Spa",
   available: new Date("2029-06-01"),
-  market: false,
+  publish: false,
   rate: unitRates.Residence,
 
   location: {

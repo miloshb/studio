@@ -1,13 +1,13 @@
-import type { UnitConfig } from "../unitType.ts";
-import { unitRates } from "../rates/";
+import type { UnitConfig } from "../unitTypes.ts";
+import { unitRates } from "../rates.ts";
 import { jadranska35 } from "../../config.ts";
 
 const gardenStudio: UnitConfig = {
   id: "gardenStudio",
   name: "Garden Studio",
-  title: "Garden Studio • Quiet Serenity",
+  label: "Garden Studio • Quiet Serenity",
   available: new Date("2027-06-01"),
-  market: true,
+  publish: true,
   rate: unitRates.Studio,
 
   location: {

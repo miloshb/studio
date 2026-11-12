@@ -2,23 +2,23 @@
 /**
  * Common data type definitions: Products, Journey Program, Discounts, etc.
  */
-import type { PriceData } from "./currency.ts";
+import type { PriceData, SupportedCurrency } from "./currency.ts";
 import type { LocalizedString } from "./i18n.ts";
 
+export type Category = "class" | "retreat" | "stay" | "reservation";
 /**
  * ProductInfo interface defines the structure of the products offered (studio classes, workshops, memberships, yoga retreats, retreat upgrade options, etc.).
  * Upgrades can be used to offer additional nights or special packages for guests who want to continue or enhance their experience.
  * Inherited from currency/PriceData:
  *   billingUnit: "per person" | "per unit" | "per booking" | "per day" Billing unit for the product (optional, default: none)
  */
-export type Categories = "class" | "retreat" | "stay" | "reservation";
 export interface ProductInfo extends PriceData {
-  name?: string; // Optional product name (always English: "Single Class", "Unlimited Month", "Yoga Retreat", "Integration Stay", etc.)
-  label?: LocalizedString; // Optional product label
-  category?: Categories; // Optional category for the product
-  description?: LocalizedString; // Description of the product
-  note?: string; // Optional note for the product - internal use (e.g. availability, restrictions, clarifications)
-  inventory?: number; // Optional actual number of units available for sale
+  name?: string; // Product Name (always English: "Single Class", "Unlimited Month", "Yoga Retreat", "Integration Stay", etc.)
+  label?: LocalizedString; // Product Label or Marketing title for listing pages
+  category?: Category; // Product Category
+  description?: LocalizedString; // Product Description
+  note?: string; // Product Note - internal use (e.g. availability, restrictions, clarifications)
+  inventory?: number; // Optional Inventory count (actual number of units available for sale)
   capacity?: number; // Target capacity (people) for this class option (+2 for hard limit) (optional, default: unlimited)
   duration?: number; // Duration: hours when <45; minutes when >=45 (optional, default: 60)
   validity?: number; // Validity in months (optional, default: 18)
@@ -31,15 +31,14 @@ export interface ProductInfo extends PriceData {
   upgrade?: boolean; // Whether this product is an upgrade option for a retreat (optional, default: false)
 };
 
-
 /**
- * Structure used to define discounting rules for Studio Sun & Sea.
+ * Discounting rules structure for Studio Sun & Sea.
  */
 export interface DiscountInfo {
   maxDiscount?: number; // Maximum stacked discount percentage
   weekly?: number; // Weekly discount percentage (0%)
   monthly?: number; // Monthly discount percentage (stays limited to 21 nights)
-  prepayment: number; // Prepayment discount percentage (10%)
+  prepayment: number; // Prepayment discount percentage (5%)
   earlyBird: number; // Early bird discount percentage (5% - 6 months in advance)
   journey?: JourneyDiscounts; // Sun & Sea Journey member discounts
   nonstackable?: boolean; // Whether discounts can be stacked (default: false == can be stacked)
@@ -72,6 +71,49 @@ export const journeyLevel = {
 
 export type JourneyLevel = typeof journeyLevel[keyof typeof journeyLevel];
 
-export type JourneyDiscounts = Partial<
-  Record<JourneyLevel, number>
->;
+export type JourneyDiscounts = Record<JourneyLevel, number>;
+
+const staysLoyaltyDiscounts: JourneyDiscounts = {
+  [journeyLevel.JourneyMember]: 5,
+  [journeyLevel.StayGuest]: 10,
+  [journeyLevel.YogaMember]: 15,
+  [journeyLevel.YogaAlumni]: 20,
+  [journeyLevel.BlueHeronAlumni]: 25,
+};
+
+const yogaLoyaltyDiscounts: JourneyDiscounts = {
+  [journeyLevel.JourneyMember]: 0,
+  [journeyLevel.StayGuest]: 5,
+  [journeyLevel.YogaMember]: 10,
+  [journeyLevel.YogaAlumni]: 15,
+  [journeyLevel.BlueHeronAlumni]: 20,
+};
+
+/**
+ * Applicable discounts by product category.
+ */
+export const categoryDiscount: Record<Category, DiscountInfo> = {
+  // Discounted (monthly/weekly/intro) class options are separate products.
+  class: {
+    prepayment: 0,
+    earlyBird: 0,
+    journey: yogaLoyaltyDiscounts,
+  },
+  // Retreats and Workshops
+  retreat: {
+    prepayment: 5,
+    earlyBird: 5,
+    journey: yogaLoyaltyDiscounts,
+  },
+  // Accommodations and upgrades
+  stay: {
+    prepayment: 5,
+    earlyBird: 5,
+    journey: staysLoyaltyDiscounts,
+  },
+  // Reservation products are not eligible for discounts.
+  reservation: {
+    prepayment: 0,
+    earlyBird: 0,
+  },
+} as const;

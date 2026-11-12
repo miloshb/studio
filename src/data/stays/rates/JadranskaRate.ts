@@ -1,12 +1,9 @@
-import { type StayRateInfo } from "../rateType.ts";
-import { journeyLevel } from "../../types.ts"
+// src/data/stays/rates/Jadranska.ts
+import { type StayRateInfo } from "../unitTypes.ts";
+import { categoryDiscount } from "../../types.ts"
 
 /**
  * Jadranska base rate definition to be tested for Airbnb, Booking.com, and Vrbo.
- * - Luxury wellness residence = 400 EUR
- * - Luxury wellness suite = 250 EUR
- * - Standard apartment = 175 EUR
- * - Studio = 125 EUR
  *
  * Base season == Shoulder season (01 Apr - 14 Jun, 16 Sep - 31 Oct)
  *
@@ -18,25 +15,14 @@ import { journeyLevel } from "../../types.ts"
  * - selective booking model
  * - retreat-first utilization
  *
- * Seasonal rates are defined with start and end dates, and can either override the base rate or be a percentage increase/decrease of the base rate. These rates are annually recurring unless a year is specified. Seasonal rates can also be used to block off dates for retreats, maintenance, or other reasons using the unavailability flag.
+ * Seasonal rates are defined with start and end dates, and are a percentage increase/decrease of the base rate. Seasonal rates are annually recurring unless a year is specified. "Seasonal rates" can be used to block off dates for retreats, maintenance, or other reasons using the unavailability flag.
  */
-
 const jadranskaRate: StayRateInfo = {
   currency: "EUR",
   extraGuestFee: 50, // Can be waived for wellness suites and residences
   nightMin: 5,
   nightMax: 24, // 3 weeks + extra weekend
-  discounts: {
-    prepayment: 5,
-    earlyBird: 5,
-    journey: {
-      [journeyLevel.JourneyMember]: 5,
-      [journeyLevel.StayGuest]: 10,
-      [journeyLevel.YogaMember]: 15,
-      [journeyLevel.YogaAlumni]: 20,
-      [journeyLevel.BlueHeronAlumni]: 25,
-    },
-  },
+  discounts: categoryDiscount.stay,
   seasons: [
     {
       name: "Summer",

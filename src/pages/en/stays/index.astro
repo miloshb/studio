@@ -2,7 +2,7 @@
 // src/pages/en/stays/index.astro
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 import { units, type UnitKey } from "../../../data/stays/units/";
-import type { UnitConfig } from "../../../data/stays/unitType.ts";
+import type { UnitConfig } from "../../../data/stays/unitTypes.ts";
 import { localeString, type PublicLanguage } from "../../../data/i18n.ts";
 
 const { lang = "en" } = Astro.props as { lang?: PublicLanguage };
@@ -48,10 +48,10 @@ a Supetar vs Irving grouping based on location: GuideKey
 
     <!-- Only display units that should be marketed -->
     {unitEntries.map(([key, unit]) => (
-      unit.market && (
+      unit.publish && (
         <>
         <a href={`/${lang}/stays/${key}`}>
-          <h2>{unit.title}</h2>
+          <h2>{unit.label}</h2>
         </a>
         {unit.available && (
           <h3>Available from {unit.available.toLocaleDateString(lang, { year: 'numeric', month: 'long' })}</h3>
