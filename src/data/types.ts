@@ -55,6 +55,7 @@ export interface DiscountInfo {
  * "Blue Heron Alumni" = Blue Heron Retreat Alumni
  */
 export interface JourneyInfo {
+  memberId: number; // Unique identifier for the Journey member
   memberSince: Date; // Date when the guest became a Journey member
   totalBookings: number; // Total number of bookings made by the Journey member
   totalRetreats: number; // Total number of retreats attended by the Journey member
@@ -79,7 +80,7 @@ const staysLoyaltyDiscounts: JourneyDiscounts = {
   [journeyLevel.YogaMember]: 15,
   [journeyLevel.YogaAlumni]: 20,
   [journeyLevel.BlueHeronAlumni]: 25,
-};
+} as const;
 
 const yogaLoyaltyDiscounts: JourneyDiscounts = {
   [journeyLevel.JourneyMember]: 0,
@@ -87,7 +88,7 @@ const yogaLoyaltyDiscounts: JourneyDiscounts = {
   [journeyLevel.YogaMember]: 10,
   [journeyLevel.YogaAlumni]: 15,
   [journeyLevel.BlueHeronAlumni]: 20,
-};
+} as const;
 
 /**
  * Applicable discounts by product category.

@@ -20,7 +20,7 @@ export const VAT_ACCOMMODATION: TaxInfo = {
   tax: 13,
   label: {
     en: "VAT - Reduced (Accommodation)",
-    de: "MwSt - Ermäßigt (Unterkunft)",
+    de: "MwSt. - Ermäßigt (Unterkunft)",
     hr: "PDV - Snižena stopa (Smještaj)",
   },
   currency: "EUR",
