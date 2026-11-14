@@ -59,7 +59,7 @@ const copy = {
   },
   hr: {
     heading: "Službeni cjenik (CSV format)",
-    intro: "Službeni cjenik dostupan je u strojno čitljivom CSV obliku sukladno Odluci o objavi cjenika proizvoda i usluga (NN 101/2026 i NN 110/2026).",
+    intro: "Službeni cjenik dostupan je u strojno čitljivom CSV obliku sukladno odluci o objavi cjenika proizvoda i usluga (NN 101/2026 i NN 110/2026).",
     downloadPrefix: "Preuzmi",
     downloadTerm: "službeni cjenik",
     downloadSuffix: "(CSV format / NN 101/2026)",
@@ -75,10 +75,7 @@ const copy = {
   <h2>{copy.heading}</h2>
   <p>
     {copy.intro}<br />
-    <a href="/pricing.csv" download={`cjenik-${company.kebabCase}.csv`}>
-      {copy.downloadPrefix} <em>{copy.downloadTerm}</em> {copy.downloadSuffix}
-    </a>
-    {copy.afterDownload}
+    <a href="/pricing.csv" download={`cjenik-${company.kebabCase}.csv`}>{copy.downloadPrefix} <em>{copy.downloadTerm}</em> {copy.downloadSuffix}</a> {copy.afterDownload}
   </p>
 
   {archivedLists.length > 0 && (
@@ -88,7 +85,7 @@ const copy = {
         {archivedLists.map((file) => (
           <li>
             <a href={file.href} download={file.filename}>
-              <em>Službeni cjenik</em> — {file.date} {copy.archiveItemSuffix}
+              Službeni cjenik {file.date} {copy.archiveItemSuffix}
             </a>
           </li>
         ))}
