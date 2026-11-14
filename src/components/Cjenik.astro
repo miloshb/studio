@@ -1,0 +1,108 @@
+---
+// src/components/Cjenik.astro
+import fs from "node:fs";
+import path from "node:path";
+import { company } from "../data/config.ts";
+import type { PublicLanguage } from "../data/i18n.ts";
+
+interface Props {
+  lang?: PublicLanguage;
+};
+
+const { lang = "en" } = Astro.props;
+
+// Calculate the 1st of the prior month (YYYY-MM-DD)
+const now = new Date();
+const firstOfPriorMonth = new Date(now.getFullYear(), now.getMonth() - 1, 1);
+const cutoffStr = `${firstOfPriorMonth.getFullYear()}-${String(firstOfPriorMonth.getMonth() + 1).padStart(2, "0")}-01`;
+
+// Scan public/cjenici for dated CSV archives
+const archiveDir = path.resolve("public/cjenici");
+let archivedLists: { filename: string; date: string; href: string }[] = [];
+
+if (fs.existsSync(archiveDir)) {
+  archivedLists = fs
+    .readdirSync(archiveDir)
+    .map((filename) => {
+      const match = filename.match(/(\d{4}-\d{2}-\d{2})\.csv$/);
+      if (!match) return null;
+      return {
+        filename,
+        date: match[1],
+        href: `/cjenici/${filename}`,
+      };
+    })
+    .filter((item): item is NonNullable<typeof item> => item !== null && item.date >= cutoffStr)
+    .sort((a, b) => b.date.localeCompare(a.date)); // Newest first
+}
+
+const copy = {
+  en: {
+    heading: "Official Price List (CSV Format)",
+    intro: "The official price list is available in CSV format, compliant with Croatian consumer price publication regulations (NN 101/2026 & NN 110/2026).",
+    downloadPrefix: "Download",
+    downloadTerm: "službeni cjenik",
+    downloadSuffix: "(CSV format / NN 101/2026)",
+    afterDownload: "for personal records or for use in financial and administrative processes.",
+    archiveLabel: "Previous price lists (30-day regulatory archive):",
+    archiveItemSuffix: "(CSV)",
+  },
+  de: {
+    heading: "Offizielles Preisverzeichnis (CSV-Format)",
+    intro: "Das offizielle Preisverzeichnis steht im CSV-Format gemäß den kroatischen Vorschriften zur Preisveröffentlichung (NN 101/2026 & NN 110/2026) zur Verfügung.",
+    downloadPrefix: "Lade das offizielle Preisverzeichnis",
+    downloadTerm: "(službeni cjenik)",
+    downloadSuffix: "herunter (CSV-Format / NN 101/2026)",
+    afterDownload: "für persönliche Unterlagen oder zur Verwendung in Finanz- und Verwaltungsprozessen.",
+    archiveLabel: "Vorherige Preislisten (gesetzliches 30-Tage-Archiv):",
+    archiveItemSuffix: "(CSV)",
+  },
+  hr: {
+    heading: "Službeni cjenik (CSV format)",
+    intro: "Službeni cjenik dostupan je u strojno čitljivom CSV obliku sukladno Odluci o objavi cjenika proizvoda i usluga (NN 101/2026 i NN 110/2026).",
+    downloadPrefix: "Preuzmi",
+    downloadTerm: "službeni cjenik",
+    downloadSuffix: "(CSV format / NN 101/2026)",
+    afterDownload: "za osobnu evidenciju ili administrativne potrebe.",
+    archiveLabel: "Prethodni cjenici (arhiva zadnjih 30 dana):",
+    archiveItemSuffix: "(CSV)",
+  },
+}[lang];
+---
+
+  <section>
+    <h2>Offizielles Preisverzeichnis (CSV-Format)</h2>
+    <p>
+      Das offizielle Preisverzeichnis ist im CSV-Format verfügbar und entspricht den Vorschriften zur Veröffentlichung von Verbraucherpreisen in Kroatien (NN 101/2026 & NN 110/2026).<br />
+      <a href="/pricing.csv" download={`cjenik-${company.kebabCase}.csv`}>Lade das offizielle Preisverzeichnis herunter (CSV-Format / NN 101/2026)</a> für persönliche Unterlagen oder zur Verwendung in Finanz- und Verwaltungsprozessen.
+    </p>
+  </section>
+
+
+
+<!-- Machine-readable CSV price list compliant with Croatian consumer price publication regulations (NN 101/2026 & NN 110/2026) -->
+<section id="price-list">
+  <h2>{copy.heading}</h2>
+  <p>
+    {copy.intro}<br />
+    <a href="/pricing.csv" download={`cjenik-${company.kebabCase}.csv`}>
+      {copy.downloadPrefix} <em>{copy.downloadTerm}</em> {copy.downloadSuffix}
+    </a>
+    {copy.afterDownload}
+  </p>
+
+  {archivedLists.length > 0 && (
+    <div class="pricing-archive">
+      <p>{copy.archiveLabel}</p>
+      <ul>
+        {archivedLists.map((file) => (
+          <li>
+            <a href={file.href} download={file.filename}>
+              <em>Službeni cjenik</em> — {file.date} {copy.archiveItemSuffix}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  )}
+</section>

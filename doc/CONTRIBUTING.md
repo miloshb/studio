@@ -22,6 +22,7 @@ public/
   favicon/ - Makefile autogen
   images/ - Makefile autogen + source images (hero/ + qrcode/)
   styles/ - Source CSS
+  cjenici/ - Arhiva cjenika (./cjenik-YYYY-MM-DD.csv)
 doc/
 ```
 
@@ -37,6 +38,7 @@ doc/
 - `public/images/hero` — Hero page source images
 - `public/images/qrcode` — QR Code source images
 - `public/styles/` — Global and component CSS
+- `public/cjenici/` — Arhive of price lists (cjenik-YYYY-MM-DD.csv)
 
 ## 2. Coding Standards
 
