@@ -71,6 +71,16 @@ export const TOURIST_TAX_WINTER: TaxInfo = {
   start: "01-10",
   end: "31-03",
 } as const;
+// Flat rate tourist tax per registered person capacity
+export const TOURIST_TAX_FLAT: TaxInfo = {
+  ...TOURIST_TAX,
+  tax: 70,
+  label: {
+    en: "Tourist tax - Flat rate per bed",
+    de: "Kurtaxe - Pauschale pro Bett",
+    hr: "Turistička pristojba - paušal po krevetu",
+  },
+} as const;
 
 /**
  * Applicable taxes by product category.
