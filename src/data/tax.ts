@@ -80,6 +80,11 @@ export const TOURIST_TAX_FLAT: TaxInfo = {
     de: "Kurtaxe - Pauschale pro Bett",
     hr: "Turistička pristojba - paušal po krevetu",
   },
+  billingUnit: {
+    en: "annual per registered person capacity",
+    de: "jährlich pro Kapazität der registrierten Personen",
+    hr: "godišnje po kapacitetu registriranih osoba",
+  },
 } as const;
 
 /**
