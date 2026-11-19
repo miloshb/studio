@@ -1,11 +1,11 @@
 ---
 import { FOOTER_ROUTE_KEYS, HEADER_ROUTE_KEYS, ROUTES } from "../data/routes.js";
-import type { Language } from "../data/i18n.ts";
+import type { PublicLanguage } from "../data/i18n.ts";
 import ExaliSeal from "./ExaliSeal.astro";
 import SocialLinks from "./SocialLinks.astro";
 
 interface Props {
-  lang: Language;
+  lang: PublicLanguage;
   footerOffset: boolean;
 }
 const { lang, footerOffset } = Astro.props;
@@ -35,11 +35,13 @@ const footerTopOffset = footerOffset ? "var(--offset-lg)" : "0px";
       © {new Date().getFullYear()}
       <a href="https://eireneintentiocitta.hr">Eirene Intentio Citta d.o.o.</a>
       All rights reserved.
-
-      <SocialLinks />
     </div>
 
-    <!-- Row 2: Right side -->
+    <!-- Row 2 (center) / Row 3 (left) -->
+    <div class="footer-social">
+      <SocialLinks />
+    </div>
+    <!-- Row 2 / 3: Right side -->
     <div class="footer-badge">
       <ExaliSeal />
     </div>
@@ -61,6 +63,8 @@ const footerTopOffset = footerOffset ? "var(--offset-lg)" : "0px";
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: self-end;
+    column-gap: var(--space-xl);
+    row-gap: var(--space-xxs);
   }
 
   /* ---------------------------
@@ -91,17 +95,24 @@ const footerTopOffset = footerOffset ? "var(--offset-lg)" : "0px";
   }
 
   /* ---------------------------
-     ROW 2 — COPYRIGHT + BADGE
+     ROWS 2/3 — COPYRIGHT + ICONS + BADGE
   ---------------------------- */
   .footer-copy {
     order: 2;
     font-size: var(--text-sm);
     display: flex;
+    height: stretch;
     column-gap: var(--space-xs);
   }
 
-  .footer-badge {
+  .footer-social {
     order: 3;
+    display: flex;
+    height: stretch;
+  }
+
+  .footer-badge {
+    order: 4;
     margin-left: auto;
   }
 

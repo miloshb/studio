@@ -1,13 +1,19 @@
 ---
 import { NEXT_STEPS_ROUTE_KEYS, ROUTES } from "../data/routes.js";
+import type { RouteKey } from "../data/routes.js";
+import type { PublicLanguage } from "../data/i18n.js";
 
+interface Props {
+  lang: PublicLanguage;
+  page?: RouteKey;
+}
 const { lang = "en", page = null } = Astro.props;
 
 // Filter out the current page
 const stepKeys = (NEXT_STEPS_ROUTE_KEYS ?? []).filter(key => key !== page);
 ---
 
-<section class="next-steps">
+<div class="next-steps">
   <h2>{lang === "de" ? "Wie es weitergeht" : "Where to Go Next"}</h2>
   <p>
     {lang === "de"
@@ -24,7 +30,7 @@ const stepKeys = (NEXT_STEPS_ROUTE_KEYS ?? []).filter(key => key !== page);
       </li>
     ))}
   </ul>
-</section>
+</div>
 
 <style>
   .next-steps ul {

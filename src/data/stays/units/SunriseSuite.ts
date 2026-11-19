@@ -1,13 +1,13 @@
-import type { UnitConfig } from "../unitType.ts";
-import { unitRates } from "../rates/";
+import type { UnitConfig } from "../unitTypes.ts";
+import { unitRates } from "../rates.ts";
 import { jadranska35 } from "../../config.ts";
 
 const sunriseSuite: UnitConfig = {
   id: "sunriseSuite",
   name: "Sunrise Wellness Suite",
-  title: "Sunrise Wellness Suite • Private Steam Spa",
+  label: "Sunrise Wellness Suite • Private Steam Spa",
   available: new Date("2027-06-01"),
-  market: true,
+  publish: true,
   rate: unitRates.Suite,
 
   location: {

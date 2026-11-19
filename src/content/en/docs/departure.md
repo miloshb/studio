@@ -1,6 +1,8 @@
 # Departure Guide
 Help prepare the space for the next guest.
 
+TODO: ALL
+
 ## TOC
 - [Departure Guide](#departure-guide)
   - [TOC](#toc)
@@ -29,7 +31,6 @@ Thoughtful sorting helps reduce unnecessary landfill use and supports recycling 
 ## Transportation Considerations
 
 ## Living Well Together
-
 No document can anticipate every situation.
 
 When questions arise, we encourage everyone to return to the principles found throughout Studio Sun & Sea:
@@ -42,4 +43,3 @@ If you are ever unsure, please feel free to ask a member of staff or another mem
 
 ---
 ###### Version 2026.10
-

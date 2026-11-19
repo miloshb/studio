@@ -24,9 +24,11 @@ export const jadranska35: GeoLocation = {
   unit: 200,
 };
 
+export type SiteMode = "brand" | "corp";
+
 export interface SiteConfig {
   name: string;
-  mode: "brand" | "corp";
+  mode: SiteMode;
   canonical: string;
   description: string;
   email: string;
@@ -41,6 +43,8 @@ export interface SiteConfig {
 export const company = {
   brand: "Studio Sun & Sea",
   legal: "Eirene Intentio Citta d.o.o.",
+  kebabCaseBrand: "studio-sun-and-sea",
+  kebabCase: "eirene-intentio-citta",
 
   // HR Legal Identifiers
   oib: "79177761868",                     // OIB (Personal Identification Number)

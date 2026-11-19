@@ -1,6 +1,8 @@
 # Retreat Guide
 Help participants get the most from the retreat experience.
 
+TODO: ALL
+
 Participation
 Presence
 Community
@@ -32,7 +34,6 @@ Openness
 ## Retreat Etiquette
 
 ## Living Well Together
-
 No document can anticipate every situation.
 
 When questions arise, we encourage everyone to return to the principles found throughout Studio Sun & Sea:

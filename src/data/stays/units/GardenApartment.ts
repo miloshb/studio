@@ -1,13 +1,13 @@
-import type { UnitConfig } from "../unitType.ts";
-import { unitRates } from "../rates/";
+import type { UnitConfig } from "../unitTypes.ts";
+import { unitRates } from "../rates.ts";
 import { jadranska33 } from "../../config.ts";
 
 const gardenApartment: UnitConfig = {
   id: "gardenApartment",
   name: "Garden Apartment",
-  title: "Garden Apartment • Separate Bedroom",
+  label: "Garden Apartment • Separate Bedroom",
   available: new Date("2028-06-01"),
-  market: false,
+  publish: false,
   rate: unitRates.Apartment,
 
   location: {

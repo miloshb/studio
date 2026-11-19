@@ -1,15 +1,15 @@
 ---
 // src/components/Header.astro
-import { ROUTES, HEADER_ROUTE_KEYS, getLangRoot, getLangUrl, type RouteKeys } from "../data/routes.js";
-import { LANGS, type Language } from "../data/i18n.ts";
+import { ROUTES, HEADER_ROUTE_KEYS, getLangRoot, getLangUrl, type RouteKey } from "../data/routes.js";
+import { LANGS, type PublicLanguage } from "../data/i18n.ts";
 import { getSiteConfig, LANG_STORE_KEY } from "../data/config.ts";
 import MindbodyLogin from "./widgets/MindbodyLoginLinkV1.astro";
 
 const site = getSiteConfig();
 
 interface Props {
-  lang: Language;
-  page: RouteKeys;
+  lang: PublicLanguage;
+  page: RouteKey;
 }
 const { lang, page } = Astro.props;
 ---

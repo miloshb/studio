@@ -1,6 +1,8 @@
 # Introduction to Stays @ Studio Sun & Sea
 What makes this place special?
 
+TODO: ALL
+
 ## TOC
 - [Introduction to Stays @ Studio Sun \& Sea](#introduction-to-stays--studio-sun--sea)
   - [TOC](#toc)
@@ -36,7 +38,6 @@ Accommodations include their own facilities for food preparation, allowing the C
 ## Guides & Resources Index
 
 ## Living Well Together
-
 No document can anticipate every situation.
 
 When questions arise, we encourage everyone to return to the principles found throughout Studio Sun & Sea:

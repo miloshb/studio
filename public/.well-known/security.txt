@@ -1,6 +1,6 @@
 # Studio Sun & Sea — Vulnerability Disclosure Policy
 Contact: mailto:infosec@studiosunandsea.com
-Expires: 2027-06-23T00:00:00.000Z
+Expires: 2027-11-01T00:00:00.000Z
 Preferred-Languages: en, de
 Policy: https://studiosunandsea.com/en/privacy/
 Canonical: https://studiosunandsea.com/.well-known/security.txt

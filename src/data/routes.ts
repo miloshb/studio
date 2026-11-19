@@ -3,7 +3,8 @@
  * Multilingual site routing definitions.
  */
 import { getSiteConfig, info, debug } from "./config.ts";
-import { defaultLang, LANGS, type LangString, type Language } from "./i18n.ts";
+import { defaultLang, LANGS } from "./i18n.ts";
+import type { LangString, PublicLanguage } from "./i18n.ts";
 
 const site = getSiteConfig();
 
@@ -13,19 +14,50 @@ info && console.log("INFO: LANGS =", LANGS);
 
 
 // NAV GROUPS (keys only)
+// All routes on the site
+export const ALL_ROUTE_KEYS = [
+  "index",
+  "classes",
+  "schedule",
+  "private",
+  "privateBooking",
+  "workshops",
+  "workshopBooking",
+  "retreats",
+  "teach",
+  "teachers",
+  "account",
+  "about",
+  "thankYou",
+  "register",
+  "checkout",
+  "scheduleOverview",
+  "pricing",
+  "payment",
+  "journey",
+  "kunga",
+  "stays",
+  "imprint",
+  "privacy",
+  "terms",
+  "waiver",
+  "contact",
+] as const;
+export type RouteKey = typeof ALL_ROUTE_KEYS[number];
+
 // Header Navigation
-export const HEADER_ROUTE_KEYS = {
+export const HEADER_ROUTE_KEYS: { primary: RouteKey[]; secondary: RouteKey[] } = {
   brand: {
-    primary: ["classes", "schedule", "private", "workshops", "retreats"], // always in header navigation
-    secondary: ["teach", "about"], // 2nd set drops to footer navigation on mobile
+    primary: ["classes", "schedule", "private", "workshops", "retreats"] as RouteKey[], // always in header navigation
+    secondary: ["teach", "about"] as RouteKey[], // 2nd set drops to footer navigation on mobile
   },
   corp: {
-    primary: ["about", "teach", "contact"], // always in header navigation
-    secondary: [], // 2nd set drops to footer navigation on mobile
+    primary: ["about", "teach", "contact"] as RouteKey[], // always in header navigation
+    secondary: [] as RouteKey[], // 2nd set drops to footer navigation on mobile
   },
 }[site.mode];
 // Footer Navigation
-export const FOOTER_ROUTE_KEYS = {
+export const FOOTER_ROUTE_KEYS: RouteKey[] = {
   brand: [
     "scheduleOverview",
     "pricing",
@@ -37,17 +69,23 @@ export const FOOTER_ROUTE_KEYS = {
     "terms",
     "waiver",
     "contact",
-  ],
+  ] as RouteKey[],
   corp: [
     "payment",
     "imprint",
     "privacy",
     "terms",
-  ],
+  ] as RouteKey[],
 }[site.mode];
 // Next Steps Navigation (used at bottom of select pages - see BaseLayout.astro)
-export const NEXT_STEPS_ROUTE_KEYS =
-  ["classes", "retreats", "private", "workshops", "scheduleOverview", "teach", "contact"];
+export const NEXT_STEPS_ROUTE_KEYS: RouteKey[] = {
+  brand: [
+    "classes", "retreats", "private", "workshops", "scheduleOverview", "teach", "contact"
+  ] as RouteKey[],
+  corp: [
+  ] as RouteKey[],
+}[site.mode];
+
 
 export interface RouteInfo {
     href: LangString,
@@ -57,7 +95,7 @@ export interface RouteInfo {
 };
 
 // Mapping EN ↔ DE equivalents
-export const ROUTES: Record<string, RouteInfo> = {
+export const ROUTES: Record<RouteKey, RouteInfo> = {
   //////////////////////
   // HEADER NAV PAGES //
   //////////////////////
@@ -309,9 +347,7 @@ export const ROUTES: Record<string, RouteInfo> = {
       de: "Kontaktieren Sie uns."
     }
   }
-};
-export type RouteKeys = keyof typeof ROUTES;
-
+} as const;
 
 // HREFLANG MAP
 export const HREFLANG = Object.fromEntries(
@@ -323,13 +359,13 @@ export const HREFLANG = Object.fromEntries(
   ])
 );
 
-export function getLangRoot(lang: Language) {
+export function getLangRoot(lang: PublicLanguage) {
   const safeLang = LANGS.includes(lang) ? lang : defaultLang;
   return `/${safeLang}/`;
 }
 
 // Language switcher URL helper
-export function getLangUrl(pageKey: RouteKeys, targetLang: Language) {
+export function getLangUrl(pageKey: RouteKey, targetLang: PublicLanguage) {
   const route = ROUTES[pageKey];
 
   // If the page doesn't exist in ROUTES, fall back to language root
