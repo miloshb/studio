@@ -1,13 +1,13 @@
-import type { UnitConfig } from "../unitType.ts";
-import { unitRates } from "../rates/";
+import type { UnitConfig } from "../unitTypes.ts";
+import { unitRates } from "../rates.ts";
 import { jadranska35 } from "../../config.ts";
 
 const courtyardStudio: UnitConfig = {
   id: "courtyardStudio",
   name: "Courtyard Studio",
-  title: "Courtyard Studio • Café Lifestyle",
+  label: "Courtyard Studio • Café Lifestyle",
   available: new Date("2027-06-01"),
-  market: true,
+  publish: true,
   rate: unitRates.Studio,
 
   location: {
