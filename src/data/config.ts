@@ -8,7 +8,7 @@ export const TZ_STORE_KEY = "preferredTimezone";
 
 export const debug = false; // Set to true to show debug logs
 export const info = true; // Set to true to show info logs
-
+(info || debug) && console.log("INFO =", info, "DEBUG =", debug);
 
 export const jadranska33: GeoLocation = {
   street: "Jadranska 33",

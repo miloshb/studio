@@ -17,7 +17,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '22.14.0'
+          node-version-file: '.node-version'
           cache: 'npm'
 
       - name: Install Dependencies
@@ -74,7 +74,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '22.14.0'
+          node-version-file: '.node-version'
           cache: 'npm'
 
       - name: Configure Git
@@ -127,3 +127,4 @@ jobs:
         run: |
           # The '-o ci.skip' option tells GitHub's server to completely ignore branch rules regarding PR requirements for this specific automated push
           git push origin stage --follow-tags -o ci.skip
+          
