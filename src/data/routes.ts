@@ -3,7 +3,7 @@
  * Multilingual site routing definitions.
  */
 import { getSiteConfig, info, debug } from "./config.ts";
-import { defaultLang, LANGS } from "./i18n.ts";
+import { LANGS } from "./i18n.ts";
 import type { LangString, Language } from "./i18n.ts";
 
 const site = getSiteConfig();
@@ -372,4 +372,4 @@ export function getLangUrl(pageKey: RouteKey, targetLang: Language) {
   if (!route.href[targetLang]) return `/${targetLang}/`;
 
   return route.href[targetLang];
-}
+};
