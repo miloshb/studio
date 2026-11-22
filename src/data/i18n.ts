@@ -18,7 +18,8 @@ export type LocalizedString = string |
   (Record<DefaultLang, string>
     & Partial<Record<Exclude<Language, DefaultLang>, string>>);
 // Unlike LocalizedString, LangString requires all supported languages to be defined
-export type LangString = Record<PublicLanguage, string>;
+export type LangString = (Record<PublicLanguage, string>
+  & Partial<Record<Exclude<Language, PublicLanguage>, string>>);
 
 const LocaleToLang: Record<SupportedLocale, Language> = {
   "en-US": "en",

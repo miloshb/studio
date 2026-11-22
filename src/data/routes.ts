@@ -80,9 +80,10 @@ export const FOOTER_ROUTE_KEYS: RouteKey[] = {
 // Next Steps Navigation (used at bottom of select pages - see BaseLayout.astro)
 export const NEXT_STEPS_ROUTE_KEYS: RouteKey[] = {
   brand: [
-    "classes", "retreats", "private", "workshops", "scheduleOverview", "teach", "contact"
+    "classes", "retreats", "private", "workshops", "scheduleOverview", "teach", "contact",
   ] as RouteKey[],
   corp: [
+    "teach", "contact",
   ] as RouteKey[],
 }[site.mode];
 
@@ -100,12 +101,13 @@ export const ROUTES: Record<RouteKey, RouteInfo> = {
   // HEADER NAV PAGES //
   //////////////////////
   index: {
-    href: { en: "/en/", de: "/de/" },
-    nav: { en: "Home", de: "Start" },
-    label: { en: "Home", de: "Startseite" },
+    href: { en: "/en/", de: "/de/", hr: "/hr/" },
+    nav: { en: "Home", de: "Start", hr: "Početna" },
+    label: { en: "Home", de: "Startseite", hr: "Početna" },
     desc: {
       en: "Welcome to Studio Sun & Sea.",
-      de: "Willkommen bei Studio Sun & Sea."
+      de: "Willkommen bei Studio Sun & Sea.",
+      hr: "Dobrodošli u Studio Sun & Sea.",
     }
   },
   classes: {
