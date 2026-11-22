@@ -2,4 +2,3 @@
 /en/*     /en/:splat    200
 /de/*     /de/:splat    200
 /hr/*     /en/:splat    200
-/*        /en/:splat    302
