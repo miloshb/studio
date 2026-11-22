@@ -1,9 +1,9 @@
 ---
 import { getSiteConfig } from "../data/config.ts";
-import type { PublicLanguage } from "../data/i18n.ts";
+import type { Language } from "../data/i18n.ts";
 
 const site = getSiteConfig();
-const { lang } = Astro.props as { lang?: PublicLanguage };
+const { lang } = Astro.props as { lang?: Language };
 
 const TEXT = {
   brand: {
@@ -18,6 +18,12 @@ const TEXT = {
       subtitle: "Achtsame Bewegung für ein ruhiges, verbundenes Leben.",
       cta: "Stundenplan ansehen",
       ctaHref: "/de/schedule-overview",
+    },
+    hr: {
+      title: "Diši. Teči. Opusti se.",
+      subtitle: "Svjesno kretanje za miran, povezan život.",
+      cta: "Pogledaj raspored",
+      ctaHref: "/hr/schedule-overview",
     },
   },
   corp: {

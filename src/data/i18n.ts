@@ -9,7 +9,7 @@ export const LANGS = ["en", "de"] as const;
 export const defaultLang = LANGS[0];
 type DefaultLang = typeof defaultLang;
 export type PublicLanguage = typeof LANGS[number];
-type Language = PublicLanguage | "hr"; // Additional languages can be added here for internal use without publishing
+export type Language = PublicLanguage | "hr"; // Additional languages can be added here for internal use without publishing
 // Supported locales for content formatting
 export type SupportedLocale = "en-US" | "de-DE" | "en-GB" | "hr-HR";
 
