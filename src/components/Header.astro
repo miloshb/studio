@@ -1,15 +1,15 @@
 ---
 // src/components/Header.astro
-import { ROUTES, HEADER_ROUTE_KEYS, getLangRoot, getLangUrl, type RouteKey } from "../data/routes.js";
+import { ROUTES, HEADER_ROUTE_KEYS, getLangUrl, type RouteKey } from "../data/routes.ts";
 import { LANGS } from "../data/i18n.ts";
-import type { PublicLanguage } from "../data/i18n.ts";
+import type { Language } from "../data/i18n.ts";
 import { getSiteConfig, LANG_STORE_KEY } from "../data/config.ts";
 import MindbodyLogin from "./widgets/MindbodyLoginLinkV1.astro";
 
 const site = getSiteConfig();
 
 interface Props {
-  lang: PublicLanguage;
+  lang: Language;
   page: RouteKey;
 }
 const { lang, page } = Astro.props;
@@ -19,7 +19,7 @@ const { lang, page } = Astro.props;
   <div class="header container">
     <!-- Brand always links to the correct language root -->
     <div class="header-brand">
-      <a class="brand" href={getLangRoot(lang)}>
+      <a class="brand" href={`/${lang}/`}>
         <img class="aspect-square" src="/favicon/favicon-48.png" alt="Studio Sun & Sea Logo" />
         {site.name}
       </a>

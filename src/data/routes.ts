@@ -4,7 +4,7 @@
  */
 import { getSiteConfig, info, debug } from "./config.ts";
 import { defaultLang, LANGS } from "./i18n.ts";
-import type { LangString, PublicLanguage } from "./i18n.ts";
+import type { LangString, Language } from "./i18n.ts";
 
 const site = getSiteConfig();
 
@@ -361,13 +361,8 @@ export const HREFLANG = Object.fromEntries(
   ])
 );
 
-export function getLangRoot(lang: PublicLanguage) {
-  const safeLang = LANGS.includes(lang) ? lang : defaultLang;
-  return `/${safeLang}/`;
-}
-
 // Language switcher URL helper
-export function getLangUrl(pageKey: RouteKey, targetLang: PublicLanguage) {
+export function getLangUrl(pageKey: RouteKey, targetLang: Language) {
   const route = ROUTES[pageKey];
 
   // If the page doesn't exist in ROUTES, fall back to language root
