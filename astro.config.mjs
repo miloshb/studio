@@ -5,5 +5,6 @@ import sitemap from '@astrojs/sitemap';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://studiosunandsea.com',
-  integrations: [sitemap()]
+  integrations: [sitemap()],
+  compressHTML: false,
 });
