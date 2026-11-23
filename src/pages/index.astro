@@ -1,16 +1,16 @@
 ---
-import { defaultLang, LANGS } from "../data/i18n.ts";
+import { DEFAULT_LANG, LANGS } from "../data/i18n.ts";
 import { LANG_STORE_KEY } from "../data/config.ts";
 ---
 
 <!DOCTYPE html>
-<html lang={defaultLang}>
+<html lang={DEFAULT_LANG}>
   <head>
     <meta charset="UTF-8" />
     <title>Redirecting…</title>
-    <noscript><meta http-equiv="refresh" content={`0;url=/${defaultLang}/`} /></noscript>
+    <noscript><meta http-equiv="refresh" content={`0;url=/${DEFAULT_LANG}/`} /></noscript>
 
-    <script is:inline define:vars={{ defaultLang, LANGS, LANG_STORE_KEY }}>
+    <script is:inline define:vars={{ defaultLang: DEFAULT_LANG, LANGS, LANG_STORE_KEY }}>
       let targetLang = localStorage.getItem(LANG_STORE_KEY);
 
       if (!targetLang) {
