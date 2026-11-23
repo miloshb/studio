@@ -1,10 +1,10 @@
 ---
-import { NEXT_STEPS_ROUTE_KEYS, ROUTES } from "../data/routes.js";
-import type { RouteKey } from "../data/routes.js";
-import type { PublicLanguage } from "../data/i18n.js";
+import { NEXT_STEPS_ROUTE_KEYS, ROUTES } from "../data/routes.ts";
+import type { RouteKey } from "../data/routes.ts";
+import type { Language } from "../data/i18n.ts";
 
 interface Props {
-  lang: PublicLanguage;
+  lang: Language;
   page?: RouteKey;
 }
 const { lang = "en", page = null } = Astro.props;

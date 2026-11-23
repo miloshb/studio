@@ -12,10 +12,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version-file: '.node-version'
           cache: 'npm'
@@ -66,13 +66,13 @@ jobs:
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: 0 # Required to see commit history cleanly
           ssh-key: ${{ secrets.DEPLOY_KEY }} # <--- Instructs Git to authenticate using deploy key
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version-file: '.node-version'
           cache: 'npm'
@@ -127,4 +127,3 @@ jobs:
         run: |
           # The '-o ci.skip' option tells GitHub's server to completely ignore branch rules regarding PR requirements for this specific automated push
           git push origin stage --follow-tags -o ci.skip
-          

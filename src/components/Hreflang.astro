@@ -1,13 +1,15 @@
 ---
 // src/components/Hreflang.astro
-import { HREFLANG } from "../data/routes.js";
+import { HREFLANG } from "../data/routes.ts";
 import { getSiteConfig } from "../data/config.ts";
+import { LANGS, DEFAULT_LANG } from "../data/i18n.ts";
 
 const { page } = Astro.props;
 const urls = HREFLANG[page];
 const base = getSiteConfig().canonical;
 ---
 
-<link rel="alternate" hreflang="en" href={base + urls.en} />
-<link rel="alternate" hreflang="de" href={base + urls.de} />
-<link rel="alternate" hreflang="x-default" href={base + urls.en} />
+{LANGS.map((lang) => (
+  <link rel="alternate" hreflang={lang} href={base + urls[lang]} />
+))}
+<link rel="alternate" hreflang="x-default" href={base + urls[DEFAULT_LANG]} />

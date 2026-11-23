@@ -1,9 +1,9 @@
 ---
 import { getSiteConfig } from "../data/config.ts";
-import type { PublicLanguage } from "../data/i18n.ts";
+import type { Language } from "../data/i18n.ts";
 
 const site = getSiteConfig();
-const { lang } = Astro.props as { lang?: PublicLanguage };
+const { lang } = Astro.props as { lang?: Language };
 
 const TEXT = {
   brand: {
@@ -19,19 +19,31 @@ const TEXT = {
       cta: "Stundenplan ansehen",
       ctaHref: "/de/schedule-overview",
     },
+    hr: {
+      title: "Diši. Teči. Opusti se.",
+      subtitle: "Svjesno kretanje za miran, povezan život.",
+      cta: "Pogledaj raspored",
+      ctaHref: "/hr/schedule-overview",
+    },
   },
   corp: {
     en: {
       title: "Peace · Intention · Consciousness",
-      subtitle: "Mindful movement for a calm, connected life.",
+      subtitle: "A peaceful and intentional mind lies at the heart of everything we do.",
       cta: "Who we are?",
       ctaHref: "/en/about",
     },
     de: {
-      title: "Frieden · Intention · Geist",
-      subtitle: "Achtsame Bewegung für ein ruhiges, verbundenes Leben.",
+      title: "Frieden · Intention · Bewusstsein",
+      subtitle: "Ein friedvoller und bewusster Geist bildet das Herzstück unseres gesamten Handelns.",
       cta: "Wer sind wir?",
       ctaHref: "/de/about",
+    },
+    hr: {
+      title: "Mir · Namjera · Svjesnost",
+      subtitle: "Miran i svjestan um u samom je središtu svega što radimo.",
+      cta: "Tko smo mi?",
+      ctaHref: "/hr/about",
     },
   },
 };
