@@ -1,6 +1,12 @@
 /**
  * This Cloudflare Worker (mta-sts-proxy) is used to serve specifically files in the URL: ./.well-known/**
  * It exists for the purpose of enabling MTA-STS (Mail Transfer Agent Strict Transport Security).
+ *
+ * Deployed to these production domains:
+ * - https://mta-sts.studiosunandsea.com
+ * - https://mta-sts.mail.studiosunandsea.com
+ * - https://mta-sts.eireneintentiocitta.hr
+ *
  * https://www.rfc-editor.org/rfc/rfc8461.txt
  * https://knowledge.workspace.google.com/admin/gmail/advanced/about-mta-sts-and-tls-reporting
  *

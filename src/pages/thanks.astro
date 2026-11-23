@@ -1,20 +1,20 @@
 ---
-import { defaultLang, LANGS } from "../data/i18n.ts";
+import { DEFAULT_LANG, LANGS } from "../data/i18n.ts";
 import { ROUTES } from "../data/routes.js";
 import { LANG_STORE_KEY } from "../data/config.ts";
 
-const defaultHref = ROUTES.thankYou.href[defaultLang];
+const defaultHref = ROUTES.thankYou.href[DEFAULT_LANG];
 const hrefs = JSON.stringify(ROUTES.thankYou.href);
 const supported = JSON.stringify(LANGS);
 ---
 
 <!DOCTYPE html>
-<html lang={defaultLang}>
+<html lang={DEFAULT_LANG}>
 <head>
   <meta charset="UTF-8">
   <title>Redirecting…Thanks</title>
   <noscript><meta http-equiv="refresh" content={`0;url=${defaultHref}`} /></noscript>
-  <script is:inline define:vars={{ hrefs, supported, defaultLang, defaultHref, LANG_STORE_KEY }}>
+  <script is:inline define:vars={{ hrefs, supported, defaultLang: DEFAULT_LANG, defaultHref, LANG_STORE_KEY }}>
     const map = JSON.parse(hrefs), langs = JSON.parse(supported);
     let lang = localStorage.getItem(LANG_STORE_KEY);
 

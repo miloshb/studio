@@ -3,10 +3,10 @@
 import fs from "node:fs";
 import path from "node:path";
 import { company } from "../data/config.ts";
-import type { PublicLanguage } from "../data/i18n.ts";
+import type { Language } from "../data/i18n.ts";
 
 interface Props {
-  lang?: PublicLanguage;
+  lang?: Language;
 };
 
 const { lang = "en" } = Astro.props;
