@@ -24,7 +24,8 @@ export const jadranska35: GeoLocation = {
   unit: 200,
 };
 
-export type SiteMode = "brand" | "corp";
+export const sites = ["brand", "corp"];
+export type SiteMode = typeof sites[number];
 
 export interface SiteConfig {
   name: string;
@@ -78,9 +79,9 @@ export const company = {
 
 
 // SITE CONFIGURATION
-export function getSiteConfig(): SiteConfig {
+export function getSiteConfig(siteMode = "brand"): SiteConfig {
   // Read environment variable set in Cloudflare Pages dashboard
-  const mode = import.meta.env.SITE_MODE || "brand";
+  const mode = import.meta.env?.SITE_MODE || siteMode;
 
   if (mode === "corp") {
     return {
